@@ -43,8 +43,13 @@
 			var xo = coords[point*2];
 			var yo = coords[point*2+1];
 			if (Math.abs(yo-y) < 50){
-			console.log(point)
 				document.getElementById(point).setAttribute('fill','green');
+			} else {
+				if (yo < y){
+					 document.getElementById(point).setAttribute('fill','rgb(200,60,50)');
+				 } else {
+					 document.getElementById(point).setAttribute('fill','rgb(28,105,180)');
+				 }
 			}
 			sweepMove(evt.target.parentNode, x, y, xo, yo)
 		}
