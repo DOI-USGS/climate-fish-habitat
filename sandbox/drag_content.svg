@@ -1,0 +1,96 @@
+
+<svg version="1.1"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     width="500" height="240"
+     onload="init(evt)"
+     onmousemove="drag(evt)"
+     onmouseup="deselect()">
+    
+        <style>
+        .point1{
+            fill: #28A86B;
+        }
+        .point2{
+            fill: #6495ED;
+        }
+        .point3{
+            fill: #FF7878;
+        }
+        .point4{
+            fill: #8D5FD3;
+        }
+        .control_point{
+            fill: #FFF;
+            opacity: 0;
+            stroke: #888;
+            stroke-width: 2;
+            cursor: pointer;
+        }
+        .control_point:hover{
+            opacity: 0.5;
+        }
+        .invisible{
+            pointer-events: none;
+        }
+    </style>
+    
+    <script type="text/ecmascript"><![CDATA[
+        var svgDoc;
+        var selectedPoint = 0;
+        var dx = 0;
+        var dy = 0;
+        
+        var example_shape;
+        var coords = [0, 0, 100, 100, 150, 20, 180, 150, 280, 100];
+    
+        function init(evt) {
+            if ( window.svgDocument == null ) {
+                svgDoc = evt.target.ownerDocument;
+            }  
+            example_shape = svgDoc.getElementById('example_shape');
+        };
+        
+        function selectElement(evt, point){
+            selectedPoint = point;
+            control_point = evt.target.parentNode;
+            dx = coords[selectedPoint*2] - evt.clientX;
+            dy = coords[selectedPoint*2 + 1] - evt.clientY;
+        };
+        
+        function drag(evt){
+            if (selectedPoint === 0) { return; }
+            var x = evt.clientX + dx;
+            var y = evt.clientY + dy;
+            coords[selectedPoint*2] = x;
+            coords[selectedPoint*2 + 1] = y;
+            
+            control_point.setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
+        };
+        
+        function deselect(){
+            selectedPoint = 0;
+        }
+    
+    ]]> </script>
+    
+    <g transform="translate(100,100)" >
+        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 1)" />
+        <circle class="point1 invisible" cx="0" cy="0" r="3" />
+    </g>
+
+    <g transform="translate(150,20)" >
+        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 2)" />
+        <circle class="point2 invisible" cx="0" cy="0" r="3" />
+    </g>
+
+    <g transform="translate(180,150)" >
+        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 3)" />
+        <circle class="point3 invisible" cx="0" cy="0" r="3" />
+    </g>
+    
+   <g transform="translate(280,100)" >
+        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 4)" />
+        <circle class="point4 invisible" cx="0" cy="0" r="3" />
+    </g>  
+</svg>
