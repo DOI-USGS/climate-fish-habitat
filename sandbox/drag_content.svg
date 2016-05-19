@@ -33,7 +33,7 @@
         var dy = 0;
         
         var example_shape;
-        var coords = [0, 0, 400, 300, 400, 300, 400, 300];
+        var coords = [0, 0, 400, 300, 400, 200, 400, 100];
 		var locked = [0, 0, 220, 200, 220, 40, 220, 380];
     	function lockPosition(evt, point){			
 			evt.target.removeAttribute('onmousedown');
@@ -102,25 +102,25 @@
 		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black"/>
 	</g>
 	
-    <g transform="translate(400,300)" class='moveable'>
+    <g transform="translate(400,100)" class='moveable'>
         <circle class="control_point" cx="0" cy="0" r="10"/>
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="rgb(255,204,10)" id='3'/>
+		<path d="M80 0 a100,20 0 1,0 20,70z" fill="white" stroke='#01b29F' stroke-width='3' id='3'/>
 		<text y='40'>Laker</text>
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" opacity='0' onmousedown="selectElement(evt, 3)"  onmouseup="lockPosition(evt,3)"/>
+		<path d="M80 0 a100,20 0 1,0 20,70z" opacity='0' onmousedown="selectElement(evt, 3)"  onmouseup="lockPosition(evt,3)"/>
     </g>
 	
     <g transform="translate(400,300)" class='moveable'>
         <circle class="control_point" cx="0" cy="0" r="10"/>
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" id='1'/>
+		<path d="M80 0 a100,20 0 1,0 20,70z" fill="white" stroke='#01b29F' stroke-width='3' id='1'/>
 		<text y='40'>Wally</text>
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" opacity='0' onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt,1)"/>
+		<path d="M80 0 a100,20 0 1,0 20,70z" opacity='0' onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt,1)"/>
     </g>
 	
-    <g transform="translate(400,300)" class='moveable'>
+    <g transform="translate(400,200)" class='moveable'>
         <circle class="control_point" cx="0" cy="0" r="10"/>
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="rgb(210,55,44)" id='2'/>
+		<path d="M80 0 a100,20 0 1,0 20,70z" fill="white" stroke='#01b29F' stroke-width='3' id='2'/>
 		<text y='40'>Bass</text>
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" opacity='0' onmousedown="selectElement(evt, 2)"  onmouseup="lockPosition(evt,2)"/>
+		<path d="M80 0 a100,20 0 1,0 20,70z" opacity='0' onmousedown="selectElement(evt, 2)"  onmouseup="lockPosition(evt,2)"/>
     </g>
 
 </svg>
