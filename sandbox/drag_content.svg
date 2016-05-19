@@ -7,6 +7,7 @@
         .point2{
             fill: #6495ED;
         }
+
         .control_point{
             fill: #FFF;
             opacity: 0;
@@ -29,7 +30,14 @@
         
         var example_shape;
         var coords = [0, 0, 400, 200, 150, 20];
-    
+		var locked = [0, 0, 200, 200, 200, 80];
+    	function lockPosition(evt, point){			
+			evt.target.removeAttribute('onmousedown');
+			evt.target.removeAttribute('onmouseup');
+			var x = locked[selectedPoint*2];
+			var y = locked[selectedPoint*2+1];
+			evt.target.parentNode.setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
+		}
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
@@ -59,15 +67,22 @@
         }
     
     ]]> </script>
-    
+	<defs>
+	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
+	      <stop offset="0%" style="stop-color:rgb(28,105,180);stop-opacity:1" />
+	      <stop offset="50%" style="stop-color:rgb(240,230,125);stop-opacity:1" />
+	      <stop offset="100%" style="stop-color:rgb(200,60,50);stop-opacity:1" />
+	    </linearGradient>
+	  </defs>
+	
 	<g id="thermometer">
-		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="none" stroke="black"/>
+		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black"/>
 	</g>
 	
-    <g transform="translate(400,200)" >
-        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 1)" />
+    <g transform="translate(400,200)" class='moveable'>
+        <circle class="control_point" cx="0" cy="0" r="10"/>
         <circle class="point1 invisible" cx="0" cy="0" r="3" />
-		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" onmousedown="selectElement(evt, 1)" />
+		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt)" id='wally'/>
     </g>
 	
 	
