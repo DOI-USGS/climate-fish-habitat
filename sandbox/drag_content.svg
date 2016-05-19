@@ -1,24 +1,11 @@
 
-<svg version="1.1"
-     xmlns:svg="http://www.w3.org/2000/svg"
-     xmlns="http://www.w3.org/2000/svg"
-     width="500" height="240"
-     onload="init(evt)"
-     onmousemove="drag(evt)"
-     onmouseup="deselect()">
-    
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="800" height="540" onload="init(evt)" onmousemove="drag(evt)" onmouseup="deselect()">
         <style>
         .point1{
             fill: #28A86B;
         }
         .point2{
             fill: #6495ED;
-        }
-        .point3{
-            fill: #FF7878;
-        }
-        .point4{
-            fill: #8D5FD3;
         }
         .control_point{
             fill: #FFF;
@@ -34,7 +21,6 @@
             pointer-events: none;
         }
     </style>
-    
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
         var selectedPoint = 0;
@@ -42,7 +28,7 @@
         var dy = 0;
         
         var example_shape;
-        var coords = [0, 0, 100, 100, 150, 20, 180, 150, 280, 100];
+        var coords = [0, 0, 400, 200, 150, 20];
     
         function init(evt) {
             if ( window.svgDocument == null ) {
@@ -74,23 +60,21 @@
     
     ]]> </script>
     
-    <g transform="translate(100,100)" >
+	<g id="thermometer">
+		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="none" stroke="black"/>
+	</g>
+	
+    <g transform="translate(400,200)" >
         <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 1)" />
         <circle class="point1 invisible" cx="0" cy="0" r="3" />
+		<path d="M80 0 a100,50 0 1,0 20,70z" fill="#01b29F" onmousedown="selectElement(evt, 1)" />
     </g>
-
+	
+	
+	
     <g transform="translate(150,20)" >
         <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 2)" />
         <circle class="point2 invisible" cx="0" cy="0" r="3" />
     </g>
 
-    <g transform="translate(180,150)" >
-        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 3)" />
-        <circle class="point3 invisible" cx="0" cy="0" r="3" />
-    </g>
-    
-   <g transform="translate(280,100)" >
-        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 4)" />
-        <circle class="point4 invisible" cx="0" cy="0" r="3" />
-    </g>  
 </svg>
