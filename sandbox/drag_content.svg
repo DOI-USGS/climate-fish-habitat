@@ -19,6 +19,9 @@
             stroke-width: 2;
             cursor: pointer;
         }
+		.moveable{
+			cursor: move;	
+		}
         .control_point:hover{
             opacity: 0.5;
         }
