@@ -22,6 +22,9 @@
 		.moveable{
 			cursor: move;	
 		}
+		.locked {
+			cursor: default;	
+		}
         .control_point:hover{
             opacity: 0.5;
         }
@@ -54,7 +57,8 @@
 					 document.getElementById(point).setAttribute('fill','rgb(28,105,180)');
 				 }
 			}
-			sweepMove(evt.target.parentNode, x, y, xo, yo)
+			sweepMove(evt.target.parentNode, x, y, xo, yo);
+			evt.target.parentNode.setAttribute('class','locked');
 		}
         function init(evt) {
             if ( window.svgDocument == null ) {
