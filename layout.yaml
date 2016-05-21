@@ -1,0 +1,24 @@
+packages:
+  - yaml
+  - whisker
+
+sources:
+  - scripts/lib/getData.R
+  - scripts/lib/getDataInfo.R
+  - scripts/lib/getTemplateInfo.R
+  - scripts/lib/getFigureInfo.R
+  - scripts/lib/readData.R
+  - scripts/lib/buildPages.R
+  - scripts/lib/runAll.R
+  
+include:
+  - figures_R.yaml
+
+targets:
+  all:
+    depends:
+      - templateAndMoveHtml
+  
+  templateAndMoveHtml:
+    command: runAll()
+    cleanup_level: purge
