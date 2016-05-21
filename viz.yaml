@@ -1,0 +1,83 @@
+vizlab: "0.1"
+info:
+  id: climate-fish-habitat
+  name: An example visualization
+  date: 2016-05-12
+  publish-date: 2016-07-13
+  path: /climatefish
+  description: >-
+    Fish habitat.
+pages:
+  -
+    id: index
+    template: layout/templates/index.mustache
+    sections: [header, intro, fishEconomy, fishTemperature, lakeWarming, fishShifts, fishManagement, footer]
+    context: siteTextData
+sections:
+  -
+    id: header
+    template: layout/templates/header.mustache
+    context: siteTextData
+  -
+    id: intro
+    template: layout/templates/intro.mustache
+    context: siteTextData
+  -
+    id: fishEconomy
+    template: layout/templates/figure1.mustache
+    context: siteTextData
+  -
+    id: fishTemperature
+    template: layout/templates/figure2.mustache
+    context: siteTextData
+    depends: fishTemperatureFig
+  -
+    id: lakeWarming
+    template: layout/templates/figure3.mustache
+    context: siteTextData
+    depends: lakeWarmingFig
+  - 
+    id: fishShifts
+    template: layout/templates/figure4.mustache
+    context: siteTextData
+    depends: fishShiftsFig
+  -
+    id: footer
+    template: layout/templates/footer.mustache
+    context: siteTextData
+data:
+  -
+    id: siteTextData
+    location: data/siteText.yaml
+    mimeType: text/yaml
+  -
+    id: All_dataData
+    itemId: 570eDUMMYef3b7ca2565e
+    filename: All_data_for_data_release.csv
+    handler: sciencebase
+    mimeType: text/csv
+figures:
+  -
+    id: fishTemperatureFig
+    input:
+      -
+        filename: cache/mungedFishTemperature.json
+        mimeType: application/json
+    buildfile: scripts/3_visualize/fishTemperature.R
+    type: R
+    tags: [mobile, desktop, ie]
+  -
+    id: lakeWarmingFig
+    input: 
+    buildfile: scripts/3_visualize/lakeWarming.R
+    type: html
+    tags: [mobile, desktop, ie]
+  -
+    id: fishShiftsFig
+    input:
+      -
+        filename: cache/mungedFishShifts.tsv
+        mimeType: text/tab-separated-values
+    buildfile: scripts/3_visualize/fishShifts.R
+    type: R
+    tags: [mobile, desktop, ie]
