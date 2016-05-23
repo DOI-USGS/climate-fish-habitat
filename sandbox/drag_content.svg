@@ -50,25 +50,28 @@
         var dy = 0;
         
         var example_shape;
+		var range = [42, 85];
         var coords = [0, 0, 400, 300, 400, 200, 400, 100];
-		var locked = [0, 0, 220, 220, 220, 50, 220, 420];
+		var xlocked = 220;
+		//var fishlocked = {"walleye":[73, 72, 73], "largemouth-bass":[83, 77, 90], "lake-trout":[53, 39, 64]};
+		var fishlocked = [[73, 72, 73],[83, 77, 90],[53, 39, 64]];
     	function lockPosition(evt, point){			
 			evt.target.removeAttribute('onmousedown');
 			evt.target.removeAttribute('onmouseup');
-			var x = locked[point*2];
-			var y = locked[point*2+1];
+			var y = temp2y(fishlocked[point-1][0]);
 			var xo = coords[point*2];
 			var yo = coords[point*2+1];
-			if (Math.abs(yo-y) < 50){
+			var usrTemp = y2Temp(yo);
+			if (usrTemp <= fishlocked[point-1][2] && usrTemp >= fishlocked[point-1][1]){
 				document.getElementById(point).setAttribute('class','good-fish');
 			} else {
-				if (yo < y){
+				if (usrTemp > fishlocked[point-1][2]){
 					 document.getElementById(point).setAttribute('class','hot-fish');
 				 } else {
 					 document.getElementById(point).setAttribute('class','cold-fish');
 				 }
 			}
-			sweepMove(evt.target.parentNode, x, y, xo, yo);
+			sweepMove(evt.target.parentNode, xlocked, y, xo, yo);
 			evt.target.parentNode.setAttribute('class','locked');
 		}
         function init(evt) {
@@ -84,7 +87,7 @@
             control_point = evt.target.parentNode;
             dx = coords[selectedPoint*2] - evt.clientX;
             dy = coords[selectedPoint*2 + 1] - evt.clientY;
-			text_var.firstChild.data = "Temperature: " + mutateTemperature(evt.clientY) + " °F";
+			text_var.firstChild.data = "Temperature: " + y2Temp(evt.clientY) + " °F";
         };
         
         function drag(evt){
@@ -101,14 +104,18 @@
 			}
             coords[selectedPoint*2] = x;
             coords[selectedPoint*2 + 1] = y;
-			text_var.firstChild.data = "Temperature: " + mutateTemperature(y) + " °F";
+			text_var.firstChild.data = "Temperature: " + y2Temp(y) + " °F";
             
             control_point.setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
         };
 		
-		function mutateTemperature(y){
-			var temp = 80-(y/10);
-			return(temp)
+		function y2Temp(y){
+			var temp = range[1]-(y-50)/(350/(range[1]-range[0])); // 350 and 50 are thermometer breaks
+			return(Math.round(temp))
+		}
+		function temp2y(temp){
+			var y = (range[1]-temp) * (350/(range[1]-range[0])) + 50;
+			return(y)
 		}
         
 		function sweepMove(evt, x, y, xo, yo){
@@ -135,7 +142,7 @@
   	</g>
 	
 	<g id="thermometer">
-		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black" stroke-width="3"/>
+		<path d="M50,50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black" stroke-width="3"/>
 	</g>
 	
     <g transform="translate(400,100)" class='moveable'>
