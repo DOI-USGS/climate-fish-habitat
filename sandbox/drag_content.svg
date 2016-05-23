@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="540" onload="init(evt)" onmousemove="drag(evt)" onmouseup="deselect()">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="560" onload="init(evt)" onmousemove="drag(evt)" onmouseup="deselect()">
         <style>
 		text {
 		  font-size: 20px;
@@ -49,8 +49,7 @@
         var dx = 0;
         var dy = 0;
         
-        var example_shape;
-		var range = [42, 85];
+		var range = [40, 85];
         var coords = [0, 0, 400, 300, 400, 200, 400, 100];
 		var xlocked = 220;
 		//var fishlocked = {"walleye":[73, 72, 73], "largemouth-bass":[83, 77, 90], "lake-trout":[53, 39, 64]};
@@ -78,8 +77,28 @@
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
             }  
-            example_shape = svgDoc.getElementById('example_shape');
 			text_var = svgDoc.getElementById('temperature-text');
+			var ticks = [40, 50, 60, 70, 80];
+			for (i = 0; i < ticks.length; i++) { 
+				var newpath = document.createElementNS(document.rootElement.namespaceURI,"path"); 
+				var y = temp2y(ticks[i]); 
+				newpath.setAttributeNS(null, "d", "M 50,"+ y + " h10 M 110," + y + " h-10");  
+				newpath.setAttributeNS(null, "stroke", "black");
+				newpath.setAttributeNS(null, "stroke-width", "3");
+				svgDoc.getElementById('thermometer').appendChild(newpath);
+			
+				var newText = document.createElementNS(document.rootElement.namespaceURI,"text");  
+				newText.setAttributeNS(null,"x","80");     
+				newText.setAttributeNS(null,"y",y); 
+				newText.setAttributeNS(null,"dy","0.33em"); 
+				newText.setAttributeNS(null,"text-anchor","middle");
+				newText.setAttributeNS(null,"class",'noselect');
+				var textNode = document.createTextNode(ticks[i]);
+				newText.appendChild(textNode);
+				svgDoc.getElementById('thermometer').appendChild(newText);
+			}
+			
+			
         };
         
         function selectElement(evt, point){
