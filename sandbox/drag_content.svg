@@ -6,6 +6,15 @@
 		  cursor: default;
 		  font-family: Tahoma, Geneva, sans-serif;
 		}
+		.noselect {
+		  -webkit-touch-callout: none; /* iOS Safari */
+		  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+		  -khtml-user-select: none;    /* Konqueror */
+		  -moz-user-select: none;      /* Firefox */
+		  -ms-user-select: none;       /* Internet Explorer/Edge */
+		  user-select: none;           /* Non-prefixed version, currently
+		                                  not supported by any browser */
+		}
         .control_point{
             fill: #FFF;
             opacity: 0;
@@ -33,12 +42,6 @@
 		.locked {
 			cursor: default;	
 		}
-        .control_point:hover{
-            opacity: 0.5;
-        }
-        .invisible{
-            pointer-events: none;
-        }
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
@@ -88,13 +91,12 @@
             if (selectedPoint === 0) { return; }
             var x = evt.clientX + dx;
             var y = evt.clientY + dy;
+			// keep the fish in-bounds:
 			if (y > 450){
 				y = 450;
-			}
-			if (y < 0){
+			} else if (y < 0){
 				y = 0;
-			}
-			if (x > 700){
+			} else if (x > 700){
 				x = 700;
 			}
             coords[selectedPoint*2] = x;
@@ -129,36 +131,36 @@
     
     ]]> </script>	
   	<g transform="translate(15,520)">
-  		<text id='temperature-text'> </text>
+  		<text id='temperature-text' class='noselect'> </text>
   	</g>
 	
 	<g id="thermometer">
-		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black"/>
+		<path d="M50 50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black" stroke-width="3"/>
 	</g>
 	
     <g transform="translate(400,100)" class='moveable'>
         <circle class="control_point" cx="0" cy="0" r="10"/>
 		<use xlink:href="#lake-trout" id='3' class='unselected-fish'/>
-		<text dy='0.33em' text-anchor='middle'>Lake Trout</text>
+		<text dy='0.33em' text-anchor='middle' class='noselect'>Lake Trout</text>
 		<use xlink:href="#lake-trout" opacity='0' onmousedown="selectElement(evt, 3)"  onmouseup="lockPosition(evt,3)"/>
     </g>
 	
     <g transform="translate(400,300)" class='moveable'>
         <circle class="control_point" cx="0" cy="0" r="10"/>
 		<use xlink:href="#walleye" class='unselected-fish' id='1'/>
-		<text dy='0.33em' text-anchor='middle'>Walleye</text>
+		<text dy='0.33em' text-anchor='middle' class='noselect'>Walleye</text>
 		<use xlink:href="#walleye" opacity='0' onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt,1)"/>
     </g>
 	
     <g transform="translate(400,200)" class='moveable'>
         <circle class="control_point" cx="0" cy="0" r="10"/>
 		<use xlink:href="#largemouth-bass" class='unselected-fish' id='2'/>
-		<text dy='0.33em' text-anchor='middle'>LM Bass</text>
+		<text dy='0.33em' text-anchor='middle' class='noselect'>LM Bass</text>
 		<use xlink:href="#largemouth-bass" opacity='0' onmousedown="selectElement(evt, 2)"  onmouseup="lockPosition(evt,2)"/>
     </g>
 	<defs>
 	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
-	      <stop offset="0%" style="stop-color:rgb(200,60,50);stop-opacity:1" />
+	      <stop offset="0%" style="stop-color:rgb(200,60,50);stop-opacity:1"/>
 	      <stop offset="50%" style="stop-color:rgb(240,230,125);stop-opacity:1"/>
 		  <stop offset="90%" style="stop-color:rgb(28,105,180);stop-opacity:1"/>
 	      <stop offset="100%" style="stop-color:rgb(28,105,180);stop-opacity:1"/>
