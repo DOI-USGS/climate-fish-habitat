@@ -131,11 +131,11 @@
 		function y2Temp(y){
 			var temp = range[1]-(y-50)/(350/(range[1]-range[0])); // 350 and 50 are thermometer breaks
 			return(Math.round(temp))
-		}
+		};
 		function temp2y(temp){
 			var y = (range[1]-temp) * (350/(range[1]-range[0])) + 50;
 			return(y)
-		}
+		};
         
 		function sweepMove(evt, x, y, xo, yo){
 			var i = 0;
@@ -148,12 +148,12 @@
 				i++
 				} else {
                    clearInterval(sweepCount);
-				}}, 20);}
+				}}, 20);};
 		
         function deselect(){
             selectedPoint = 0;
 			//text_var.firstChild.data = " ";
-        }
+        };
     
     ]]> </script>	
   	<g transform="translate(15,520)">
