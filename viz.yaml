@@ -24,16 +24,16 @@ sections:
     context: siteTextData
   -
     id: fishEconomy
-    template: layout/templates/figure1.mustache
+    template: layout/templates/figure2.mustache
     context: siteTextData
   -
     id: fishTemperature
-    template: layout/templates/figure2.mustache
+    template: layout/templates/figure3.mustache
     context: siteTextData
     depends: fishTemperatureFig
   -
     id: lakeWarming
-    template: layout/templates/figure3.mustache
+    template: layout/templates/figure4.mustache
     context: siteTextData
     depends: lakeWarmingFig
   - 

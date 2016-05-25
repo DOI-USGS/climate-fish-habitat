@@ -10,9 +10,7 @@ sources:
   - scripts/lib/readData.R
   - scripts/lib/buildPages.R
   - scripts/lib/runAll.R
-  
-include:
-  - figures_R.yaml
+
 
 targets:
   all:
