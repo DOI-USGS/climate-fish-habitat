@@ -205,11 +205,11 @@
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
-      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">I'm done</text>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Finished</text>
     	</g>
    	 	<g id='start-over' transform="translate(20,0)">
       		<rect width="160" height="40" fill="grey"/>
-      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Start over</text>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Reset</text>
       		<rect width="160" height="40" opacity="0"/>
     	</g>
     </g>
