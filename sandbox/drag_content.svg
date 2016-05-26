@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="560" onload="init(evt)" onmousemove="drag(evt)" onmouseup="deselect()">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" onload="init(evt)" onmousemove="drag(evt)" onmouseup="deselect()">
         <style>
 		text {
 		  font-size: 20px;
@@ -15,13 +15,16 @@
 		  user-select: none;           /* Non-prefixed version, currently
 		                                  not supported by any browser */
 		}
-        .control_point{
-            fill: #FFF;
-            opacity: 0;
-            stroke: #888;
-            stroke-width: 2;
-            cursor: pointer;
-        }
+       
+    .disabled {
+      opacity:0.3;
+      cursor: default;
+    }
+    .enabled {
+      opacity:1.0;
+      cursor: pointer;
+    }
+    
 		.unselected-fish {
 			 fill:white;
 			 stroke:#01b29F;
@@ -48,35 +51,28 @@
         var selectedPoint = 0;
         var dx = 0;
         var dy = 0;
-        
 		var range = [40, 85];
         var coords = [0, 0, 400, 300, 400, 200, 400, 100];
+        var origCoords = [0, 0, 400, 300, 400, 200, 400, 100];
 		var xlocked = 220;
-		//var fishlocked = {"walleye":[73, 72, 73], "largemouth-bass":[83, 77, 90], "lake-trout":[53, 39, 64]};
-		var fishlocked = [[73, 72, 73],[83, 77, 90],[53, 39, 64]];
-    	function lockPosition(evt, point){			
-			evt.target.removeAttribute('onmousedown');
-			evt.target.removeAttribute('onmouseup');
-			var y = temp2y(fishlocked[point-1][0]);
-			var xo = coords[point*2];
-			var yo = coords[point*2+1];
-			var usrTemp = y2Temp(yo);
-			if (usrTemp <= fishlocked[point-1][2] && usrTemp >= fishlocked[point-1][1]){
-				document.getElementById(point).setAttribute('class','good-fish');
-			} else {
-				if (usrTemp > fishlocked[point-1][2]){
-					 document.getElementById(point).setAttribute('class','hot-fish');
-				 } else {
-					 document.getElementById(point).setAttribute('class','cold-fish');
-				 }
-			}
-			sweepMove(evt.target.parentNode, xlocked, y, xo, yo);
-			evt.target.parentNode.setAttribute('class','locked');
-		}
+
+        function resetDefaults(){
+        	svgDoc.getElementById('im-done').setAttribute('class','disabled');
+        	svgDoc.getElementById('start-over').setAttribute('class','disabled');
+        	for (i = 1; i < 4; i++) {
+        		sweepMove(svgDoc.getElementById(i).parentNode, origCoords[i*2], origCoords[i*2+1], coords[i*2], coords[i*2+1])
+        		coords[i*2] = origCoords[i*2];
+        		coords[i*2+1] = origCoords[i*2+1];
+        		svgDoc.getElementById(i).parentNode.setAttribute('class','moveable');
+        	}
+
+        }
+
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
             }  
+            resetDefaults()
 			text_var = svgDoc.getElementById('temperature-text');
 			var ticks = [40, 50, 60, 70, 80];
 			for (i = 0; i < ticks.length; i++) { 
@@ -97,16 +93,37 @@
 				newText.appendChild(textNode);
 				svgDoc.getElementById('thermometer').appendChild(newText);
 			}
-			
-			
         };
         
+        function canFinish() {
+        	for(i = 1; i < 4; i++){
+        		if(coords[i*2]==origCoords[i*2] && coords[i*2+1]==origCoords[i*2+1]){
+        			return false;
+        		} 
+        	}
+      		return true;
+        }
+		
+		//var fishlocked = {"walleye":[73, 72, 73], "largemouth-bass":[83, 77, 90], "lake-trout":[53, 39, 64]};
+		var fishlocked = [[73, 72, 73],[83, 77, 90],[53, 39, 64]];
+    	function lockPosition(evt, point){			
+			evt.target.removeAttribute('onmousedown');
+			evt.target.removeAttribute('onmouseup');
+			var y = temp2y(fishlocked[point-1][0]);
+			var xo = coords[point*2];
+			var yo = coords[point*2+1];
+			var usrTemp = y2Temp(yo);
+		}
+
         function selectElement(evt, point){
             selectedPoint = point;
             control_point = evt.target.parentNode;
             dx = coords[selectedPoint*2] - evt.clientX;
             dy = coords[selectedPoint*2 + 1] - evt.clientY;
 			text_var.firstChild.data = "Temperature: " + y2Temp(evt.clientY) + " °F";
+			svgDoc.getElementById('start-over').setAttribute('class','enabled');
+			svgDoc.getElementById('start-over').setAttributeNS(null,'onmousedown',"resetDefaults()");
+
         };
         
         function drag(evt){
@@ -126,6 +143,9 @@
 			text_var.firstChild.data = "Temperature: " + y2Temp(y) + " °F";
             
             control_point.setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
+            if (canFinish()){
+				svgDoc.getElementById('im-done').setAttribute('class','enabled');
+			}
         };
 		
 		function y2Temp(y){
@@ -164,25 +184,34 @@
 		<path d="M50,50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black" stroke-width="3"/>
 	</g>
 	
-    <g transform="translate(400,100)" class='moveable'>
+    <g transform="translate(400,100)" class='moveable' onmousedown="selectElement(evt, 3)"  onmouseup="lockPosition(evt,3)">
         <circle class="control_point" cx="0" cy="0" r="10"/>
 		<use xlink:href="#lake-trout" id='3' class='unselected-fish'/>
 		<text dy='0.33em' text-anchor='middle' class='noselect'>Lake Trout</text>
-		<use xlink:href="#lake-trout" opacity='0' onmousedown="selectElement(evt, 3)"  onmouseup="lockPosition(evt,3)"/>
+		<use xlink:href="#lake-trout" opacity='0'/>
     </g>
 	
-    <g transform="translate(400,300)" class='moveable'>
+    <g transform="translate(400,300)" class='moveable' onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt,1)">
         <circle class="control_point" cx="0" cy="0" r="10"/>
 		<use xlink:href="#walleye" class='unselected-fish' id='1'/>
 		<text dy='0.33em' text-anchor='middle' class='noselect'>Walleye</text>
-		<use xlink:href="#walleye" opacity='0' onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt,1)"/>
+		<use xlink:href="#walleye" opacity='0'/>
     </g>
 	
-    <g transform="translate(400,200)" class='moveable'>
+    <g transform="translate(400,200)" class='moveable' onmousedown="selectElement(evt, 2)"  onmouseup="lockPosition(evt,2)">
         <circle class="control_point" cx="0" cy="0" r="10"/>
 		<use xlink:href="#largemouth-bass" class='unselected-fish' id='2'/>
 		<text dy='0.33em' text-anchor='middle' class='noselect'>LM Bass</text>
-		<use xlink:href="#largemouth-bass" opacity='0' onmousedown="selectElement(evt, 2)"  onmouseup="lockPosition(evt,2)"/>
+		<use xlink:href="#largemouth-bass" opacity='0'/>
+    </g>
+    <g id='im-done' transform="translate(50,540)">
+      <rect width="160" height="40" fill="#01b29F"/>
+      <text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">I'm done</text>
+    </g>
+    <g id='start-over' transform="translate(250,540)">
+      <rect width="160" height="40" fill="grey"/>
+      <text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Start over</text>
+      <rect width="160" height="40" opacity="0"/>
     </g>
 	<defs>
 	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
