@@ -88,7 +88,7 @@ new ScrollMagic.Scene({
 	.setPin('#figure3')
 	.on("enter leave", updateBox)
 	.on("enter", function() {
-    triggerOnce("yearAdvanceTrigger");
+    triggerOnce("sortFishTrigger");
   	})
 	.addIndicators() // add indicators (requires plugin)
 	.addTo(controller);
