@@ -84,7 +84,7 @@
 				var y = temp2y(ticks[i]); 
 				newpath.setAttributeNS(null, "d", "M -30,"+ y + " h10 M 30," + y + " h-10");  
 				newpath.setAttributeNS(null, "stroke", "black");
-				newpath.setAttributeNS(null, "stroke-width", "3");
+				newpath.setAttributeNS(null, "stroke-width", "1.5");
 				svgDoc.getElementById('thermometer').appendChild(newpath);
 			
 				var newText = document.createElementNS(document.rootElement.namespaceURI,"text");      
@@ -185,6 +185,7 @@
 		
         function deselect(){
             selectedPoint = 0;
+            text_var.firstChild.data = " ";
         };
     
     ]]> </script>	
