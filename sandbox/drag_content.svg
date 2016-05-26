@@ -19,6 +19,7 @@
     .disabled {
       opacity:0.3;
       cursor: default;
+      pointer-events: none
     }
     .enabled {
       opacity:1.0;
@@ -40,7 +41,7 @@
 			fill:green;
 		}
 		.moveable{
-			cursor: move;	
+			cursor: pointer;	
 		}
 		.locked {
 			cursor: default;	
@@ -52,9 +53,8 @@
         var dx = 0;
         var dy = 0;
 		var range = [40, 85];
-        var coords = [0, 0, 400, 300, 400, 200, 400, 100];
-        var origCoords = [0, 0, 400, 300, 400, 200, 400, 100];
-		var xlocked = 220;
+        var coords = [0, 0, 650, 300, 650, 200, 650, 100];
+        var origCoords = [0, 0, 650, 300, 650, 200, 650, 100];
 
         function resetDefaults(){
         	svgDoc.getElementById('im-done').setAttribute('class','disabled');
@@ -78,13 +78,12 @@
 			for (i = 0; i < ticks.length; i++) { 
 				var newpath = document.createElementNS(document.rootElement.namespaceURI,"path"); 
 				var y = temp2y(ticks[i]); 
-				newpath.setAttributeNS(null, "d", "M 50,"+ y + " h10 M 110," + y + " h-10");  
+				newpath.setAttributeNS(null, "d", "M -30,"+ y + " h10 M 30," + y + " h-10");  
 				newpath.setAttributeNS(null, "stroke", "black");
 				newpath.setAttributeNS(null, "stroke-width", "3");
 				svgDoc.getElementById('thermometer').appendChild(newpath);
 			
-				var newText = document.createElementNS(document.rootElement.namespaceURI,"text");  
-				newText.setAttributeNS(null,"x","80");     
+				var newText = document.createElementNS(document.rootElement.namespaceURI,"text");      
 				newText.setAttributeNS(null,"y",y); 
 				newText.setAttributeNS(null,"dy","0.33em"); 
 				newText.setAttributeNS(null,"text-anchor","middle");
@@ -107,8 +106,6 @@
 		//var fishlocked = {"walleye":[73, 72, 73], "largemouth-bass":[83, 77, 90], "lake-trout":[53, 39, 64]};
 		var fishlocked = [[73, 72, 73],[83, 77, 90],[53, 39, 64]];
     	function lockPosition(evt, point){			
-			evt.target.removeAttribute('onmousedown');
-			evt.target.removeAttribute('onmouseup');
 			var y = temp2y(fishlocked[point-1][0]);
 			var xo = coords[point*2];
 			var yo = coords[point*2+1];
@@ -125,6 +122,10 @@
 			svgDoc.getElementById('start-over').setAttributeNS(null,'onmousedown',"resetDefaults()");
 
         };
+
+        function imDone(){
+        	svgDoc.getElementById('im-done').setAttribute('class','disabled');
+        }
         
         function drag(evt){
             if (selectedPoint === 0) { return; }
@@ -145,6 +146,7 @@
             control_point.setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
             if (canFinish()){
 				svgDoc.getElementById('im-done').setAttribute('class','enabled');
+				svgDoc.getElementById('im-done').setAttributeNS(null,'onmousedown',"imDone()");
 			}
         };
 		
@@ -172,46 +174,44 @@
 		
         function deselect(){
             selectedPoint = 0;
-			//text_var.firstChild.data = " ";
         };
     
     ]]> </script>	
-  	<g transform="translate(15,520)">
-  		<text id='temperature-text' class='noselect'> </text>
-  	</g>
 	
-	<g id="thermometer">
-		<path d="M50,50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black" stroke-width="3"/>
+	<g id="thermometer" transform="translate(400,0)">
+		<path d="M-30,50 v350 a50,50 0 1,0 60,0 v-350 a30,30 0 1,0 -60,0" fill="url(#temperature)" stroke="black" stroke-width="3"/>
+		<g transform="translate(0,520)">
+  		<text id='temperature-text' text-anchor='middle' class='noselect'> </text>
+  	</g>
 	</g>
 	
-    <g transform="translate(400,100)" class='moveable' onmousedown="selectElement(evt, 3)"  onmouseup="lockPosition(evt,3)">
-        <circle class="control_point" cx="0" cy="0" r="10"/>
+    <g class='moveable' onmousedown="selectElement(evt, 3)" onmouseup="lockPosition(evt,3)">
 		<use xlink:href="#lake-trout" id='3' class='unselected-fish'/>
 		<text dy='0.33em' text-anchor='middle' class='noselect'>Lake Trout</text>
 		<use xlink:href="#lake-trout" opacity='0'/>
     </g>
 	
-    <g transform="translate(400,300)" class='moveable' onmousedown="selectElement(evt, 1)"  onmouseup="lockPosition(evt,1)">
-        <circle class="control_point" cx="0" cy="0" r="10"/>
+    <g class='moveable' onmousedown="selectElement(evt, 1)" onmouseup="lockPosition(evt,1)">
 		<use xlink:href="#walleye" class='unselected-fish' id='1'/>
 		<text dy='0.33em' text-anchor='middle' class='noselect'>Walleye</text>
 		<use xlink:href="#walleye" opacity='0'/>
     </g>
 	
-    <g transform="translate(400,200)" class='moveable' onmousedown="selectElement(evt, 2)"  onmouseup="lockPosition(evt,2)">
-        <circle class="control_point" cx="0" cy="0" r="10"/>
+    <g class='moveable' onmousedown="selectElement(evt, 2)" onmouseup="lockPosition(evt,2)">
 		<use xlink:href="#largemouth-bass" class='unselected-fish' id='2'/>
 		<text dy='0.33em' text-anchor='middle' class='noselect'>LM Bass</text>
 		<use xlink:href="#largemouth-bass" opacity='0'/>
     </g>
-    <g id='im-done' transform="translate(50,540)">
-      <rect width="160" height="40" fill="#01b29F"/>
-      <text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">I'm done</text>
-    </g>
-    <g id='start-over' transform="translate(250,540)">
-      <rect width="160" height="40" fill="grey"/>
-      <text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Start over</text>
-      <rect width="160" height="40" opacity="0"/>
+    <g id='buttons' transform="translate(400,540)">
+		<g id='im-done' transform="translate(-180,0)">
+      		<rect width="160" height="40" fill="#01b29F"/>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">I'm done</text>
+    	</g>
+   	 	<g id='start-over' transform="translate(20,0)">
+      		<rect width="160" height="40" fill="grey"/>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Start over</text>
+      		<rect width="160" height="40" opacity="0"/>
+    	</g>
     </g>
 	<defs>
 	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
