@@ -126,6 +126,7 @@
         function selectElement(evt, point){
             selectedPoint = point;
             control_point = evt.target.parentNode;
+            //svgDoc.documentElement.insertBefore(svgDoc.getElementById('1').parentNode, svgDoc.getElementById('2').parentNode)
             dx = coords[selectedPoint*2] - evt.clientX;
             dy = coords[selectedPoint*2 + 1] - evt.clientY;
 			text_var.firstChild.data = "Temperature: " + y2Temp(evt.clientY) + " °F";
