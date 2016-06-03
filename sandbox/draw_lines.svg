@@ -1,0 +1,115 @@
+
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+        <style>
+		text {
+		  font-size: 20px;
+		  cursor: default;
+		  font-family: Tahoma, Geneva, sans-serif;
+		}
+		.noselect {
+		  -webkit-touch-callout: none; /* iOS Safari */
+		  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+		  -khtml-user-select: none;    /* Konqueror */
+		  -moz-user-select: none;      /* Firefox */
+		  -ms-user-select: none;       /* Internet Explorer/Edge */
+		  user-select: none;           /* Non-prefixed version, currently
+		                                  not supported by any browser */
+		}
+       
+    .disabled {
+      opacity:0.3;
+      cursor: default;
+      pointer-events: none
+    }
+    .enabled {
+      opacity:1.0;
+      cursor: pointer;
+    }
+    
+		.moveable{
+			cursor: pointer;	
+		}
+		.locked {
+			cursor: default;	
+		}
+    </style>
+    <script type="text/ecmascript"><![CDATA[
+        var svgDoc;
+        var selectedPoint = null;
+        function init(evt) {
+            if ( window.svgDocument == null ) {
+                svgDoc = evt.target.ownerDocument;
+                var mainDocument = window.parent.document;
+            }  
+        };
+        
+        function canFinish() {
+        	for(i = 1; i < 4; i++){
+        		if(coords[i*2]==origCoords[i*2] && coords[i*2+1]==origCoords[i*2+1]){
+        			return false;
+        		} 
+        	}
+      		return true;
+        }
+
+		function select(evt){
+			console.log(Math.round(evt.clientX));
+			selectedPoint = 1;
+		}
+
+        function imDone(){
+        	svgDoc.getElementById('im-done').setAttribute('class','disabled');
+        }
+        
+        function draw(evt){
+			if (selectedPoint != null){
+				console.log(evt.clientX)
+				if (evt.clientX > 50 & evt.clientX < 150){
+					svgDoc.getElementById('dot-1').setAttribute('class','enabled');
+					svgDoc.getElementById('dot-1').setAttribute('cy',evt.clientY);
+				}
+			}
+			
+
+        };
+		
+		function y2Temp(y){
+			var temp = range[1]-(y-50)/(350/(range[1]-range[0])); // 350 and 50 are thermometer breaks
+			return(Math.round(temp))
+		};
+		function temp2y(temp){
+			var y = (range[1]-temp) * (350/(range[1]-range[0])) + 50;
+			return(y)
+		};
+        
+        function deselect(){
+            selectedPoint = null;
+        };
+    
+    ]]> </script>	
+	
+	<circle cx='100' cy='100' r='10' fill='red' class="disabled" id='dot-1'/>
+	
+    <g id='buttons' transform="translate(400,540)">
+		<g id='im-done' transform="translate(-180,0)">
+      		<rect width="160" height="40" fill="#01b29F"/>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Finished</text>
+    	</g>
+   	 	<g id='start-over' transform="translate(20,0)">
+      		<rect width="160" height="40" fill="grey"/>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Reset</text>
+      		<rect width="160" height="40" opacity="0"/>
+    	</g>
+    </g>
+	<defs>
+	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
+	      <stop offset="0%" style="stop-color:rgb(200,60,50);stop-opacity:1"/>
+	      <stop offset="50%" style="stop-color:rgb(240,230,125);stop-opacity:1"/>
+		  <stop offset="90%" style="stop-color:rgb(28,105,180);stop-opacity:1"/>
+	      <stop offset="100%" style="stop-color:rgb(28,105,180);stop-opacity:1"/>
+	    </linearGradient>
+		<filter id="gaus-blur">
+			<feGaussianBlur stdDeviation="1" />
+		</filter>
+	  </defs>
+</svg>
