@@ -195,15 +195,4 @@
       		<rect width="160" height="40" opacity="0"/>
     	</g>
     </g>
-	<defs>
-	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
-	      <stop offset="0%" style="stop-color:rgb(200,60,50);stop-opacity:1"/>
-	      <stop offset="50%" style="stop-color:rgb(240,230,125);stop-opacity:1"/>
-		  <stop offset="90%" style="stop-color:rgb(28,105,180);stop-opacity:1"/>
-	      <stop offset="100%" style="stop-color:rgb(28,105,180);stop-opacity:1"/>
-	    </linearGradient>
-		<filter id="gaus-blur">
-			<feGaussianBlur stdDeviation="1" />
-		</filter>
-	  </defs>
 </svg>
