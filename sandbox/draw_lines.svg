@@ -242,15 +242,15 @@
         function deselect(){
             selectedPoint = null;
             helpBlocks();
-            if (fishFinished()){
-				newFish();
-        	}
+            
 			if (canFinish()){
     			svgDoc.getElementById("im-done").setAttribute('class','enabled');
     			svgDoc.getElementById("im-done").setAttribute('onmousedown', 'imDone()')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
     			svgDoc.getElementById("start-over").setAttribute('onmousedown', 'resetDefaults()')
-			} 
+			} else if (fishFinished()){
+				newFish();
+        	}
 			
             for (var i = 0; i < dots.length; i++) {
             	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
