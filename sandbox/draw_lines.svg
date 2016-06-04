@@ -35,22 +35,25 @@
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
+        var dotSpace = 50;
+        var wallyDots = {"dot-1":50,"dot-2":150,"dot-3":250,"dot-4":350,"dot-5":450,"dot-6":550,"dot-7":650,"dot-8":750};
+        var activeDots = wallyDots;
         var selectedPoint = null;
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
                 var mainDocument = window.parent.document;
             }  
+            for (dot in activeDots){
+				var newC = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
+				newC.setAttributeNS(null, "cx", activeDots[dot]);  
+				newC.setAttributeNS(null, "class","disabled");
+				newC.setAttributeNS(null, "id", dot);
+				newC.setAttributeNS(null, "r", 5);
+				svgDoc.getElementById("control-dots").appendChild(newC);
+			}
         };
-        
-        function canFinish() {
-        	for(i = 1; i < 4; i++){
-        		if(coords[i*2]==origCoords[i*2] && coords[i*2+1]==origCoords[i*2+1]){
-        			return false;
-        		} 
-        	}
-      		return true;
-        }
+  
 
 		function select(evt){
 			console.log(Math.round(evt.clientX));
@@ -62,25 +65,15 @@
         }
         
         function draw(evt){
-			if (selectedPoint != null){
-				console.log(evt.clientX)
-				if (evt.clientX > 50 & evt.clientX < 150){
-					svgDoc.getElementById('dot-1').setAttribute('class','enabled');
-					svgDoc.getElementById('dot-1').setAttribute('cy',evt.clientY);
+        	if (selectedPoint === null) {return}
+				for (dot in activeDots){
+					if (evt.clientX > activeDots[dot]-dotSpace & evt.clientX <= activeDots[dot]+dotSpace){
+						svgDoc.getElementById(dot).setAttribute('class','enabled');
+						svgDoc.getElementById(dot).setAttribute('cy',evt.clientY);
+					}
 				}
-			}
-			
-
         };
 		
-		function y2Temp(y){
-			var temp = range[1]-(y-50)/(350/(range[1]-range[0])); // 350 and 50 are thermometer breaks
-			return(Math.round(temp))
-		};
-		function temp2y(temp){
-			var y = (range[1]-temp) * (350/(range[1]-range[0])) + 50;
-			return(y)
-		};
         
         function deselect(){
             selectedPoint = null;
@@ -88,8 +81,7 @@
     
     ]]> </script>	
 	
-	<circle cx='100' cy='100' r='10' fill='red' class="disabled" id='dot-1'/>
-	
+	<g id="control-dots" fill='red'/>
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
