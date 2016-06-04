@@ -37,18 +37,43 @@
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
-        var dotSpace = 20;
-        var activeFish = "wally"
-        var dots = [40,80,120,160,200,240,280,320,360,400,440,480,520];
-        var selectedPoint = null;
-        var drawnPoints = [];
+		var domainHeight = 400;
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
                 var mainDocument = window.parent.document;
             }  
-
+			var activeFish;
+			var fishArray;
+			var dots;
+			var selectedPoint;
+			var drawnPoints
+			var dotSpace;
+			resetDefaults()
+			
+        };
+		// set up the initial position of control-point dots;
+		// reset button and dot classes
+  		function resetDefaults(){
+		
+			fishArray = ["wally","bass"]
+			activeFish = fishArray[0]
+        	dots = [40,80,120,160,200,240,280,320,360,400,440,480,520];
+			dotSpace = 20;
+			
+        	selectedPoint = null;
+        	drawnPoints = [];
+			var wallyG = document.getElementById("wally-dots");
+			var bassG = document.getElementById("bass-dots");
+			while (wallyG.firstChild) { wallyG.removeChild(wallyG.firstChild); }
+			while (bassG.firstChild) { bassG.removeChild(bassG.firstChild); }
+			
             for (var i = 0; i < dots.length; i++) {
+				var domainBox = document.createElementNS(document.rootElement.namespaceURI,"rect"); 
+				domainBox.setAttributeNS(null, "x", dots[i]-dotSpace);  
+				domainBox.setAttributeNS(null, "width", dotSpace*2);  
+				domainBox.setAttributeNS(null, "height", domainHeight); 
+				svgDoc.getElementById("domain-boxes").appendChild(domainBox);
 				var newW = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
 				newW.setAttributeNS(null, "cx", dots[i]);  
 				newW.setAttributeNS(null, "cy", "0"); 
@@ -59,24 +84,15 @@
 				newB.setAttributeNS(null, "id", "bass-"+i)
 				svgDoc.getElementById("wally-dots").appendChild(newW);
 				svgDoc.getElementById("bass-dots").appendChild(newB);
+				drawnPoints[i] = false;
 			}
-			resetDefaults()
-        };
-  		function resetDefaults(){
-  			for (var i = 0; i < dots.length; i++) {
-  				svgDoc.getElementById("wally-"+i).setAttribute('class','hidden');
-  			}
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
-  			for (var i = 0; i < dots.length; i++) {
-    			drawnPoints[i] = false;
+			for (var i = 0; i < fishArray.length; i++) {
+				drawLine(fishArray[i])
 			}
-  			drawLine();
+  			
   		}
-
-		function select(evt){
-			selectedPoint = 1;
-		}
 
         function imDone(){
         	svgDoc.getElementById('im-done').setAttribute('class','disabled');
@@ -85,6 +101,7 @@
         function draw(evt){
         	if (selectedPoint === null) {return}
 			for (var i = 0; i < dots.length; i++) {
+				//probably faster to see if the evt is above a rect that represents the domain of each control point
 				if (evt.clientX > dots[i]-dotSpace & evt.clientX <= dots[i]+dotSpace){
 					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',evt.clientY);
@@ -103,11 +120,12 @@
         	return true;
         }
 
-        function drawLine(){
+        function drawLine(fish){
+			fish = fish || activeFish;
         	var path = "M0,0 ";
-        	
+
         	for (var i = 0; i < dots.length; i++) {
-        		var dotEl = svgDoc.getElementById(activeFish+"-"+[i]);
+        		var dotEl = svgDoc.getElementById(fish+"-"+[i]);
         		if (drawnPoints[i] & drawnPoints[i-1]){
         			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		} else {
@@ -115,7 +133,7 @@
         		}
         		
         	}
-        	svgDoc.getElementById(activeFish + "-line").setAttribute('d',path);
+        	svgDoc.getElementById(fish + "-line").setAttribute('d',path);
         	
         }
 		
@@ -125,7 +143,14 @@
     			drawnPoints[i] = false;
 			}
 		}
-        
+		function select(evt){
+			var id = evt.target.getAttribute('id');
+			if (id !== null){
+				activeFish = id.split("-")[0]
+				console.log(activeFish)
+			} 
+			selectedPoint = true;
+		}
         function deselect(){
             selectedPoint = null;
             if (isFinished()){
@@ -160,6 +185,7 @@
       		<rect width="160" height="40" opacity="0"/>
     	</g>
     </g>
+	<g id="domain-boxes" opacity='0'/>
 	<defs>
 	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
 	      <stop offset="0%" style="stop-color:rgb(200,60,50);stop-opacity:1"/>
