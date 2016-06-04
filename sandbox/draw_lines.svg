@@ -38,42 +38,39 @@
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
         var dotSpace = 20;
-        var activeDots = {"dot-1":40,"dot-2":80,"dot-3":120,"dot-4":160,"dot-5":200,"dot-6":240,"dot-7":280,"dot-8":320,"dot-9":360,"dot-10":400,"dot-11":440,"dot-12":480,"dot-13":520};
+        var activeFish = "wally"
+        var dots = [40,80,120,160,200,240,280,320,360,400,440,480,520];
         var selectedPoint = null;
-        var drawnPoints = {};
+        var drawnPoints = [];
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
                 var mainDocument = window.parent.document;
             }  
 
-            for (dot in activeDots){
-				var newC = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
-				newC.setAttributeNS(null, "cx", activeDots[dot]);  
-				newC.setAttributeNS(null, "cy", "0"); 
-				newC.setAttributeNS(null, "class","hidden");
-				newC.setAttributeNS(null, "r", 3);
-				newC.setAttributeNS(null, "id", dot);
-				svgDoc.getElementById("active-dots").appendChild(newC);
-			}
-			for (dot in activeDots){
-				var newC = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
-				newC.setAttributeNS(null, "cx", activeDots[dot]);  
-				newC.setAttributeNS(null, "cy", "0"); 
-				newC.setAttributeNS(null, "class","enabled");
-				newC.setAttributeNS(null, "r", 3);
-				newC.setAttributeNS(null, "id", dot+"-inactive");
-				svgDoc.getElementById("inactive-dots").appendChild(newC);
+            for (var i = 0; i < dots.length; i++) {
+				var newW = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
+				newW.setAttributeNS(null, "cx", dots[i]);  
+				newW.setAttributeNS(null, "cy", "0"); 
+				newW.setAttributeNS(null, "class","disabled");
+				newW.setAttributeNS(null, "r", 3);
+				var newB = newW.cloneNode();
+				newW.setAttributeNS(null, "id", "wally-"+i)
+				newB.setAttributeNS(null, "id", "bass-"+i)
+				svgDoc.getElementById("wally-dots").appendChild(newW);
+				svgDoc.getElementById("bass-dots").appendChild(newB);
 			}
 			resetDefaults()
         };
   		function resetDefaults(){
-  			for (dot in activeDots){
-  				svgDoc.getElementById(dot).setAttribute('class','hidden');
+  			for (var i = 0; i < dots.length; i++) {
+  				svgDoc.getElementById("wally-"+i).setAttribute('class','hidden');
   			}
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
-  			for (dot in activeDots){drawnPoints[dot]=false}
+  			for (var i = 0; i < dots.length; i++) {
+    			drawnPoints[i] = false;
+			}
   			drawLine();
   		}
 
@@ -87,19 +84,19 @@
         
         function draw(evt){
         	if (selectedPoint === null) {return}
-			for (dot in activeDots){
-				if (evt.clientX > activeDots[dot]-dotSpace & evt.clientX <= activeDots[dot]+dotSpace){
-					svgDoc.getElementById(dot).setAttribute('class','enabled');
-					svgDoc.getElementById(dot).setAttribute('cy',evt.clientY);
-					drawnPoints[dot]=true;
+			for (var i = 0; i < dots.length; i++) {
+				if (evt.clientX > dots[i]-dotSpace & evt.clientX <= dots[i]+dotSpace){
+					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',evt.clientY);
+					drawnPoints[i]=true;
 				}
 			}
 			drawLine();
         };
 
         function isFinished(){
-        	for (dot in activeDots){
-        		if (drawnPoints[dot] === false){
+        	for (var i = 0; i < dots.length; i++) {
+        		if (drawnPoints[i] === false){
         			return false;
         		}
         	}
@@ -109,28 +106,24 @@
         function drawLine(){
         	var path = "M0,0 ";
         	
-        	for (dot in activeDots){
-        		var dotEl = svgDoc.getElementById(dot);
-        		var prevDot = Number(dot.split('-')[1])-1;
-        		if (drawnPoints[dot] & drawnPoints['dot-'+prevDot]){
+        	for (var i = 0; i < dots.length; i++) {
+        		var dotEl = svgDoc.getElementById(activeFish+"-"+[i]);
+        		if (drawnPoints[i] & drawnPoints[i-1]){
         			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		} else {
         			path = path+"M"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		}
         		
         	}
-        	svgDoc.getElementById("active-line").setAttribute('d',path);
+        	svgDoc.getElementById(activeFish + "-line").setAttribute('d',path);
         	
         }
 		
 		function newFish(){
-			console.log('newfish')
-			for (dot in activeDots){	
-				svgDoc.getElementById(dot).setAttribute('id',dot+"-locked");
-				svgDoc.getElementById(dot+"-inactive").setAttribute('id',dot);
+			activeFish = 'bass'
+			for (var i = 0; i < dots.length; i++) {
+    			drawnPoints[i] = false;
 			}
-			svgDoc.getElementById("active-line").setAttribute('id',"locked-line");
-			svgDoc.getElementById("inactive-line").setAttribute('id',"active-line");
 		}
         
         function deselect(){
@@ -138,9 +131,10 @@
             if (isFinished()){
         		svgDoc.getElementById("im-done").setAttribute('class','enabled');
         		svgDoc.getElementById("im-done").setAttribute('onmousedown', 'newFish()')
+        		newFish()
         	}
-            for (dot in activeDots){
-            	if (svgDoc.getElementById(dot).getAttribute('class') === 'enabled'){
+            for (var i = 0; i < dots.length; i++) {
+            	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
             		svgDoc.getElementById("start-over").setAttribute('class','enabled');
             		svgDoc.getElementById("start-over").setAttribute('onmousedown', 'resetDefaults()')
             		return
@@ -150,10 +144,10 @@
     
     ]]> </script>	
 	
-	<g id="active-dots" fill='red'/>
-	<g id="inactive-dots" fill="#01b29F"/>
-	<path fill='none' stroke='red' stroke-width="3" id="active-line" />
-	<path fill='none' stroke="#01b29F" stroke-width="3" id="inactive-line" />
+	<g id="wally-dots" fill='red'/>
+	<g id="bass-dots" fill="#01b29F"/>
+	<path fill='none' stroke='red' stroke-width="3" id="wally-line" />
+	<path fill='none' stroke="#01b29F" stroke-width="3" id="bass-line" />
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
