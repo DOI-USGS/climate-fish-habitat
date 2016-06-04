@@ -144,19 +144,21 @@
 			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
         }
         
+
         function draw(evt){
         	if (selectedPoint === null) {return}
 			var id = evt.target.getAttribute('id');
 			if (id !== null){
+
 				// capture previous box before deselect, interpolate y w/ skipped x?
 				var i = id.split('-')[1];
+				if (priorId === null){ priorId = i};
 				var newY = evt.clientY;
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',newY);
 				if (Math.abs(i-priorId) > 1){
+					interpolatePoints(Number(priorY), Number(newY), Number(priorId), Number(i))
 					// need to interpolate
-					console.log(i)
-					console.log(priorId)
 				}
 				priorY = newY;
 				priorId = i;
@@ -164,6 +166,27 @@
 			}
 			drawLine();
         };
+
+        function interpolatePoints(y0, y1, i0, i1){
+        	var distance = y1 - y0;
+			var step = distance/(i1-i0)
+			var stepI = 1;
+        	if (i0 > i1){
+        		for (var i = i1+1; i < i0; i++){
+        			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y1+step*stepI);
+					drawnPoints[activeFish][i]=true;
+        			stepI++;
+        		}
+        	} else {
+        		for (var i = i0+1; i < i1; i++){
+        			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y0+step*stepI);
+					drawnPoints[activeFish][i]=true;
+        			stepI++;
+        		}
+        	}
+        }
 
         function fishFinished(){
         	for (var i = 0; i < dots.length; i++) {
