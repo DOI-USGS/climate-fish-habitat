@@ -15,7 +15,9 @@
 		  user-select: none;           /* Non-prefixed version, currently
 		                                  not supported by any browser */
 		}
-       
+    .hidden {
+      opacity:0.0;
+    }  
     .disabled {
       opacity:0.3;
       cursor: default;
@@ -35,8 +37,8 @@
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
-        var dotSpace = 50;
-        var wallyDots = {"dot-1":50,"dot-2":150,"dot-3":250,"dot-4":350,"dot-5":450,"dot-6":550,"dot-7":650,"dot-8":750};
+        var dotSpace = 20;
+        var wallyDots = {"dot-1":40,"dot-2":80,"dot-3":120,"dot-4":160,"dot-5":200,"dot-6":240,"dot-7":280,"dot-8":320,"dot-9":360,"dot-10":400,"dot-11":440,"dot-12":480,"dot-13":520};
         var activeDots = wallyDots;
         var selectedPoint = null;
         var drawnPoints = {};
@@ -50,7 +52,7 @@
 				var newC = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
 				newC.setAttributeNS(null, "cx", activeDots[dot]);  
 				newC.setAttributeNS(null, "cy", "0"); 
-				newC.setAttributeNS(null, "class","disabled");
+				newC.setAttributeNS(null, "class","hidden");
 				newC.setAttributeNS(null, "id", dot);
 				newC.setAttributeNS(null, "r", 5);
 				svgDoc.getElementById("control-dots").appendChild(newC);
@@ -59,14 +61,14 @@
         };
   		function resetDefaults(){
   			for (dot in activeDots){
-  				svgDoc.getElementById(dot).setAttribute('class','disabled');
+  				svgDoc.getElementById(dot).setAttribute('class','hidden');
   			}
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			for (dot in activeDots){drawnPoints[dot]=false}
+  			drawLine();
   		}
 
 		function select(evt){
-			console.log(Math.round(evt.clientX));
 			selectedPoint = 1;
 		}
 
@@ -116,7 +118,7 @@
     ]]> </script>	
 	
 	<g id="control-dots" fill='red'/>
-	<path fill='none' stroke='black' id="control-lines" />
+	<path fill='none' stroke='red' stroke-width="3" id="control-lines" />
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
