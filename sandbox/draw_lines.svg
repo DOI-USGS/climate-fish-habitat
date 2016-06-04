@@ -51,6 +51,8 @@
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
 		var domainHeight = "443.52";
+		var priorY = null;
+		var priorId = null;
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
@@ -146,9 +148,18 @@
         	if (selectedPoint === null) {return}
 			var id = evt.target.getAttribute('id');
 			if (id !== null){
+				// capture previous box before deselect, interpolate y w/ skipped x?
 				var i = id.split('-')[1];
+				var newY = evt.clientY;
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
-				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',evt.clientY);
+				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',newY);
+				if (Math.abs(i-priorId) > 1){
+					// need to interpolate
+					console.log(i)
+					console.log(priorId)
+				}
+				priorY = newY;
+				priorId = i;
 				drawnPoints[activeFish][i]=true;
 			}
 			drawLine();
