@@ -1,12 +1,10 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="620" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
         <style>
 		text {
 		  font-size: 20px;
 		  cursor: default;
 		  font-family: Tahoma, Geneva, sans-serif;
-		}
-		.noselect {
 		  -webkit-touch-callout: none; /* iOS Safari */
 		  -webkit-user-select: none;   /* Chrome/Safari/Opera */
 		  -khtml-user-select: none;    /* Konqueror */
@@ -14,6 +12,15 @@
 		  -ms-user-select: none;       /* Internet Explorer/Edge */
 		  user-select: none;           /* Non-prefixed version, currently
 		                                  not supported by any browser */
+		}
+		.noselect {
+	  -webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+	  -khtml-user-select: none;    /* Konqueror */
+	  -moz-user-select: none;      /* Firefox */
+	  -ms-user-select: none;       /* Internet Explorer/Edge */
+	  user-select: none;           /* Non-prefixed version, currently
+	                                  not supported by any browser */
 		}
     .hidden {
       opacity:0.0;
@@ -37,7 +44,7 @@
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
-		var domainHeight = 400;
+		var domainHeight = 490;
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
@@ -59,7 +66,7 @@
 			fishArray = ["wally","bass"]
 			drawnPoints = {"wally":[],"bass":[]};
 			activeFish = fishArray[0]
-        	dots = [40,80,120,160,200,240,280,320,360,400,440,480,520];
+        	dots = [85,125,165,205,245,285,325,365,405,445,485,525,565,605,645];
 			dotSpace = 20;
 			
         	selectedPoint = null;
@@ -88,8 +95,14 @@
 				drawnPoints["wally"][i] = false;
 				drawnPoints["bass"][i] = false;
 			}
+			svgDoc.getElementById('wally-real').setAttribute('class','hidden');
+			svgDoc.getElementById('bass-real').setAttribute('class','hidden');
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
+			svgDoc.getElementById("wally-dots").removeAttribute('class');
+			svgDoc.getElementById("bass-dots").removeAttribute('class');
+			svgDoc.getElementById("wally-line").removeAttribute('class');
+			svgDoc.getElementById("bass-line").removeAttribute('class');
 			for (var i = 0; i < fishArray.length; i++) {
 				drawLine(fishArray[i])
 			}
@@ -98,6 +111,13 @@
 
         function imDone(){
         	svgDoc.getElementById('im-done').setAttribute('class','disabled');
+			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
+			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
+			
+			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
+			svgDoc.getElementById("bass-dots").setAttribute('class','hidden');
+			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
+			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
         }
         
         function draw(evt){
@@ -165,7 +185,9 @@
             selectedPoint = null;
             if (isFinished()){
         		svgDoc.getElementById("im-done").setAttribute('class','enabled');
-        		svgDoc.getElementById("im-done").setAttribute('onmousedown', 'newFish()')
+        		svgDoc.getElementById("im-done").setAttribute('onmousedown', 'imDone()')
+        		svgDoc.getElementById("start-over").setAttribute('class','enabled');
+        		svgDoc.getElementById("start-over").setAttribute('onmousedown', 'resetDefaults()')
         		newFish()
         	}
             for (var i = 0; i < dots.length; i++) {
@@ -178,12 +200,53 @@
         };
     
     ]]> </script>	
+	<g id="modeled-data">
+		<polyline points='82.40,260.46 114.84,265.92 147.29,266.65 179.73,263.10 212.18,279.33 244.62,329.67 277.07,382.31 309.51,404.21 341.96,406.41 374.40,404.84 406.84,380.61 439.29,372.60 471.73,368.27 504.18,366.78 536.62,371.00 569.07,369.73 601.51,366.50 633.96,367.82 666.40,367.86 ' stroke-width="4" clip-path='url(#cp1)' fill="none" stroke='#01b29F' stroke-linejoin="round" id='wally-real'/>
+		<defs>
+		  <clipPath id='cp2'>
+		    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
+		  </clipPath>
+		</defs>
+		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='82.40' y1='502.56' x2='82.40' y2='509.76' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='212.18' y1='502.56' x2='212.18' y2='509.76' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='341.96' y1='502.56' x2='341.96' y2='509.76' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='471.73' y1='502.56' x2='471.73' y2='509.76' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='601.51' y1='502.56' x2='601.51' y2='509.76' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<g clip-path='url(#cp2)'><text x='64.60' y='528.48' style='font-size: 12.00pt; font-family: Arial;'>2200</text></g>
+		<g clip-path='url(#cp2)'><text x='194.38' y='528.48' style='font-size: 12.00pt; font-family: Arial;'>2400</text></g>
+		<g clip-path='url(#cp2)'><text x='324.16' y='528.48' style='font-size: 12.00pt; font-family: Arial;'>2600</text></g>
+		<g clip-path='url(#cp2)'><text x='453.94' y='528.48' style='font-size: 12.00pt; font-family: Arial;'>2800</text></g>
+		<g clip-path='url(#cp2)'><text x='583.71' y='528.48' style='font-size: 12.00pt; font-family: Arial;'>3000</text></g>
+		<line x1='59.04' y1='486.13' x2='59.04' y2='75.47' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='59.04' y1='486.13' x2='51.84' y2='486.13' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='59.04' y1='404.00' x2='51.84' y2='404.00' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='59.04' y1='321.87' x2='51.84' y2='321.87' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='59.04' y1='239.73' x2='51.84' y2='239.73' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='59.04' y1='157.60' x2='51.84' y2='157.60' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<line x1='59.04' y1='75.47' x2='51.84' y2='75.47' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+		<g clip-path='url(#cp2)'><text x='22.40' y='491.86' style='font-size: 12.00pt; font-family: Arial;'>0.0</text></g>
+		<g clip-path='url(#cp2)'><text x='22.40' y='409.73' style='font-size: 12.00pt; font-family: Arial;'>0.2</text></g>
+		<g clip-path='url(#cp2)'><text x='22.40' y='327.59' style='font-size: 12.00pt; font-family: Arial;'>0.4</text></g>
+		<g clip-path='url(#cp2)'><text x='22.40' y='245.46' style='font-size: 12.00pt; font-family: Arial;'>0.6</text></g>
+		<g clip-path='url(#cp2)'><text x='22.40' y='163.33' style='font-size: 12.00pt; font-family: Arial;'>0.8</text></g>
+		<g clip-path='url(#cp2)'><text x='22.40' y='81.19' style='font-size: 12.00pt; font-family: Arial;'>1.0</text></g>
+		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' clip-path='url(#cp2)' fill="none" stroke='black'/>
+		<g clip-path='url(#cp2)'><text x='295.70' y='557.28' style='font-size: 12.00pt; font-family: Arial;'>Growing Degree Days</text></g>
+		<g clip-path='url(#cp2)'><text transform='translate(12.96,341.72) rotate(-90)' style='font-size: 12.00pt; font-family: Arial;'>Probability of fish</text></g>
+		<defs>
+		  <clipPath id='cp3'>
+		    <rect x='59.04' y='59.04' width='630.72' height='443.52' />
+		  </clipPath>
+		</defs>
+		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="4" stroke='#990000' clip-path='url(#cp3)' stroke-linejoin="round" fill="none" id='bass-real'/>
+	</g>
 	<g id="domain-boxes" opacity='0'/>
-	<path fill='none' stroke='red' stroke-width="3" id="wally-line" />
-	<path fill='none' stroke="#01b29F" stroke-width="3" id="bass-line" />
-	<g id="wally-dots" fill='red'/>
-	<g id="bass-dots" fill="#01b29F"/>
-    <g id='buttons' transform="translate(400,540)">
+	<path fill='none' stroke='#01b29F' stroke-width="3" id="wally-line" />
+	<path fill='none' stroke="#990000" stroke-width="3" id="bass-line" />
+	<g id="wally-dots" fill='#01b29F'/>
+	<g id="bass-dots" fill="#990000"/>
+    <g id='buttons' transform="translate(360,580)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
       		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Finished</text>
@@ -195,4 +258,5 @@
       		<rect width="160" height="40" opacity="0"/>
     	</g>
     </g>
+	
 </svg>
