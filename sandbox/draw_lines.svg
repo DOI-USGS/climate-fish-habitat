@@ -38,8 +38,7 @@
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
         var dotSpace = 20;
-        var wallyDots = {"dot-1":40,"dot-2":80,"dot-3":120,"dot-4":160,"dot-5":200,"dot-6":240,"dot-7":280,"dot-8":320,"dot-9":360,"dot-10":400,"dot-11":440,"dot-12":480,"dot-13":520};
-        var activeDots = wallyDots;
+        var activeDots = {"dot-1":40,"dot-2":80,"dot-3":120,"dot-4":160,"dot-5":200,"dot-6":240,"dot-7":280,"dot-8":320,"dot-9":360,"dot-10":400,"dot-11":440,"dot-12":480,"dot-13":520};
         var selectedPoint = null;
         var drawnPoints = {};
         function init(evt) {
@@ -53,9 +52,18 @@
 				newC.setAttributeNS(null, "cx", activeDots[dot]);  
 				newC.setAttributeNS(null, "cy", "0"); 
 				newC.setAttributeNS(null, "class","hidden");
-				newC.setAttributeNS(null, "id", dot);
 				newC.setAttributeNS(null, "r", 3);
-				svgDoc.getElementById("control-dots").appendChild(newC);
+				newC.setAttributeNS(null, "id", dot);
+				svgDoc.getElementById("active-dots").appendChild(newC);
+			}
+			for (dot in activeDots){
+				var newC = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
+				newC.setAttributeNS(null, "cx", activeDots[dot]);  
+				newC.setAttributeNS(null, "cy", "0"); 
+				newC.setAttributeNS(null, "class","enabled");
+				newC.setAttributeNS(null, "r", 3);
+				newC.setAttributeNS(null, "id", dot+"-inactive");
+				svgDoc.getElementById("inactive-dots").appendChild(newC);
 			}
 			resetDefaults()
         };
@@ -111,15 +119,25 @@
         		}
         		
         	}
-        	svgDoc.getElementById("control-lines").setAttribute('d',path);
+        	svgDoc.getElementById("active-line").setAttribute('d',path);
         	
         }
 		
+		function newFish(){
+			console.log('newfish')
+			for (dot in activeDots){	
+				svgDoc.getElementById(dot).setAttribute('id',dot+"-locked");
+				svgDoc.getElementById(dot+"-inactive").setAttribute('id',dot);
+			}
+			svgDoc.getElementById("active-line").setAttribute('id',"locked-line");
+			svgDoc.getElementById("inactive-line").setAttribute('id',"active-line");
+		}
         
         function deselect(){
             selectedPoint = null;
             if (isFinished()){
         		svgDoc.getElementById("im-done").setAttribute('class','enabled');
+        		svgDoc.getElementById("im-done").setAttribute('onmousedown', 'newFish()')
         	}
             for (dot in activeDots){
             	if (svgDoc.getElementById(dot).getAttribute('class') === 'enabled'){
@@ -132,12 +150,15 @@
     
     ]]> </script>	
 	
-	<g id="control-dots" fill='red'/>
-	<path fill='none' stroke='red' stroke-width="3" id="control-lines" />
+	<g id="active-dots" fill='red'/>
+	<g id="inactive-dots" fill="#01b29F"/>
+	<path fill='none' stroke='red' stroke-width="3" id="active-line" />
+	<path fill='none' stroke="#01b29F" stroke-width="3" id="inactive-line" />
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
       		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Finished</text>
+      		<rect width="160" height="40" opacity="0"/>
     	</g>
    	 	<g id='start-over' transform="translate(20,0)" class='disabled'>
       		<rect width="160" height="40" fill="grey"/>
