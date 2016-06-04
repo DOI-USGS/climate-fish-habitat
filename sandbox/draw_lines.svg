@@ -39,21 +39,31 @@
         var wallyDots = {"dot-1":50,"dot-2":150,"dot-3":250,"dot-4":350,"dot-5":450,"dot-6":550,"dot-7":650,"dot-8":750};
         var activeDots = wallyDots;
         var selectedPoint = null;
+        var drawnPoints = {};
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
                 var mainDocument = window.parent.document;
             }  
+
             for (dot in activeDots){
 				var newC = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
 				newC.setAttributeNS(null, "cx", activeDots[dot]);  
+				newC.setAttributeNS(null, "cy", "0"); 
 				newC.setAttributeNS(null, "class","disabled");
 				newC.setAttributeNS(null, "id", dot);
 				newC.setAttributeNS(null, "r", 5);
 				svgDoc.getElementById("control-dots").appendChild(newC);
 			}
+			resetDefaults()
         };
-  
+  		function resetDefaults(){
+  			for (dot in activeDots){
+  				svgDoc.getElementById(dot).setAttribute('class','disabled');
+  			}
+  			svgDoc.getElementById("start-over").setAttribute('class','disabled');
+  			for (dot in activeDots){drawnPoints[dot]=false}
+  		}
 
 		function select(evt){
 			console.log(Math.round(evt.clientX));
@@ -66,28 +76,53 @@
         
         function draw(evt){
         	if (selectedPoint === null) {return}
-				for (dot in activeDots){
-					if (evt.clientX > activeDots[dot]-dotSpace & evt.clientX <= activeDots[dot]+dotSpace){
-						svgDoc.getElementById(dot).setAttribute('class','enabled');
-						svgDoc.getElementById(dot).setAttribute('cy',evt.clientY);
-					}
+			for (dot in activeDots){
+				if (evt.clientX > activeDots[dot]-dotSpace & evt.clientX <= activeDots[dot]+dotSpace){
+					svgDoc.getElementById(dot).setAttribute('class','enabled');
+					svgDoc.getElementById(dot).setAttribute('cy',evt.clientY);
+					drawnPoints[dot]=true;
 				}
+			}
+			drawLine();
         };
+
+        function drawLine(){
+        	var path = "M0,0 ";
+        	for (dot in activeDots){
+        		var dotEl = svgDoc.getElementById(dot);
+        		var prevDot = Number(dot.split('-')[1])-1;
+        		if (drawnPoints[dot] & drawnPoints['dot-'+prevDot]){
+        			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
+        		} else {
+        			path = path+"M"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
+        		}
+        		
+        	}
+        	svgDoc.getElementById("control-lines").setAttribute('d',path);
+        }
 		
         
         function deselect(){
             selectedPoint = null;
+            for (dot in activeDots){
+            	if (svgDoc.getElementById(dot).getAttribute('class') === 'enabled'){
+            		svgDoc.getElementById("start-over").setAttribute('class','enabled');
+            		svgDoc.getElementById("start-over").setAttribute('onmousedown', 'resetDefaults()')
+            		return
+            	}
+            }
         };
     
     ]]> </script>	
 	
 	<g id="control-dots" fill='red'/>
+	<path fill='none' stroke='black' id="control-lines" />
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
       		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Finished</text>
     	</g>
-   	 	<g id='start-over' transform="translate(20,0)">
+   	 	<g id='start-over' transform="translate(20,0)" class='disabled'>
       		<rect width="160" height="40" fill="grey"/>
       		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Reset</text>
       		<rect width="160" height="40" opacity="0"/>
