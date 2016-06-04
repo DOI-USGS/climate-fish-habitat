@@ -57,12 +57,12 @@
   		function resetDefaults(){
 		
 			fishArray = ["wally","bass"]
+			drawnPoints = {"wally":[],"bass":[]};
 			activeFish = fishArray[0]
         	dots = [40,80,120,160,200,240,280,320,360,400,440,480,520];
 			dotSpace = 20;
 			
         	selectedPoint = null;
-        	drawnPoints = [];
 			var wallyG = document.getElementById("wally-dots");
 			var bassG = document.getElementById("bass-dots");
 			while (wallyG.firstChild) { wallyG.removeChild(wallyG.firstChild); }
@@ -72,19 +72,21 @@
 				var domainBox = document.createElementNS(document.rootElement.namespaceURI,"rect"); 
 				domainBox.setAttributeNS(null, "x", dots[i]-dotSpace);  
 				domainBox.setAttributeNS(null, "width", dotSpace*2);  
-				domainBox.setAttributeNS(null, "height", domainHeight); 
+				domainBox.setAttributeNS(null, "height", domainHeight);
+				domainBox.setAttributeNS(null, "id", "box-"+i) 
 				svgDoc.getElementById("domain-boxes").appendChild(domainBox);
 				var newW = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
 				newW.setAttributeNS(null, "cx", dots[i]);  
 				newW.setAttributeNS(null, "cy", "0"); 
-				newW.setAttributeNS(null, "class","disabled");
+				newW.setAttributeNS(null, "class","hidden");
 				newW.setAttributeNS(null, "r", 3);
 				var newB = newW.cloneNode();
 				newW.setAttributeNS(null, "id", "wally-"+i)
 				newB.setAttributeNS(null, "id", "bass-"+i)
 				svgDoc.getElementById("wally-dots").appendChild(newW);
 				svgDoc.getElementById("bass-dots").appendChild(newB);
-				drawnPoints[i] = false;
+				drawnPoints["wally"][i] = false;
+				drawnPoints["bass"][i] = false;
 			}
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
@@ -100,20 +102,19 @@
         
         function draw(evt){
         	if (selectedPoint === null) {return}
-			for (var i = 0; i < dots.length; i++) {
-				//probably faster to see if the evt is above a rect that represents the domain of each control point
-				if (evt.clientX > dots[i]-dotSpace & evt.clientX <= dots[i]+dotSpace){
-					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
-					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',evt.clientY);
-					drawnPoints[i]=true;
-				}
+			var id = evt.target.getAttribute('id');
+			if (id !== null){
+				var i = id.split('-')[1];
+				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',evt.clientY);
+				drawnPoints[activeFish][i]=true;
 			}
 			drawLine();
         };
 
         function isFinished(){
         	for (var i = 0; i < dots.length; i++) {
-        		if (drawnPoints[i] === false){
+        		if (drawnPoints[activeFish][i] === false){
         			return false;
         		}
         	}
@@ -126,7 +127,7 @@
 
         	for (var i = 0; i < dots.length; i++) {
         		var dotEl = svgDoc.getElementById(fish+"-"+[i]);
-        		if (drawnPoints[i] & drawnPoints[i-1]){
+        		if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
         			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		} else {
         			path = path+"M"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
@@ -137,17 +138,26 @@
         	
         }
 		
+		function switchFish(fish){
+			if (activeFish === fish){
+			// do nothing
+			} else {
+			// let the user know they are changing fish?
+				activeFish = fish;
+			}
+			
+		}
+		
 		function newFish(){
 			activeFish = 'bass'
-			for (var i = 0; i < dots.length; i++) {
-    			drawnPoints[i] = false;
-			}
 		}
 		function select(evt){
 			var id = evt.target.getAttribute('id');
-			if (id !== null){
-				activeFish = id.split("-")[0]
-				console.log(activeFish)
+			// allow you to switch to a different active fish
+			console.log(id)
+			if (id !== null && evt.target.getAttribute("class") === "enabled"){
+				var fish = id.split("-")[0];
+				switchFish(fish);
 			} 
 			selectedPoint = true;
 		}
@@ -168,11 +178,11 @@
         };
     
     ]]> </script>	
-	
-	<g id="wally-dots" fill='red'/>
-	<g id="bass-dots" fill="#01b29F"/>
+	<g id="domain-boxes" opacity='0'/>
 	<path fill='none' stroke='red' stroke-width="3" id="wally-line" />
 	<path fill='none' stroke="#01b29F" stroke-width="3" id="bass-line" />
+	<g id="wally-dots" fill='red'/>
+	<g id="bass-dots" fill="#01b29F"/>
     <g id='buttons' transform="translate(400,540)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
@@ -185,7 +195,6 @@
       		<rect width="160" height="40" opacity="0"/>
     	</g>
     </g>
-	<g id="domain-boxes" opacity='0'/>
 	<defs>
 	    <linearGradient id="temperature" x1="0%" y1="0%" x2="0%" y2="100%">
 	      <stop offset="0%" style="stop-color:rgb(200,60,50);stop-opacity:1"/>
