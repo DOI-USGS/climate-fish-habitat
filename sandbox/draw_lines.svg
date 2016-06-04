@@ -54,7 +54,7 @@
 				newC.setAttributeNS(null, "cy", "0"); 
 				newC.setAttributeNS(null, "class","hidden");
 				newC.setAttributeNS(null, "id", dot);
-				newC.setAttributeNS(null, "r", 5);
+				newC.setAttributeNS(null, "r", 3);
 				svgDoc.getElementById("control-dots").appendChild(newC);
 			}
 			resetDefaults()
@@ -64,6 +64,7 @@
   				svgDoc.getElementById(dot).setAttribute('class','hidden');
   			}
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
+  			svgDoc.getElementById("im-done").setAttribute('class','disabled');
   			for (dot in activeDots){drawnPoints[dot]=false}
   			drawLine();
   		}
@@ -88,8 +89,18 @@
 			drawLine();
         };
 
+        function isFinished(){
+        	for (dot in activeDots){
+        		if (drawnPoints[dot] === false){
+        			return false;
+        		}
+        	}
+        	return true;
+        }
+
         function drawLine(){
         	var path = "M0,0 ";
+        	
         	for (dot in activeDots){
         		var dotEl = svgDoc.getElementById(dot);
         		var prevDot = Number(dot.split('-')[1])-1;
@@ -101,11 +112,15 @@
         		
         	}
         	svgDoc.getElementById("control-lines").setAttribute('d',path);
+        	
         }
 		
         
         function deselect(){
             selectedPoint = null;
+            if (isFinished()){
+        		svgDoc.getElementById("im-done").setAttribute('class','enabled');
+        	}
             for (dot in activeDots){
             	if (svgDoc.getElementById(dot).getAttribute('class') === 'enabled'){
             		svgDoc.getElementById("start-over").setAttribute('class','enabled');
