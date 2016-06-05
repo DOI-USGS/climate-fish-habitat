@@ -275,6 +275,8 @@
 		}
         function deselect(){
             selectedPoint = null;
+            priorY = null;
+            priorId = null;
             helpBlocks();
             
 			if (canFinish()){
