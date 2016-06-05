@@ -6,13 +6,13 @@ library(dinosvg)
 library(dplyr)
 bass.munged <- bass %>% rename(year = Survey.Year, cpue = mean.cpue.fall, n=count) %>% filter(year>1990) %>% select(-sd.cpue, -X)
 wally.munged <- wally %>% rename(cpue = mean.cpue) %>% filter(year>1990) %>% select(year, cpue)
-
+x.tcks = seq(1995,2010, by=5)
 par(mai=c(.5,.5,0.8,0.5))
 gs.bass <- gsplot() %>% lines(bass.munged$year, bass.munged$cpue, col='#990000', ylim=c(0,18)) %>% 
-  axis(1, at=seq(1995,2010, by=5), labels=seq(1995,2010, by=5)) %>% 
+  axis(1, at=x.tcks, labels=x.tcks) %>% 
   axis(2, at=c(0, 5, 10, 15), labels=c(0, 5, 10, 15))
 gs.wally <- gsplot() %>% lines(wally.munged$year, wally.munged$cpue, col='#01b29F', ylim=c(0,65)) %>% 
-  axis(1, at=seq(1995,2010, by=5), labels=seq(1995,2010, by=5)) %>% 
+  axis(1, at=x.tcks, labels=x.tcks) %>% 
   axis(2, at=c(0, 20, 40, 60), labels=c(0, 20, 40, 60))
 
 to_svg <- function(object, filename){
