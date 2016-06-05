@@ -15,6 +15,8 @@ gs.wally <- gsplot() %>% lines(wally.munged$year, wally.munged$cpue, col='#01b29
   axis(1, at=x.tcks, labels=x.tcks) %>% 
   axis(2, at=c(0, 20, 40, 60), labels=c(0, 20, 40, 60))
 
+# // document.getElementById('data-line').getTotalLength(); then set that value to 'stroke-dasharray', 
+# // animate 'stroke-dashoffset' from that value down to 0. 
 to_svg <- function(object, filename){
   object$view.1.2$lines$id = 'data-line'
   object$css <- '#tick-labels, #y-title {
