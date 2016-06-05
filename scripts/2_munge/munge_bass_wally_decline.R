@@ -7,7 +7,7 @@ library(dplyr)
 bass.munged <- bass %>% rename(year = Survey.Year, cpue = mean.cpue.fall, n=count) %>% filter(year>1990) %>% select(-sd.cpue, -X)
 wally.munged <- wally %>% rename(cpue = mean.cpue) %>% filter(year>1990) %>% select(year, cpue)
 x.tcks = seq(1995,2010, by=5)
-par(mai=c(.5,.5,0.8,0.5))
+par(mai=c(.5,.5,0.5,0.5))
 gs.bass <- gsplot() %>% lines(bass.munged$year, bass.munged$cpue, col='#990000', ylim=c(0,18)) %>% 
   axis(1, at=x.tcks, labels=x.tcks) %>% 
   axis(2, at=c(0, 5, 10, 15), labels=c(0, 5, 10, 15))
@@ -33,7 +33,7 @@ to_svg <- function(object, filename){
     \tfont-size: 14.00pt; 
   }'
   svg = svg(object, width=10, height=7, as.xml=TRUE)
-  XML::newXMLNode('text', parent = svg, attrs = c(x='10', y='50', 'text-anchor'="begin", id='y-title'), XML::newXMLTextNode('Catch per unit effort'), at=1)
+  XML::newXMLNode('text', parent = svg, attrs = c(x='10', y='25', 'text-anchor'="begin", id='y-title'), XML::newXMLTextNode('Catch per unit effort'), at=1)
   dinosvg:::write_svg(svg, file = filename)
 }
 
