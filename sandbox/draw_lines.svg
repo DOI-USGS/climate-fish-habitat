@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="620" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 800 620" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
         <style>
 		text {
 		  font-size: 20px;
@@ -50,6 +50,8 @@
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
+        var svg = document.querySelector("svg")
+        var pt = svg.createSVGPoint();
 		var domainHeight = "443.52";
 		var priorY = null;
 		var priorId = null;
@@ -167,7 +169,7 @@
 				// capture previous box before deselect, interpolate y w/ skipped x?
 				var i = id.split('-')[1];
 				if (priorId === null){ priorId = i};
-				var newY = evt.clientY;
+				var newY = cursorPoint(evt).y;
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',newY);
 				if (Math.abs(i-priorId) > 1){
@@ -201,6 +203,10 @@
         		}
         	}
         }
+        function cursorPoint(evt){
+  			pt.x = evt.clientX; pt.y = evt.clientY;
+  			return pt.matrixTransform(svg.getScreenCTM().inverse());
+		};
 
         function fishFinished(){
         	for (var i = 0; i < dots.length; i++) {
