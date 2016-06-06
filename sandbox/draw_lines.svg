@@ -119,6 +119,20 @@
 				drawnPoints["wally"][i] = false;
 				drawnPoints["bass"][i] = false;
 			}
+			drawnPoints['wally'][13] = true;
+			drawnPoints['wally'][14] = true;
+			svgDoc.getElementById("wally-13").setAttribute('cy','365');
+			svgDoc.getElementById("wally-13").setAttribute('class','enabled');
+			svgDoc.getElementById("wally-14").setAttribute('cy','365');
+			svgDoc.getElementById("wally-14").setAttribute('class','enabled');
+
+			drawnPoints['bass'][13] = true;
+			drawnPoints['bass'][14] = true;
+			svgDoc.getElementById("bass-13").setAttribute('cy','125');
+			svgDoc.getElementById("bass-13").setAttribute('class','enabled');
+			svgDoc.getElementById("bass-14").setAttribute('cy','123');
+			svgDoc.getElementById("bass-14").setAttribute('class','enabled');
+
 			svgDoc.getElementById('wally-real').setAttribute('class','hidden');
 			svgDoc.getElementById('bass-real').setAttribute('class','hidden');
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
