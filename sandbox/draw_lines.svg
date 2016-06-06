@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 800 620" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 800 1150" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
         <style>
 		text {
 		  font-size: 20px;
@@ -137,6 +137,7 @@
 
 			svgDoc.getElementById('wally-real').setAttribute('class','hidden');
 			svgDoc.getElementById('bass-real').setAttribute('class','hidden');
+			svgDoc.getElementById('modeled-data').setAttribute('class','hidden');
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
 			svgDoc.getElementById("wally-dots").removeAttribute('class');
@@ -153,7 +154,7 @@
         	svgDoc.getElementById('im-done').setAttribute('class','disabled');
 			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
 			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
-			
+			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
 			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("bass-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
@@ -319,14 +320,8 @@
     
     ]]> </script>	
     <g id="help-boxes" fill="#ffffcc"/>
-	<g id="modeled-data">
-		<polyline points='82.40,260.46 114.84,265.92 147.29,266.65 179.73,263.10 212.18,279.33 244.62,329.67 277.07,382.31 309.51,404.21 341.96,406.41 374.40,404.84 406.84,380.61 439.29,372.60 471.73,368.27 504.18,366.78 536.62,371.00 569.07,369.73 601.51,366.50 633.96,367.82 666.40,367.86 ' stroke-width="4" clip-path='url(#cp1)' fill="none" stroke='#01b29F' stroke-linejoin="round" id='wally-real'/>
-		<defs>
-		  <clipPath id='cp2'>
-		    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
-		  </clipPath>
-		</defs>
-		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;' clip-path='url(#cp2)' />
+    <g id="user-data">
+		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
 		<g id='x-tick-labels' text-anchor="middle">
 			<text x='82.40' y='520' style='font-size: 10.00pt; font-family: Arial;'>2200</text>
 			<text x='212.18' y='520' style='font-size: 10.00pt; font-family: Arial;'>2400</text>
@@ -343,18 +338,39 @@
 			<text x='55' y='81.19' style='font-size: 10.00pt; font-family: Arial;'>100%</text>
 		</g>
 		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
-		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' clip-path='url(#cp2)' fill="none" stroke='black'/>
+		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
 		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 12.00pt; font-family: Arial;'>warmer lakes</text>
 		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
 		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 12.00pt; font-family: Arial;'>cooler lakes</text>
 		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
 		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
-		<defs>
-		  <clipPath id='cp3'>
-		    <rect x='59.04' y='59.04' width='630.72' height='443.52'/>
-		  </clipPath>
-		</defs>
-		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="4" stroke='#990000' clip-path='url(#cp3)' stroke-linejoin="round" fill="none" id='bass-real'/>
+	</g>
+	<g id="modeled-data" transform="translate(0,550)">
+		<polyline points='82.40,260.46 114.84,265.92 147.29,266.65 179.73,263.10 212.18,279.33 244.62,329.67 277.07,382.31 309.51,404.21 341.96,406.41 374.40,404.84 406.84,380.61 439.29,372.60 471.73,368.27 504.18,366.78 536.62,371.00 569.07,369.73 601.51,366.50 633.96,367.82 666.40,367.86 ' stroke-width="4" clip-path='url(#cp1)' fill="none" stroke='#01b29F' stroke-linejoin="round" id='wally-real'/>
+		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
+		<g id='x-tick-labels' text-anchor="middle">
+			<text x='82.40' y='520' style='font-size: 10.00pt; font-family: Arial;'>2200</text>
+			<text x='212.18' y='520' style='font-size: 10.00pt; font-family: Arial;'>2400</text>
+			<text x='341.96' y='520' style='font-size: 10.00pt; font-family: Arial;'>2600</text>
+			<text x='471.73' y='520' style='font-size: 10.00pt; font-family: Arial;'>2800</text>
+			<text x='601.51' y='520' style='font-size: 10.00pt; font-family: Arial;'>3000</text>
+		</g>
+		<g id='y-tick-labels' text-anchor="end">
+			<text x='55' y='491.86' style='font-size: 10.00pt; font-family: Arial;'>0%</text>
+			<text x='55' y='409.73' style='font-size: 10.00pt; font-family: Arial;'>20%</text>
+			<text x='55' y='327.59' style='font-size: 10.00pt; font-family: Arial;'>40%</text>
+			<text x='55' y='245.46' style='font-size: 10.00pt; font-family: Arial;'>60%</text>
+			<text x='55' y='163.33' style='font-size: 10.00pt; font-family: Arial;'>80%</text>
+			<text x='55' y='81.19' style='font-size: 10.00pt; font-family: Arial;'>100%</text>
+		</g>
+		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
+		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
+		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 12.00pt; font-family: Arial;'>warmer lakes</text>
+		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
+		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 12.00pt; font-family: Arial;'>cooler lakes</text>
+		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
+		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
+		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="4" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real'/>
 	</g>
 	<path fill='none' stroke='#01b29F' stroke-width="3" id="wally-line" />
 	<path fill='none' stroke="#990000" stroke-width="3" id="bass-line" />
