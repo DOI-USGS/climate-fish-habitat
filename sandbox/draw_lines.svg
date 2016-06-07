@@ -151,7 +151,6 @@
   		}
 
         function imDone(){
-        	svgDoc.getElementById('im-done').setAttribute('class','disabled');
 			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
 			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
 			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
@@ -159,6 +158,11 @@
 			svgDoc.getElementById("bass-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
 			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
+			svgDoc.getElementById('im-done').setAttribute('class','hidden');
+        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+        	svg.removeAttribute('onmousedown');
+        	svg.removeAttribute('onmouseup');
+        	svg.removeAttribute('onmousemove');
         }
         
 
@@ -167,7 +171,7 @@
 			var id = evt.target.getAttribute('id');
 			if (id !== null){
 
-				// capture previous box before deselect, interpolate y w/ skipped x?
+				// capture previous box before deselect, interpolate y w/ skipped x.
 				var i = id.split('-')[1];
 				if (priorId === null){ priorId = i};
 				var newY = cursorPoint(evt).y;
@@ -302,9 +306,9 @@
             
 			if (canFinish()){
     			svgDoc.getElementById("im-done").setAttribute('class','enabled');
-    			svgDoc.getElementById("im-done").setAttribute('onmousedown', 'imDone()')
+    			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone()')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
-    			svgDoc.getElementById("start-over").setAttribute('onmousedown', 'resetDefaults()')
+    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
 			} else if (fishFinished()){
 				newFish();
         	}
@@ -312,7 +316,7 @@
             for (var i = 0; i < dots.length; i++) {
             	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
             		svgDoc.getElementById("start-over").setAttribute('class','enabled');
-            		svgDoc.getElementById("start-over").setAttribute('onmousedown', 'resetDefaults()')
+            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
             		return
             	}
             }
