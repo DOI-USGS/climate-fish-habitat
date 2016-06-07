@@ -13,15 +13,7 @@
 		  user-select: none;           /* Non-prefixed version, currently
 		                                  not supported by any browser */
 		}
-		.noselect {
-	  -webkit-touch-callout: none; /* iOS Safari */
-	  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-	  -khtml-user-select: none;    /* Konqueror */
-	  -moz-user-select: none;      /* Firefox */
-	  -ms-user-select: none;       /* Internet Explorer/Edge */
-	  user-select: none;           /* Non-prefixed version, currently
-	                                  not supported by any browser */
-		}
+
     .hidden {
       opacity:0.0;
     }  
@@ -90,10 +82,14 @@
 			var bassG = document.getElementById("bass-dots");
 			var dBox = document.getElementById("domain-boxes");
 			var hBox = document.getElementById("help-boxes");
+			var wTips = document.getElementById("wally-fish-tips");
+			var bTips = document.getElementById("bass-fish-tips");
 			wipeChildren(wallyG);
 			wipeChildren(bassG);
 			wipeChildren(hBox);
 			wipeChildren(dBox);
+			wipeChildren(wTips);
+			wipeChildren(bTips);
 
             for (var i = 0; i < dots.length; i++) {
 				var domainBox = document.createElementNS(document.rootElement.namespaceURI,"rect"); 
@@ -128,12 +124,40 @@
 			svgDoc.getElementById("wally-14").setAttribute('cy','365');
 			svgDoc.getElementById("wally-14").setAttribute('class','enabled');
 
+			var wallyTip = document.createElementNS(document.rootElement.namespaceURI,"path");
+			wallyTip.setAttributeNS(null, "d", "M"+dots[13]+",365 l-15,-22");  
+			var wallyTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
+			wallyTxt.setAttributeNS(null, "x", dots[13]-15);
+			wallyTxt.setAttributeNS(null, "y", "343");
+			wallyTxt.setAttributeNS(null, "dy", "-0.33em");
+			wallyTxt.setAttributeNS(null, "text-anchor", "middle");
+			wallyTxt.setAttributeNS(null, "stroke","none");
+			var textNode = document.createTextNode('Walleye');
+			wallyTxt.appendChild(textNode);
+			wTips.appendChild(wallyTip);
+			wTips.appendChild(wallyTxt);
+			wTips.removeAttribute("class");
+
 			drawnPoints['bass'][13] = true;
 			drawnPoints['bass'][14] = true;
 			svgDoc.getElementById("bass-13").setAttribute('cy','125');
 			svgDoc.getElementById("bass-13").setAttribute('class','enabled');
 			svgDoc.getElementById("bass-14").setAttribute('cy','123');
 			svgDoc.getElementById("bass-14").setAttribute('class','enabled');
+
+			var bassTip = document.createElementNS(document.rootElement.namespaceURI,"path");
+			bassTip.setAttributeNS(null, "d", "M"+dots[13]+",125 l-15,-22");  
+			var bassTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
+			bassTxt.setAttributeNS(null, "x", dots[13]-15);
+			bassTxt.setAttributeNS(null, "y", "103");
+			bassTxt.setAttributeNS(null, "dy", "-0.33em");
+			bassTxt.setAttributeNS(null, "text-anchor", "middle");
+			bassTxt.setAttributeNS(null, "stroke","none");
+			var textNode = document.createTextNode('Largemouth Bass');
+			bassTxt.appendChild(textNode);
+			bTips.appendChild(bassTip);
+			bTips.appendChild(bassTxt);
+			bTips.removeAttribute("class");
 
 			svgDoc.getElementById('wally-real').setAttribute('class','hidden');
 			svgDoc.getElementById('bass-real').setAttribute('class','hidden');
@@ -296,6 +320,7 @@
 				var fish = id.split("-")[0];
 				switchFish(fish);
 			} 
+			svgDoc.getElementById(activeFish+"-fish-tips").setAttribute("class","hidden");
 			selectedPoint = true;
 		}
         function deselect(){
@@ -324,6 +349,8 @@
     
     ]]> </script>	
     <g id="help-boxes" fill="#ffffcc"/>
+    <g id="wally-fish-tips" stroke='#01b29F' fill='#01b29F'/>
+    <g id="bass-fish-tips" stroke='#990000' fill='#990000'/>
     <g id="user-data">
 		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
 		<g id='x-tick-labels' text-anchor="middle">
@@ -384,12 +411,12 @@
     <g id='buttons' transform="translate(374.4,570)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
-      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Finished</text>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' fill="white">Finished</text>
       		<rect width="160" height="40" opacity="0"/>
     	</g>
    	 	<g id='start-over' transform="translate(20,0)" class='disabled'>
       		<rect width="160" height="40" fill="grey"/>
-      		<text y="20" x="80" dy='0.33em' text-anchor='middle' class='noselect' fill="white">Reset</text>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' fill="white">Reset</text>
       		<rect width="160" height="40" opacity="0"/>
     	</g>
     </g>
