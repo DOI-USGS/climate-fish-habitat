@@ -24,13 +24,46 @@
 .bigNumber{
 	font-size:3em;
 	}
-	
-#walleyeDecline,
-#walleyeBass,
-#lakeWarming,
-#futureWarming,
-#futureSuitability,
-#fishManagement {
+
+.container {
+	margin: 0 0 20px 0;
+	padding: 15px;
+	text-align: center;
+	clear:both;
+}
+
+.container a{
+	font-weight:700;
+	}
+.keynote {
+	color: #fff;
+	width: 100%;
+	min-height: 100px;
+	margin: auto; 
+	top: 25%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+
+.keynote h2 {
+	font-weight: 300;
+	color: #fff;
+	padding: 10px;
+	font-size: 3vw;
+}
+.section {
+	position: relative;
+	height: 100%;
+}
+
+#walleyeDecline-keynote,
+#walleyeBass-keynote,
+#lakeWarming-keynote,
+#futureWarming-keynote,
+#futureSuitability-keynote,
+#fishManagement-keynote {
 	background-position: center center;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -42,27 +75,27 @@
 	padding: 0;
 	}
 
-#walleyeDecline {
+#walleyeDecline-keynote {
   background-image: url('../images/walleyeDecline-bkg.jpg');
 }
 
-#walleyeBass {
+#walleyeBass-keynote {
   background-image: url('../images/walleyeBass-bkg.jpg');
 }
 
-#lakeWarming {
+#lakeWarming-keynote {
   background-image: url('../images/lakeWarming-bkg.jpg');
 }
 
-#futureWarming {
+#futureWarming-keynote {
   background-image: url('../images/futureWarming-bkg.jpg');
 }
 
-#futureSuitability {
+#futureSuitability-keynote {
   background-image: url('../images/futureSuitability-bkg.jpg');
 }
 
-#fishManagement {
+#fishManagement-keynote {
 	background-image: url('../images/fishManagement-bkg.jpg');
 }
 .spacer{
