@@ -24,7 +24,10 @@
 .bigNumber{
 	font-size:3em;
 	}
-	
+
+#fishManagement {
+	background-image: url('../images/fishManagement-bkg.jpg');
+}
 .spacer{
 	margin-bottom:10px !important;
 	}
@@ -86,30 +89,13 @@ header img{
 	font-size:3em;
 	}
 
-#figure1,
-#figure2,
-#figure3{
+#walleyeDecline, #walleyeBass, #lakeWarming, #futureWarming, #futureSuitability, #fishManagement{
 	min-height:100%;
 	position:relative;
 	}
 	
-#figure2{
-	padding-bottom:20px;
-	}
 
-#figure2:after{
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-     }
-	 
-#intro p,
-#figure1 p,
-#figure2 p,
-#figure3 p{
+#walleyeDecline p, #walleyeBass p, #lakeWarming p, #futureWarming p, #futureSuitability p, #fishManagement p{
 	max-width:860px;
 	margin:0 auto;
 	}
@@ -117,25 +103,6 @@ header img{
 #intro{
 	padding-top:30px;
 	}
-	
-/*Figure 1*/
-#figure1Table{
-	min-height:100px;
-	border:1px solid rgb(200,200,200);
-	padding:10px;
-	font-size:.8em;
-	}
-	
-#figure1Table p{
-	text-align:left;
-	margin-bottom:10px;
-	}
-	
-#figure1Table img{
-	width:20%;
-	display:none;
-	}
-
 	
 .boxTop{
 	background:rgb(63,136,189);
@@ -214,19 +181,6 @@ footer{
 		margin:0 auto;
 		}
 	
-	/*Figure 1*/
-	#bubbles{
-		
-	}
-	
-	#figure1Table{
-		width:35%;
-		position:absolute;
-		top:102px;
-		right:10px;
-	}
-		
-	/*Figure 2*/
 	.oneStat,
 	.twoStat{
 		width:35%;
@@ -251,17 +205,6 @@ footer{
 		float:right;
 		border-left: 1px solid rgb(190,190,190);
 	}
-	
-	/*Figure 3*/
-	.figure3Text{
-		width:760px;
-		margin:0 auto -20px auto;
-		}
-		
-	#landUseFig{
-		width:600px;
-		margin:0 auto;
-		}
 		
 }
 
@@ -273,17 +216,7 @@ footer{
 	#logo{
 		width:960px;
 		}
-		
-	/*Figure 1 CSS*/	
-	#figure1Table{
-		top:83px;
-		right:10px;
-	}
-	
-	#figure1Table img{
-		display:inline;
-	}
-		
+
 	/*Figure 2*/
 	#subjectContainer{
 		width:960px;
