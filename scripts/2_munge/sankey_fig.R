@@ -71,7 +71,7 @@ for (i in 1:length(periods)){
     y[[period.name]][t+1] = y[[period.name]][t]+box.s+h[[period.name]][t]
     t=t+1
   }
-  svg_node('text',g, c(x=box.w/2, dy='1em', class='big-text', y=y[[period.name]][t], fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(period.txt))
+  svg_node('text',g, c(x=box.w/2, dy='1em', class='big-text', y=y[[period.name]][t], fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(period.txt[i]))
   y[[period.name]] <- y[[period.name]][1:4] # get rid of the last one
 }
 
@@ -153,4 +153,4 @@ for (i in 1:2){
 }
 
 
-dinosvg:::write_svg(svg, file='sandbox/fish_chamge_GH_paper.svg')
+dinosvg:::write_svg(svg, file='sandbox/fish_change_GH_paper.svg')
