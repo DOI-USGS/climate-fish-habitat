@@ -24,6 +24,23 @@
 .bigNumber{
 	font-size:3em;
 	}
+	
+#walleyeDecline,
+#walleyeBass,
+#lakeWarming,
+#futureWarming,
+#futureSuitability,
+#fishManagement {
+	background-position: center center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	}
 
 #walleyeDecline {
   background-image: url('../images/walleyeDecline-bkg.jpg');
