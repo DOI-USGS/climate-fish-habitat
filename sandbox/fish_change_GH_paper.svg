@@ -34,7 +34,7 @@ font-size: 18px;
     <text class="medium-text" x="85" y="360.93" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=1868)</text>
     <rect width="170" height="69.3" y="681.15" fill="grey" opacity="0.5"/>
     <text class="medium-text" x="85" y="715.8" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither (n=210)</text>
-    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">1989-2014</text>
+    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2040-2064</text>
   </g>
   <g id="late" transform="translate(760,20)">
     <rect width="170" height="7.26" y="0" fill="cyan" opacity="0.5"/>
@@ -47,7 +47,7 @@ font-size: 18px;
     <text class="medium-text" x="85" y="376.935" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=1975)</text>
     <rect width="170" height="35.64" y="714.81" fill="grey" opacity="0.5"/>
     <text class="medium-text" x="85" y="732.63" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither (n=108)</text>
-    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">1989-2014</text>
+    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2065-2089</text>
   </g>
   <g id="X1989.2014-arrow" transform="translate(20,20)">
     <path d="M170,6.27 L370,6.27 v-6.27 L170,0" fill="cyan" stroke="none" opacity="0.2"/>
