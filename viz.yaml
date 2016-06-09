@@ -11,7 +11,7 @@ pages:
   -
     id: index
     template: layout/templates/index.mustache
-    sections: [header, intro, fishEconomy, fishTemperature, lakeWarming, fishShifts, fishManagement, footer]
+    sections: [header, intro, walleyeDecline, walleyeBass, lakeWarming, futureWarming, futureSuitability, fishManagement, footer]
     context: siteTextData
 sections:
   -
@@ -23,24 +23,35 @@ sections:
     template: layout/templates/intro.mustache
     context: siteTextData
   -
-    id: fishEconomy
-    template: layout/templates/figure2.mustache
+    id: walleyeDecline
+    template: layout/templates/walleyeDecline.mustache
     context: siteTextData
+    depends: wallyTrendsFig
+    depends: bassTrendsFig
   -
-    id: fishTemperature
-    template: layout/templates/figure3.mustache
+    id: walleyeBass
+    template: layout/templates/walleyeBass.mustache
     context: siteTextData
-    depends: fishTemperatureFig
+    depends: fishGDDFig
   -
     id: lakeWarming
-    template: layout/templates/figure4.mustache
+    template: layout/templates/lakeWarming.mustache
     context: siteTextData
     depends: lakeWarmingFig
   - 
-    id: fishShifts
-    template: layout/templates/figure4.mustache
+    id: futureWarming
+    template: layout/templates/futureWarming.mustache
     context: siteTextData
-    depends: fishShiftsFig
+    depends: futureWarmingFig
+  - 
+    id: futureSuitability
+    template: layout/templates/futureSuitability.mustache
+    context: siteTextData
+    depends: futureSuitabilityFig
+  - 
+    id: lakeManagement
+    template: layout/templates/lakeManagement.mustache
+    context: siteTextData
   -
     id: footer
     template: layout/templates/footer.mustache
@@ -50,34 +61,28 @@ data:
     id: siteTextData
     location: data/siteText.yaml
     mimeType: text/yaml
-  -
-    id: All_dataData
-    itemId: 570eDUMMYef3b7ca2565e
-    filename: All_data_for_data_release.csv
-    handler: sciencebase
-    mimeType: text/csv
 figures:
   -
-    id: fishTemperatureFig
+    id: wallyTrendsFig
     input:
       -
-        filename: cache/mungedFishTemperature.json
-        mimeType: application/json
-    buildfile: scripts/3_visualize/fishTemperature.R
+        filename: cache/mungedWallyWI.tsv
+        mimeType: text/tab-separated-values
+    buildfile: scripts/3_visualize/fishTrends.R
     type: R
-    tags: [mobile, desktop, ie]
   -
-    id: lakeWarmingFig
+    id: bassTrendsFig
     input: 
-    buildfile: scripts/3_visualize/lakeWarming.R
-    type: html
-    tags: [mobile, desktop, ie]
+      -
+        filename: cache/mungedBassWI.tsv
+        mimeType: text/tab-separated-values
+    buildfile: scripts/3_visualize/fishTrends.R
+    type: R
   -
-    id: fishShiftsFig
+    id: fishGDDFig
     input:
       -
-        filename: cache/mungedFishShifts.tsv
+        filename: cache/mungedFishGDD.tsv
         mimeType: text/tab-separated-values
     buildfile: scripts/3_visualize/fishShifts.R
     type: R
-    tags: [mobile, desktop, ie]
