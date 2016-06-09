@@ -12,8 +12,8 @@ welcome-p2: >-
 welcome-p3: >- 
   Text3. 
 
-walleyeDecline-title: >-
-  Walleye populations in many Wisconsin lakes are declining, while largemouth bass populations in many lakes are increasing
+walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
+walleyeDecline-keynote-2: while largemouth bass populations in many lakes are increasing
 walleyeDecline-intro: >-
   Walleye are a preferred species for many anglers, and important to Wisconsin’s economy and culture. 
   Some have hypothesized that largemouth bass are directly responsible for walleye declines. 
@@ -24,8 +24,8 @@ walleyeDecline-p1: >-
   Some have hypothesized that largemouth bass are directly responsible for walleye declines. 
   However, evidence to date does not support this claim.
 
-walleyeBass-title: >-
-  Walleye and largemouth bass thrive in different types of lakes. The lake conditions that are best for one species are generally not the best for the other
+walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes. 
+walleyeBass-keynote-2: The lake conditions that are best for one species are generally not the best for the other
 walleyeBass-intro: Temperature is key characteristic determining the suitability of a lake for walleye or largemouth bass.
 walleyeBass-p1: >-
   Interactive figure drawing the relationship between DD and each species. Key points
@@ -35,22 +35,23 @@ walleyeBass-p1: >-
   The relationships between the two species cross – there is a threshold temperature that separates good walleye lakes from good bass lakes.
   
 
-lakeWarming-title: Lakes in Wisconsin have gotten warmer over the past 30 years
+lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 years
 lakeWarming-intro: Some lakes have warmed more than others
 lakeWarming-p1: >-
   Lake size, depth, clarity, and tree cover surrounding the lake all influence how much lakes have warmed.
 
-futureWarming-title: Lakes are expected to get even warmer in the future
+futureWarming-keynote-1: Lakes are expected to get even warmer in the future
 futureWarming-intro: Things change...text text
 futureWarming-p1: >-
   Culture. Tourism. Food.   
 
-futureSuitability-title: In the future, many lakes in Wisconsin are expected to become less suitable for walleye and more suitable for largemouth bass
+futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected to become 
+futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
 futureSuitability-intro: Things change...text text
 futureSuitability-p1: >-
   Culture. Tourism. Food.   
 
-fishManagement-title: We can manage lakes to protect walleye where they are likely to thrive
+fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-intro: Things change...text text
 fishManagement-p1: >-
   Culture. Tourism. Food. 
