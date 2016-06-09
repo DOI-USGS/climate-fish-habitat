@@ -20,3 +20,4 @@ vignettes/*.pdf
 .Rproj.user
 .remake
 **.DS_Store
+outside_docs.txt
