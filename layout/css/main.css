@@ -6,6 +6,9 @@
 	position:relative;
 	}
 	
+.svgFig{
+		width:800px;
+		}
 .text{
 	clear:both;
 	}
@@ -74,6 +77,10 @@
 	width: 100%;
 	padding: 0;
 	}
+
+#walleyeDecline, #walleyeBass {
+  background-color: white;
+}
 
 #walleyeDecline-keynote {
   background-image: url('../images/walleyeDecline-bkg.jpg');
