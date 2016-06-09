@@ -26,8 +26,9 @@ sections:
     id: walleyeDecline
     template: layout/templates/walleyeDecline.mustache
     context: siteTextData
-    depends: wallyTrendsFig
-    depends: bassTrendsFig
+    depends: 
+      - wallyTrendsFig
+      - bassTrendsFig
   -
     id: walleyeBass
     template: layout/templates/walleyeBass.mustache
@@ -49,8 +50,8 @@ sections:
     context: siteTextData
     depends: futureSuitabilityFig
   - 
-    id: lakeManagement
-    template: layout/templates/lakeManagement.mustache
+    id: fishManagement
+    template: layout/templates/fishManagement.mustache
     context: siteTextData
   -
     id: footer
