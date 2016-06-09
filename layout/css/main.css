@@ -25,8 +25,28 @@
 	font-size:3em;
 	}
 
+#walleyeDecline {
+  background-image: url('images/walleyeDecline-bkg.jpg');
+}
+
+#walleyeBass {
+  background-image: url('images/walleyeBass-bkg.jpg');
+}
+
+#lakeWarming {
+  background-image: url('images/lakeWarming-bkg.jpg');
+}
+
+#futureWarming {
+  background-image: url('images/futureWarming-bkg.jpg');
+}
+
+#futureSuitability {
+  background-image: url('images/futureSuitability-bkg.jpg');
+}
+
 #fishManagement {
-	background-image: url('../images/fishManagement-bkg.jpg');
+	background-image: url('images/fishManagement-bkg.jpg');
 }
 .spacer{
 	margin-bottom:10px !important;
