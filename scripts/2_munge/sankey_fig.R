@@ -7,11 +7,9 @@ arrows.1 = group_by(fish.change, X1989.2014) %>%
             toBass = sum(X2040.2064 == 'Bass dominant'), toNeither=sum(X2040.2064 == 'Neither'))
 
 
-# types = c('Coexistence', 'Walleye dominant', 'Bass dominant', 'Neither')
-# colors = c('purple','cyan','red','grey')
-# to.types = c('toCoexistence', 'toWally', 'toBass', 'toNeither')
+
 types = c('Walleye dominant', 'Coexistence', 'Bass dominant', 'Neither')
-colors = c('cyan','purple','red','grey')
+colors = c('cyan','#9932CD','#cc0000','grey')
 to.types = c('toWally', 'toCoexistence', 'toBass', 'toNeither')
 periods = c('early'='X1989.2014', 'mid'='X2040.2064', 'late'='X2065.2089')
 period.txt = c('1989-2014','2040-2064','2065-2089')
@@ -51,10 +49,10 @@ for (i in 1:length(periods)){
   period.data = group_by_(fish.change, period.name) %>% tally %>% data.frame %>% tidyr::spread_(key=period.name, 'n')
   for (type in types){
     h[[period.name]][t] = period.data[[type]]*scale
-    svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.5"))
+    svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.6"))
     if (period.data[[type]] < n.threshold[1]){
-      svg_node('path',g, c(d=sprintf('M%s,%s l%s,%s', box.w, y[[period.name]][t], "10","-5"), stroke='black','stroke-width'=0.75))
-      svg_node('text',g, c(x=box.w, y=y[[period.name]][t], dy="-4", dx="12", fill='black', stroke='none', 'text-anchor'='begin'), XML::newXMLTextNode(sprintf("(n=%s)",period.data[[type]])))
+      #svg_node('path',g, c(d=sprintf('M%s,%s l%s,%s', box.w, y[[period.name]][t], "10","-5"), stroke='black','stroke-width'=0.75))
+      svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
     } else if (period.data[[type]] > n.threshold[2]){
       if (type != 'Neither'){
         svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="-0.3em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))

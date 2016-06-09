@@ -11,41 +11,39 @@ font-size: 18px;
                   }
                   </style>
   <g id="early" transform="translate(20,20)">
-    <rect width="170" height="60.72" y="0" fill="cyan" opacity="0.5"/>
+    <rect width="170" height="60.72" y="0" fill="cyan" opacity="0.6"/>
     <text class="medium-text" x="85" y="30.36" dy="-0.3em" fill="black" stroke="none" text-anchor="middle">Walleye dominant</text>
     <text class="medium-text" x="85" y="30.36" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=184)</text>
-    <rect width="170" height="14.19" y="72.72" fill="purple" opacity="0.5"/>
+    <rect width="170" height="14.19" y="72.72" fill="#9932CD" opacity="0.6"/>
     <text x="85" y="79.815" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Coexistence (n=43)</text>
-    <rect width="170" height="421.74" y="98.91" fill="red" opacity="0.5"/>
+    <rect width="170" height="421.74" y="98.91" fill="#cc0000" opacity="0.6"/>
     <text class="medium-text" x="85" y="309.78" dy="-0.3em" fill="black" stroke="none" text-anchor="middle">Bass dominant</text>
     <text class="medium-text" x="85" y="309.78" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=1278)</text>
-    <rect width="170" height="217.8" y="532.65" fill="grey" opacity="0.5"/>
+    <rect width="170" height="217.8" y="532.65" fill="grey" opacity="0.6"/>
     <text class="medium-text" x="85" y="641.55" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither (n=660)</text>
     <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">1989-2014</text>
   </g>
   <g id="mid" transform="translate(390,20)">
-    <rect width="170" height="7.92" y="0" fill="cyan" opacity="0.5"/>
-    <path d="M170,0 l10,-5" stroke="black" stroke-width="0.75"/>
-    <text x="170" y="0" dy="-4" dx="12" fill="black" stroke="none" text-anchor="begin">(n=24)</text>
-    <rect width="170" height="20.79" y="19.92" fill="purple" opacity="0.5"/>
+    <rect width="170" height="7.92" y="0" fill="cyan" opacity="0.6"/>
+    <text x="85" y="0" dy="-3" fill="black" stroke="none" text-anchor="middle">Walleye dominant (n=24)</text>
+    <rect width="170" height="20.79" y="19.92" fill="#9932CD" opacity="0.6"/>
     <text x="85" y="30.315" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Coexistence (n=63)</text>
-    <rect width="170" height="616.44" y="52.71" fill="red" opacity="0.5"/>
+    <rect width="170" height="616.44" y="52.71" fill="#cc0000" opacity="0.6"/>
     <text class="medium-text" x="85" y="360.93" dy="-0.3em" fill="black" stroke="none" text-anchor="middle">Bass dominant</text>
     <text class="medium-text" x="85" y="360.93" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=1868)</text>
-    <rect width="170" height="69.3" y="681.15" fill="grey" opacity="0.5"/>
+    <rect width="170" height="69.3" y="681.15" fill="grey" opacity="0.6"/>
     <text class="medium-text" x="85" y="715.8" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither (n=210)</text>
     <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2040-2064</text>
   </g>
   <g id="late" transform="translate(760,20)">
-    <rect width="170" height="7.26" y="0" fill="cyan" opacity="0.5"/>
-    <path d="M170,0 l10,-5" stroke="black" stroke-width="0.75"/>
-    <text x="170" y="0" dy="-4" dx="12" fill="black" stroke="none" text-anchor="begin">(n=22)</text>
-    <rect width="170" height="19.8" y="19.26" fill="purple" opacity="0.5"/>
+    <rect width="170" height="7.26" y="0" fill="cyan" opacity="0.6"/>
+    <text x="85" y="0" dy="-3" fill="black" stroke="none" text-anchor="middle">Walleye dominant (n=22)</text>
+    <rect width="170" height="19.8" y="19.26" fill="#9932CD" opacity="0.6"/>
     <text x="85" y="29.16" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Coexistence (n=60)</text>
-    <rect width="170" height="651.75" y="51.06" fill="red" opacity="0.5"/>
+    <rect width="170" height="651.75" y="51.06" fill="#cc0000" opacity="0.6"/>
     <text class="medium-text" x="85" y="376.935" dy="-0.3em" fill="black" stroke="none" text-anchor="middle">Bass dominant</text>
     <text class="medium-text" x="85" y="376.935" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=1975)</text>
-    <rect width="170" height="35.64" y="714.81" fill="grey" opacity="0.5"/>
+    <rect width="170" height="35.64" y="714.81" fill="grey" opacity="0.6"/>
     <text class="medium-text" x="85" y="732.63" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither (n=108)</text>
     <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2065-2089</text>
   </g>
@@ -54,14 +52,14 @@ font-size: 18px;
     <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" fill="cyan" stroke="none" opacity="0.2"/>
     <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" fill="cyan" stroke="none" opacity="0.2"/>
     <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" fill="cyan" stroke="none" opacity="0.2"/>
-    <path d="M170,72.72 L370,6.27 v-0 L170,72.72" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,76.35 L370,37.08 v-3.63 L170,72.72" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,86.91 L370,689.07 v-0.33 L170,86.58" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,98.91 L370,6.27 v-0 L170,98.91" fill="red" stroke="none" opacity="0.2"/>
-    <path d="M170,100.23 L370,38.4 v-1.32 L170,98.91" fill="red" stroke="none" opacity="0.2"/>
-    <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" fill="red" stroke="none" opacity="0.2"/>
-    <path d="M170,520.65 L370,700.95 v-11.88 L170,508.77" fill="red" stroke="none" opacity="0.2"/>
+    <path d="M170,72.72 L370,6.27 v-0 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,76.35 L370,37.08 v-3.63 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,86.91 L370,689.07 v-0.33 L170,86.58" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,98.91 L370,6.27 v-0 L170,98.91" fill="#cc0000" stroke="none" opacity="0.2"/>
+    <path d="M170,100.23 L370,38.4 v-1.32 L170,98.91" fill="#cc0000" stroke="none" opacity="0.2"/>
+    <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" fill="#cc0000" stroke="none" opacity="0.2"/>
+    <path d="M170,520.65 L370,700.95 v-11.88 L170,508.77" fill="#cc0000" stroke="none" opacity="0.2"/>
     <path d="M170,534.3 L370,7.92 v-1.65 L170,532.65" fill="grey" stroke="none" opacity="0.2"/>
     <path d="M170,536.61 L370,40.71 v-2.31 L170,534.3" fill="grey" stroke="none" opacity="0.2"/>
     <path d="M170,700.95 L370,669.15 v-164.34 L170,536.61" fill="grey" stroke="none" opacity="0.2"/>
@@ -72,14 +70,14 @@ font-size: 18px;
     <path d="M170,7.92 L370,21.57 v-2.31 L170,5.61" fill="cyan" stroke="none" opacity="0.2"/>
     <path d="M170,7.92 L370,51.06 v-0 L170,7.92" fill="cyan" stroke="none" opacity="0.2"/>
     <path d="M170,7.92 L370,714.81 v-0 L170,7.92" fill="cyan" stroke="none" opacity="0.2"/>
-    <path d="M170,20.91 L370,6.6 v-0.99 L170,19.92" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,40.71 L370,714.81 v-0 L170,40.71" fill="purple" stroke="none" opacity="0.2"/>
-    <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="red" stroke="none" opacity="0.2"/>
-    <path d="M170,53.04 L370,39.06 v-0 L170,53.04" fill="red" stroke="none" opacity="0.2"/>
-    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="red" stroke="none" opacity="0.2"/>
-    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="red" stroke="none" opacity="0.2"/>
+    <path d="M170,20.91 L370,6.6 v-0.99 L170,19.92" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,40.71 L370,714.81 v-0 L170,40.71" fill="#9932CD" stroke="none" opacity="0.2"/>
+    <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="#cc0000" stroke="none" opacity="0.2"/>
+    <path d="M170,53.04 L370,39.06 v-0 L170,53.04" fill="#cc0000" stroke="none" opacity="0.2"/>
+    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="#cc0000" stroke="none" opacity="0.2"/>
+    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="#cc0000" stroke="none" opacity="0.2"/>
     <path d="M170,681.48 L370,7.26 v-0.33 L170,681.15" fill="grey" stroke="none" opacity="0.2"/>
     <path d="M170,681.48 L370,39.06 v-0 L170,681.48" fill="grey" stroke="none" opacity="0.2"/>
     <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" fill="grey" stroke="none" opacity="0.2"/>
