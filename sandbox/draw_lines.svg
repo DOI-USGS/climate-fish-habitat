@@ -370,9 +370,9 @@
 		</g>
 		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
 		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
-		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 12.00pt; font-family: Arial;'>warmer lakes</text>
+		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 16.00pt; font-family: Arial;'>warmer lakes</text>
 		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
-		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 12.00pt; font-family: Arial;'>cooler lakes</text>
+		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 16.00pt; font-family: Arial;'>cooler lakes</text>
 		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
 		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
 	</g>
@@ -396,9 +396,9 @@
 		</g>
 		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
 		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
-		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 12.00pt; font-family: Arial;'>warmer lakes</text>
+		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 16.00pt; font-family: Arial;'>warmer lakes</text>
 		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
-		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 12.00pt; font-family: Arial;'>cooler lakes</text>
+		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 16.00pt; font-family: Arial;'>cooler lakes</text>
 		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
 		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
 		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="4" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real'/>
