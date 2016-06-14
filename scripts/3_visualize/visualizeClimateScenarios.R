@@ -20,7 +20,7 @@ rcp26 = read.rcp.temp(26)
 baseline = mean(subset(rcp26, year %in% 2000)$ann_avg)
 
 jpeg('images/futureClimateScenarios.jpg', res=300, width=3000, height=1500)
-plot(1, NA, ylim=c(-1, 4), xlim=c(1995,2100), xlab='Year', ylab='Temperature increase since year 2000')
+plot(1, NA, ylim=c(-1, 4), xlim=c(1995,2100), xlab='Year', ylab='Temperature increase since year 2000 (°C)')
 polygon(c(1990, 1990, 2016, 2016), c(-2, 6, 6, -2), col=rgb(0.5,0.5,0.5,0.5))
 
 cols = rev(paste0(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3"), 'FF'))
