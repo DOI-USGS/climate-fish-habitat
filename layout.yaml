@@ -1,7 +1,11 @@
 packages:
   - yaml
   - whisker
-  - vizlab
+  - sbtools
+  - gsplot
+  - dinosvg
+  - dplyr
+
 sources:
   - scripts/lib/getData.R
   - scripts/lib/getDataInfo.R

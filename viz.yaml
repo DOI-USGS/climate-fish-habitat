@@ -80,12 +80,16 @@ fetch:
     mimeType: text/yaml
   -
     id: wallyTrends
-    location: data/year_residuals_adult_walleye_density.csv
+    itemId: 5761775ae4b04f417c2d2f78
+    filename: year_residuals_adult_walleye_density.csv
+    handler: sciencebase
     mimeType: text/csv
     export: false
   -
     id: bassTrends
-    location: data/year_residuals_lmb_cpue_both_seasons.csv
+    itemId: 5761775ae4b04f417c2d2f78
+    filename: year_residuals_lmb_cpue_both_seasons.csv
+    handler: sciencebase
     mimeType: text/csv
     export: false
   -
@@ -102,6 +106,8 @@ visualize:
     visualizer: visualizeFishTrends
     mimeType: image/svg+xml
     export: true
+    fig.config:
+        col: '#01b29F'
   -
     id: bassTrendsFig
     location: figures/bassTrendsFig.svg
@@ -109,6 +115,7 @@ visualize:
     visualizer: visualizeFishTrends
     mimeType: image/svg+xml
     export: true
+<<<<<<< HEAD
   -
     id: habitatShiftsFig
     location: figures/habitatShiftsFig.svg
@@ -122,3 +129,7 @@ figures:
     type: R
     tags: [desktop]
     
+=======
+    fig.config:
+        col: '#990000'
+>>>>>>> 7a2c40128fefe7370234b3433d6cb355f426d748
