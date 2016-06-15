@@ -1,6 +1,10 @@
 packages:
   - yaml
   - whisker
+  - sbtools
+  - gsplot
+  - dinosvg
+  - dplyr
 
 sources:
   - scripts/lib/getData.R
