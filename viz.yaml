@@ -130,3 +130,11 @@ figures:
     tags: [desktop]
     fig.config:
         col: '#990000'
+  -
+    id: wallyTrendsFig
+    type: R
+    tags: [desktop]
+  -
+    id: bassTrendsFig
+    type: R
+    tags: [desktop]

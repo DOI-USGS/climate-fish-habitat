@@ -15,23 +15,20 @@ welcome-p3: >-
 walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
 walleyeDecline-keynote-2: while largemouth bass populations in many lakes are increasing
 walleyeDecline-intro: >-
-  Walleye are a preferred species for many anglers, and important to Wisconsin’s economy and culture. 
-  Some have hypothesized that largemouth bass are directly responsible for walleye declines. 
-  However, evidence to date does not support this claim.
+  Walleye are a preferred species for many anglers, and important to Wisconsin’s economy and culture.
 
 walleyeDecline-p1: >-
-  Walleye are a preferred species for many anglers, and important to Wisconsin’s economy and culture. 
   Some have hypothesized that largemouth bass are directly responsible for walleye declines. 
   However, evidence to date does not support this claim.
 
 walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes. 
 walleyeBass-keynote-2: The lake conditions that are best for one species are generally not the best for the other
 walleyeBass-intro: Temperature is key characteristic determining the suitability of a lake for walleye or largemouth bass.
-walleyeBass-p1: >-
-  Interactive figure drawing the relationship between DD and each species. Key points
-  Walleye prefer cool water
-  LMB prefer warm water
+walleyeBass-l1: Walleye prefer cool water
+walleyeBass-l2: LMB prefer warm water
+walleyeBass-l3: >-
   The relationship for each species shows a threshold response – the shape is flat above and below a certain point. All lakes below a certain temperature threshold are equally suitable for walleye (on average), and all lakes above that threshold are equally unsuitable for walleye (on average). Reverse is true for LMB.
+walleyeBass-l4: >-  
   The relationships between the two species cross – there is a threshold temperature that separates good walleye lakes from good bass lakes.
   
 
