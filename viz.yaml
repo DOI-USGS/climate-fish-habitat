@@ -11,7 +11,7 @@ pages:
   -
     id: index
     template: layout/templates/index.mustache
-    sections: [header, intro, walleyeDecline-keynote, walleyeDecline, walleyeBass-keynote, walleyeBass, lakeWarming-keynote, futureWarming-keynote, futureSuitability-keynote, fishManagement-keynote, footer]
+    sections: [header, intro, walleyeDecline, walleyeBass, lakeWarming, futureWarming, futureSuitability, fishManagement, footer]
     context: siteTextData
 sections:
   -
@@ -23,10 +23,6 @@ sections:
     template: layout/templates/intro.mustache
     context: siteTextData
   -
-    id: walleyeDecline-keynote
-    template: layout/templates/walleyeDecline-keynote.mustache
-    context: siteTextData
-  -
     id: walleyeDecline
     template: layout/templates/walleyeDecline.mustache
     context: siteTextData
@@ -34,29 +30,26 @@ sections:
       - wallyTrendsFig
       - bassTrendsFig
   -
-    id: walleyeBass-keynote
-    template: layout/templates/walleyeBass-keynote.mustache
-    context: siteTextData
-  -
     id: walleyeBass
     template: layout/templates/walleyeBass.mustache
     context: siteTextData
-    depends: fishGDDFig
+    depends: 
+      - fishGDDFig
   -
-    id: lakeWarming-keynote
-    template: layout/templates/lakeWarming-keynote.mustache
+    id: lakeWarming
+    template: layout/templates/lakeWarming.mustache
     context: siteTextData
   - 
-    id: futureWarming-keynote
-    template: layout/templates/futureWarming-keynote.mustache
+    id: futureWarming
+    template: layout/templates/futureWarming.mustache
     context: siteTextData
   - 
-    id: futureSuitability-keynote
-    template: layout/templates/futureSuitability-keynote.mustache
+    id: futureSuitability
+    template: layout/templates/futureSuitability.mustache
     context: siteTextData
   - 
-    id: fishManagement-keynote
-    template: layout/templates/fishManagement-keynote.mustache
+    id: fishManagement
+    template: layout/templates/fishManagement.mustache
     context: siteTextData
   -
     id: footer
@@ -67,31 +60,47 @@ data:
     id: siteTextData
     location: data/siteText.yaml
     mimeType: text/yaml
-figures:
+images:
+  -
+    id: bead3
+    location: images/bead3.jpg
+    mimetype: image/jpeg
+    altTextTag: Shaving cream
+    export: false
+  - 
+    id: fishGDDFig
+    location: images/fishGDDFig.svg
+    mimetype: image/svg+xml
+    altTextTag: fish growing degree days
+    export: true
+fetch:
+  -
+    id: siteTextData
+    location: data/siteText.yaml
+    mimeType: text/yaml
+  -
+    id: wallyTrends
+    location: data/year_residuals_adult_walleye_density.csv
+    mimeType: text/csv
+    export: false
+  -
+    id: bassTrends
+    location: data/year_residuals_lmb_cpue_both_seasons.csv
+    mimeType: text/csv
+    export: false
+    
+visualize:
   -
     id: wallyTrendsFig
-    input:
-      -
-        filename: cache/mungedWallyWI.tsv
-        mimeType: text/tab-separated-values
-    buildfile: scripts/3_visualize/fishTrends.R
-    type: R
-    tags: [desktop]
+    location: figures/wallyTrendsFig.svg
+    depends: wallyTrends
+    visualizer: visualizeFishTrends
+    mimeType: image/svg+xml
+    export: true
   -
     id: bassTrendsFig
-    input: 
-      -
-        filename: cache/mungedBassWI.tsv
-        mimeType: text/tab-separated-values
-    buildfile: scripts/3_visualize/fishTrends.R
-    type: R
-    tags: [desktop]
-  -
-    id: fishGDDFig
-    input:
-      -
-        filename: cache/mungedFishGDD.tsv
-        mimeType: text/tab-separated-values
-    buildfile: scripts/3_visualize/fishShifts.R
-    type: R
-    tags: [desktop]
+    location: figures/bassTrendsFig.svg
+    depends: bassTrends
+    visualizer: visualizeFishTrends
+    mimeType: image/svg+xml
+    export: true
