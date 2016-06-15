@@ -11,7 +11,7 @@ pages:
   -
     id: index
     template: layout/templates/index.mustache
-    sections: [header, intro, walleyeDecline-keynote, walleyeDecline, walleyeBass, lakeWarming-keynote, futureWarming-keynote, futureSuitability-keynote, fishManagement-keynote, footer]
+    sections: [header, intro, walleyeDecline, walleyeBass, lakeWarming, futureWarming, futureSuitability, fishManagement, footer]
     context: siteTextData
 sections:
   -
@@ -21,10 +21,6 @@ sections:
   -
     id: intro
     template: layout/templates/intro.mustache
-    context: siteTextData
-  -
-    id: walleyeDecline-keynote
-    template: layout/templates/walleyeDecline-keynote.mustache
     context: siteTextData
   -
     id: walleyeDecline
@@ -39,20 +35,20 @@ sections:
     context: siteTextData
     depends: fishGDDFig
   -
-    id: lakeWarming-keynote
-    template: layout/templates/lakeWarming-keynote.mustache
+    id: lakeWarming
+    template: layout/templates/lakeWarming.mustache
     context: siteTextData
   - 
-    id: futureWarming-keynote
-    template: layout/templates/futureWarming-keynote.mustache
+    id: futureWarming
+    template: layout/templates/futureWarming.mustache
     context: siteTextData
   - 
-    id: futureSuitability-keynote
-    template: layout/templates/futureSuitability-keynote.mustache
+    id: futureSuitability
+    template: layout/templates/futureSuitability.mustache
     context: siteTextData
   - 
-    id: fishManagement-keynote
-    template: layout/templates/fishManagement-keynote.mustache
+    id: fishManagement
+    template: layout/templates/fishManagement.mustache
     context: siteTextData
   -
     id: footer
