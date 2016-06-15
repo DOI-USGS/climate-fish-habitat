@@ -33,7 +33,8 @@ sections:
     id: walleyeBass
     template: layout/templates/walleyeBass.mustache
     context: siteTextData
-    depends: fishGDDFig
+    depends: 
+      - fishGDDFig
   -
     id: lakeWarming
     template: layout/templates/lakeWarming.mustache
@@ -59,31 +60,47 @@ data:
     id: siteTextData
     location: data/siteText.yaml
     mimeType: text/yaml
-figures:
+images:
+  -
+    id: bead3
+    location: images/bead3.jpg
+    mimetype: image/jpeg
+    altTextTag: Shaving cream
+    export: false
+  - 
+    id: fishGDDFig
+    location: images/fishGDDFig.svg
+    mimetype: image/svg+xml
+    altTextTag: fish growing degree days
+    export: true
+fetch:
+  -
+    id: siteTextData
+    location: data/siteText.yaml
+    mimeType: text/yaml
+  -
+    id: wallyTrends
+    location: data/year_residuals_adult_walleye_density.csv
+    mimeType: text/csv
+    export: false
+  -
+    id: bassTrends
+    location: data/year_residuals_lmb_cpue_both_seasons.csv
+    mimeType: text/csv
+    export: false
+    
+visualize:
   -
     id: wallyTrendsFig
-    input:
-      -
-        filename: cache/mungedWallyWI.tsv
-        mimeType: text/tab-separated-values
-    buildfile: scripts/3_visualize/fishTrends.R
-    type: R
-    tags: [desktop]
+    location: figures/wallyTrendsFig.svg
+    depends: wallyTrends
+    visualizer: visualizeFishTrends
+    mimeType: image/svg+xml
+    export: true
   -
     id: bassTrendsFig
-    input: 
-      -
-        filename: cache/mungedBassWI.tsv
-        mimeType: text/tab-separated-values
-    buildfile: scripts/3_visualize/fishTrends.R
-    type: R
-    tags: [desktop]
-  -
-    id: fishGDDFig
-    input:
-      -
-        filename: cache/mungedFishGDD.tsv
-        mimeType: text/tab-separated-values
-    buildfile: scripts/3_visualize/fishShifts.R
-    type: R
-    tags: [desktop]
+    location: figures/bassTrendsFig.svg
+    depends: bassTrends
+    visualizer: visualizeFishTrends
+    mimeType: image/svg+xml
+    export: true
