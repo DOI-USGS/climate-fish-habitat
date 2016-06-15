@@ -47,6 +47,8 @@ sections:
     id: futureSuitability
     template: layout/templates/futureSuitability.mustache
     context: siteTextData
+    depends: 
+      - habitatShiftsFig
   - 
     id: fishManagement
     template: layout/templates/fishManagement.mustache
@@ -88,6 +90,11 @@ fetch:
     location: data/year_residuals_lmb_cpue_both_seasons.csv
     mimeType: text/csv
     export: false
+  -
+    id: habitatShifts
+    location: data/categories_by_time_period_median_probs.csv
+    mimeType: text/csv
+    export: false
     
 visualize:
   -
@@ -102,5 +109,12 @@ visualize:
     location: figures/bassTrendsFig.svg
     depends: bassTrends
     visualizer: visualizeFishTrends
+    mimeType: image/svg+xml
+    export: true
+  -
+    id: habitatShiftsFig
+    location: figures/habitatShiftsFig.svg
+    depends: habitatShifts
+    visualizer: visualizehabitatShifts
     mimeType: image/svg+xml
     export: true
