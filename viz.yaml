@@ -103,9 +103,6 @@ visualize:
     export: true
     fig.config:
         col: '#01b29F'
-        ylim: [0,65]
-        side2.at: [0, 20, 40, 60]
-        side2.label: [0, 20, 40, 60]
   -
     id: bassTrendsFig
     location: figures/bassTrendsFig.svg
@@ -115,6 +112,3 @@ visualize:
     export: true
     fig.config:
         col: '#990000'
-        ylim: [0,18]
-        side2.at: [0, 5, 10, 15]
-        side2.label: [0, 5, 10, 15]

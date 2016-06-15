@@ -27,9 +27,8 @@ visualize.visualizeFishTrends <- function(item){
   x.tcks = seq(1995,2010, by=5)
   par(mai=c(.5,.5,0.5,0.5))
   
-  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=config$col, ylim=config$ylim) %>% 
-    axis(1, at=x.tcks, labels=x.tcks) %>% 
-    axis(2, at=config$side2.at, labels=config$side2.label)
+  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=config$col) %>% 
+    axis(1, at=x.tcks, labels=x.tcks) 
   
   svgFishTrends(gs.fish, item$location)
 }
