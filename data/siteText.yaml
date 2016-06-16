@@ -25,6 +25,7 @@ walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of 
 walleyeBass-intro: >- 
   The lake conditions that are best for one species are generally not the best for the other. 
   Temperature is key characteristic determining the suitability of a lake for walleye or largemouth bass.
+walleyeBass-interactive-setup: Can you draw the relationship between these two fish and lake temperature?
 walleyeBass-l1: Walleye prefer cool water
 walleyeBass-l2: LMB prefer warm water
 walleyeBass-hint-1: >-
@@ -36,6 +37,8 @@ walleyeBass-hint-3: >-
   if you think Bass stop showing up abruptly in colder lakes, your line would look like this:
 walleyeBass-hint-4: >-  
   Likewise, if Walleye are less common in colder lakes, your line would look like this:
+walleyeBass-hint-5: >-  
+  or the same for all lakes: 
 
 lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 years
 lakeWarming-intro: Some lakes have warmed more than others
