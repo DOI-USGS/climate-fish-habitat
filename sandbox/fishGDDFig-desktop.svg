@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 1150" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 650" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
         <style>
 		text {
 		  font-size: 20px;
@@ -186,9 +186,11 @@
 			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svg.removeAttribute('onmousedown');
         	svg.removeAttribute('onmouseup');
         	svg.removeAttribute('onmousemove');
+        	svg.setAttribute("viewBox", "0 0 740 1150"); 
         }
         
 
