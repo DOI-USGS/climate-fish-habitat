@@ -23,7 +23,14 @@ header img{
 	text-align:center;
 	padding:15px;
 	}
-	
+#fishGDDFig {
+	width: 1000px;
+	position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
 /*Keynote*/
 #walleyeDecline-keynote,
 #walleyeBass-keynote,
