@@ -291,7 +291,7 @@
         			if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
         				boxEl.setAttribute('opacity','0.0');
         			} else {
-        				boxEl.setAttribute('opacity','0.6');
+        				boxEl.setAttribute('opacity','0.8');
         			}
         		}
         	}
