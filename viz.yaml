@@ -97,6 +97,21 @@ fetch:
     location: data/categories_by_time_period_median_probs.csv
     mimeType: text/csv
     export: false
+  -
+    id: futureTempsA2
+    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a2.zip
+    handler: url
+    export: false
+  -
+    id: futureTempsB1
+    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
+    handler: url
+    export: false
+  -
+    id: futureTempsA1B
+    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
+    handler: url
+    export: false
     
 visualize:
   -
@@ -122,7 +137,17 @@ visualize:
     visualizer: visualizehabitatShifts
     mimeType: image/svg+xml
     export: true
-
+  -
+    id: futureWarmingFig
+    location: figures/futureWarmingFig.svg
+    depends: 
+      - futureTempsA2
+      - futureTempsB1
+      - futureTempsA1B
+    visualizer: visualizehabitatShifts
+    mimeType: image/png
+    export: true
+    
 figures:
   -
     id: fishGDDFig
@@ -138,3 +163,9 @@ figures:
     id: bassTrendsFig
     type: R
     tags: [desktop]
+
+  -
+    id: futureWarmingFig
+    type: R
+    tags: [desktop]
+    
