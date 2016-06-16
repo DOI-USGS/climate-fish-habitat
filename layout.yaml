@@ -11,11 +11,11 @@ sources:
   - scripts/lib/getDataInfo.R
   - scripts/lib/getTemplateInfo.R
   - scripts/lib/getFigureInfo.R
+  - scripts/lib/googleAnalyticsId.R
   - scripts/lib/readData.R
   - scripts/lib/buildPages.R
+  - scripts/lib/buildJS.R
   - scripts/lib/runAll.R
-
-
 targets:
   all:
     depends:

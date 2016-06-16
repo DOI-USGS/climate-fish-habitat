@@ -51,7 +51,6 @@ for (i in 1:length(periods)){
     h[[period.name]][t] = period.data[[type]]*scale
     svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.6"))
     if (period.data[[type]] < n.threshold[1]){
-      #svg_node('path',g, c(d=sprintf('M%s,%s l%s,%s', box.w, y[[period.name]][t], "10","-5"), stroke='black','stroke-width'=0.75))
       svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
     } else if (period.data[[type]] > n.threshold[2]){
       if (type != 'Neither'){
@@ -89,7 +88,6 @@ start.arrows <- list()
 for (i in 1:(length(periods)-1)){
   
   period.from = unname(periods[i])
-  #g <- svg_node('g',svg, c(id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-2)*(box.w+gap.s), t.m), fill='none', stroke='black'))
   from.i = 1
   for (from.type in types){
     

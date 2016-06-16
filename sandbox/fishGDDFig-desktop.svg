@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 800 1150" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 650" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
         <style>
 		text {
 		  font-size: 20px;
@@ -58,6 +58,7 @@
 			var selectedPoint;
 			var drawnPoints
 			var dotSpace;
+			var hasClicked;
 			resetDefaults()
 			
         };
@@ -71,6 +72,7 @@
 		// reset button and dot classes
   		function resetDefaults(){
 		
+			hasClicked = false;
 			fishArray = ["wally","bass"]
 			drawnPoints = {"wally":[],"bass":[]};
 			activeFish = fishArray[0]
@@ -184,9 +186,11 @@
 			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svg.removeAttribute('onmousedown');
         	svg.removeAttribute('onmouseup');
         	svg.removeAttribute('onmousemove');
+        	svg.setAttribute("viewBox", "0 0 740 1150"); 
         }
         
 
@@ -289,7 +293,7 @@
         			if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
         				boxEl.setAttribute('opacity','0.0');
         			} else {
-        				boxEl.setAttribute('opacity','0.6');
+        				boxEl.setAttribute('opacity','0.8');
         			}
         		}
         	}
@@ -314,6 +318,15 @@
 			fishArray[0] = activeFish;
 		}
 		function select(evt){
+			if (hasClicked !== true){
+				var firstClickY = cursorPoint(evt).y;
+				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-13").getAttribute('cy'));
+				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-13").getAttribute('cy'));
+				if (difWally > difBass & activeFish == 'wally'){
+					switchFish('bass');
+				} 
+				hasClicked=true;
+			}
 			var id = evt.target.getAttribute('id');
 			// allow you to switch to a different active fish
 			if (id !== null && evt.target.getAttribute("class") === "enabled"){

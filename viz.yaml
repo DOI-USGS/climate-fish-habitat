@@ -47,6 +47,8 @@ sections:
     id: futureSuitability
     template: layout/templates/futureSuitability.mustache
     context: siteTextData
+    depends: 
+      - habitatShiftsFig
   - 
     id: fishManagement
     template: layout/templates/fishManagement.mustache
@@ -67,12 +69,10 @@ images:
     mimetype: image/jpeg
     altTextTag: Shaving cream
     export: false
-  - 
+  -
     id: fishGDDFig
-    location: images/fishGDDFig.svg
-    mimetype: image/svg+xml
-    altTextTag: fish growing degree days
-    export: true
+    location: images/draw_lines.svg
+    mimeType: image/svg+xml
 fetch:
   -
     id: siteTextData
@@ -90,6 +90,11 @@ fetch:
     itemId: 5761775ae4b04f417c2d2f78
     filename: year_residuals_lmb_cpue_both_seasons.csv
     handler: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: habitatShifts
+    location: data/categories_by_time_period_median_probs.csv
     mimeType: text/csv
     export: false
     
@@ -110,5 +115,26 @@ visualize:
     visualizer: visualizeFishTrends
     mimeType: image/svg+xml
     export: true
+  -
+    id: habitatShiftsFig
+    location: figures/habitatShiftsFig.svg
+    depends: habitatShifts
+    visualizer: visualizehabitatShifts
+    mimeType: image/svg+xml
+    export: true
+
+figures:
+  -
+    id: fishGDDFig
+    type: R
+    tags: [desktop]
     fig.config:
         col: '#990000'
+  -
+    id: wallyTrendsFig
+    type: R
+    tags: [desktop]
+  -
+    id: bassTrendsFig
+    type: R
+    tags: [desktop]
