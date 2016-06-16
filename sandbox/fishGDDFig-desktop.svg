@@ -1,0 +1,424 @@
+
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 1150" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+        <style>
+		text {
+		  font-size: 20px;
+		  cursor: default;
+		  font-family: Tahoma, Geneva, sans-serif;
+		  -webkit-touch-callout: none; /* iOS Safari */
+		  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+		  -khtml-user-select: none;    /* Konqueror */
+		  -moz-user-select: none;      /* Firefox */
+		  -ms-user-select: none;       /* Internet Explorer/Edge */
+		  user-select: none;           /* Non-prefixed version, currently
+		                                  not supported by any browser */
+		}
+
+    .hidden {
+      opacity:0.0;
+    }  
+    .disabled {
+      opacity:0.3;
+      cursor: default;
+      pointer-events: none
+    }
+    .enabled {
+      opacity:1.0;
+      cursor: pointer;
+    }
+	line {
+	      fill: none;
+	      stroke: #000000;
+	      stroke-linecap: round;
+	      stroke-linejoin: round;
+	      stroke-miterlimit: 10.00;
+	    }
+		.moveable{
+			cursor: pointer;	
+		}
+		.locked {
+			cursor: default;	
+		}
+    </style>
+    <script type="text/ecmascript"><![CDATA[
+        var svgDoc;
+        var svg = document.querySelector("svg")
+        var pt = svg.createSVGPoint();
+		var domainHeight = "443.52";
+		var priorY = null;
+		var priorId = null;
+        function init(evt) {
+            if ( window.svgDocument == null ) {
+                svgDoc = evt.target.ownerDocument;
+                var mainDocument = window.parent.document;
+            }  
+			var activeFish;
+			var fishArray;
+			var dots;
+			var selectedPoint;
+			var drawnPoints
+			var dotSpace;
+			resetDefaults()
+			
+        };
+
+        function wipeChildren(ele){
+        	while (ele.firstChild) { 
+        		ele.removeChild(ele.firstChild); 
+        	}
+        }
+		// set up the initial position of control-point dots;
+		// reset button and dot classes
+  		function resetDefaults(){
+		
+			fishArray = ["wally","bass"]
+			drawnPoints = {"wally":[],"bass":[]};
+			activeFish = fishArray[0]
+        	dots = [85,125,165,205,245,285,325,365,405,445,485,525,565,605,645];
+			dotSpace = 20;
+			
+        	selectedPoint = null;
+			var wallyG = document.getElementById("wally-dots");
+			var bassG = document.getElementById("bass-dots");
+			var dBox = document.getElementById("domain-boxes");
+			var hBox = document.getElementById("help-boxes");
+			var wTips = document.getElementById("wally-fish-tips");
+			var bTips = document.getElementById("bass-fish-tips");
+			wipeChildren(wallyG);
+			wipeChildren(bassG);
+			wipeChildren(hBox);
+			wipeChildren(dBox);
+			wipeChildren(wTips);
+			wipeChildren(bTips);
+
+            for (var i = 0; i < dots.length; i++) {
+				var domainBox = document.createElementNS(document.rootElement.namespaceURI,"rect"); 
+				domainBox.setAttributeNS(null, "width", dotSpace*2);
+				domainBox.setAttributeNS(null, "height", domainHeight);
+				domainBox.setAttributeNS(null, "y", "59.04"); 
+				var helpB = domainBox.cloneNode();
+				domainBox.setAttributeNS(null, "x", dots[i]-dotSpace); 
+				domainBox.setAttributeNS(null, "id", "box-"+i); 
+				svgDoc.getElementById("domain-boxes").appendChild(domainBox);
+				helpB.setAttributeNS(null, "x", dots[i]-dotSpace*2); 
+				helpB.setAttributeNS(null, "id", "help-"+i); 
+				helpB.setAttributeNS(null, "opacity", "0"); 
+				svgDoc.getElementById("help-boxes").appendChild(helpB);
+				var newW = document.createElementNS(document.rootElement.namespaceURI,"circle"); 
+				newW.setAttributeNS(null, "cx", dots[i]);  
+				newW.setAttributeNS(null, "cy", "0"); 
+				newW.setAttributeNS(null, "class","hidden");
+				newW.setAttributeNS(null, "r", 3);
+				var newB = newW.cloneNode();
+				newW.setAttributeNS(null, "id", "wally-"+i)
+				newB.setAttributeNS(null, "id", "bass-"+i)
+				svgDoc.getElementById("wally-dots").appendChild(newW);
+				svgDoc.getElementById("bass-dots").appendChild(newB);
+				drawnPoints["wally"][i] = false;
+				drawnPoints["bass"][i] = false;
+			}
+			drawnPoints['wally'][13] = true;
+			drawnPoints['wally'][14] = true;
+			svgDoc.getElementById("wally-13").setAttribute('cy','365');
+			svgDoc.getElementById("wally-13").setAttribute('class','enabled');
+			svgDoc.getElementById("wally-14").setAttribute('cy','365');
+			svgDoc.getElementById("wally-14").setAttribute('class','enabled');
+
+			var wallyTip = document.createElementNS(document.rootElement.namespaceURI,"path");
+			wallyTip.setAttributeNS(null, "d", "M"+dots[13]+",365 l-15,-22");  
+			var wallyTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
+			wallyTxt.setAttributeNS(null, "x", dots[13]-15);
+			wallyTxt.setAttributeNS(null, "y", "343");
+			wallyTxt.setAttributeNS(null, "dy", "-0.33em");
+			wallyTxt.setAttributeNS(null, "text-anchor", "middle");
+			wallyTxt.setAttributeNS(null, "stroke","none");
+			var textNode = document.createTextNode('Walleye');
+			wallyTxt.appendChild(textNode);
+			wTips.appendChild(wallyTip);
+			wTips.appendChild(wallyTxt);
+			wTips.removeAttribute("class");
+
+			drawnPoints['bass'][13] = true;
+			drawnPoints['bass'][14] = true;
+			svgDoc.getElementById("bass-13").setAttribute('cy','125');
+			svgDoc.getElementById("bass-13").setAttribute('class','enabled');
+			svgDoc.getElementById("bass-14").setAttribute('cy','123');
+			svgDoc.getElementById("bass-14").setAttribute('class','enabled');
+
+			var bassTip = document.createElementNS(document.rootElement.namespaceURI,"path");
+			bassTip.setAttributeNS(null, "d", "M"+dots[13]+",125 l-15,-22");  
+			var bassTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
+			bassTxt.setAttributeNS(null, "x", dots[13]-15);
+			bassTxt.setAttributeNS(null, "y", "103");
+			bassTxt.setAttributeNS(null, "dy", "-0.33em");
+			bassTxt.setAttributeNS(null, "text-anchor", "middle");
+			bassTxt.setAttributeNS(null, "stroke","none");
+			var textNode = document.createTextNode('Largemouth Bass');
+			bassTxt.appendChild(textNode);
+			bTips.appendChild(bassTip);
+			bTips.appendChild(bassTxt);
+			bTips.removeAttribute("class");
+
+			svgDoc.getElementById('wally-real').setAttribute('class','hidden');
+			svgDoc.getElementById('bass-real').setAttribute('class','hidden');
+			svgDoc.getElementById('modeled-data').setAttribute('class','hidden');
+  			svgDoc.getElementById("start-over").setAttribute('class','disabled');
+  			svgDoc.getElementById("im-done").setAttribute('class','disabled');
+			svgDoc.getElementById("wally-dots").removeAttribute('class');
+			svgDoc.getElementById("bass-dots").removeAttribute('class');
+			svgDoc.getElementById("wally-line").removeAttribute('class');
+			svgDoc.getElementById("bass-line").removeAttribute('class');
+			for (var i = 0; i < fishArray.length; i++) {
+				drawLine(fishArray[i])
+			}
+  			
+  		}
+
+        function imDone(){
+			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
+			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
+			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
+			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
+			svgDoc.getElementById("bass-dots").setAttribute('class','hidden');
+			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
+			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
+			svgDoc.getElementById('im-done').setAttribute('class','hidden');
+        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+        	svg.removeAttribute('onmousedown');
+        	svg.removeAttribute('onmouseup');
+        	svg.removeAttribute('onmousemove');
+        }
+        
+
+        function draw(evt){
+        	if (selectedPoint === null) {return}
+			var id = evt.target.getAttribute('id');
+			if (id !== null){
+
+				// capture previous box before deselect, interpolate y w/ skipped x.
+				var i = id.split('-')[1];
+				if (priorId === null){ priorId = i};
+				var newY = cursorPoint(evt).y;
+				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',newY);
+				if (Math.abs(i-priorId) > 1){
+					interpolatePoints(Number(priorY), Number(newY), Number(priorId), Number(i))
+					// need to interpolate
+				}
+				priorY = newY;
+				priorId = i;
+				drawnPoints[activeFish][i]=true;
+			}
+			drawLine();
+        };
+
+        function interpolatePoints(y0, y1, i0, i1){
+        	var distance = y1 - y0;
+			var step = distance/(i1-i0)
+			var stepI = 1;
+        	if (i0 > i1){
+        		for (var i = i1+1; i < i0; i++){
+        			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y1+step*stepI);
+					drawnPoints[activeFish][i]=true;
+        			stepI++;
+        		}
+        	} else {
+        		for (var i = i0+1; i < i1; i++){
+        			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
+					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y0+step*stepI);
+					drawnPoints[activeFish][i]=true;
+        			stepI++;
+        		}
+        	}
+        }
+        function cursorPoint(evt){
+  			pt.x = evt.clientX; pt.y = evt.clientY;
+  			return pt.matrixTransform(svg.getScreenCTM().inverse());
+		};
+
+        function fishFinished(){
+        	for (var i = 0; i < dots.length; i++) {
+        		if (drawnPoints[activeFish][i] === false){
+        			return false;
+        		}
+        	}
+        	return true;
+        }
+		
+        function canFinish(){
+        	for (var i = 0; i < dots.length; i++) {
+        		if (drawnPoints['wally'][i] === false || drawnPoints['bass'][i] === false){
+        			return false;
+        		}
+        	}
+        	return true;
+        }
+
+
+		
+        function drawLine(fish){
+			fish = fish || activeFish;
+        	var path = "M0,0 ";
+
+        	for (var i = 0; i < dots.length; i++) {
+        		var dotEl = svgDoc.getElementById(fish+"-"+[i]);
+        		if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
+        			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
+        		} else {
+        			path = path+"M"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
+        		}
+        		
+        	}
+        	svgDoc.getElementById(fish + "-line").setAttribute('d',path);
+        	
+        }
+        function noneDrawn(){
+        	for (var i = 0; i < dots.length; i++) {
+        		// don't draw helpers if no points are drawn
+        		if (drawnPoints[activeFish][i]) {return  false;}
+        	}
+        	return(true)
+        }
+
+        function helpBlocks(){
+        	
+        	if (!noneDrawn()){
+        		for (var i = 1; i < dots.length; i++) {
+        			var boxEl = svgDoc.getElementById("help-"+[i]);
+        			if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
+        				boxEl.setAttribute('opacity','0.0');
+        			} else {
+        				boxEl.setAttribute('opacity','0.6');
+        			}
+        		}
+        	}
+        	
+        }
+		
+		function switchFish(fish){
+			if (activeFish === fish){
+			// do nothing
+			} else {
+			// let the user know they are changing fish?
+				console.log(fish)
+				newFish()
+			}
+			
+		}
+		
+		function newFish(){
+			var oldFish = activeFish;
+			activeFish = fishArray.pop();
+			fishArray.push(oldFish)
+			fishArray[0] = activeFish;
+		}
+		function select(evt){
+			var id = evt.target.getAttribute('id');
+			// allow you to switch to a different active fish
+			if (id !== null && evt.target.getAttribute("class") === "enabled"){
+				var fish = id.split("-")[0];
+				switchFish(fish);
+			} 
+			svgDoc.getElementById(activeFish+"-fish-tips").setAttribute("class","hidden");
+			selectedPoint = true;
+		}
+        function deselect(){
+            selectedPoint = null;
+            priorY = null;
+            priorId = null;
+            helpBlocks();
+            
+			if (canFinish()){
+    			svgDoc.getElementById("im-done").setAttribute('class','enabled');
+    			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone()')
+    			svgDoc.getElementById("start-over").setAttribute('class','enabled');
+    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
+			} else if (fishFinished()){
+				newFish();
+        	}
+			
+            for (var i = 0; i < dots.length; i++) {
+            	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
+            		svgDoc.getElementById("start-over").setAttribute('class','enabled');
+            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
+            		return
+            	}
+            }
+        };
+    
+    ]]> </script>	
+    <g id="help-boxes" fill="#ffffcc"/>
+    <g id="wally-fish-tips" stroke='#01b29F' fill='#01b29F'/>
+    <g id="bass-fish-tips" stroke='#990000' fill='#990000'/>
+    <g id="user-data">
+		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
+		<g id='x-tick-labels' text-anchor="middle">
+			<text x='82.40' y='520' style='font-size: 10.00pt; font-family: Arial;'>2200</text>
+			<text x='212.18' y='520' style='font-size: 10.00pt; font-family: Arial;'>2400</text>
+			<text x='341.96' y='520' style='font-size: 10.00pt; font-family: Arial;'>2600</text>
+			<text x='471.73' y='520' style='font-size: 10.00pt; font-family: Arial;'>2800</text>
+			<text x='601.51' y='520' style='font-size: 10.00pt; font-family: Arial;'>3000</text>
+		</g>
+		<g id='y-tick-labels' text-anchor="end">
+			<text x='55' y='491.86' style='font-size: 10.00pt; font-family: Arial;'>0%</text>
+			<text x='55' y='409.73' style='font-size: 10.00pt; font-family: Arial;'>20%</text>
+			<text x='55' y='327.59' style='font-size: 10.00pt; font-family: Arial;'>40%</text>
+			<text x='55' y='245.46' style='font-size: 10.00pt; font-family: Arial;'>60%</text>
+			<text x='55' y='163.33' style='font-size: 10.00pt; font-family: Arial;'>80%</text>
+			<text x='55' y='81.19' style='font-size: 10.00pt; font-family: Arial;'>100%</text>
+		</g>
+		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
+		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
+		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 16.00pt; font-family: Arial;'>warmer lakes</text>
+		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
+		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 16.00pt; font-family: Arial;'>cooler lakes</text>
+		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
+		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
+	</g>
+	<g id="modeled-data" transform="translate(0,550)">
+		<polyline points='82.40,260.46 114.84,265.92 147.29,266.65 179.73,263.10 212.18,279.33 244.62,329.67 277.07,382.31 309.51,404.21 341.96,406.41 374.40,404.84 406.84,380.61 439.29,372.60 471.73,368.27 504.18,366.78 536.62,371.00 569.07,369.73 601.51,366.50 633.96,367.82 666.40,367.86 ' stroke-width="4" clip-path='url(#cp1)' fill="none" stroke='#01b29F' stroke-linejoin="round" id='wally-real'/>
+		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
+		<g id='x-tick-labels' text-anchor="middle">
+			<text x='82.40' y='520' style='font-size: 10.00pt; font-family: Arial;'>2200</text>
+			<text x='212.18' y='520' style='font-size: 10.00pt; font-family: Arial;'>2400</text>
+			<text x='341.96' y='520' style='font-size: 10.00pt; font-family: Arial;'>2600</text>
+			<text x='471.73' y='520' style='font-size: 10.00pt; font-family: Arial;'>2800</text>
+			<text x='601.51' y='520' style='font-size: 10.00pt; font-family: Arial;'>3000</text>
+		</g>
+		<g id='y-tick-labels' text-anchor="end">
+			<text x='55' y='491.86' style='font-size: 10.00pt; font-family: Arial;'>0%</text>
+			<text x='55' y='409.73' style='font-size: 10.00pt; font-family: Arial;'>20%</text>
+			<text x='55' y='327.59' style='font-size: 10.00pt; font-family: Arial;'>40%</text>
+			<text x='55' y='245.46' style='font-size: 10.00pt; font-family: Arial;'>60%</text>
+			<text x='55' y='163.33' style='font-size: 10.00pt; font-family: Arial;'>80%</text>
+			<text x='55' y='81.19' style='font-size: 10.00pt; font-family: Arial;'>100%</text>
+		</g>
+		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
+		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
+		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 16.00pt; font-family: Arial;'>warmer lakes</text>
+		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
+		<text x='150' y='490' text-anchor="begin" dy="0.33em" dx="0.5em" style='font-size: 16.00pt; font-family: Arial;'>cooler lakes</text>
+		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
+		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
+		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="4" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real'/>
+	</g>
+	<path fill='none' stroke='#01b29F' stroke-width="3" id="wally-line" />
+	<path fill='none' stroke="#990000" stroke-width="3" id="bass-line" />
+	<g id="domain-boxes" opacity='0'/>
+	<g id="wally-dots" fill='#01b29F'/>
+	<g id="bass-dots" fill="#990000"/>
+    <g id='buttons' transform="translate(374.4,570)">
+		<g id='im-done' transform="translate(-180,0)">
+      		<rect width="160" height="40" fill="#01b29F"/>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' fill="white">Finished</text>
+      		<rect width="160" height="40" opacity="0"/>
+    	</g>
+   	 	<g id='start-over' transform="translate(20,0)" class='disabled'>
+      		<rect width="160" height="40" fill="grey"/>
+      		<text y="20" x="80" dy='0.33em' text-anchor='middle' fill="white">Reset</text>
+      		<rect width="160" height="40" opacity="0"/>
+    	</g>
+    </g>
+	
+</svg>
