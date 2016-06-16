@@ -58,6 +58,7 @@
 			var selectedPoint;
 			var drawnPoints
 			var dotSpace;
+			var hasClicked;
 			resetDefaults()
 			
         };
@@ -71,6 +72,7 @@
 		// reset button and dot classes
   		function resetDefaults(){
 		
+			hasClicked = false;
 			fishArray = ["wally","bass"]
 			drawnPoints = {"wally":[],"bass":[]};
 			activeFish = fishArray[0]
@@ -314,6 +316,17 @@
 			fishArray[0] = activeFish;
 		}
 		function select(evt){
+			if (hasClicked !== true){
+				var firstClickY = cursorPoint(evt).y;
+				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-13").getAttribute('cy'));
+				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-13").getAttribute('cy'));
+				if (difWally > difBass){
+					activeFish = 'bass';
+				} else {
+					activeFish = 'wally';
+				}
+				hasClicked=true;
+			}
 			var id = evt.target.getAttribute('id');
 			// allow you to switch to a different active fish
 			if (id !== null && evt.target.getAttribute("class") === "enabled"){
