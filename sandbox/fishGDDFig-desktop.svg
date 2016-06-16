@@ -320,11 +320,9 @@
 				var firstClickY = cursorPoint(evt).y;
 				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-13").getAttribute('cy'));
 				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-13").getAttribute('cy'));
-				if (difWally > difBass){
-					activeFish = 'bass';
-				} else {
-					activeFish = 'wally';
-				}
+				if (difWally > difBass & activeFish == 'wally'){
+					switchFish('bass');
+				} 
 				hasClicked=true;
 			}
 			var id = evt.target.getAttribute('id');
