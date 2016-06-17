@@ -5,6 +5,7 @@ packages:
   - gsplot
   - dinosvg
   - dplyr
+  - tidyr
 
 sources:
   - scripts/lib/getData.R
