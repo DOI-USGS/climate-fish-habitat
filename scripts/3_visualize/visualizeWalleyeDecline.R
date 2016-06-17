@@ -16,7 +16,7 @@ svgFishTrends <- function(object, filename){
 \tfont-size: 14.00pt; 
 }'
   svg = svg(object, width=10, height=7, as.xml=TRUE)
-  XML::newXMLNode('text', parent = svg, attrs = c(x='10', y='25', 'text-anchor'="begin", id='y-title'), XML::newXMLTextNode('Catch per unit effort'), at=1)
+  XML::newXMLNode('text', parent = svg, attrs = c(x='10', y='25', 'text-anchor'="begin", id='y-title'), XML::newXMLTextNode('Relative abundance'), at=1)
   dinosvg:::write_svg(svg, file = filename)
 }
 
@@ -25,10 +25,12 @@ visualize.visualizeFishTrends <- function(item){
   config <- item$fig.config
   
   x.tcks = seq(1995,2010, by=5)
+  y.tcks = seq(0, 1.5, by=0.25)
   par(mai=c(.5,.5,0.5,0.5))
   
-  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=config$col) %>% 
-    axis(1, at=x.tcks, labels=x.tcks) 
+  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=config$col, ylim=c(0,1.3)) %>% 
+    axis(1, at=x.tcks, labels=x.tcks) %>% 
+    axis(2, at=y.tcks, labels=y.tcks) 
   
   svgFishTrends(gs.fish, item$location)
 }

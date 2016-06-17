@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 720 504">
+  <style>#tick-labels, #y-title {
+  	font-family: Arial;
+}
+#data-line {
+	stroke-linejoin: round;
+	stroke-width:3;
+}
+#tick-labels {
+	font-size: 12.00pt; 
+}
+#y-title {
+	font-size: 14.00pt; 
+}</style>
+  <text x="10" y="25" text-anchor="begin" id="y-title">Relative abundance</text>
+  <g id="view-1-2">
+    <defs>
+      <clipPath id="mask-1-2">
+        <rect x="36" y="36" height="432" width="648"/>
+      </clipPath>
+    </defs>
+    <g id="axes" fill="none" stroke="#000000" stroke-width="1">
+      <rect x="36" y="36" height="432" width="648" id="axes-box"/>
+    </g>
+    <g stroke="rgb(153,0,0)" fill="none" clip-path="url(#mask-1-2)">
+      <path d="M36,420.702 66.857,226.128 97.714,396.455 128.571,350.035 159.429,392.17 190.286,296.214 221.143,263.237 252,282.954 282.857,324.034 313.714,208.59 344.571,168.942 375.429,137.189 406.286,68.634 437.143,124.55 468,204.552 498.857,141.528 529.714,205.628 560.571,253.96 591.429,221.043 622.286,169.305 653.143,280.566 684,304.286" id="data-line"/>
+    </g>
+  </g>
+  <g id="side-1">
+    <g id="axis-side-1">
+      <g id="tick-labels" stroke="none" fill="#000000" text-anchor="middle">
+        <text x="66.857" y="468" dy="1.0em">1995</text>
+        <text x="221.143" y="468" dy="1.0em">2000</text>
+        <text x="375.429" y="468" dy="1.0em">2005</text>
+        <text x="529.714" y="468" dy="1.0em">2010</text>
+      </g>
+      <g id="ticks">
+        <path d="M 66.857,468 v -5"/>
+        <path d="M 221.143,468 v -5"/>
+        <path d="M 375.429,468 v -5"/>
+        <path d="M 529.714,468 v -5"/>
+      </g>
+    </g>
+  </g>
+  <g id="side-2">
+    <g id="axis-side-2">
+      <g id="tick-labels" stroke="none" fill="#000000" text-anchor="end">
+        <text x="36" y="468" dx="-0.33em" dy="0.33em">0</text>
+        <text x="36" y="384.923" dx="-0.33em" dy="0.33em">0.25</text>
+        <text x="36" y="301.846" dx="-0.33em" dy="0.33em">0.5</text>
+        <text x="36" y="218.769" dx="-0.33em" dy="0.33em">0.75</text>
+        <text x="36" y="135.692" dx="-0.33em" dy="0.33em">1</text>
+        <text x="36" y="52.615" dx="-0.33em" dy="0.33em">1.25</text>
+      </g>
+      <g id="ticks">
+        <path d="M 36,468 h 5"/>
+        <path d="M 36,384.923 h 5"/>
+        <path d="M 36,301.846 h 5"/>
+        <path d="M 36,218.769 h 5"/>
+        <path d="M 36,135.692 h 5"/>
+        <path d="M 36,52.615 h 5"/>
+      </g>
+    </g>
+  </g>
+</svg>

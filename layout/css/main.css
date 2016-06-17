@@ -23,7 +23,7 @@ header img{
 	text-align:center;
 	padding:15px;
 	}
-#fishGDDFig {
+.svgFig {
 	width: 1000px;
 	position: relative;
   left: 50%;
