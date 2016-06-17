@@ -12,7 +12,8 @@ readData.fileItem <- function(file.item) {
                   "text/tab-seperated-values" = "csv",
                   "text/yaml" = "yaml",
                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "excel",
-                  "none")
+                  "none",
+                  "object/RDS" = "RDS")
   class(file.item) <- class
   return(readData(file.item))
 }
@@ -34,4 +35,8 @@ readData.excel <- function(data) {
 
 readData.none <- function(data) {
   throw("Could not read file of this type")
+}
+
+readData.RDS <- function(data){
+  readRDS(data$location)
 }
