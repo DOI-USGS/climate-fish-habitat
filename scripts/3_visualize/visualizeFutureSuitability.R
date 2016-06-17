@@ -139,6 +139,6 @@ visualizeFutureSuitability <- function(item){
   }
   
   
-  dinosvg:::write_svg(svg, file='sandbox/fish_change_GH_paper.svg')
+  dinosvg:::write_svg(svg, file=item$location)
   
 }
