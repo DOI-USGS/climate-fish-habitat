@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1008 864">
   <style>text {
-		  font-size: 14px;
-		  cursor: default;
-		  font-family: Tahoma, Geneva, sans-serif;}
-                  .big-text{
-font-size: 22px;
-                  }
-.medium-text{
-font-size: 18px;
-                  }
-                  </style>
+                    font-size: 14px;
+                    cursor: default;
+                    font-family: Tahoma, Geneva, sans-serif;}
+                    .big-text{
+                    font-size: 22px;
+                    }
+                    .medium-text{
+                    font-size: 18px;
+                    }
+                    </style>
   <g id="early" transform="translate(20,20)">
     <rect width="170" height="60.72" y="0" fill="cyan" opacity="0.6"/>
     <text class="medium-text" x="85" y="30.36" dy="-0.3em" fill="black" stroke="none" text-anchor="middle">Walleye dominant</text>
