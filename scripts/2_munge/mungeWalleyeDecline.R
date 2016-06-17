@@ -4,7 +4,8 @@ munge.mungeWallyTrends <- function(item){
   wally <- readData(fname)
   wally.munged <- wally %>% 
     rename(rel.abun = relative.density) %>% 
-    filter(Year>1990) 
+    filter(Year>1990) %>% 
+    select(Year, rel.abun)
   write.table(wally.munged, file = 'mungedWallyTrends.tsv', sep = '\t')
 }
 
@@ -13,6 +14,7 @@ munge.mungeBassTrends <- function(item){
   bass <- readData(fname)
   bass.munged <- bass %>% 
     rename(rel.abun = relative.abundance) %>% 
-    filter(Year>1990) 
+    filter(Year>1990) %>% 
+    select(Year, rel.abun)
   write.table(bass.munged, file = 'mungedBassTrends.tsv', sep = '\t')
 }
