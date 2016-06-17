@@ -48,7 +48,7 @@ sections:
     template: layout/templates/futureSuitability.mustache
     context: siteTextData
     depends: 
-      - habitatShiftsFig
+      - futureSuitabilityFig
   - 
     id: fishManagement
     template: layout/templates/fishManagement.mustache
@@ -93,8 +93,10 @@ fetch:
     mimeType: text/csv
     export: false
   -
-    id: habitatShifts
-    location: data/categories_by_time_period_median_probs.csv
+    id: futureSuitability
+    itemId: 5761775ae4b04f417c2d2f78
+    filename: categories_by_time_period_median_probs.csv
+    handler: sciencebase
     mimeType: text/csv
     export: false
     
@@ -116,10 +118,10 @@ visualize:
     mimeType: image/svg+xml
     export: true
   -
-    id: habitatShiftsFig
-    location: figures/habitatShiftsFig.svg
-    depends: habitatShifts
-    visualizer: visualizehabitatShifts
+    id: futureSuitabilityFig
+    location: figures/futureSuitabilityFig.svg
+    depends: futureSuitability
+    visualizer: visualizeFutureSuitability
     mimeType: image/svg+xml
     export: true
 
@@ -136,5 +138,9 @@ figures:
     tags: [desktop]
   -
     id: bassTrendsFig
+    type: R
+    tags: [desktop]
+  -
+    id: futureSuitabilityFig
     type: R
     tags: [desktop]
