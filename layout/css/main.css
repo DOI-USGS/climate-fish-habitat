@@ -7,9 +7,12 @@ header{
 	border-bottom:5px solid rgb(210,210,210);
 	}
 	
+p {
+  font-size:1.2em;
+}
 header h3{
 	padding-top:3px;
-	font-size:.9em;
+	font-size:0.9em;
 	}
 	
 header img{
@@ -171,6 +174,5 @@ footer{
 	.list{
 		width:960px;
 	}
-
 
 }
