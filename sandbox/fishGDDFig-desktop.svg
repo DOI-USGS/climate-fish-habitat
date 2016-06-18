@@ -119,18 +119,18 @@
 				drawnPoints["wally"][i] = false;
 				drawnPoints["bass"][i] = false;
 			}
-			drawnPoints['wally'][13] = true;
-			drawnPoints['wally'][14] = true;
-			svgDoc.getElementById("wally-13").setAttribute('cy','365');
-			svgDoc.getElementById("wally-13").setAttribute('class','enabled');
-			svgDoc.getElementById("wally-14").setAttribute('cy','365');
-			svgDoc.getElementById("wally-14").setAttribute('class','enabled');
+			drawnPoints['wally'][0] = true;
+			drawnPoints['wally'][1] = true;
+			svgDoc.getElementById("wally-0").setAttribute('cy','265');
+			svgDoc.getElementById("wally-0").setAttribute('class','enabled');
+			svgDoc.getElementById("wally-1").setAttribute('cy','265');
+			svgDoc.getElementById("wally-1").setAttribute('class','enabled');
 
 			var wallyTip = document.createElementNS(document.rootElement.namespaceURI,"path");
-			wallyTip.setAttributeNS(null, "d", "M"+dots[13]+",365 l-15,-22");  
+			wallyTip.setAttributeNS(null, "d", "M"+dots[1]+",265 l15,-22");  
 			var wallyTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
-			wallyTxt.setAttributeNS(null, "x", dots[13]-15);
-			wallyTxt.setAttributeNS(null, "y", "343");
+			wallyTxt.setAttributeNS(null, "x", dots[1]+15);
+			wallyTxt.setAttributeNS(null, "y", "243");
 			wallyTxt.setAttributeNS(null, "dy", "-0.33em");
 			wallyTxt.setAttributeNS(null, "text-anchor", "middle");
 			wallyTxt.setAttributeNS(null, "stroke","none");
@@ -140,18 +140,18 @@
 			wTips.appendChild(wallyTxt);
 			wTips.removeAttribute("class");
 
-			drawnPoints['bass'][13] = true;
-			drawnPoints['bass'][14] = true;
-			svgDoc.getElementById("bass-13").setAttribute('cy','125');
-			svgDoc.getElementById("bass-13").setAttribute('class','enabled');
-			svgDoc.getElementById("bass-14").setAttribute('cy','123');
-			svgDoc.getElementById("bass-14").setAttribute('class','enabled');
+			drawnPoints['bass'][0] = true;
+			drawnPoints['bass'][1] = true;
+			svgDoc.getElementById("bass-0").setAttribute('cy','425');
+			svgDoc.getElementById("bass-0").setAttribute('class','enabled');
+			svgDoc.getElementById("bass-1").setAttribute('cy','423');
+			svgDoc.getElementById("bass-1").setAttribute('class','enabled');
 
 			var bassTip = document.createElementNS(document.rootElement.namespaceURI,"path");
-			bassTip.setAttributeNS(null, "d", "M"+dots[13]+",125 l-15,-22");  
+			bassTip.setAttributeNS(null, "d", "M"+dots[1]+",425 l15,-22");  
 			var bassTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
-			bassTxt.setAttributeNS(null, "x", dots[13]-15);
-			bassTxt.setAttributeNS(null, "y", "103");
+			bassTxt.setAttributeNS(null, "x", dots[1]+15);
+			bassTxt.setAttributeNS(null, "y", "403");
 			bassTxt.setAttributeNS(null, "dy", "-0.33em");
 			bassTxt.setAttributeNS(null, "text-anchor", "middle");
 			bassTxt.setAttributeNS(null, "stroke","none");
@@ -320,8 +320,8 @@
 		function select(evt){
 			if (hasClicked !== true){
 				var firstClickY = cursorPoint(evt).y;
-				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-13").getAttribute('cy'));
-				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-13").getAttribute('cy'));
+				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-1").getAttribute('cy'));
+				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-1").getAttribute('cy'));
 				if (difWally > difBass & activeFish == 'wally'){
 					switchFish('bass');
 				} 
