@@ -1,45 +1,53 @@
 #visualizeClimateScenarios
+library(httr)
+library(plyr)
 
-rcps = c(26, 45, 60, 85)
+scenarios = c('a2', 'b1', 'a1b')
+
 rcp_descriptions=c("Low warming scenario (RCP 26)", "Medium warming scenario (RCP 45)", 
                    "Medium-high warming scenario (RCP 60)", "High warming scenario (RCP 85)")
 
-read.rcp.temp = function(rcp){
-  temps = read.fwf(paste0('data/icmip5_tas_Amon_modmean_rcp', rcp, '_0-360E_-90-90N_n_000.dat.txt'), 
-                   skip=3, widths=c(5, 11, rep(15,11)))
-  names(temps) = c('year', paste0('month_', 1:12))
+read.rcp.temp = function(scenario){
   
-  temps$ann_avg = apply(temps[,-1], 1, mean)
-
-  return(temps)
-}
-
-rcp26 = read.rcp.temp(26)
-
-#use 1990-2010 as baseline temp for anomaly
-baseline = mean(subset(rcp26, year %in% 2000)$ann_avg)
-
-jpeg('sandbox/futureClimateScenarios.jpg', res=300, width=3000, height=1500)
-plot(1, NA, ylim=c(-1, 4), xlim=c(1995,2100), xlab='Year', ylab='Temperature increase since year 2000 (°C)')
-polygon(c(1990, 1990, 2016, 2016), c(-2, 6, 6, -2), col=rgb(0.5,0.5,0.5,0.5))
-
-cols = rev(paste0(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3"), 'FF'))
-
-for(i in 1:length(rcps)){
-  rcp_temp = read.rcp.temp(rcps[i])
-  rel_baseline = mean(subset(rcp_temp, year %in% 2000)$ann_avg)
+  rcpURL = paste0('http://www.ipcc-data.org/data/ar4_tas-gm_', scenario, '.zip')
+  dl_dest = tempfile()
+  GET(rcpURL, write_disk(dl_dest, overwrite = TRUE))
+  mod_files = unzip(dl_dest, exdir=tempdir())
+  mod_names = sapply(basename(mod_files), function(x) strsplit(x, '\\.')[[1]][1])
+  all_mods = data.frame()
+  for(i in 1:length(mod_files)){
   
-  lines(rcp_temp$year, rcp_temp$ann_avg-baseline-(rel_baseline-baseline), col=cols[i], lwd=2)
+    temps = read.table(mod_files[i], sep='')
+    
+    names(temps) = c('year', 'temp')
+    temps$model = mod_names[i]
+    all_mods = rbind(all_mods, temps)
+  }
+  
+  all_mods$scenario = scenario
+  
+  return(all_mods)
 }
-abline(v=2016)
-text(2017.3, 2, labels = 'Future', srt=90)
-text(2014.4, 2, labels = 'Past', srt=90)
-abline(h=0)
 
-legend('top', legend=rcp_descriptions, lwd=2, col=cols, horiz=FALSE, bty='n')
 
-for(l in -1:5){
-  abline(h=l, lty=3, col=rgb(0.5,0.5,0.5,0.4))
-}
+temps = lapply(scenarios, read.rcp.temp)
+temps = do.call(rbind, temps)
 
-dev.off()
+temps = ddply(temps, c('scenario', 'model'), function(df){
+  df$temp = df$temp - subset(df, year==2000)$temp
+  return(df)
+})
+
+meanrange = ddply(temps, c('scenario', 'year'), function(df){
+  
+  data.frame(mean=mean(df$temp), q25=quantile(df$temp,0.30), q75=quantile(df$temp, 0.70))
+})
+
+ggplot(meanrange, aes(year, mean, color=scenario)) + 
+  geom_ribbon(aes(ymin = q25, ymax = q75, fill=scenario, alpha=0.5)) + 
+  geom_line(aes(y=mean, color=scenario)) + 
+  xlab('Year') + 
+  ylab('Change from year 2000 (°C)') +
+  theme_minimal()
+
+ggsave('sandbox/futureClimateScenarios.jpg')
