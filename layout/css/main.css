@@ -26,8 +26,9 @@ header img{
 	text-align:center;
 	padding:15px;
 	}
+
 .svgFig {
-	width: 1000px;
+	width: 760px;
 	position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -159,7 +160,7 @@ footer{
 		width:760px;
 		margin:0 auto;
 	}
-
+  
 		
 }
 
@@ -174,5 +175,12 @@ footer{
 	.list{
 		width:960px;
 	}
-
+.svgFig {
+  	width: 1000px;
+	  position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 }
