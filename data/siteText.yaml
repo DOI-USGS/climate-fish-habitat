@@ -30,13 +30,13 @@ walleyeBass-l1: Walleye prefer cool water
 walleyeBass-l2: LMB prefer warm water
 walleyeBass-hint-1: >-
     We're giving you a hint to help you fill out the pattern for Walleye and Largemouth Bass. 
-    For the warmest lakes in Wisconsin, you are more likely to find Bass than Walleye, so your starting points look like this:
+    For the colder lakes in Wisconsin, you are more likely to find Walleye than Bass, so your starting points look like this:
 walleyeBass-hint-2: >-  
-  . It's up to you to figure out what happens in colder lakes. If you think it is equally likely to find Bass in all Wisconsin lakes, your line would look like this:
+  . It's up to you to figure out what happens in warmer lakes. If you think it is equally likely to find Bass in all Wisconsin lakes, your line would look like this:
 walleyeBass-hint-3: >-  
-  if you think Bass stop showing up abruptly in colder lakes, your line would look like this:
+  if you think Bass start showing up abruptly in warmer lakes, your line would look like this:
 walleyeBass-hint-4: >-  
-  Likewise, if Walleye are less common in colder lakes, your line would look like this:
+  Likewise, if Walleye are more common in warmer lakes, your line would look like this:
 walleyeBass-hint-5: >-  
   or the same for all lakes: 
 

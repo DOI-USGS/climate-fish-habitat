@@ -150,7 +150,7 @@
 			var bassTip = document.createElementNS(document.rootElement.namespaceURI,"path");
 			bassTip.setAttributeNS(null, "d", "M"+dots[1]+",425 l15,-22");  
 			var bassTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
-			bassTxt.setAttributeNS(null, "x", dots[1]+15);
+			bassTxt.setAttributeNS(null, "x", dots[1]+19);
 			bassTxt.setAttributeNS(null, "y", "403");
 			bassTxt.setAttributeNS(null, "dy", "-0.33em");
 			bassTxt.setAttributeNS(null, "text-anchor", "middle");
