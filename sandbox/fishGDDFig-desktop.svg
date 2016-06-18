@@ -320,13 +320,6 @@
 			fishArray[0] = activeFish;
 		}
 
-		function clickSelect(evt){
-			console.log('select')
-			select(evt);
-			draw(evt);
-			deselect();
-
-		}
 		function select(evt){
 			console.log('select')
 			if (hasClicked !== true){
