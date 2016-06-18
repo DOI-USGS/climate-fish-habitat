@@ -1,5 +1,5 @@
 
-<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 650" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt)">
+<svg version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 650" onload="init(evt)" onmousemove="draw(evt)" onmouseup="deselect()" onmousedown="select(evt);draw(evt)">
         <style>
 		text {
 		  font-size: 20px;
@@ -26,12 +26,13 @@
       opacity:1.0;
       cursor: pointer;
     }
-	line {
+    line {
+	   stroke: #000000;
+	}
+	line, path {
 	      fill: none;
-	      stroke: #000000;
 	      stroke-linecap: round;
 	      stroke-linejoin: round;
-	      stroke-miterlimit: 10.00;
 	    }
 		.moveable{
 			cursor: pointer;	
@@ -191,6 +192,7 @@
         	svg.removeAttribute('onmouseup');
         	svg.removeAttribute('onmousemove');
         	svg.setAttribute("viewBox", "0 0 740 1150"); 
+        	window.scrollBy(0, 300);
         }
         
 
@@ -317,7 +319,16 @@
 			fishArray.push(oldFish)
 			fishArray[0] = activeFish;
 		}
+
+		function clickSelect(evt){
+			console.log('select')
+			select(evt);
+			draw(evt);
+			deselect();
+
+		}
 		function select(evt){
+			console.log('select')
 			if (hasClicked !== true){
 				var firstClickY = cursorPoint(evt).y;
 				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-1").getAttribute('cy'));
@@ -381,7 +392,7 @@
 			<text x='55' y='163.33' style='font-size: 10.00pt; font-family: Arial;'>80%</text>
 			<text x='55' y='81.19' style='font-size: 10.00pt; font-family: Arial;'>100%</text>
 		</g>
-		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
+		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of abundant bass/walleye</text>
 		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
 		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 16.00pt; font-family: Arial;'>warmer lakes</text>
 		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
@@ -407,7 +418,7 @@
 			<text x='55' y='163.33' style='font-size: 10.00pt; font-family: Arial;'>80%</text>
 			<text x='55' y='81.19' style='font-size: 10.00pt; font-family: Arial;'>100%</text>
 		</g>
-		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of healthy bass/walleye fishery</text>
+		<text x='10' y='50' style='font-size: 14.00pt; font-family: Arial;' text-anchor="begin">Probability of abundant bass/walleye</text>
 		<polyline points='59.04,502.56 689.76,502.56 689.76,59.04 59.04,59.04 59.04,502.56 ' style='stroke-width: 0.75;' fill="none" stroke='black'/>
 		<text x='600' y='490' text-anchor="end" dy="0.33em" dx="-0.5em" style='font-size: 16.00pt; font-family: Arial;'>warmer lakes</text>
 		<path d='M600,490 h80 l-10,-4 m10,4 l-10,4' fill="none" stroke='black'/>
