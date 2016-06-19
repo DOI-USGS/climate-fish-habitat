@@ -1,5 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1008 864">
-  <style>text {
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1008 864" onload="init(evt)">
+  <style>
+    .hidden {
+        opacity:0;
+    }
+    .shown {
+        opacity:1;
+    }
+    text {
 		  font-size: 14px;
 		  cursor: default;
 		  font-family: Tahoma, Geneva, sans-serif;}
@@ -10,8 +17,57 @@ font-size: 22px;
 font-size: 18px;
                   }
                   </style>
+    <script type="text/ecmascript"><![CDATA[
+        var svg = document.querySelector("svg")
+         var pt = svg.createSVGPoint();
+        function init(evt){
+    if ( window.svgDocument == null ) {
+    svgDocument = evt.target.ownerDocument;
+    }
+}
+    function hovertext(text, evt){
+  var tooltip = document.getElementById("tooltip");
+  var tooltip_bg = document.getElementById("tooltip_bg");
+  var tool_key = document.getElementById("tool_key");
+  var tooltip_key = document.getElementById("tooltip_key");
+  tooltip.setAttribute("text-anchor","begin");
+  tooltip.setAttribute("dx","0.5em");
+  tooltip_key.setAttribute("text-anchor","begin");
+  tooltip_key.setAttribute("dx","1.6em");
+  if (evt === undefined){
+    tooltip.setAttribute("class","hidden");
+    tooltip_key.setAttribute("class","hidden");
+    tooltip.firstChild.data = text;
+    tooltip_bg.setAttribute("x",0);
+    tooltip_bg.setAttribute("y",0);
+    tooltip_bg.setAttribute("class","hidden");
+    tool_key.setAttribute("fill","none");
+  } else {
+    pt = cursorPoint(evt)
+    tooltip.setAttribute("x",pt.x);
+    tooltip.setAttribute("y",pt.y);
+    tooltip.firstChild.data = text;
+    tooltip_bg.setAttribute("x",pt.x+2);
+    tooltip_bg.setAttribute("y",pt.y-25);
+    tooltip.setAttribute("class","shown");
+    tooltip_key.setAttribute("x",pt.x);
+    tooltip_key.setAttribute("y",pt.y);
+    tooltip_key.setAttribute("class","sub-label");
+    tooltip_key.firstChild.data = 'doggy';
+    tooltip_bg.setAttribute("class","shown");
+    tool_key.setAttribute("fill", evt.target.getAttribute("fill"));
+    tool_key.setAttribute("x",pt.x+5);
+    tool_key.setAttribute("y",pt.y-22);
+    var length = Math.max(tooltip.getComputedTextLength(), tooltip_key.getComputedTextLength()+12);
+    tooltip_bg.setAttribute("width", length+6);
+  }}
+  function cursorPoint(evt){
+    pt.x = evt.clientX; pt.y = evt.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+    };
+  ]]></script>
   <g id="early" transform="translate(20,20)">
-    <rect width="170" height="60.72" y="0" fill="cyan" opacity="0.6"/>
+    <rect width="170" height="60.72" y="0" fill="cyan" opacity="0.6" onmousemove="hovertext('0.0 (ppcm)',evt)" onmouseout="hovertext(' ')"/>/>
     <text class="medium-text" x="85" y="30.36" dy="-0.3em" fill="black" stroke="none" text-anchor="middle">Walleye dominant</text>
     <text class="medium-text" x="85" y="30.36" dy="0.9em" fill="black" stroke="none" text-anchor="middle">(n=184)</text>
     <rect width="170" height="14.19" y="72.72" fill="#9932CD" opacity="0.6"/>
@@ -48,10 +104,10 @@ font-size: 18px;
     <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2065-2089</text>
   </g>
   <g id="X1989.2014-arrow" transform="translate(20,20)">
-    <path d="M170,6.27 L370,6.27 v-6.27 L170,0" fill="cyan" stroke="none" opacity="0.2"/>
-    <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" fill="cyan" stroke="none" opacity="0.2"/>
-    <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" fill="cyan" stroke="none" opacity="0.2"/>
-    <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" fill="cyan" stroke="none" opacity="0.2"/>
+    <path d="M170,6.27 L370,6.27 v-6.27 L170,0" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('0.0 (ppcm)',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('0.0 (ppcm)',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('0.0 (ppcm)',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('0.0 (ppcm)',evt)" onmouseout="hovertext(' ')"/>
     <path d="M170,72.72 L370,6.27 v-0 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2"/>
     <path d="M170,76.35 L370,37.08 v-3.63 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2"/>
     <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="#9932CD" stroke="none" opacity="0.2"/>
@@ -83,4 +139,8 @@ font-size: 18px;
     <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" fill="grey" stroke="none" opacity="0.2"/>
     <path d="M170,750.45 L370,750.45 v-29.37 L170,721.08" fill="grey" stroke="none" opacity="0.2"/>
   </g>
+  <rect id="tooltip_bg" x="0" y="0" rx="2.5" ry="2.5" width="55" height="17" fill="white" stroke-width="0.5" stroke="#696969" class="hidden"/>
+  <rect id="tool_key" x="0" y="0" width="7" height="7" fill="none" stroke="none"/>
+  <text id="tooltip_key" dx="1.6em" dy="-1.45em" stroke="none" fill="#000000" text-anchor="begin" class="sub-label"> </text>
+  <text id="tooltip" dx="0.5em" dy="-0.33em" stroke="none" fill="#000000" text-anchor="begin"> </text>
 </svg>
