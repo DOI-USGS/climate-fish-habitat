@@ -39,8 +39,8 @@ var length = tooltip.getComputedTextLength();
 tooltip_bg.setAttribute("width", length+8);
 if (pt.x+length+8 > xmax){
 tooltip.setAttribute("text-anchor","end");
-tooltip.setAttribute("dx","-4");
-tooltip_bg.setAttribute("x",pt.x-8-length);
+tooltip.setAttribute("dx","-8");
+tooltip_bg.setAttribute("x",pt.x-12-length);
 }
 }}
 function cursorPoint(evt){
@@ -49,7 +49,7 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
 };'
 
 types = c('Walleye dominant', 'Coexistence', 'Bass dominant', 'Neither')
-colors = c('cyan','#9932CD','#cc0000','grey')
+colors = c('Walleye dominant'='cyan','Coexistence'='#9932CD','Bass dominant'='#cc0000','Neither'='grey')
 to.types = c('toWally', 'toCoexistence', 'toBass', 'toNeither')
 periods = c('early'='X1989.2014', 'mid'='X2040.2064', 'late'='X2065.2089')
 arrow.names <- c('toWally'='Walleye dominant', 'toCoexistence'='Coexistence', 'toBass'='Bass dominant', 'toNeither'="Neither")
@@ -97,8 +97,8 @@ for (i in 1:length(periods)){
   period.data = group_by_(fish.change, period.name) %>% tally %>% data.frame %>% tidyr::spread_(key=period.name, 'n')
   for (type in types){
     h[[period.name]][t] = period.data[[type]]*scale
-    svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.6", 
-                        onmousemove=sprintf("hovertext('%s %s lakes',evt)",period.data[[type]], type), onmouseout="hovertext(' ')"))
+    svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[[type]], opacity="0.6", 
+                        onmousemove=sprintf("hovertext('%s %s lakes',evt)",formatC(period.data[[type]], format="d", big.mark=','), type), onmouseout="hovertext(' ')"))
     if (period.data[[type]] < n.threshold[1]){
       svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
     } else if (period.data[[type]] > n.threshold[2]){
@@ -185,22 +185,20 @@ for (i in 2:length(periods)){
 for (i in 1:2){
   period.from = unname(periods[i])
   g <- svg_node('g',svg, c(id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
-  from.i = 1
-  for (from.type in names(start.arrows[[period.from]])){
+  for (from.type in c('Bass dominant', 'Neither', 'Walleye dominant', 'Coexistence')){
     for (to.type in names(start.arrows[[period.from]][[from.type]])){
       stc = start.arrows[[period.from]][[from.type]][[to.type]]
       arr.txt <- arrow.names[[to.type]]
       if (from.type == arr.txt){
-        mouse.text <- sprintf("hovertext('%s lakes remain as %s',evt)",stc[['h']]/scale, from.type)
+        mouse.text <- sprintf("hovertext('%s lakes remain as %s',evt)",formatC(stc[['h']]/scale, format="d", big.mark=','), from.type)
       } else {
-        mouse.text <- sprintf("hovertext('%s lakes shift from %s to %s',evt)",stc[['h']]/scale, from.type, arr.txt)  
+        mouse.text <- sprintf("hovertext('%s lakes shift from %s to %s',evt)",formatC(stc[['h']]/scale, format="d", big.mark=','), from.type, arr.txt)  
       }
       
       svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
-                            fill=colors[from.i], stroke='none', opacity="0.2",
+                            fill=colors[[from.type]], stroke='none', opacity="0.2",
                             onmousemove=mouse.text, onmouseout="hovertext(' ')"))
     }
-    from.i = from.i+1
   }
   
 }
