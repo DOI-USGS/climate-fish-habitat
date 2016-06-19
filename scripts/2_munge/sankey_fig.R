@@ -75,10 +75,10 @@ dinosvg:::add_css(svg, '
 opacity:0;
 }
 path, .bin {
-        -webkit-transition: 0.5s ease-in-out;
-        -moz-transition: 0.5s ease-in-out;
-        -o-transition: 0.5s ease-in-out;
-        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.25s ease-in-out;
+        -moz-transition: 0.25s ease-in-out;
+        -o-transition: 0.25s ease-in-out;
+        transition: 0.25s ease-in-out;
     }
   text {
 		  font-size: 14px;
@@ -98,26 +98,20 @@ for (i in 1:length(periods)){
   period.id = names(periods)[i]
   period.name = unname(periods[i])
   
-  g <- svg_node('g',svg, c(id=period.id, transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
+  g <- svg_node('g',svg, c(id=period.id, opacity="0.9",transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
   y[[period.name]][1] = 0
   t = 1
   period.data = group_by_(fish.change, period.name) %>% tally %>% data.frame %>% tidyr::spread_(key=period.name, 'n')
   for (type in types){
     h[[period.name]][t] = period.data[[type]]*scale
-    svg_node('rect',g,c(width=box.w, class='bin', height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[[type]], opacity="0.6", 
+    svg_node('rect',g,c(width=box.w, class='bin', height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[[type]], opacity="0.6",
                         onmousemove=sprintf("hovertext('%s %s lakes',evt)",formatC(period.data[[type]], format="d", big.mark=','), type), onmouseout="hovertext(' ');evt.target.setAttribute('opacity','0.6');"))
     if (period.data[[type]] < n.threshold[1]){
-      svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
+      svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
     } else if (period.data[[type]] > n.threshold[2]){
-      if (type != 'Neither'){
-        svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="-0.3em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
-        svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.9em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("(n=%s)",period.data[[type]])))
-      } else {
-        svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
-      }
-      
+      svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
     } else {
-      svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
+      svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       
     }
     
@@ -191,7 +185,7 @@ for (i in 2:length(periods)){
 
 for (i in 1:2){
   period.from = unname(periods[i])
-  g <- svg_node('g',svg, c(opacity='0.5', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
+  g <- svg_node('g',svg, c(opacity='0.4', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
   for (from.type in c('Bass dominant', 'Neither', 'Walleye dominant', 'Coexistence')){
     for (to.type in names(start.arrows[[period.from]][[from.type]])){
       stc = start.arrows[[period.from]][[from.type]][[to.type]]
