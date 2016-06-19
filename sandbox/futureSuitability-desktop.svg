@@ -10,15 +10,15 @@ path, .bin {
         transition: 0.25s ease-in-out;
     }
   text {
-		  font-size: 14px;
+		  font-size: 16px;
 		  cursor: default;
 		  font-family: Tahoma, Geneva, sans-serif;
           }
                   .big-text{
-font-size: 22px;
+font-size: 34px;
                   }
 .medium-text{
-font-size: 18px;
+font-size: 20px;
                   }
                   </style>
   <script type="text/ecmascript"><![CDATA[
@@ -48,7 +48,7 @@ tooltip.setAttribute("x",pt.x);
 tooltip.setAttribute("y",pt.y);
 tooltip.firstChild.data = text;
 tooltip_bg.setAttribute("x",pt.x+5);
-tooltip_bg.setAttribute("y",pt.y-20);
+tooltip_bg.setAttribute("y",pt.y-22);
 tooltip.setAttribute("class","shown");
 tooltip_bg.setAttribute("class","shown");
 var length = tooltip.getComputedTextLength();
@@ -132,6 +132,6 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
     <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="#9932CD" stroke="none" opacity="0.5" onmousemove="hovertext('7 lakes shift from Coexistence to Bass dominant',evt)" onmouseout="hovertext(' ');evt.target.setAttribute('opacity','0.6');"/>
     <path d="M170,40.71 L370,714.81 v-0 L170,40.71" fill="#9932CD" stroke="none" opacity="0.5" onmousemove="hovertext('0 lakes shift from Coexistence to Neither',evt)" onmouseout="hovertext(' ');evt.target.setAttribute('opacity','0.6');"/>
   </g>
-  <rect id="tooltip_bg" rx="2.5" ry="2.5" width="55" height="20" fill="white" stroke-width="0.5" stroke="#696969" class="hidden"/>
+  <rect id="tooltip_bg" rx="2.5" ry="2.5" width="55" height="22" fill="white" stroke-width="0.5" stroke="#696969" class="hidden"/>
   <text id="tooltip" dy="-5" stroke="none" fill="#000000" text-anchor="begin" class="sub-label"> </text>
 </svg>

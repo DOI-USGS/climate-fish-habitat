@@ -33,7 +33,7 @@ tooltip.setAttribute("x",pt.x);
 tooltip.setAttribute("y",pt.y);
 tooltip.firstChild.data = text;
 tooltip_bg.setAttribute("x",pt.x+5);
-tooltip_bg.setAttribute("y",pt.y-20);
+tooltip_bg.setAttribute("y",pt.y-22);
 tooltip.setAttribute("class","shown");
 tooltip_bg.setAttribute("class","shown");
 var length = tooltip.getComputedTextLength();
@@ -81,15 +81,15 @@ path, .bin {
         transition: 0.25s ease-in-out;
     }
   text {
-		  font-size: 14px;
+		  font-size: 16px;
 		  cursor: default;
 		  font-family: Tahoma, Geneva, sans-serif;
           }
                   .big-text{
-font-size: 22px;
+font-size: 34px;
                   }
 .medium-text{
-font-size: 18px;
+font-size: 20px;
                   }
                   ')
 
@@ -205,7 +205,7 @@ for (i in 1:2){
   
 }
 
-svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="20", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="22", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
 svg_node('text',svg, c(id="tooltip", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
 
 
