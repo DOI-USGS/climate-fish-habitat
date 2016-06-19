@@ -7,6 +7,46 @@ arrows.1 = group_by(fish.change, X1989.2014) %>%
             toBass = sum(X2040.2064 == 'Bass dominant'), toNeither=sum(X2040.2064 == 'Neither'))
 
 
+js.funs <- '\nvar svg = document.querySelector("svg")
+    var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
+var pt = svg.createSVGPoint();
+function init(evt){
+if ( window.svgDocument == null ) {
+svgDocument = evt.target.ownerDocument;
+}
+}
+function hovertext(text, evt){
+var tooltip = document.getElementById("tooltip");
+var tooltip_bg = document.getElementById("tooltip_bg");
+tooltip.setAttribute("text-anchor","begin");
+tooltip.setAttribute("dx","0.5em");
+if (evt === undefined){
+tooltip.setAttribute("class","hidden");
+tooltip.firstChild.data = text;
+tooltip_bg.setAttribute("x",0);
+tooltip_bg.setAttribute("y",0);
+tooltip_bg.setAttribute("class","hidden");
+} else {
+pt = cursorPoint(evt)
+tooltip.setAttribute("x",pt.x);
+tooltip.setAttribute("y",pt.y);
+tooltip.firstChild.data = text;
+tooltip_bg.setAttribute("x",pt.x+5);
+tooltip_bg.setAttribute("y",pt.y-20);
+tooltip.setAttribute("class","shown");
+tooltip_bg.setAttribute("class","shown");
+var length = tooltip.getComputedTextLength();
+tooltip_bg.setAttribute("width", length+6);
+if (pt.x+length+8 > xmax){
+tooltip.setAttribute("text-anchor","end");
+tooltip.setAttribute("dx","-0.5em");
+tooltip_bg.setAttribute("x",pt.x-8-length);
+}
+}}
+function cursorPoint(evt){
+pt.x = evt.clientX; pt.y = evt.clientY;
+return pt.matrixTransform(svg.getScreenCTM().inverse());
+};'
 
 types = c('Walleye dominant', 'Coexistence', 'Bass dominant', 'Neither')
 colors = c('cyan','#9932CD','#cc0000','grey')
@@ -28,7 +68,11 @@ h = list()
 n.threshold = c(40,100)
 
 svg <- dinosvg:::init_svg(14,12)
-dinosvg:::add_css(svg, 'text {
+dinosvg:::add_css(svg, '
+.hidden {
+opacity:0;
+}
+  text {
 		  font-size: 14px;
 		  cursor: default;
 		  font-family: Tahoma, Geneva, sans-serif;}
@@ -39,6 +83,9 @@ font-size: 22px;
 font-size: 18px;
                   }
                   ')
+
+dinosvg:::add_ecmascript(svg, js.funs)
+
 for (i in 1:length(periods)){
   period.id = names(periods)[i]
   period.name = unname(periods[i])
@@ -49,7 +96,8 @@ for (i in 1:length(periods)){
   period.data = group_by_(fish.change, period.name) %>% tally %>% data.frame %>% tidyr::spread_(key=period.name, 'n')
   for (type in types){
     h[[period.name]][t] = period.data[[type]]*scale
-    svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.6"))
+    svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.6", 
+                        onmousemove=sprintf("hovertext('%s %s lakes',evt)",period.data[[type]], type), onmouseout="hovertext(' ')"))
     if (period.data[[type]] < n.threshold[1]){
       svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
     } else if (period.data[[type]] > n.threshold[2]){
@@ -141,12 +189,16 @@ for (i in 1:2){
     for (to.type in names(start.arrows[[period.from]][[from.type]])){
       stc = start.arrows[[period.from]][[from.type]][[to.type]]
       svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
-                            fill=colors[from.i], stroke='none', opacity="0.2"))
+                            fill=colors[from.i], stroke='none', opacity="0.2",
+                            onmousemove=sprintf("hovertext('%s %s lakes %s ',evt)",stc[['h']]/scale, from.type, to.type), onmouseout="hovertext(' ')"))
     }
     from.i = from.i+1
   }
   
 }
 
+svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="20", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+svg_node('text',svg, c(id="tooltip", dx="0.5em", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
 
-dinosvg:::write_svg(svg, file='sandbox/fish_change_GH_paper.svg')
+
+dinosvg:::write_svg(svg, file='sandbox/futureSuitability-desktop.svg')

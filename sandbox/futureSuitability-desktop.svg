@@ -14,9 +14,10 @@ font-size: 22px;
 font-size: 18px;
                   }
                   </style>
-  <script type="text/ecmascript"><![CDATA[var svg = document.querySelector("svg")
+  <script type="text/ecmascript"><![CDATA[
+var svg = document.querySelector("svg")
     var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
-         var pt = svg.createSVGPoint();
+var pt = svg.createSVGPoint();
 function init(evt){
 if ( window.svgDocument == null ) {
 svgDocument = evt.target.ownerDocument;
@@ -45,10 +46,10 @@ tooltip_bg.setAttribute("class","shown");
 var length = tooltip.getComputedTextLength();
 tooltip_bg.setAttribute("width", length+6);
 if (pt.x+length+8 > xmax){
-  tooltip.setAttribute("text-anchor","end");
-  tooltip.setAttribute("dx","-0.5em");
-  tooltip_bg.setAttribute("x",pt.x-8-length);
-  }
+tooltip.setAttribute("text-anchor","end");
+tooltip.setAttribute("dx","-0.5em");
+tooltip_bg.setAttribute("x",pt.x-8-length);
+}
 }}
 function cursorPoint(evt){
 pt.x = evt.clientX; pt.y = evt.clientY;
@@ -92,40 +93,40 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
     <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2065-2089</text>
   </g>
   <g id="X1989.2014-arrow" transform="translate(20,20)">
-    <path d="M170,6.27 L370,6.27 v-6.27 L170,0" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,72.72 L370,6.27 v-0 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,76.35 L370,37.08 v-3.63 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,86.91 L370,689.07 v-0.33 L170,86.58" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,98.91 L370,6.27 v-0 L170,98.91" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,100.23 L370,38.4 v-1.32 L170,98.91" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,520.65 L370,700.95 v-11.88 L170,508.77" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,534.3 L370,7.92 v-1.65 L170,532.65" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,536.61 L370,40.71 v-2.31 L170,534.3" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,700.95 L370,669.15 v-164.34 L170,536.61" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,750.45 L370,750.45 v-49.5 L170,700.95" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,6.27 L370,6.27 v-6.27 L170,0" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('19 Walleye dominant lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('41 Walleye dominant lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('101 Walleye dominant lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('23 Walleye dominant lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,72.72 L370,6.27 v-0 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('0 Coexistence lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,76.35 L370,37.08 v-3.63 L170,72.72" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('11 Coexistence lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('31 Coexistence lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,86.91 L370,689.07 v-0.33 L170,86.58" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('1 Coexistence lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,98.91 L370,6.27 v-0 L170,98.91" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('0 Bass dominant lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,100.23 L370,38.4 v-1.32 L170,98.91" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('4 Bass dominant lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('1238 Bass dominant lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,520.65 L370,700.95 v-11.88 L170,508.77" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('36 Bass dominant lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,534.3 L370,7.92 v-1.65 L170,532.65" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('5 Neither lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,536.61 L370,40.71 v-2.31 L170,534.3" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('7 Neither lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,700.95 L370,669.15 v-164.34 L170,536.61" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('498 Neither lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,750.45 L370,750.45 v-49.5 L170,700.95" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('150 Neither lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
   </g>
   <g id="X2040.2064-arrow" transform="translate(390,20)">
-    <path d="M170,5.61 L370,5.61 v-5.61 L170,0" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,7.92 L370,21.57 v-2.31 L170,5.61" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,7.92 L370,51.06 v-0 L170,7.92" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,7.92 L370,714.81 v-0 L170,7.92" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('Walleye dominant toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,20.91 L370,6.6 v-0.99 L170,19.92" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,40.71 L370,714.81 v-0 L170,40.71" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('Coexistence toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,53.04 L370,39.06 v-0 L170,53.04" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('Bass dominant toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,681.48 L370,7.26 v-0.33 L170,681.15" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toWally lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,681.48 L370,39.06 v-0 L170,681.48" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toCoexistence lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toBass lakes',evt)" onmouseout="hovertext(' ')"/>
-    <path d="M170,750.45 L370,750.45 v-29.37 L170,721.08" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('Neither toNeither lakes',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,5.61 L370,5.61 v-5.61 L170,0" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('17 Walleye dominant lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,7.92 L370,21.57 v-2.31 L170,5.61" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('7 Walleye dominant lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,7.92 L370,51.06 v-0 L170,7.92" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('0 Walleye dominant lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,7.92 L370,714.81 v-0 L170,7.92" fill="cyan" stroke="none" opacity="0.2" onmousemove="hovertext('0 Walleye dominant lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,20.91 L370,6.6 v-0.99 L170,19.92" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('3 Coexistence lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('53 Coexistence lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('7 Coexistence lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,40.71 L370,714.81 v-0 L170,40.71" fill="#9932CD" stroke="none" opacity="0.2" onmousemove="hovertext('0 Coexistence lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('1 Bass dominant lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,53.04 L370,39.06 v-0 L170,53.04" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('0 Bass dominant lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('1848 Bass dominant lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="#cc0000" stroke="none" opacity="0.2" onmousemove="hovertext('19 Bass dominant lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,681.48 L370,7.26 v-0.33 L170,681.15" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('1 Neither lakes toWally ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,681.48 L370,39.06 v-0 L170,681.48" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('0 Neither lakes toCoexistence ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('120 Neither lakes toBass ',evt)" onmouseout="hovertext(' ')"/>
+    <path d="M170,750.45 L370,750.45 v-29.37 L170,721.08" fill="grey" stroke="none" opacity="0.2" onmousemove="hovertext('89 Neither lakes toNeither ',evt)" onmouseout="hovertext(' ')"/>
   </g>
   <rect id="tooltip_bg" rx="2.5" ry="2.5" width="55" height="20" fill="white" stroke-width="0.5" stroke="#696969" class="hidden"/>
   <text id="tooltip" dx="0.5em" dy="-5" stroke="none" fill="#000000" text-anchor="begin" class="sub-label"> </text>
