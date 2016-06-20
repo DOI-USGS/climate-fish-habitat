@@ -125,14 +125,14 @@ process:
     id: processedWallyTrends
     location: cache/process/processedWallyTrends.tsv
     depends: wallyTrends
-    scripts: scripts/process/processWallyDecline.R
+    scripts: scripts/process/processWalleyeDecline.R
     processor: processWallyTrends
     mimeType: text/tab-separated-values
   -
     id: processedBassTrends
     location: cache/process/processedBassTrends.tsv
     depends: bassTrends
-    scripts: scripts/process/processWallyDecline.R
+    scripts: scripts/process/processWalleyeDecline.R
     processor: processBassTrends
     mimeType: text/tab-separated-values
   -
