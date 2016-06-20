@@ -98,7 +98,7 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
     <text class="medium-text" x="85" y="732.63" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither</text>
     <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2065-2089</text>
   </g>
-  <g opacity="0.4" id="X1989.2014-arrow" transform="translate(20,20)">
+  <g opacity="0.6" id="X1989.2014-arrow" transform="translate(20,20)">
     <path d="M170,98.91 L370,6.27 v-0 L170,98.91" fill="#990000" stroke="none" opacity="0.5" id="X1989.2014-Bass-Walleye"/>
     <path d="M170,100.23 L370,38.4 v-1.32 L170,98.91" fill="#990000" stroke="none" opacity="0.5" id="X1989.2014-Bass-Coexistence"/>
     <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" fill="#990000" stroke="none" opacity="0.5" id="X1989.2014-Bass-Bass"/>
@@ -116,7 +116,7 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
     <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="#9932CD" stroke="none" opacity="0.5" id="X1989.2014-Coexistence-Bass"/>
     <path d="M170,86.91 L370,689.07 v-0.33 L170,86.58" fill="#9932CD" stroke="none" opacity="0.5" id="X1989.2014-Coexistence-Neither"/>
   </g>
-  <g opacity="0.4" id="X2040.2064-arrow" transform="translate(390,20)">
+  <g opacity="0.6" id="X2040.2064-arrow" transform="translate(390,20)">
     <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Walleye"/>
     <path d="M170,53.04 L370,39.06 v-0 L170,53.04" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Coexistence"/>
     <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Bass"/>
