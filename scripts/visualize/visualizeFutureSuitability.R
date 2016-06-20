@@ -1,8 +1,7 @@
 
-visualize.visualizeFutureSuitability <- function(item){
-  
-  fish.change.list <- readData(item$filename)
-  fish.sum <- fish.change.list$fish.change.summary
+visualize.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
+
+  fish.sum <- processedFutureSuitability$fish.change.summary
   arrows <- fish.change.list[c('arrows.1', 'arrows.2')]
 
   min.h <- 3 #px
@@ -213,6 +212,6 @@ visualize.visualizeFutureSuitability <- function(item){
   svg_node('text',svg, c(id="tooltip", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
-  dinosvg:::write_svg(svg, file=item$location)
+  dinosvg:::write_svg(svg, file=outfile)
   
 }
