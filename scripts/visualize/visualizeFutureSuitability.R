@@ -1,14 +1,59 @@
 
-visualize.visualizeFutureSuitability <- function(item){
-  
-  fish.change.list <- readData(item$filename)
-  fish.sum <- fish.change.list$fish.change.summary
+visualize.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
+
+  fish.sum <- processedFutureSuitability$fish.change.summary
   arrows <- fish.change.list[c('arrows.1', 'arrows.2')]
 
+  min.h <- 3 #px
+  js.funs <- '\nvar svg = document.querySelector("svg")
+  var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
+  var pt = svg.createSVGPoint();
+  function init(evt){
+  if ( window.svgDocument == null ) {
+  svgDocument = evt.target.ownerDocument;
+  }
+  }
+  function changeOpacity(id, val){
+  \tdocument.getElementById(id).setAttribute("opacity", val);
+  }
+  function hovertext(text, evt){
+  var tooltip = document.getElementById("tooltip");
+  var tooltip_bg = document.getElementById("tooltip_bg");
+  tooltip.setAttribute("text-anchor","begin");
+  tooltip.setAttribute("dx","7");
+  if (evt === undefined){
+  tooltip.setAttribute("class","hidden");
+  tooltip.firstChild.data = text;
+  tooltip_bg.setAttribute("x",0);
+  tooltip_bg.setAttribute("y",0);
+  tooltip_bg.setAttribute("class","hidden");
+  } else {
+  pt = cursorPoint(evt)
+  tooltip.setAttribute("x",pt.x);
+  tooltip.setAttribute("y",pt.y);
+  tooltip.firstChild.data = text;
+  tooltip_bg.setAttribute("x",pt.x+5);
+  tooltip_bg.setAttribute("y",pt.y-22);
+  tooltip.setAttribute("class","shown");
+  tooltip_bg.setAttribute("class","shown");
+  var length = tooltip.getComputedTextLength();
+  tooltip_bg.setAttribute("width", length+8);
+  if (pt.x+length+8 > xmax){
+  tooltip.setAttribute("text-anchor","end");
+  tooltip.setAttribute("dx","-8");
+  tooltip_bg.setAttribute("x",pt.x-12-length);
+  }
+  }}
+  function cursorPoint(evt){
+  pt.x = evt.clientX; pt.y = evt.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+  };'
+  
   types <- c('Walleye dominant', 'Coexistence', 'Bass dominant', 'Neither')
-  colors <- c('cyan','#9932CD','#cc0000','grey')
+  colors <- c('Walleye dominant'='#01b29F','Coexistence'='#9932CD','Bass dominant'='#990000','Neither'='grey')
   to.types <- c('toWally', 'toCoexistence', 'toBass', 'toNeither')
   periods <- c('early'='X1989.2014', 'mid'='X2040.2064', 'late'='X2065.2089')
+  arrow.names <- c('toWally'='Walleye dominant', 'toCoexistence'='Coexistence', 'toBass'='Bass dominant', 'toNeither'='Neither')
   period.txt <- c('1989-2014','2040-2064','2065-2089')
   
   svg_node <- dinosvg:::svg_node
@@ -25,43 +70,54 @@ visualize.visualizeFutureSuitability <- function(item){
   n.threshold <- c(40,100)
   
   svg <- dinosvg:::init_svg(14,12)
-  dinosvg:::add_css(svg, 'text {
-                    font-size: 14px;
-                    cursor: default;
-                    font-family: Tahoma, Geneva, sans-serif;}
-                    .big-text{
-                    font-size: 22px;
-                    }
-                    .medium-text{
-                    font-size: 18px;
-                    }
-                    ')
+  dinosvg:::add_css(svg, '
+  .hidden {
+                      opacity:0;
+  }
+  path, .bin {
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+  }
+  text {
+  font-size: 16px;
+  cursor: default;
+  font-family: Tahoma, Geneva, sans-serif;
+  }
+  .big-text{
+  font-size: 34px;
+  }
+  .medium-text{
+  font-size: 20px;
+  }
+  ')
   
+  dinosvg:::add_ecmascript(svg, js.funs)
+  blank.period.g <- svg_node('g',NULL, c('id'='mouseover-periods','opacity'="0"))
   for (i in 1:length(periods)){
     period.id <- names(periods)[i]
     period.name <- unname(periods[i])
     
     g <- svg_node('g',svg, c(id=period.id, transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
+    g.blank <- svg_node('g',blank.period.g, c(id=paste0(period.id,'-blank'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
     y[[period.name]][1] <- 0
     t <- 1
     fish.sum.period <- fish.sum %>% filter(time.period == period.name) %>% select(-time.period)
     period.data <- unlist(fish.sum.period)
     for (type in types){
+      id <- paste0(period.name, '-', strsplit(type,'[ ]')[[1]][1])
       h[[period.name]][t] <- period.data[[type]]*scale
-      svg_node('rect',g,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[t], opacity="0.6"))
+      svg_node('rect',g,c(width=box.w, class='bin', height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[[type]], opacity="0.8", id=id))
+      svg_node('rect',g.blank,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t],
+                                onmousemove=sprintf("hovertext('%s %s lakes',evt);changeOpacity('%s','1.0');",formatC(period.data[[type]], format="d", big.mark=','), type,id), 
+                                onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
       if (period.data[[type]] < n.threshold[1]){
-        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
+        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else if (period.data[[type]] > n.threshold[2]){
-        if (type != 'Neither'){
-          svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="-0.3em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
-          svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.9em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("(n=%s)",period.data[[type]])))
-        } else {
-          svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
-        }
-        
+        svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else {
-        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s (n=%s)",type, period.data[[type]])))
-        
+        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       }
       
       y[[period.name]][t+1] <- y[[period.name]][t]+box.s+h[[period.name]][t]
@@ -123,22 +179,39 @@ visualize.visualizeFutureSuitability <- function(item){
     }
   }
   
+  blank.arrow.g <- svg_node('g',NULL, c('id'='mouseover-arrows','opacity'="0"))
+  
   for (i in 1:2){
     period.from <- unname(periods[i])
-    g <- svg_node('g',svg, c(id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
-    from.i <- 1
-    for (from.type in names(start.arrows[[period.from]])){
+    g <- svg_node('g',svg, c(opacity='0.6', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
+    g.blank <- svg_node('g', blank.arrow.g, c(id=paste0(period.from,'-arrow-blank'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
+    for (from.type in c('Bass dominant', 'Neither', 'Walleye dominant', 'Coexistence')){
       for (to.type in names(start.arrows[[period.from]][[from.type]])){
         stc <- start.arrows[[period.from]][[from.type]][[to.type]]
-        svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
-                              fill=colors[from.i], stroke='none', opacity="0.2"))
+        arr.txt <- arrow.names[[to.type]]
+        if (from.type == arr.txt){
+          mouse.text <- sprintf("hovertext('%s lakes remain as %s',evt)",formatC(stc[['h']]/scale, format="d", big.mark=','), from.type)
+        } else {
+          mouse.text <- sprintf("hovertext('%s lakes shift from %s to %s',evt)",formatC(stc[['h']]/scale, format="d", big.mark=','), from.type, arr.txt)  
+        }
+        id <- paste0(period.from,'-',strsplit(from.type,'[ ]')[[1]][1],'-',strsplit(arr.txt,'[ ]')[[1]][1])
+        
+        if (stc[['h']] > 0){
+          mouser.h <- max(min.h, stc[['h']])
+          svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
+                                fill=colors[from.type], stroke='none', opacity="0.5", id=id))
+          svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
+                                      fill=colors[[from.type]], 
+                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
+        }
       }
-      from.i <- from.i+1
     }
-    
   }
   
+  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="22", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+  svg_node('text',svg, c(id="tooltip", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
-  dinosvg:::write_svg(svg, file=item$location)
+  XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
+  dinosvg:::write_svg(svg, file=outfile)
   
 }
