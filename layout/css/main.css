@@ -7,9 +7,12 @@ header{
 	border-bottom:5px solid rgb(210,210,210);
 	}
 	
+p {
+  font-size:1.2em;
+}
 header h3{
 	padding-top:3px;
-	font-size:.9em;
+	font-size:0.9em;
 	}
 	
 header img{
@@ -23,8 +26,9 @@ header img{
 	text-align:center;
 	padding:15px;
 	}
-#fishGDDFig {
-	width: 1000px;
+
+.svgFig {
+	width: 760px;
 	position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -156,7 +160,7 @@ footer{
 		width:760px;
 		margin:0 auto;
 	}
-
+  
 		
 }
 
@@ -171,6 +175,12 @@ footer{
 	.list{
 		width:960px;
 	}
-
-
+.svgFig {
+  	width: 1000px;
+	  position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 }
