@@ -74,7 +74,8 @@ ggplot(meanrange, aes(year, mean, color=scenario)) +
                      , labels = c("High CO2 Emissions (A2)", "Low CO2 Emissions (B1)"), name = "Warming Scenario") +
   scale_color_manual(values = c( "a2" = "chocolate","b1" = "dodgerblue")
                      , labels = c("High", "Low"), name = "Warming Scenario")+
-  geom_hline(yintercept = 0, linetype = "dotted")+
+  #geom_hline(yintercept = 0, linetype = "dotted")+
+  geom_vline(xintercept = 2016)+
   theme_future() + guides(linetype=FALSE, color=FALSE)
 
 ggsave('sandbox/futureClimateScenarios.jpg')
