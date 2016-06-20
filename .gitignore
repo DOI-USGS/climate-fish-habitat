@@ -1,6 +1,9 @@
 auth.R
 cache/
 target/
+user/
+vizlab/
+makefile
 
 # History files
 .Rhistory

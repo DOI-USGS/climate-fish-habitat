@@ -20,7 +20,7 @@ svgFishTrends <- function(object, filename){
   dinosvg:::write_svg(svg, file = filename)
 }
 
-visualize.visualizeFishTrends <- function(item){
+visualize.visualizeFishTrends <- function(outfile, ...){
   fish <- readData(item$filename)
   config <- item$fig.config
   
@@ -30,6 +30,6 @@ visualize.visualizeFishTrends <- function(item){
   gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=config$col) %>% 
     axis(1, at=x.tcks, labels=x.tcks) 
   
-  svgFishTrends(gs.fish, item$location)
+  svgFishTrends(gs.fish, outfile)
 }
 
