@@ -1,5 +1,5 @@
 
-visualizeFutureSuitability <- function(item){
+visualize.visualizeFutureSuitability <- function(item){
   
   fish.change.list <- readData(item$filename)
   fish.sum <- fish.change.list$fish.change.summary
