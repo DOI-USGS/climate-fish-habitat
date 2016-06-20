@@ -68,9 +68,15 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
 <defs>
     <linearGradient id="neither-bass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:grey;stop-opacity:1" />
-      <stop offset="40%" style="stop-color:grey;stop-opacity:1" />
-      <stop offset="60%" style="stop-color:#990000;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:grey;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#990000;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#990000;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bass-neither-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#990000;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#990000;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:grey;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:grey;stop-opacity:1" />
     </linearGradient>
   </defs>
   <g id="early" transform="translate(20,20)">
@@ -124,8 +130,7 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
   </g>
   <g opacity="0.6" id="X2040.2064-arrow" transform="translate(390,20)">
     <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Walleye"/>
-    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Bass"/>
-    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Neither"/>
+    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="#990000" stroke="none" opacity="0.5" id="X2040.2064-Bass-Bass"/>    
     <path d="M170,681.48 L370,7.26 v-0.33 L170,681.15" fill="grey" stroke="none" opacity="0.5" id="X2040.2064-Neither-Walleye"/>
     <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" fill="url(#neither-bass-grad)" stroke="none" opacity="0.5" id="X2040.2064-Neither-Bass"/>
     <path d="M170,750.45 L370,750.45 v-29.37 L170,721.08" fill="grey" stroke="none" opacity="0.5" id="X2040.2064-Neither-Neither"/>
@@ -134,6 +139,7 @@ return pt.matrixTransform(svg.getScreenCTM().inverse());
     <path d="M170,20.91 L370,6.6 v-0.99 L170,19.92" fill="#9932CD" stroke="none" opacity="0.5" id="X2040.2064-Coexistence-Walleye"/>
     <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" fill="#9932CD" stroke="none" opacity="0.5" id="X2040.2064-Coexistence-Coexistence"/>
     <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="#9932CD" stroke="none" opacity="0.5" id="X2040.2064-Coexistence-Bass"/>
+    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="url(#bass-neither-grad)" stroke="none" opacity="0.5" id="X2040.2064-Bass-Neither"/>
   </g>
   <rect id="tooltip_bg" rx="2.5" ry="2.5" width="55" height="22" fill="white" stroke-width="0.5" stroke="#696969" class="hidden"/>
   <text id="tooltip" dy="-5" stroke="none" fill="#000000" text-anchor="begin" class="sub-label"> </text>
