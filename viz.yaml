@@ -158,8 +158,6 @@ visualize:
     visualizer: visualizeFishTrends
     mimeType: image/svg+xml
     export: true
-    args:
-        col: '#01b29F'
   -
     id: bassTrendsFig
     location: figures/bassTrendsFig.svg

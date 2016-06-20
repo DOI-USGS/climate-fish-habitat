@@ -20,9 +20,15 @@ svgFishTrends <- function(object, filename){
   dinosvg:::write_svg(svg, file = filename)
 }
 
-visualize.visualizeFishTrends <- function(outfile, ...){
-  fish <- readData(item$filename)
-  config <- item$fig.config
+visualize.visualizeFishTrends <- function(processedWallyTrends, processedBassTrends, outfile, ...){
+  
+  if(!missing(processedWallyTrends)) {
+    fish <- processedWallyTrends
+    config <- list(col='#01b29F')
+  } else {
+    fish <- processedBassTrends
+    config <- list(col='#990000')
+  }
   
   x.tcks = seq(1995,2010, by=5)
   par(mai=c(.5,.5,0.5,0.5))
