@@ -48,7 +48,7 @@ sections:
     template: layout/templates/futureSuitability.mustache
     context: siteTextData
     depends: 
-      - habitatShiftsFig
+      - futureSuitabilityFig
   - 
     id: fishManagement
     template: layout/templates/fishManagement.mustache
@@ -80,71 +80,106 @@ fetch:
     mimeType: text/yaml
   -
     id: wallyTrends
-    itemId: 5761775ae4b04f417c2d2f78
-    filename: year_residuals_adult_walleye_density.csv
-    handler: sciencebase
+    location: cache/fetch/year_residuals_adult_walleye_density.csv
+    remoteItemId: 5761775ae4b04f417c2d2f78
+    remoteFilename: year_residuals_adult_walleye_density.csv
+    fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: bassTrends
-    itemId: 5761775ae4b04f417c2d2f78
-    filename: year_residuals_lmb_cpue_both_seasons.csv
-    handler: sciencebase
+    location: cache/fetch/year_residuals_lmb_cpue_both_seasons.csv
+    remoteItemId: 5761775ae4b04f417c2d2f78
+    remoteFilename: year_residuals_lmb_cpue_both_seasons.csv
+    fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
-    id: habitatShifts
-    location: data/categories_by_time_period_median_probs.csv
+    id: futureSuitability
+    location: cache/fetch/categories_by_time_period_median_probs.csv
+    remoteItemId: 5761775ae4b04f417c2d2f78
+    remoteFilename: categories_by_time_period_median_probs.csv
+    fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: futureTempsA2
+    location: cache/fetch/ar4_tas-gm_a2.zip
     remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a2.zip
-    handler: url
+    fetcher: url
     export: false
   -
     id: futureTempsB1
+    location: cache/fetch/ar4_tas-gm_b1.zip
     remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
     handler: url
     export: false
   -
     id: futureTempsA1B
+    location: cache/fetch/ar4_tas-gm_a1b.zip
     remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
     handler: url
     export: false
-    
+process:
+  -
+    id: processedWallyTrends
+    location: cache/process/processedWallyTrends.tsv
+    depends: wallyTrends
+    scripts: scripts/process/processWallyDecline.R
+    processor: processWallyTrends
+    mimeType: text/tab-separated-values
+  -
+    id: processedBassTrends
+    location: cache/process/processedBassTrends.tsv
+    depends: bassTrends
+    scripts: scripts/process/processWallyDecline.R
+    processor: processBassTrends
+    mimeType: text/tab-separated-values
+  -
+    id: processedFutureSuitability
+    location: cache/process/processedFutureSuitability.RDS
+    depends: futureSuitability
+    scripts: scripts/process/processFutureSuitability.R
+    processor: processFutureSuitability
+    mimeType: object/RDS
+  -
+    id: processedFutureWarming
+    location: cache/process/processedFutureWarming.tsv
+    depends: [futureTempsA2, futureTempsB1, futureTempsA1B]
+    scripts: scripts/process/processFutureWarming.R
+    processor: processFutureWarming
+    mimeType: text/tab-separated-values
 visualize:
   -
     id: wallyTrendsFig
     location: figures/wallyTrendsFig.svg
-    depends: wallyTrends
+    depends: processedWallyTrends
+    scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeFishTrends
     mimeType: image/svg+xml
     export: true
-    fig.config:
-        col: '#01b29F'
   -
     id: bassTrendsFig
     location: figures/bassTrendsFig.svg
-    depends: bassTrends
+    depends: processedBassTrends
+    scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeFishTrends
     mimeType: image/svg+xml
     export: true
   -
-    id: habitatShiftsFig
-    location: figures/habitatShiftsFig.svg
-    depends: habitatShifts
-    visualizer: visualizehabitatShifts
+    id: futureSuitabilityFig
+    location: figures/futureSuitabilityFig.svg
+    depends: processedFutureSuitability
+    scripts: scripts/visualize/visualizeFutureSuitability.R
+    visualizer: visualizeFutureSuitability
     mimeType: image/svg+xml
     export: true
   -
     id: futureWarmingFig
     location: figures/futureWarmingFig.svg
-    depends: 
-      - futureTempsA2
-      - futureTempsB1
-      - futureTempsA1B
-    visualizer: visualizehabitatShifts
+    depends: processedFutureWarming
+    scripts: scripts/visualize/visualizeFutureWarming.R
+    visualizer: visualizeFutureWarming
     mimeType: image/png
     export: true
     
@@ -163,9 +198,11 @@ figures:
     id: bassTrendsFig
     type: R
     tags: [desktop]
-
+  -
+    id: futureSuitabilityFig
+    type: R
+    tags: [desktop]
   -
     id: futureWarmingFig
     type: R
     tags: [desktop]
-    

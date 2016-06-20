@@ -20,9 +20,15 @@ svgFishTrends <- function(object, filename){
   dinosvg:::write_svg(svg, file = filename)
 }
 
-visualize.visualizeFishTrends <- function(item){
-  fish <- readData(item$filename)
-  config <- item$fig.config
+visualize.visualizeFishTrends <- function(processedWallyTrends, processedBassTrends, outfile, ...){
+  
+  if(!missing(processedWallyTrends)) {
+    fish <- processedWallyTrends
+    config <- list(col='#01b29F')
+  } else {
+    fish <- processedBassTrends
+    config <- list(col='#990000')
+  }
   
   x.tcks = seq(1995,2010, by=5)
   y.tcks = seq(0, 1.5, by=0.25)
@@ -32,6 +38,6 @@ visualize.visualizeFishTrends <- function(item){
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks, labels=y.tcks) 
   
-  svgFishTrends(gs.fish, item$location)
+  svgFishTrends(gs.fish, outfile)
 }
 
