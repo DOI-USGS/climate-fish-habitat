@@ -48,14 +48,18 @@ theme_future <- function(base_size = 10, base_family = "Helvetica")
     theme_bw(base_size = base_size, base_family = base_family) %+replace%
       theme(
         panel.border = element_blank()
-        , panel.grid.major = element_blank()
-        , panel.grid.minor = element_blank()
+        , panel.grid.major.x = element_blank()
+        , panel.grid.minor.x = element_blank()
+        #, panel.grid.major.y = element_line(color="black")
         , axis.line.x = element_line(colour = "black")
         , axis.line.y = element_line(colour = "black")
-        , axis.title.x = element_text(size=12)
-        , axis.title.y = element_text(size=12, angle = 90)
+        , axis.title.x = element_text(size=16)
+        , axis.title.y = element_text(size=16, angle = 90)
+        , axis.text = element_text(size=12)
         , legend.key = element_rect(color = "white")
-        , legend.position = c(0.15,0.9)
+        , legend.position = c(0.2,0.9)
+        , legend.title = element_text(size=16)
+        , legend.text = element_text(size=12)
       )
   }
 
