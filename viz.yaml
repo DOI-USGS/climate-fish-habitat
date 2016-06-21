@@ -81,24 +81,27 @@ fetch:
   -
     id: wallyTrends
     location: cache/fetch/year_residuals_adult_walleye_density.csv
-    remoteItemId: 5761775ae4b04f417c2d2f78
-    remoteFilename: year_residuals_adult_walleye_density.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: year_residuals_adult_walleye_density.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: bassTrends
     location: cache/fetch/year_residuals_lmb_cpue_both_seasons.csv
-    remoteItemId: 5761775ae4b04f417c2d2f78
-    remoteFilename: year_residuals_lmb_cpue_both_seasons.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: year_residuals_lmb_cpue_both_seasons.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: futureSuitability
     location: cache/fetch/categories_by_time_period_median_probs.csv
-    remoteItemId: 5761775ae4b04f417c2d2f78
-    remoteFilename: categories_by_time_period_median_probs.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: categories_by_time_period_median_probs.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
@@ -111,13 +114,15 @@ fetch:
   -
     id: futureTempsB1
     location: cache/fetch/ar4_tas-gm_b1.zip
-    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
+    args:
+      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
     handler: url
     export: false
   -
     id: futureTempsA1B
     location: cache/fetch/ar4_tas-gm_a1b.zip
-    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
+    args:
+      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
     handler: url
     export: false
 process:
