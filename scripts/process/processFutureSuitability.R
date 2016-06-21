@@ -4,6 +4,7 @@ library(dplyr)
 processData.processFutureSuitability <- function(futureSuitability, outfile, ...){
 
   fish.change <- futureSuitability %>% 
+    rename(X1989.2014 = `1989-2014`, X2040.2064 = `2040-2064`, X2065.2089 = `2065-2089`) %>% 
     filter(!is.na(X1989.2014) & !is.na(X2040.2064) & !is.na(X2065.2089)) %>% 
     mutate(X1989.2014 = as.factor(X1989.2014), X2040.2064 = as.factor(X2040.2064),
            X2065.2089 = as.factor(X2065.2089)) 
