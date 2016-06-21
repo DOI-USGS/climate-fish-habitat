@@ -20,6 +20,8 @@ svgFishTrends <- function(object, filename){
   dinosvg:::write_svg(svg, file = filename)
 }
 
+library(gsplot)
+
 visualize.visualizeFishTrends <- function(processedWallyTrends, processedBassTrends, outfile, args, ...){
   
   fish <- ifelse(!missing(processedWallyTrends), processedWallyTrends, processedBassTrends)

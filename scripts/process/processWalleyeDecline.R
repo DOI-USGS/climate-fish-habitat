@@ -1,4 +1,6 @@
 
+library(dplyr)
+
 processData.processWallyTrends <- function(wallyTrends, outfile, ...){
   wally.processed <- wallyTrends %>% 
     rename(rel.abun = relative.density) %>% 
