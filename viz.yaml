@@ -161,6 +161,8 @@ visualize:
     depends: processedWallyTrends
     scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeFishTrends
+    args:
+      fig.col: '#01b29F'
     mimeType: image/svg+xml
     export: true
   -
@@ -169,6 +171,8 @@ visualize:
     depends: processedBassTrends
     scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeFishTrends
+    args:
+      fig.col: '#990000'
     mimeType: image/svg+xml
     export: true
   -
