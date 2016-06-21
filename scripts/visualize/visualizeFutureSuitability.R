@@ -185,7 +185,7 @@ visualize.visualizeFutureSuitability <- function(processedFutureSuitability, out
   
   for (i in 1:2){
     period.from <- unname(periods[i])
-    g <- svg_node('g',svg, c(opacity='0.6', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
+    g <- svg_node('g',svg, c(opacity='0.7', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
     g.blank <- svg_node('g', blank.arrow.g, c(id=paste0(period.from,'-arrow-blank'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
     for (from.type in c('Bass dominant', 'Neither', 'Walleye dominant', 'Coexistence')){
       for (to.type in names(start.arrows[[period.from]][[from.type]])){
@@ -202,9 +202,9 @@ visualize.visualizeFutureSuitability <- function(processedFutureSuitability, out
         if (stc[['h']] > 0){
           mouser.h <- max(min.h, stc[['h']])
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
-                                fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.8", id=id))
+                                fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.7", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
-                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
+                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.7');",id)))
         }
       }
     }
