@@ -13,7 +13,8 @@ readData.fileItem <- function(file.item) {
                   "text/yaml" = "yaml",
                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "excel",
                   "none",
-                  "object/RDS" = "RDS")
+                  "object/RDS" = "RDS",
+                  "folder" = "folder")
   class(file.item) <- class
   return(readData(file.item))
 }
