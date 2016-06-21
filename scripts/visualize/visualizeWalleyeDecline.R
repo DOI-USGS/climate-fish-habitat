@@ -20,21 +20,17 @@ svgFishTrends <- function(object, filename){
   dinosvg:::write_svg(svg, file = filename)
 }
 
-visualize.visualizeFishTrends <- function(processedWallyTrends, processedBassTrends, outfile, ...){
+library(gsplot)
+
+visualize.visualizeFishTrends <- function(processedWallyTrends, processedBassTrends, outfile, args, ...){
   
-  if(!missing(processedWallyTrends)) {
-    fish <- processedWallyTrends
-    config <- list(col='#01b29F')
-  } else {
-    fish <- processedBassTrends
-    config <- list(col='#990000')
-  }
-  
+  fish <- ifelse(!missing(processedWallyTrends), processedWallyTrends, processedBassTrends)
+
   x.tcks = seq(1995,2010, by=5)
   y.tcks = seq(0, 1.5, by=0.25)
   par(mai=c(.5,.5,0.5,0.5))
   
-  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=config$col, ylim=c(0,1.3)) %>% 
+  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=args$fig.col, ylim=c(0,1.3)) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks, labels=y.tcks) 
   

@@ -1,4 +1,6 @@
 
+library(dplyr)
+
 processData.processFutureSuitability <- function(futureSuitability, outfile){
 
   fish.change <- futureSuitability %>% 
