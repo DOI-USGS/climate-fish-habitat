@@ -4,7 +4,7 @@ visualize.visualizeFutureSuitability <- function(processedFutureSuitability, out
   fish.sum <- processedFutureSuitability$fish.change.summary
   arrows <- processedFutureSuitability[c('arrows.1', 'arrows.2')]
 
-  min.h <- 3 #px
+  min.h <- 5 #px
   js.funs <- '\nvar svg = document.querySelector("svg")
   var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
   var pt = svg.createSVGPoint();
