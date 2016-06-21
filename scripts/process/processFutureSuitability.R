@@ -1,7 +1,7 @@
 
 library(dplyr)
 
-processData.processFutureSuitability <- function(futureSuitability, outfile){
+processData.processFutureSuitability <- function(futureSuitability, outfile, ...){
 
   fish.change <- futureSuitability %>% 
     filter(!is.na(X1989.2014) & !is.na(X2040.2064) & !is.na(X2065.2089)) %>% 
