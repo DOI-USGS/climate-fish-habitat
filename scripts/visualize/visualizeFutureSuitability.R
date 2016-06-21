@@ -51,6 +51,7 @@ visualize.visualizeFutureSuitability <- function(processedFutureSuitability, out
   
   types <- c('Walleye dominant', 'Coexistence', 'Bass dominant', 'Neither')
   colors <- c('Walleye dominant'='#01b29F','Coexistence'='#9932CD','Bass dominant'='#990000','Neither'='grey')
+  arrow.cols <- c('Walleye'='#01b29F','Coexistence'='#9932CD','Bass'='#990000','Neither'='grey')
   to.types <- c('toWally', 'toCoexistence', 'toBass', 'toNeither')
   periods <- c('early'='X1989.2014', 'mid'='X2040.2064', 'late'='X2065.2089')
   arrow.names <- c('toWally'='Walleye dominant', 'toCoexistence'='Coexistence', 'toBass'='Bass dominant', 'toNeither'='Neither')
@@ -94,6 +95,7 @@ visualize.visualizeFutureSuitability <- function(processedFutureSuitability, out
   ')
   
   dinosvg:::add_ecmascript(svg, js.funs)
+  defs <- svg_node('defs', svg)
   blank.period.g <- svg_node('g',NULL, c('id'='mouseover-periods','opacity'="0"))
   for (i in 1:length(periods)){
     period.id <- names(periods)[i]
@@ -194,20 +196,29 @@ visualize.visualizeFutureSuitability <- function(processedFutureSuitability, out
         } else {
           mouse.text <- sprintf("hovertext('%s lakes shift from %s to %s',evt)",formatC(stc[['h']]/scale, format="d", big.mark=','), from.type, arr.txt)  
         }
-        id <- paste0(period.from,'-',strsplit(from.type,'[ ]')[[1]][1],'-',strsplit(arr.txt,'[ ]')[[1]][1])
+        arr.id <- paste0(strsplit(from.type,'[ ]')[[1]][1],'-',strsplit(arr.txt,'[ ]')[[1]][1])
+        id <- paste0(period.from,'-',arr.id)
         
         if (stc[['h']] > 0){
           mouser.h <- max(min.h, stc[['h']])
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
-                                fill=colors[[from.type]], stroke='none', opacity="0.5", id=id))
+                                fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.8", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
-                                      fill=colors[[from.type]], 
                                       onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
         }
       }
     }
   }
-  
+  type.names <- unname(sapply(types,function(x) strsplit(x, '[ ]')[[1]][1]))
+  for (from.type in type.names){
+    for (to.type in type.names){
+      lin.grad <- svg_node('linearGradient', defs, c(id=paste0(from.type,"-",to.type,"-grad"), x1="0%", y1="0%", x2="100%", y2="0%"))
+      svg_node('stop', lin.grad, c(offset="0%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[from.type]])))
+      svg_node('stop', lin.grad, c(offset="30%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[from.type]])))
+      svg_node('stop', lin.grad, c(offset="70%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
+      svg_node('stop', lin.grad, c(offset="100%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
+    }
+  }
   svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="22", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
   svg_node('text',svg, c(id="tooltip", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
