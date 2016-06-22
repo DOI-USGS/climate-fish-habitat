@@ -4,7 +4,7 @@ processData.processFutureWarming <- function(folderFutureTemps, outfile, ...){
   # create a readData.dat function??? or just do read.csv??
   futures.munged <- data.frame()
   #TODO:load and munge data here
-  write.table(futures.munged, file = outfile, sep = '\t')
+  write.table(futures.munged, file = outfile, sep = '\t', row.names = FALSE)
   
 }
   
