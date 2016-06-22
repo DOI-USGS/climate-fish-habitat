@@ -28,7 +28,6 @@ header img{
 	}
 
 .svgFig {
-	width: 760px;
 	position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -135,6 +134,10 @@ footer{
 	header h3{
 		padding-top:0;
 		font-size:1.2em;
+	}
+	
+	.svgFig {
+	  width: 760px;
 	}
 		
 	/*Keynote CSS*/	
