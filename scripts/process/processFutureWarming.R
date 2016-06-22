@@ -1,8 +1,9 @@
 #processFutureWarming
-processData.processFutureWarming <- function(futureTempsA2, futureTempsB1, futureTempsA1B, outfile, ...){
-
-  futures.munged <- #TODO:load and munge data here
-    
+processData.processFutureWarming <- function(folderFutureTemps, outfile, ...){
+  # folderFutureTemps is a list of file names
+  # create a readData.dat function??? or just do read.csv??
+  futures.munged <- data.frame()
+  #TODO:load and munge data here
   write.table(futures.munged, file = outfile, sep = '\t')
   
 }

@@ -1,5 +1,7 @@
 
-visualize.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
+library(dplyr)
+
+visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
 
   fish.sum <- processedFutureSuitability$fish.change.summary
   arrows <- processedFutureSuitability[c('arrows.1', 'arrows.2')]
