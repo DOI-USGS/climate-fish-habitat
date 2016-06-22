@@ -1,6 +1,6 @@
 
 
-visualize.visualizeFutureWarming <- function(item){
-  futureTemps <- readData(item$filename)
+visualizeData.visualizeFutureWarming <- function(processedFutureWarming, outfile, ...){
+  futureTemps <- processedFutureWarming
   #TODO: Generate visualization here.
 }

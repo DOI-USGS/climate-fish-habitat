@@ -81,44 +81,53 @@ fetch:
   -
     id: wallyTrends
     location: cache/fetch/year_residuals_adult_walleye_density.csv
-    remoteItemId: 5761775ae4b04f417c2d2f78
-    remoteFilename: year_residuals_adult_walleye_density.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: year_residuals_adult_walleye_density.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: bassTrends
     location: cache/fetch/year_residuals_lmb_cpue_both_seasons.csv
-    remoteItemId: 5761775ae4b04f417c2d2f78
-    remoteFilename: year_residuals_lmb_cpue_both_seasons.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: year_residuals_lmb_cpue_both_seasons.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: futureSuitability
     location: cache/fetch/categories_by_time_period_median_probs.csv
-    remoteItemId: 5761775ae4b04f417c2d2f78
-    remoteFilename: categories_by_time_period_median_probs.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: categories_by_time_period_median_probs.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
   -
     id: futureTempsA2
     location: cache/fetch/ar4_tas-gm_a2.zip
-    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a2.zip
+    args:
+      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a2.zip
     fetcher: url
+    mimeType: application/zip
     export: false
   -
     id: futureTempsB1
     location: cache/fetch/ar4_tas-gm_b1.zip
-    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
-    handler: url
+    args:
+      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
+    fetcher: url
+    mimeType: application/zip
     export: false
   -
     id: futureTempsA1B
     location: cache/fetch/ar4_tas-gm_a1b.zip
-    remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
-    handler: url
+    args:
+      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
+    fetcher: url
+    mimeType: application/zip
     export: false
 process:
   -
@@ -141,11 +150,17 @@ process:
     depends: futureSuitability
     scripts: scripts/process/processFutureSuitability.R
     processor: processFutureSuitability
-    mimeType: object/RDS
+    mimeType: RDS
+  -
+    id: folderFutureTemps
+    location: cache/process/futureTemps
+    depends: [futureTempsA2, futureTempsB1, futureTempsA1B]
+    processor: unzip
+    mimeType: folder
   -
     id: processedFutureWarming
     location: cache/process/processedFutureWarming.tsv
-    depends: [futureTempsA2, futureTempsB1, futureTempsA1B]
+    depends: folderFutureTemps
     scripts: scripts/process/processFutureWarming.R
     processor: processFutureWarming
     mimeType: text/tab-separated-values
@@ -156,6 +171,8 @@ visualize:
     depends: processedWallyTrends
     scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeFishTrends
+    args:
+      fig.col: '#01b29F'
     mimeType: image/svg+xml
     export: true
   -
@@ -164,6 +181,8 @@ visualize:
     depends: processedBassTrends
     scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeFishTrends
+    args:
+      fig.col: '#990000'
     mimeType: image/svg+xml
     export: true
   -
