@@ -5,7 +5,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
 
   fish.sum <- processedFutureSuitability$fish.change.summary
   arrows <- processedFutureSuitability[c('arrows.1', 'arrows.2')]
-
+  fig.data <- yaml.load_file('data/siteText.yaml')$`futureSuitability-fig`
   min.h <- 5 #px
   js.funs <- '\nvar svg = document.querySelector("svg")
   var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
@@ -110,11 +110,12 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
     fish.sum.period <- fish.sum %>% filter(time.period == period.name) %>% select(-time.period)
     period.data <- unlist(fish.sum.period)
     for (type in types){
-      id <- paste0(period.name, '-', strsplit(type,'[ ]')[[1]][1])
+      short.name <- strsplit(type,'[ ]')[[1]][1]
+      id <- paste0(period.name, '-', short.name)
       h[[period.name]][t] <- period.data[[type]]*scale
       svg_node('rect',g,c(width=box.w, class='bin', height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[[type]], opacity="0.8", id=id))
       svg_node('rect',g.blank,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t],
-                                onmousemove=sprintf("hovertext('%s %s lakes',evt);changeOpacity('%s','1.0');",formatC(period.data[[type]], format="d", big.mark=','), type,id), 
+                                onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),type,id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
       if (period.data[[type]] < n.threshold[1]){
         svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
@@ -200,13 +201,15 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
         }
         arr.id <- paste0(strsplit(from.type,'[ ]')[[1]][1],'-',strsplit(arr.txt,'[ ]')[[1]][1])
         id <- paste0(period.from,'-',arr.id)
-        
+        if (!is.null(fig.data[[arr.id]])){
+          mouse.text <- sprintf(paste0("hovertext('",fig.data[[arr.id]],"',evt)"),formatC(stc[['h']]/scale, format="d", big.mark=','), from.type)
+        }
         if (stc[['h']] > 0){
           mouser.h <- max(min.h, stc[['h']])
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
-                                fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.7", id=id))
+                                fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.6", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
-                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.7');",id)))
+                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.6');",id)))
         }
       }
     }

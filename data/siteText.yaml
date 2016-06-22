@@ -59,7 +59,27 @@ futureSuitability-keynote-2: less suitable for walleye and more suitable for lar
 futureSuitability-intro: Things change...text text
 futureSuitability-p1: >-
   Culture. Tourism. Food.   
-
+futureSuitability-fig:
+  Walleye: >-
+    %s Walleye dominant lakes
+  Bass: >-
+    %s Bass dominant lakes
+  Neither: >-
+    %s lakes where neither walleye or bass are supported
+  Coexistence: >-
+    %s lakes where both walleye and bass co-exist
+  Neither-Bass: >-
+    %s lakes now support bass
+  Neither-Walleye: >-
+    %s lakes now support walleye
+  Walleye-Coexistence: >-
+    %s walleye lakes now support walleye and bass
+  Neither-Coexistence: >-
+    %s lakes now support walleye and bass
+  Bass-Neither: >-
+    %s bass lakes now support neither species
+  Walleye-Neither: >-
+    %s walleye lakes now support neither species
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-intro: Things change...text text
 fishManagement-p1: >-
