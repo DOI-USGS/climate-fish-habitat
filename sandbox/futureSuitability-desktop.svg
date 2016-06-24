@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1008 864">
+  <style>
+  .hidden {
+                      opacity:0;
+  }
+  path, .bin {
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+  }
+  text {
+  font-size: 16px;
+  cursor: default;
+  font-family: Tahoma, Geneva, sans-serif;
+  }
+  .big-text{
+  font-size: 34px;
+  }
+  .medium-text{
+  font-size: 20px;
+  }
+  </style>
+  <script type="text/ecmascript"><![CDATA[
+var svg = document.querySelector("svg")
+  var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
+  var pt = svg.createSVGPoint();
+  function init(evt){
+  if ( window.svgDocument == null ) {
+  svgDocument = evt.target.ownerDocument;
+  }
+  }
+  function changeOpacity(id, val){
+  	document.getElementById(id).setAttribute("opacity", val);
+  }
+  function hovertext(text, evt){
+  var tooltip = document.getElementById("tooltip");
+  var tooltip_bg = document.getElementById("tooltip_bg");
+  tooltip.setAttribute("text-anchor","begin");
+  tooltip.setAttribute("dx","7");
+  if (evt === undefined){
+  tooltip.setAttribute("class","hidden");
+  tooltip.firstChild.data = text;
+  tooltip_bg.setAttribute("x",0);
+  tooltip_bg.setAttribute("y",0);
+  tooltip_bg.setAttribute("class","hidden");
+  } else {
+  pt = cursorPoint(evt)
+  tooltip.setAttribute("x",pt.x);
+  tooltip.setAttribute("y",pt.y);
+  tooltip.firstChild.data = text;
+  tooltip_bg.setAttribute("x",pt.x+5);
+  tooltip_bg.setAttribute("y",pt.y-22);
+  tooltip.setAttribute("class","shown");
+  tooltip_bg.setAttribute("class","shown");
+  var length = tooltip.getComputedTextLength();
+  tooltip_bg.setAttribute("width", length+8);
+  if (pt.x+length+8 > xmax){
+  tooltip.setAttribute("text-anchor","end");
+  tooltip.setAttribute("dx","-8");
+  tooltip_bg.setAttribute("x",pt.x-12-length);
+  }
+  }}
+  function cursorPoint(evt){
+  pt.x = evt.clientX; pt.y = evt.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+  };]]></script>
+  <defs>
+    <linearGradient id="Walleye-Walleye-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#01b29F;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Walleye-Coexistence-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#9932CD;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Walleye-Bass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#990000;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Walleye-Neither-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:grey;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Coexistence-Walleye-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#01b29F;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Coexistence-Coexistence-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#9932CD;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Coexistence-Bass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#990000;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Coexistence-Neither-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:grey;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Bass-Walleye-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#01b29F;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Bass-Coexistence-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#9932CD;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Bass-Bass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#990000;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Bass-Neither-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:grey;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Neither-Walleye-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#01b29F;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#01b29F;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Neither-Coexistence-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#9932CD;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#9932CD;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Neither-Bass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#990000;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#990000;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="Neither-Neither-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:grey;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:grey;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <g id="early" transform="translate(20,20)">
+    <rect width="170" class="bin" height="60.72" y="0" fill="#01b29F" opacity="0.8" id="X1989.2014-Walleye"/>
+    <text class="medium-text" x="85" y="30.36" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Walleye dominant</text>
+    <rect width="170" class="bin" height="14.19" y="72.72" fill="#9932CD" opacity="0.8" id="X1989.2014-Coexistence"/>
+    <text x="85" y="79.815" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Coexistence</text>
+    <rect width="170" class="bin" height="421.74" y="98.91" fill="#990000" opacity="0.8" id="X1989.2014-Bass"/>
+    <text class="medium-text" x="85" y="309.78" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Bass dominant</text>
+    <rect width="170" class="bin" height="217.8" y="532.65" fill="grey" opacity="0.8" id="X1989.2014-Neither"/>
+    <text class="medium-text" x="85" y="641.55" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither</text>
+    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">1989-2014</text>
+  </g>
+  <g id="mid" transform="translate(390,20)">
+    <rect width="170" class="bin" height="7.92" y="0" fill="#01b29F" opacity="0.8" id="X2040.2064-Walleye"/>
+    <text x="85" y="0" dy="-3" fill="black" stroke="none" text-anchor="middle">Walleye dominant</text>
+    <rect width="170" class="bin" height="20.79" y="19.92" fill="#9932CD" opacity="0.8" id="X2040.2064-Coexistence"/>
+    <text x="85" y="30.315" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Coexistence</text>
+    <rect width="170" class="bin" height="616.44" y="52.71" fill="#990000" opacity="0.8" id="X2040.2064-Bass"/>
+    <text class="medium-text" x="85" y="360.93" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Bass dominant</text>
+    <rect width="170" class="bin" height="69.3" y="681.15" fill="grey" opacity="0.8" id="X2040.2064-Neither"/>
+    <text class="medium-text" x="85" y="715.8" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither</text>
+    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2040-2064</text>
+  </g>
+  <g id="late" transform="translate(760,20)">
+    <rect width="170" class="bin" height="7.26" y="0" fill="#01b29F" opacity="0.8" id="X2065.2089-Walleye"/>
+    <text x="85" y="0" dy="-3" fill="black" stroke="none" text-anchor="middle">Walleye dominant</text>
+    <rect width="170" class="bin" height="19.8" y="19.26" fill="#9932CD" opacity="0.8" id="X2065.2089-Coexistence"/>
+    <text x="85" y="29.16" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Coexistence</text>
+    <rect width="170" class="bin" height="651.75" y="51.06" fill="#990000" opacity="0.8" id="X2065.2089-Bass"/>
+    <text class="medium-text" x="85" y="376.935" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Bass dominant</text>
+    <rect width="170" class="bin" height="35.64" y="714.81" fill="grey" opacity="0.8" id="X2065.2089-Neither"/>
+    <text class="medium-text" x="85" y="732.63" dy="0.33em" fill="black" stroke="none" text-anchor="middle">Neither</text>
+    <text x="85" dy="1em" class="big-text" y="762.45" fill="black" stroke="none" text-anchor="middle">2065-2089</text>
+  </g>
+  <g opacity="0.7" id="X1989.2014-arrow" transform="translate(20,20)">
+    <path d="M170,100.23 L370,38.4 v-1.32 L170,98.91" fill="url(#Bass-Coexistence-grad)" stroke="none" opacity="0.7" id="X1989.2014-Bass-Coexistence"/>
+    <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" fill="url(#Bass-Bass-grad)" stroke="none" opacity="0.7" id="X1989.2014-Bass-Bass"/>
+    <path d="M170,520.65 L370,700.95 v-11.88 L170,508.77" fill="url(#Bass-Neither-grad)" stroke="none" opacity="0.7" id="X1989.2014-Bass-Neither"/>
+    <path d="M170,534.3 L370,7.92 v-1.65 L170,532.65" fill="url(#Neither-Walleye-grad)" stroke="none" opacity="0.7" id="X1989.2014-Neither-Walleye"/>
+    <path d="M170,536.61 L370,40.71 v-2.31 L170,534.3" fill="url(#Neither-Coexistence-grad)" stroke="none" opacity="0.7" id="X1989.2014-Neither-Coexistence"/>
+    <path d="M170,700.95 L370,669.15 v-164.34 L170,536.61" fill="url(#Neither-Bass-grad)" stroke="none" opacity="0.7" id="X1989.2014-Neither-Bass"/>
+    <path d="M170,750.45 L370,750.45 v-49.5 L170,700.95" fill="url(#Neither-Neither-grad)" stroke="none" opacity="0.7" id="X1989.2014-Neither-Neither"/>
+    <path d="M170,6.27 L370,6.27 v-6.27 L170,0" fill="url(#Walleye-Walleye-grad)" stroke="none" opacity="0.7" id="X1989.2014-Walleye-Walleye"/>
+    <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" fill="url(#Walleye-Coexistence-grad)" stroke="none" opacity="0.7" id="X1989.2014-Walleye-Coexistence"/>
+    <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" fill="url(#Walleye-Bass-grad)" stroke="none" opacity="0.7" id="X1989.2014-Walleye-Bass"/>
+    <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" fill="url(#Walleye-Neither-grad)" stroke="none" opacity="0.7" id="X1989.2014-Walleye-Neither"/>
+    <path d="M170,76.35 L370,37.08 v-3.63 L170,72.72" fill="url(#Coexistence-Coexistence-grad)" stroke="none" opacity="0.7" id="X1989.2014-Coexistence-Coexistence"/>
+    <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" fill="url(#Coexistence-Bass-grad)" stroke="none" opacity="0.7" id="X1989.2014-Coexistence-Bass"/>
+    <path d="M170,86.91 L370,689.07 v-0.33 L170,86.58" fill="url(#Coexistence-Neither-grad)" stroke="none" opacity="0.7" id="X1989.2014-Coexistence-Neither"/>
+  </g>
+  <g opacity="0.7" id="X2040.2064-arrow" transform="translate(390,20)">
+    <path d="M170,53.04 L370,6.93 v-0.33 L170,52.71" fill="url(#Bass-Walleye-grad)" stroke="none" opacity="0.7" id="X2040.2064-Bass-Walleye"/>
+    <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" fill="url(#Bass-Bass-grad)" stroke="none" opacity="0.7" id="X2040.2064-Bass-Bass"/>
+    <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" fill="url(#Bass-Neither-grad)" stroke="none" opacity="0.7" id="X2040.2064-Bass-Neither"/>
+    <path d="M170,681.48 L370,7.26 v-0.33 L170,681.15" fill="url(#Neither-Walleye-grad)" stroke="none" opacity="0.7" id="X2040.2064-Neither-Walleye"/>
+    <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" fill="url(#Neither-Bass-grad)" stroke="none" opacity="0.7" id="X2040.2064-Neither-Bass"/>
+    <path d="M170,750.45 L370,750.45 v-29.37 L170,721.08" fill="url(#Neither-Neither-grad)" stroke="none" opacity="0.7" id="X2040.2064-Neither-Neither"/>
+    <path d="M170,5.61 L370,5.61 v-5.61 L170,0" fill="url(#Walleye-Walleye-grad)" stroke="none" opacity="0.7" id="X2040.2064-Walleye-Walleye"/>
+    <path d="M170,7.92 L370,21.57 v-2.31 L170,5.61" fill="url(#Walleye-Coexistence-grad)" stroke="none" opacity="0.7" id="X2040.2064-Walleye-Coexistence"/>
+    <path d="M170,20.91 L370,6.6 v-0.99 L170,19.92" fill="url(#Coexistence-Walleye-grad)" stroke="none" opacity="0.7" id="X2040.2064-Coexistence-Walleye"/>
+    <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" fill="url(#Coexistence-Coexistence-grad)" stroke="none" opacity="0.7" id="X2040.2064-Coexistence-Coexistence"/>
+    <path d="M170,40.71 L370,53.37 v-2.31 L170,38.4" fill="url(#Coexistence-Bass-grad)" stroke="none" opacity="0.7" id="X2040.2064-Coexistence-Bass"/>
+  </g>
+  <rect id="tooltip_bg" rx="2.5" ry="2.5" width="55" height="22" fill="white" stroke-width="0.5" stroke="#696969" class="hidden"/>
+  <text id="tooltip" dy="-5" stroke="none" fill="#000000" text-anchor="begin" class="sub-label"> </text>
+  <g id="mouseover-arrows" opacity="0">
+    <g id="X1989.2014-arrow-blank" transform="translate(20,20)">
+      <path d="M170,100.23 L370,38.4 v-5 L170,95.23" onmousemove="hovertext('4 lakes shift from Bass dominant to Coexistence',evt);changeOpacity('X1989.2014-Bass-Coexistence','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Bass-Coexistence','0.7');"/>
+      <path d="M170,508.77 L370,504.81 v-408.54 L170,100.23" onmousemove="hovertext('1,238 lakes remain as Bass dominant',evt);changeOpacity('X1989.2014-Bass-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Bass-Bass','0.7');"/>
+      <path d="M170,520.65 L370,700.95 v-11.88 L170,508.77" onmousemove="hovertext('36 lakes shift from Bass dominant to Neither',evt);changeOpacity('X1989.2014-Bass-Neither','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Bass-Neither','0.7');"/>
+      <path d="M170,534.3 L370,7.92 v-5 L170,529.3" onmousemove="hovertext('5 lakes shift from Neither to Walleye dominant',evt);changeOpacity('X1989.2014-Neither-Walleye','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Neither-Walleye','0.7');"/>
+      <path d="M170,536.61 L370,40.71 v-5 L170,531.61" onmousemove="hovertext('7 lakes shift from Neither to Coexistence',evt);changeOpacity('X1989.2014-Neither-Coexistence','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Neither-Coexistence','0.7');"/>
+      <path d="M170,700.95 L370,669.15 v-164.34 L170,536.61" onmousemove="hovertext('498 lakes shift from Neither to Bass dominant',evt);changeOpacity('X1989.2014-Neither-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Neither-Bass','0.7');"/>
+      <path d="M170,750.45 L370,750.45 v-49.5 L170,700.95" onmousemove="hovertext('150 lakes remain as Neither',evt);changeOpacity('X1989.2014-Neither-Neither','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Neither-Neither','0.7');"/>
+      <path d="M170,6.27 L370,6.27 v-6.27 L170,0" onmousemove="hovertext('19 lakes remain as Walleye dominant',evt);changeOpacity('X1989.2014-Walleye-Walleye','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Walleye-Walleye','0.7');"/>
+      <path d="M170,19.8 L370,33.45 v-13.53 L170,6.27" onmousemove="hovertext('41 lakes shift from Walleye dominant to Coexistence',evt);changeOpacity('X1989.2014-Walleye-Coexistence','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Walleye-Coexistence','0.7');"/>
+      <path d="M170,53.13 L370,86.04 v-33.33 L170,19.8" onmousemove="hovertext('100 lakes shift from Walleye dominant to Bass dominant',evt);changeOpacity('X1989.2014-Walleye-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Walleye-Bass','0.7');"/>
+      <path d="M170,60.72 L370,688.74 v-7.59 L170,53.13" onmousemove="hovertext('23 lakes shift from Walleye dominant to Neither',evt);changeOpacity('X1989.2014-Walleye-Neither','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Walleye-Neither','0.7');"/>
+      <path d="M170,76.35 L370,37.08 v-5 L170,71.35" onmousemove="hovertext('11 lakes remain as Coexistence',evt);changeOpacity('X1989.2014-Coexistence-Coexistence','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Coexistence-Coexistence','0.7');"/>
+      <path d="M170,86.58 L370,96.27 v-10.23 L170,76.35" onmousemove="hovertext('31 lakes shift from Coexistence to Bass dominant',evt);changeOpacity('X1989.2014-Coexistence-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Coexistence-Bass','0.7');"/>
+      <path d="M170,86.91 L370,689.07 v-5 L170,81.91" onmousemove="hovertext('1 lakes shift from Coexistence to Neither',evt);changeOpacity('X1989.2014-Coexistence-Neither','1')" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Coexistence-Neither','0.7');"/>
+    </g>
+    <g id="X2040.2064-arrow-blank" transform="translate(390,20)">
+      <path d="M170,53.04 L370,6.93 v-5 L170,48.04" onmousemove="hovertext('1 lakes shift from Bass dominant to Walleye dominant',evt);changeOpacity('X2040.2064-Bass-Walleye','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Bass-Walleye','0.7');"/>
+      <path d="M170,662.88 L370,663.21 v-609.84 L170,53.0400000000001" onmousemove="hovertext('1,848 lakes remain as Bass dominant',evt);changeOpacity('X2040.2064-Bass-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Bass-Bass','0.7');"/>
+      <path d="M170,669.15 L370,721.08 v-6.27 L170,662.88" onmousemove="hovertext('19 lakes shift from Bass dominant to Neither',evt);changeOpacity('X2040.2064-Bass-Neither','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Bass-Neither','0.7');"/>
+      <path d="M170,681.48 L370,7.26 v-5 L170,676.48" onmousemove="hovertext('1 lakes shift from Neither to Walleye dominant',evt);changeOpacity('X2040.2064-Neither-Walleye','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Neither-Walleye','0.7');"/>
+      <path d="M170,721.08 L370,702.81 v-39.6 L170,681.48" onmousemove="hovertext('120 lakes shift from Neither to Bass dominant',evt);changeOpacity('X2040.2064-Neither-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Neither-Bass','0.7');"/>
+      <path d="M170,750.45 L370,750.45 v-29.37 L170,721.08" onmousemove="hovertext('89 lakes remain as Neither',evt);changeOpacity('X2040.2064-Neither-Neither','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Neither-Neither','0.7');"/>
+      <path d="M170,5.61 L370,5.61 v-5.61 L170,0" onmousemove="hovertext('17 lakes remain as Walleye dominant',evt);changeOpacity('X2040.2064-Walleye-Walleye','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Walleye-Walleye','0.7');"/>
+      <path d="M170,7.92 L370,21.57 v-5 L170,2.92" onmousemove="hovertext('7 lakes shift from Walleye dominant to Coexistence',evt);changeOpacity('X2040.2064-Walleye-Coexistence','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Walleye-Coexistence','0.7');"/>
+      <path d="M170,20.91 L370,6.6 v-5 L170,15.91" onmousemove="hovertext('3 lakes shift from Coexistence to Walleye dominant',evt);changeOpacity('X2040.2064-Coexistence-Walleye','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Coexistence-Walleye','0.7');"/>
+      <path d="M170,38.4 L370,39.06 v-17.49 L170,20.91" onmousemove="hovertext('53 lakes remain as Coexistence',evt);changeOpacity('X2040.2064-Coexistence-Coexistence','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Coexistence-Coexistence','0.7');"/>
+      <path d="M170,40.71 L370,53.37 v-5 L170,35.71" onmousemove="hovertext('7 lakes shift from Coexistence to Bass dominant',evt);changeOpacity('X2040.2064-Coexistence-Bass','1')" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Coexistence-Bass','0.7');"/>
+    </g>
+  </g>
+  <g id="mouseover-periods" opacity="0">
+    <g id="early-blank" transform="translate(20,20)">
+      <rect width="170" height="60.72" y="0" onmousemove="hovertext('184 Walleye dominant lakes',evt);changeOpacity('X1989.2014-Walleye','1.0');" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Walleye','0.8');"/>
+      <rect width="170" height="14.19" y="72.72" onmousemove="hovertext('43 Coexistence lakes',evt);changeOpacity('X1989.2014-Coexistence','1.0');" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Coexistence','0.8');"/>
+      <rect width="170" height="421.74" y="98.91" onmousemove="hovertext('1,278 Bass dominant lakes',evt);changeOpacity('X1989.2014-Bass','1.0');" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Bass','0.8');"/>
+      <rect width="170" height="217.8" y="532.65" onmousemove="hovertext('660 Neither lakes',evt);changeOpacity('X1989.2014-Neither','1.0');" onmouseout="hovertext(' ');changeOpacity('X1989.2014-Neither','0.8');"/>
+    </g>
+    <g id="mid-blank" transform="translate(390,20)">
+      <rect width="170" height="7.92" y="0" onmousemove="hovertext('24 Walleye dominant lakes',evt);changeOpacity('X2040.2064-Walleye','1.0');" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Walleye','0.8');"/>
+      <rect width="170" height="20.79" y="19.92" onmousemove="hovertext('63 Coexistence lakes',evt);changeOpacity('X2040.2064-Coexistence','1.0');" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Coexistence','0.8');"/>
+      <rect width="170" height="616.44" y="52.71" onmousemove="hovertext('1,868 Bass dominant lakes',evt);changeOpacity('X2040.2064-Bass','1.0');" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Bass','0.8');"/>
+      <rect width="170" height="69.3" y="681.15" onmousemove="hovertext('210 Neither lakes',evt);changeOpacity('X2040.2064-Neither','1.0');" onmouseout="hovertext(' ');changeOpacity('X2040.2064-Neither','0.8');"/>
+    </g>
+    <g id="late-blank" transform="translate(760,20)">
+      <rect width="170" height="7.26" y="0" onmousemove="hovertext('22 Walleye dominant lakes',evt);changeOpacity('X2065.2089-Walleye','1.0');" onmouseout="hovertext(' ');changeOpacity('X2065.2089-Walleye','0.8');"/>
+      <rect width="170" height="19.8" y="19.26" onmousemove="hovertext('60 Coexistence lakes',evt);changeOpacity('X2065.2089-Coexistence','1.0');" onmouseout="hovertext(' ');changeOpacity('X2065.2089-Coexistence','0.8');"/>
+      <rect width="170" height="651.75" y="51.06" onmousemove="hovertext('1,975 Bass dominant lakes',evt);changeOpacity('X2065.2089-Bass','1.0');" onmouseout="hovertext(' ');changeOpacity('X2065.2089-Bass','0.8');"/>
+      <rect width="170" height="35.64" y="714.81" onmousemove="hovertext('108 Neither lakes',evt);changeOpacity('X2065.2089-Neither','1.0');" onmouseout="hovertext(' ');changeOpacity('X2065.2089-Neither','0.8');"/>
+    </g>
+  </g>
+</svg>
