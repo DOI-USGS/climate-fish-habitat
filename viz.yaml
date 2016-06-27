@@ -168,21 +168,9 @@ visualize:
   -
     id: wallyTrendsFig
     location: figures/wallyTrendsFig.svg
-    depends: processedWallyTrends
+    depends: [processedWallyTrends, processedBassTrends]
     scripts: scripts/visualize/visualizeWalleyeDecline.R
-    visualizer: visualizeFishTrends
-    args:
-      fig.col: '#01b29F'
-    mimeType: image/svg+xml
-    export: true
-  -
-    id: bassTrendsFig
-    location: figures/bassTrendsFig.svg
-    depends: processedBassTrends
-    scripts: scripts/visualize/visualizeWalleyeDecline.R
-    visualizer: visualizeFishTrends
-    args:
-      fig.col: '#990000'
+    visualizer: visualizeWallyDecline
     mimeType: image/svg+xml
     export: true
   -
