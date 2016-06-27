@@ -1,11 +1,12 @@
 
 library(dplyr)
+library(yaml)
 
 visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
 
   fish.sum <- processedFutureSuitability$fish.change.summary
   arrows <- processedFutureSuitability[c('arrows.1', 'arrows.2')]
-  fig.data <- yaml.load_file('data/siteText.yaml')$`futureSuitability-fig`
+  fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitability-fig`
   min.h <- 5 #px
   js.funs <- '\nvar svg = document.querySelector("svg")
   var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
