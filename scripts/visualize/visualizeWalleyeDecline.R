@@ -1,13 +1,12 @@
 # // document.getElementById('data-line').getTotalLength(); then set that value to 'stroke-dasharray', 
 # // animate 'stroke-dashoffset' from that value down to 0. 
-svgFishTrends <- function(object, filename){
+svgWallyDecline <- function(object, filename){
   object$view.1.2$lines$id = 'data-line'
   object$css <- '#tick-labels, #y-title {
   \tfont-family: Arial;
 }
 #data-line {
 \tstroke-linejoin: round;
-\tstroke-width:3;
 }
 #tick-labels {
 \tfont-size: 12.00pt; 
@@ -22,18 +21,21 @@ svgFishTrends <- function(object, filename){
 
 library(gsplot)
 
-visualizeData.visualizeFishTrends <- function(processedWallyTrends, processedBassTrends, ..., outfile){
-  extra <- list(...)
-  fish <- ifelse(!missing(processedWallyTrends), processedWallyTrends, processedBassTrends)
+visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedBassTrends, ..., outfile){
+  
+  wally <- processedWallyTrends
+  bass <- processedBassTrends
 
   x.tcks = seq(1995,2010, by=5)
   y.tcks = seq(0, 1.5, by=0.25)
   par(mai=c(.5,.5,0.5,0.5))
   
-  gs.fish <- gsplot() %>% lines(fish$Year, fish$rel.abun, col=extra$args$fig.col, ylim=c(0,1.3)) %>% 
+  gs.trends <- gsplot() %>% 
+    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.3), lwd=3) %>% 
+    lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.3), lwd=3) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks, labels=y.tcks) 
   
-  svgFishTrends(gs.fish, outfile)
+  svgWallyDecline(gs.trends, outfile)
 }
 
