@@ -1,5 +1,6 @@
 # // document.getElementById('data-line').getTotalLength(); then set that value to 'stroke-dasharray', 
 # // animate 'stroke-dashoffset' from that value down to 0. 
+library(XML)
 svgWallyDecline <- function(object, filename){
   line.i <- which(names(object$view.1.2) == 'lines')
   ids <- c('walleye-line','bass-line')
@@ -19,7 +20,7 @@ svgWallyDecline <- function(object, filename){
 #tick-labels {
 \tfont-size: 10.00pt; 
 }
-#y-title, axis-label {
+#y-title, #x-title {
 \tfont-size: 14.00pt; 
 }
 #walleye-line {
@@ -94,12 +95,15 @@ svgWallyDecline <- function(object, filename){
   # 
   svg <- dinosvg::svg(object, width=10, height=7, as.xml=TRUE)
   
-  
-  
   XML::newXMLNode('text', parent = svg, attrs = c(x='10', y='25', 'text-anchor'="begin", id='y-title'), XML::newXMLTextNode('Relative abundance'), at=1)
-  dinosvg:::write_svg(svg, file = filename)
+  xlabel <- XML::xpathApply(dinosvg:::g_side(svg,'1'), "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")[[1]]
+  XML::xmlAttrs(xlabel)[['id']] <- 'x-title'
   
+  vb <- strsplit(XML::xmlAttrs(svg)[['viewBox']],'[ ]')[[1]]
+  XML::xmlAttrs(svg)[['viewBox']] <- paste(-200, vb[2], as.numeric(vb[3])+400, vb[4])
+  dinosvg:::write_svg(svg, file = filename)
 }
+  
 
 library(gsplot)
 

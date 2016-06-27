@@ -9,6 +9,12 @@
 #tick-labels {
 	font-size: 12.00pt; 
 }
+.background-walleye, .background-largemouth-bass{
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition:  1s ease-in-out;
+}
 .background-walleye {
        fill:#01b29F;
        stroke:#01b29F;
@@ -16,13 +22,30 @@
        fill-opacity:0.2;
        stroke-opacity:0.25;
     }
-.background-largemouth-bass {
+.background-largemouth-bass, .moved-largemouth-bass {
        fill:#990000;
        stroke:#990000;
        stroke-width:1;
        fill-opacity:0.2;
        stroke-opacity:0.25;
     }
+	
+@keyframes background-largemouth-bass {
+	  0%   {transform: translateY(0)}
+	  25%  {transform: translateY(-25px)}
+	  75%  {transform: translateY(25px)}
+	  100% {transform: translateY(0)}
+	}
+
+	.moved-largemouth-bass {
+	  animation: background-largemouth-bass 5s ease infinite;
+	}
+	
+.moved-largemouth-bass {
+	    -ms-transform: translate(-5px, 15px); /* IE 9 */
+	    -webkit-transform: translate(-5px, 15px); /* Safari */
+	    transform: translate(-5px, 15px);
+	}
 #y-title {
 	font-size: 14.00pt; 
 }</style>
@@ -79,7 +102,7 @@
     <use x="27" y="204" xlink:href="#walleye" id='walleye-1' class='background-walleye'/>
     <use x="42" y="330" xlink:href="#walleye" id='walleye-2' class='background-walleye'/>
     <use x="3" y="505" xlink:href="#walleye" id='walleye-3' class='background-walleye' transform="scale(0.8,0.8)"/>
-    <use x="720" y="100" xlink:href="#largemouth-bass" id='largemouth-bass-0' class='background-largemouth-bass'/>
+    <use x="720" y="100" xlink:href="#largemouth-bass" id='largemouth-bass-0' class='background-largemouth-bass' onclick='evt.target.setAttribute("class","background-largemouth-bass moved-largemouth-bass")'/>
     <use x="727" y="204" xlink:href="#largemouth-bass" id='largemouth-bass-1' class='background-largemouth-bass'/>
     <use x="742" y="330" xlink:href="#largemouth-bass" id='largemouth-bass-2' class='background-largemouth-bass'/>
     <use x="953" y="505" xlink:href="#largemouth-bass" id='largemouth-bass-3' class='background-largemouth-bass' transform="scale(0.8,0.8)"/>
