@@ -6,7 +6,7 @@ svgWallyDecline <- function(object, filename){
   for (i in line.i){
     object$view.1.2[[i]]$class = 'data-line'
     object$view.1.2[[i]]$id = ids[1]
-    ids <- head(ids,-1)
+    ids <- tail(ids,-1)
   }
   object$css <- '#tick-labels, #y-title, text {
   \tfont-family: Arial;
@@ -22,31 +22,76 @@ svgWallyDecline <- function(object, filename){
 #y-title, axis-label {
 \tfont-size: 14.00pt; 
 }
-#walleye-line, #bass-line {
-  stroke-dasharray: {{wally-dash-max}};
-  stroke-dashoffset: {{wally-dash-max}};
-  animation: dash 2s linear alternate infinite;
+#walleye-line {
+  stroke-dasharray: 1125.464;
+  stroke-dashoffset: 1125.464;
+  animation: dash-walleye 12s linear forwards;
 }
 
-@keyframes dash {
-  from {
-    stroke-dashoffset: {{wally-dash-max}};
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+#bass-line {
+  stroke-dasharray: 1570.7915;
+  stroke-dashoffset: 1570.7915;
+  animation: dash-bass 12s linear forwards;
+}
+@keyframes dash-walleye {
+0%  {stroke-dashoffset: 1002.88890337959}
+4.76190476190476%  {stroke-dashoffset: 971.257314089763}
+9.52380952380952%  {stroke-dashoffset: 934.575185457417}
+14.2857142857143%  {stroke-dashoffset: 903.565622400192}
+19.047619047619%  {stroke-dashoffset: 875.795170189254}
+23.8095238095238%  {stroke-dashoffset: 824.988975252022}
+28.5714285714286%  {stroke-dashoffset: 778.895373049547}
+33.3333333333333%  {stroke-dashoffset: 727.104578346241}
+38.0952380952381%  {stroke-dashoffset: 620.567460490538}
+42.8571428571429%  {stroke-dashoffset: 585.183327040643}
+47.6190476190476%  {stroke-dashoffset: 556.597104834831}
+52.3809523809524%  {stroke-dashoffset: 515.092448662301}
+57.1428571428571%  {stroke-dashoffset: 457.379226052573}
+61.9047619047619%  {stroke-dashoffset: 423.253621296027}
+66.6666666666667%  {stroke-dashoffset: 386.178475119646}
+71.4285714285714%  {stroke-dashoffset: 356.117053180556}
+76.1904761904762%  {stroke-dashoffset: 314.149534299879}
+80.9523809523809%  {stroke-dashoffset: 273.628598661619}
+85.7142857142857%  {stroke-dashoffset: 209.518742874852}
+90.4761904761905%  {stroke-dashoffset: 86.0816305301447}
+95.2380952380952%  {stroke-dashoffset: 52.9225593579903}
+100%  {stroke-dashoffset: 0}
+}
+@keyframes dash-bass {
+  0%  {stroke-dashoffset: 1570.79145873685}
+4.76190476190476%  {stroke-dashoffset: 1374.35306769274}
+9.52380952380952%  {stroke-dashoffset: 1201.8993436709}
+14.2857142857143%  {stroke-dashoffset: 1148.19816677505}
+19.047619047619%  {stroke-dashoffset: 1098.15460350263}
+23.8095238095238%  {stroke-dashoffset: 998.472338600596}
+28.5714285714286%  {stroke-dashoffset: 955.852125919288}
+33.3333333333333%  {stroke-dashoffset: 922.419206677917}
+38.0952380952381%  {stroke-dashoffset: 873.260622483496}
+42.8571428571429%  {stroke-dashoffset: 754.701282336884}
+47.6190476190476%  {stroke-dashoffset: 706.732918762545}
+52.3809523809524%  {stroke-dashoffset: 665.052551573663}
+57.1428571428571%  {stroke-dashoffset: 591.372241958407}
+61.9047619047619%  {stroke-dashoffset: 529.278771641473}
+66.6666666666667%  {stroke-dashoffset: 444.843470943246}
+71.4285714285714%  {stroke-dashoffset: 376.279452857956}
+76.1904761904762%  {stroke-dashoffset: 306.72508563346}
+80.9523809523809%  {stroke-dashoffset: 251.362804033078}
+85.7142857142857%  {stroke-dashoffset: 208.788998835515}
+90.4761904761905%  {stroke-dashoffset: 150.429589619863}
+95.2380952380952%  {stroke-dashoffset: 35.939371168678}
+100%  {stroke-dashoffset: 0}
 }
 '
   # start.i <- 4 #where to start animation path
   # 
   # datapoints <- strsplit(gsub('M','', path),'[ ]')[[1]]
-  # t.length <- 0
+  # t.length <- c(0)
   # for (i in 2:length(datapoints)){
   #   pt.1 <- as.numeric(strsplit(datapoints[i-1],'[,]')[[1]])
   #   pt.2 <- as.numeric(strsplit(datapoints[i],'[,]')[[1]])
-  #   t.length <- t.length + sqrt((pt.2[1]-pt.1[1])^2+(pt.2[2]-pt.1[2])^2)
+  #   t.length[i] <- t.length[i-1] + sqrt((pt.2[1]-pt.1[1])^2+(pt.2[2]-pt.1[2])^2)
   # }
-  
+  # 
   svg <- dinosvg::svg(object, width=10, height=7, as.xml=TRUE)
   
   
