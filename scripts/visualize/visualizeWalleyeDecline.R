@@ -7,7 +7,6 @@ svgWallyDecline <- function(object, filename){
 }
 #data-line {
 \tstroke-linejoin: round;
-\tstroke-width:3;
 }
 #tick-labels {
 \tfont-size: 12.00pt; 
@@ -32,8 +31,8 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
   par(mai=c(.5,.5,0.5,0.5))
   
   gs.trends <- gsplot() %>% 
-    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.3)) %>% 
-    lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.3)) %>% 
+    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.3), lwd=3) %>% 
+    lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.3), lwd=3) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks, labels=y.tcks) 
   
