@@ -47,7 +47,7 @@ svgWallyDecline <- function(object, filename){
        fill-opacity:0.75;
 }
 @keyframes shift-bass {
-	  0%   {transform: translateX(820)}
+	  0%   {transform: translateX(820px)}
 	  50% {transform: translateX(700px)}
     100% {transform: translateX(720px)}
 }
@@ -128,7 +128,7 @@ svgWallyDecline <- function(object, filename){
   XML::xmlAttrs(xlabel)[['id']] <- 'x-title'
 
   vb <- strsplit(XML::xmlAttrs(svg)[['viewBox']],'[ ]')[[1]]
-  #XML::xmlAttrs(svg)[['viewBox']] <- paste(-200, vb[2], as.numeric(vb[3])+400, vb[4])
+  XML::xmlAttrs(svg)[['viewBox']] <- paste(-200, vb[2], as.numeric(vb[3])+400, vb[4])
   all.bass <- newXMLNode('g',parent = svg, attrs = c('id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass'), at=1)
   all.wally <- newXMLNode('g',parent = svg, attrs = c('id'='all-walleye','transform'="translate(-100,0)", class='background-walleye'), at=0)
   n = 30
