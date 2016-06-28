@@ -140,8 +140,8 @@ svgWallyDecline <- function(object, filename){
   bass.x = runif(n=n, min = -100, max = 200)
   bass.s = rnorm(n=n, mean = 1, sd=0.1)
   for (i in 1:n){
-    newXMLNode('use', parent=all.wally, attrs = c(x=wally.x[i], y=wally.y[i], 'xlink:href'="#walleye", id=sprintf('walleye-%s',i), transform=sprintf('scale(%s)',wally.s[i])))
-    newXMLNode('use', parent=all.bass, attrs = c(x=bass.x[i], y=bass.y[i], 'xlink:href'="#bass", id=sprintf('bass-%s',i), transform=sprintf('scale(%s)',bass.s[i])))
+    newXMLNode('use', parent=all.wally, attrs = c(x=wally.x[i]/wally.s[i], y=wally.y[i]/wally.s[i], 'xlink:href'="#walleye", id=sprintf('walleye-%s',i), transform=sprintf('scale(%s)',wally.s[i])))
+    newXMLNode('use', parent=all.bass, attrs = c(x=bass.x[i]/bass.s[i], y=bass.y[i]/bass.s[i], 'xlink:href'="#bass", id=sprintf('bass-%s',i), transform=sprintf('scale(%s)',bass.s[i])))
   }
   defs <- newXMLNode('defs',parent = svg)
   newXMLNode('path',parent=defs,
