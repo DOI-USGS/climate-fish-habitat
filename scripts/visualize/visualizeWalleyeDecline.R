@@ -59,8 +59,8 @@ svgWallyDecline <- function(object, filename){
 #all-bass {
   animation: shift-bass 12s linear forwards;
 }
-#bass-1,#bass-5 {
-	  animation: background-largemouth-bass 5s ease infinite;
+#bass-1,#bass-19 {
+	  animation: background-largemouth-bass 2s ease infinite;
 	}
 	
 @keyframes dash-walleye {
