@@ -5,12 +5,8 @@
 </div>
 
 <div id="lakeWarming" class="center">
-	  <div class="list">
-	    <li>{{lakeWarming-l1}}</li>
-	    <li>{{lakeWarming-l2}}</li>
-	    <li>{{lakeWarming-l3}}</li>
-	    <li>{{lakeWarming-l4}}</li>
-	    <li>{{lakeWarming-l5}}</li>
-	  </div>
+	  <ul class='list'>
+	  {{#lakeWarming-bullets}}  <li>{{.}}</li>
+	  {{/lakeWarming-bullets}}</ul>
 	  <object id="lakeWarming" class="svgFig" data="contemporaryLakeTrends-desktop.png"></object>
 </div>
