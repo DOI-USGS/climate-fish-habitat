@@ -85,8 +85,13 @@ animateWallyDecline <- function(svg){
     }
     return(t.length)
   }
-  
-  ani.time <- '12s'
+  yVal <- function(id){
+    path <- xml_find_first(svg, sprintf("//*[local-name()='path'][@id='%s']",id)) %>% xml_attr('d')
+    datapoints <- strsplit(gsub('M','', path),'[ ]')[[1]]
+    y <- unname(sapply(datapoints, function(x) as.numeric(strsplit(x,'[,]')[[1]][2])))
+    return(y)
+  }
+  ani.time <- '15s'
   style.nd <- xml_find_first(svg,"//*[local-name()='style']")
   css.text <- xml_text(style.nd)
   start.i <- 4 #where to start animation path
@@ -112,8 +117,23 @@ animateWallyDecline <- function(svg){
                       paste(perc, sprintf("{stroke-dashoffset: %s}",crd(tail(tail(b.length,1)-b.length, min.len))), sep='% ', collapse = '\n'),
                       '}')
   
-  css.text <- paste(css.text, wally.line, bass.line, wally.ani, bass.ani, collapse='\n')
-  
+  b.y <- rev(yVal('bass-line'))
+  b.y <- (b.y - mean(b.y))/10
+  w.y <- rev(yVal('walleye-line'))
+  w.y <- (w.y - mean(w.y))/-5
+  bass.shift <-  paste0("@keyframes shift-bass {\n", 
+                      paste(perc, sprintf("{transform: translateX(%spx)}",crd(tail(b.y+800, min.len))), sep='% ', collapse = '\n'),
+                      '}
+  #all-bass {
+    animation: shift-bass 12s ease forwards;
+  }')
+  wally.shift <-  paste0("@keyframes shift-wally {\n", 
+                        paste(perc, sprintf("{transform: translateX(%spx)}",crd(tail(w.y-100, min.len))), sep='% ', collapse = '\n'),
+                        '}
+  #all-walleye {
+    animation: shift-wally 12s ease forwards;
+  }')
+  css.text <- paste(css.text, wally.line, bass.line, wally.ani, bass.ani, bass.shift, wally.shift, collapse='\n')
 "@keyframes shift-bass {
   0%   {transform: translateX(820px)}
   50% {transform: translateX(700px)}
@@ -124,9 +144,7 @@ animateWallyDecline <- function(svg){
   50% {transform: translate(-10px,5px)}
   100% {transform: translateY(0)}
 }
-#all-bass {
-animation: shift-bass 12s linear forwards;
-}
+
 #bass-1,#bass-19 {
 animation: background-largemouth-bass 2s ease infinite;
 }"
