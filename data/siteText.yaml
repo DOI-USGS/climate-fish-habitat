@@ -14,22 +14,24 @@ welcome-p3: >-
 
 walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
 walleyeDecline-keynote-2: while largemouth bass populations in many lakes are increasing
-walleyeDecline-l1: Anglers target both walleye and largemouth bass in Wisconsin lakes.
-walleyeDecline-l2: Walleye are preferred by many anglers, and are important to Wisconsin’s economy and culture.
-walleyeDecline-l3: Much interest exists in understanding the causes of walleye population declines and whether they can be reversed.
-walleyeDecline-l4: There are many possible explanations for the observed changes in Wisconsin lake fish communities.
-walleyeDecline-l5: Some have hypothesized that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
+walleyeDecline-bullets: 
+  - Anglers target both walleye and largemouth bass in Wisconsin lakes.
+  - Walleye are preferred by many anglers, and are important to Wisconsin’s economy and culture.
+  - Much interest exists in understanding the causes of walleye population declines and whether they can be reversed.
+  - There are many possible explanations for the observed changes in Wisconsin lake fish communities.
+  - Some have hypothesized that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
 
 walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes
-walleyeBass-l1: Water temperature is key characteristic determining the suitability of a lake for different species of fish, such as walleye or largemouth bass.
 walleyeBass-interactive-setup: Can you draw the relationship between these two fish and lake temperature?
-walleyeBass-l2: In general, walleye naturally reproduce more successfully in cool lakes, and largemouth bass populations are most abundant in warm lakes.
-walleyeBass-l3: >- 
-  Cool lakes that are best for walleye are the worst places for largemouth bass. 
-  At the same time, the warm lakes that are best for finding high numbers of largemouth bass have the worst conditions for walleye.
-walleyeBass-l4: >- 
-  These relationships are averages. Other lake characteristics besides temperature influence the suitability of a lake for each species. 
-  For example, walleye can successfully reproduce in Wisconsin's largest lakes even if they are warm.
+walleyeBass-bullets: 
+  - Water temperature is key characteristic determining the suitability of a lake for different species of fish, such as walleye or largemouth bass.
+  - In general, walleye naturally reproduce more successfully in cool lakes, and largemouth bass populations are most abundant in warm lakes.
+  - >- 
+    Cool lakes that are best for walleye are the worst places for largemouth bass. 
+    At the same time, the warm lakes that are best for finding high numbers of largemouth bass have the worst conditions for walleye.
+  - >- 
+    These relationships are averages. Other lake characteristics besides temperature influence the suitability of a lake for each species. 
+    For example, walleye can successfully reproduce in Wisconsin's largest lakes even if they are warm.
 walleyeBass-hint-1: >-
     We're giving you a hint to help you fill out the pattern for Walleye and Largemouth Bass. 
     For the colder lakes in Wisconsin, you are more likely to find Walleye than Bass, so your starting points look like this:
@@ -43,22 +45,27 @@ walleyeBass-hint-5: >-
   or the same for all lakes: 
 
 lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 years
-lakeWarming-l1: Not all lakes are the same, and they respond differently to climate.
-lakeWarming-l2: Some lakes have warmed more than others.
-lakeWarming-l3: Some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
-lakeWarming-l4: Lake size and depth, water clarity, and surrounding tree cover all influence how lakes respond to air temperature.
-lakeWarming-l5: Differences in temperatures and warming rates affect fish communities in Wisconsin lakes.
+lakeWarming-bullets: 
+  - Not all lakes are the same, and they respond differently to climate.
+  - Some lakes have warmed more than others.
+  - Some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
+  - Lake size and depth, water clarity, and surrounding tree cover all influence how lakes respond to air temperature.
+  - Differences in temperatures and warming rates affect fish communities in Wisconsin lakes.
 
 futureWarming-keynote-1: Lakes are expected to get even warmer in the future
-futureWarming-intro: Things change...text text
-futureWarming-p1: >-
-  Culture. Tourism. Food.   
+futureWarming-bullets:
+ - As air temperatures increase, we expect lake temperatures to increase as well.
+ - However, not all lakes will respond equally to climate change.
+ - The incredible diversity of lake types in Wisconsin means that we can expect different warming rates in big vs. small lakes, deep vs. shallow lakes, clear vs. turbid lakes.
+ - Understanding differences among lakes in their responses to climate change is a high priority for managing fish populations that are sensitive to warming temperatures.
 
 futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected to become 
 futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
-futureSuitability-intro: Things change...text text
-futureSuitability-p1: >-
-  Culture. Tourism. Food.   
+futureSuitability-bullets: 
+  - As water temperatures warm, many present-day walleye lakes will transition into largemouth bass lakes.
+  - The majority of Wisconsin lakes lakes are expected to contain high density largemouth bass populations by the mid-21st century.
+  - A small percentage of lakes will continue to support both species into the future.
+
 futureSuitability-fig:
   Walleye: >-
     %s Walleye dominant lakes
@@ -81,9 +88,11 @@ futureSuitability-fig:
   Walleye-Neither: >-
     %s walleye lakes now support neither species
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
-fishManagement-intro: Things change...text text
-fishManagement-p1: >-
-  Culture. Tourism. Food. 
+fishManagement-bullets: 
+  - Nearly 100 lakes in Wisconsin are predicted to support naturally reproducing walleye populations even under extreme warming conditions.
+  - These lakes are resilient to climate change, and should be protected from other stressors such as habitat loss, invasive species, or overfishing to maximize the potential for continued walleye production.
+  - Some lakes that are unlikely to support natural walleye reproduction will continue to be suitable for adult walleye, and fishable walleye populations could potentially be maintained in these lakes via stocking.
+  - Quality fishing opportunities for largemouth bass and other warm water species will be possible in lakes that become unsuitable for walleye.
 
 ## Footer ##
 footer-text: Footer Text

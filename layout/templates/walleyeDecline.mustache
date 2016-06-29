@@ -8,14 +8,10 @@
 <div id="walleyeDecline">
 		
 		<ul class='list'>
-		  <li>{{ walleyeDecline-l1 }}</li>
-		  <li>{{ walleyeDecline-l2 }}</li>
-		  <li>{{ walleyeDecline-l3 }}</li>
-		  <li>{{ walleyeDecline-l4 }}</li>
-		  <li>{{ walleyeDecline-l5 }}</li>
-		</ul>
+	  {{#walleyeDecline-bullets}}  <li>{{.}}</li>
+	  {{/walleyeDecline-bullets}}</ul>
 		
-	  <object id="walleyeDeclineSVG" type="image/svg+xml" class="svgFig" data="{{ wallyTrendsFig }}">
+	  <object id="walleyeDeclineSVG" type="image/svg+xml" data="{{ wallyTrendsFig }}">
     	</object>
 </div>
 
