@@ -54,10 +54,10 @@ mutateWallyDecline <- function(filename){
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
   n = 30
   set.seed(211)
-  wally.y = runif(n=n, min = as.numeric(vb[2]), max = as.numeric(vb[4]))
+  wally.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
   wally.x = runif(n=n, min = -200, max = 100)
   wally.s = rnorm(n=n, mean = 1, sd=0.1)
-  bass.y = runif(n=n, min = as.numeric(vb[2]), max = as.numeric(vb[4]))
+  bass.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
   bass.x = runif(n=n, min = -100, max = 200)
   bass.s = rnorm(n=n, mean = 1, sd=0.1)
   for (i in 1:n){
@@ -121,33 +121,21 @@ animateWallyDecline <- function(svg){
   b.y <- (b.y - mean(b.y))/10
   w.y <- rev(yVal('walleye-line'))
   w.y <- (w.y - mean(w.y))/-5
-  bass.shift <-  paste0("@keyframes shift-bass {\n", 
-                      paste(perc, sprintf("{transform: translateX(%spx)}",crd(tail(b.y+800, min.len))), sep='% ', collapse = '\n'),
-                      '}
-  #all-bass {
-    animation: shift-bass 12s ease forwards;
-  }')
-  wally.shift <-  paste0("@keyframes shift-wally {\n", 
-                        paste(perc, sprintf("{transform: translateX(%spx)}",crd(tail(w.y-100, min.len))), sep='% ', collapse = '\n'),
-                        '}
-  #all-walleye {
-    animation: shift-wally 12s ease forwards;
-  }')
+  bass.shift <- paste0("@keyframes shift-bass { 
+                         0%  {transform: translateX(850px)}
+                         100% {transform: translateX(790px)}
+                        }",
+  sprintf("#all-bass {
+    animation: shift-bass %s linear forwards;
+  }", ani.time))
+  wally.shift <- paste0("@keyframes shift-wally { 
+                         0%  {transform: translateX(-50px)}
+                         100% {transform: translateX(-160px)}
+                        }",
+  sprintf("#all-walleye {
+    animation: shift-wally %s linear forwards;
+  }", ani.time))
   css.text <- paste(css.text, wally.line, bass.line, wally.ani, bass.ani, bass.shift, wally.shift, collapse='\n')
-"@keyframes shift-bass {
-  0%   {transform: translateX(820px)}
-  50% {transform: translateX(700px)}
-  100% {transform: translateX(720px)}
-}
-@keyframes background-largemouth-bass {
-  0%   {transform: translate(0)}
-  50% {transform: translate(-10px,5px)}
-  100% {transform: translateY(0)}
-}
-
-#bass-1,#bass-19 {
-animation: background-largemouth-bass 2s ease infinite;
-}"
   xml_text(style.nd) <- css.text
   return(svg)
 }
@@ -161,7 +149,7 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
 
   x.tcks = seq(1995,2010, by=5)
   y.tcks = seq(0, 1.5, by=0.25)
-  par(mai=c(.5,.5,0.5,0.5))
+  par(mai=c(0.6,0.5,0.5,0.5))
   
   gs.trends <- gsplot() %>% 
     lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.3), xlab='Year') %>% 
