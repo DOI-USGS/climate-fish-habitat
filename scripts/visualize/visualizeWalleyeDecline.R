@@ -129,8 +129,8 @@ animateWallyDecline <- function(svg){
     animation: shift-bass %s linear forwards;
   }", ani.time))
   wally.shift <- paste0("@keyframes shift-wally { 
-                         0%  {transform: translateX(-50px)}
-                         100% {transform: translateX(-100px)}
+                         0%  {transform: translateX(-100px)}
+                         100% {transform: translateX(-150px)}
                         }",
   sprintf("#all-walleye {
     animation: shift-wally %s linear forwards;
