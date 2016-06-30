@@ -152,8 +152,8 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
   par(mai=c(0.6,0.5,0.5,0.5))
   
   gs.trends <- gsplot() %>% 
-    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.3), xlab='Year') %>% 
-    lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.3)) %>% 
+    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.26), xlab='Year') %>% 
+    lines(bass$Year, bass$rel.abun, col='#990000') %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks, labels=y.tcks) 
   
