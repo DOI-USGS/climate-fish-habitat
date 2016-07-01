@@ -2,15 +2,14 @@
 title: Shifts in fish habitat under climate change
 
 ## Intro ##
-welcome: Welcome
-welcome-p1: >-
-  Lake temperatures...fish. 
-  
-welcome-p2: >-
-  Text2. 
-  
-welcome-p3: >- 
-  Text3. Gretchen is the coolest
+welcome: Climate change and freshwater fish
+
+welcome-paragraphs: 
+  - >-
+    Lakes in Wisconsin are getting warmer, and fish communities are changing as a result.
+  - >-
+    Understanding the changes that have already occurred and anticipating future changes can help to design management strategies that protect resilient populations and adapt to new conditions.
+
 
 walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
 walleyeDecline-keynote-2: while largemouth bass populations in many lakes are increasing
@@ -63,7 +62,7 @@ futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected
 futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
 futureSuitability-bullets: 
   - As water temperatures warm, many present-day walleye lakes will transition into largemouth bass lakes.
-  - The majority of Wisconsin lakes lakes are expected to contain high density largemouth bass populations by the mid-21st century.
+  - The majority of Wisconsin lakes expected to contain high density largemouth bass populations by the mid-21st century.
   - A small percentage of lakes will continue to support both species into the future.
 
 futureSuitability-fig:

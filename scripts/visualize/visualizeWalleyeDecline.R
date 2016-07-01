@@ -48,18 +48,18 @@ mutateWallyDecline <- function(filename){
   ax.lab <- xml_find_first(svg, "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")
   xml_attr(ax.lab, 'id') <- 'x-title'
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
-  xml_attr(svg, 'viewBox') <- paste(-200, vb[2], as.numeric(vb[3])+400, vb[4])
+  xml_attr(svg, 'viewBox') <- paste(-300, vb[2], as.numeric(vb[3])+600, vb[4])
   view.1.2 <- xml_find_first(svg, "//*[local-name()='g'][@id='view-1-2']")
   all.bass <- xml_add_sibling(view.1.2, 'g','id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass', .where = "before")
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
   n = 30
   set.seed(211)
-  wally.y = runif(n=n, min = as.numeric(vb[2]), max = as.numeric(vb[4]))
+  wally.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
   wally.x = runif(n=n, min = -200, max = 100)
-  wally.s = rnorm(n=n, mean = 1, sd=0.1)
-  bass.y = runif(n=n, min = as.numeric(vb[2]), max = as.numeric(vb[4]))
+  wally.s = rnorm(n=n, mean = 1, sd=0.15)
+  bass.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
   bass.x = runif(n=n, min = -100, max = 200)
-  bass.s = rnorm(n=n, mean = 1, sd=0.1)
+  bass.s = rnorm(n=n, mean = 1, sd=0.15)
   for (i in 1:n){
     xml_add_child(all.wally, 'use', x=crd(wally.x[i]/wally.s[i]), y=crd(wally.y[i]/wally.s[i]), 'xlink:href'="#walleye", id=sprintf('walleye-%s',i), transform=sprintf('scale(%s)',wally.s[i]))
     xml_add_child(all.bass, 'use', x=crd(bass.x[i]/bass.s[i]), y=crd(bass.y[i]/bass.s[i]), 'xlink:href'="#bass", id=sprintf('bass-%s',i), transform=sprintf('scale(%s)',bass.s[i]))
@@ -121,33 +121,21 @@ animateWallyDecline <- function(svg){
   b.y <- (b.y - mean(b.y))/10
   w.y <- rev(yVal('walleye-line'))
   w.y <- (w.y - mean(w.y))/-5
-  bass.shift <-  paste0("@keyframes shift-bass {\n", 
-                      paste(perc, sprintf("{transform: translateX(%spx)}",crd(tail(b.y+800, min.len))), sep='% ', collapse = '\n'),
-                      '}
-  #all-bass {
-    animation: shift-bass 12s ease forwards;
-  }')
-  wally.shift <-  paste0("@keyframes shift-wally {\n", 
-                        paste(perc, sprintf("{transform: translateX(%spx)}",crd(tail(w.y-100, min.len))), sep='% ', collapse = '\n'),
-                        '}
-  #all-walleye {
-    animation: shift-wally 12s ease forwards;
-  }')
+  bass.shift <- paste0("@keyframes shift-bass { 
+                         0%  {transform: translateX(850px)}
+                         100% {transform: translateX(800px)}
+                        }",
+  sprintf("#all-bass {
+    animation: shift-bass %s linear forwards;
+  }", ani.time))
+  wally.shift <- paste0("@keyframes shift-wally { 
+                         0%  {transform: translateX(-100px)}
+                         100% {transform: translateX(-150px)}
+                        }",
+  sprintf("#all-walleye {
+    animation: shift-wally %s linear forwards;
+  }", ani.time))
   css.text <- paste(css.text, wally.line, bass.line, wally.ani, bass.ani, bass.shift, wally.shift, collapse='\n')
-"@keyframes shift-bass {
-  0%   {transform: translateX(820px)}
-  50% {transform: translateX(700px)}
-  100% {transform: translateX(720px)}
-}
-@keyframes background-largemouth-bass {
-  0%   {transform: translate(0)}
-  50% {transform: translate(-10px,5px)}
-  100% {transform: translateY(0)}
-}
-
-#bass-1,#bass-19 {
-animation: background-largemouth-bass 2s ease infinite;
-}"
   xml_text(style.nd) <- css.text
   return(svg)
 }
@@ -161,11 +149,11 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
 
   x.tcks = seq(1995,2010, by=5)
   y.tcks = seq(0, 1.5, by=0.25)
-  par(mai=c(.5,.5,0.5,0.5))
+  par(mai=c(0.6,0.5,0.5,0.5))
   
   gs.trends <- gsplot() %>% 
-    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.3), xlab='Year') %>% 
-    lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.3)) %>% 
+    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.26), xlab='Year') %>% 
+    lines(bass$Year, bass$rel.abun, col='#990000') %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks, labels=y.tcks) 
   

@@ -1,7 +1,7 @@
-<div class="center">
-	<div class="text">
-		<h1>{{ welcome }}</h1>
-		<p>{{ welcome-p1 }}</p>
-		<p>{{ welcome-p2 }}</p>
-	</div>
+<div class="center" id="intro">
+	<h1>{{ welcome }}</h1>
+</div>
+<div class="list">
+		{{#welcome-paragraphs}}  <h2>{{.}}</h2>
+	  {{/welcome-paragraphs}}
 </div>
