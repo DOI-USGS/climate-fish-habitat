@@ -35,6 +35,7 @@ header img{
   transform: translateX(-50%);
 }
 /*Keynote*/
+#welcome-keynote,
 #walleyeDecline-keynote,
 #walleyeBass-keynote,
 #lakeWarming-keynote,
@@ -52,6 +53,10 @@ header img{
 	padding: 0;
 	position:relative;
 	}
+
+#welcome-keynote {
+  background-image: url('../images/walleyeBass-bkg.jpg');
+}
 
 #walleyeDecline-keynote {
   background-image: url('../images/smallmouth-bkg.jpg');
@@ -141,6 +146,11 @@ footer{
 	}
 		
 	/*Keynote CSS*/	
+	#welcome-keynote {
+		height:30%;
+		background-attachment:fixed;
+		}
+
 	#walleyeDecline-keynote,
 	#walleyeBass-keynote,
 	#lakeWarming-keynote,
