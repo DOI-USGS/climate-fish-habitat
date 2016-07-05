@@ -44,19 +44,19 @@ mutateWallyDecline <- function(filename){
   ax.lab <- xml_find_first(svg, "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")
   xml_attr(ax.lab, 'id') <- 'x-title'
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
-  xml_attr(svg, 'viewBox') <- paste(-300, vb[2], as.numeric(vb[3])+600, vb[4])
+  xml_attr(svg, 'viewBox') <- paste(-550, vb[2], as.numeric(vb[3])+1100, vb[4])
   xml_add_child(svg, 'text','Walleye recruitment (#/mile)', x=sprintf("%s",as.numeric(vb[1])+10), y='25', 'text-anchor'="begin", id='y-title')
   xml_add_child(svg, 'text','Bass relative abundance', x=sprintf("%s",as.numeric(vb[3])-10), y='25', 'text-anchor'="end", id='y-title')
   view.1.2 <- xml_find_first(svg, "//*[local-name()='g'][@id='view-1-2']")
   all.bass <- xml_add_sibling(view.1.2, 'g','id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass', .where = "before")
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
-  n = 30
+  n = 60
   set.seed(211)
   wally.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
-  wally.x = runif(n=n, min = -200, max = 100)
+  wally.x = runif(n=n, min = -550, max = 100)
   wally.s = rnorm(n=n, mean = 1, sd=0.15)
   bass.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
-  bass.x = runif(n=n, min = -100, max = 200)
+  bass.x = runif(n=n, min = -100, max = 550)
   bass.s = rnorm(n=n, mean = 1, sd=0.15)
   for (i in 1:n){
     xml_add_child(all.wally, 'use', x=crd(wally.x[i]/wally.s[i]), y=crd(wally.y[i]/wally.s[i]), 'xlink:href'="#walleye", id=sprintf('walleye-%s',i), transform=sprintf('scale(%s)',wally.s[i]))

@@ -24,15 +24,19 @@ header img{
 /*Intro*/
 #intro{
 	text-align:center;
-	padding:15px;
+	padding:20px;
 	}
 
-.svgFig {
+
+.svgFig, .svgSpanner {
 	position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+.svgSpanner {
+	min-width: 520px;
 }
 /*Keynote*/
 #welcome-keynote,
@@ -54,8 +58,14 @@ header img{
 	position:relative;
 	}
 
+.dimmer {
+  background: rgba(0,0,0,.4);
+  height: 100%;
+}
+
+
 #welcome-keynote {
-  background-image: url('../images/walleyeBass-bkg.jpg');
+  background-image: url('../images/welcome-bkg.png');
 }
 
 #walleyeDecline-keynote {
@@ -91,7 +101,7 @@ header img{
 	min-height:100px;
 	}
 	
-.keynote h2{
+.keynote h2, .keynote h3{
 	font-weight:300;
 	}
 	
@@ -140,14 +150,16 @@ footer{
 		padding-top:0;
 		font-size:1.2em;
 	}
-	
+	.svgSpanner {
+	  height: 450px;
+	}
 	.svgFig {
 	  width: 760px;
 	}
 		
 	/*Keynote CSS*/	
 	#welcome-keynote {
-		height:30%;
+		height:100%;
 		background-attachment:fixed;
 		}
 
@@ -196,4 +208,12 @@ footer{
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
   }
+  .svgSpanner {
+	  height: 720px;
+	  position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+	}
 }
