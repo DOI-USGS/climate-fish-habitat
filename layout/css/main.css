@@ -22,6 +22,14 @@ header img{
 	width:80px;
 	}
 	
+#walleyeDeclineSVGMobile{
+  display:block;
+}
+
+#walleyeDeclineSVG{
+  display:none;
+}
+	
 /*Intro*/
 #intro{
 	text-align:center;
@@ -142,6 +150,13 @@ footer{
 	
 @media screen and (min-width:768px){
 
+#walleyeDeclineSVG{
+  display:block;
+}
+
+#walleyeDeclineSVGMobile{
+  display:none;
+}
 	
 	/*Header CSS*/
 	#logo{
