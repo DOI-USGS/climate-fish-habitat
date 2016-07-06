@@ -22,12 +22,15 @@ header img{
 	width:80px;
 	}
 	
-.caption{
+.captionContainer{
   padding:15px;
   min-height:50px;
-  margin-bottom:20px;
 }
-	
+
+.caption{
+  padding:15px;
+  background:rgba(200,200,200,.5);
+}
 /*Intro*/
 #intro{
 	text-align:center;
@@ -161,7 +164,7 @@ footer{
 	
 @media screen and (min-width:768px){
   
-  .caption{
+  .captionContainer{
     width:760px;
     margin:0 auto;
   }
@@ -218,7 +221,7 @@ footer{
 	
 	/*List CSS*/
 	.list{
-		width:760px;
+		width:730px;
 		margin:0 auto;
 	}
 	
@@ -232,7 +235,7 @@ footer{
 
 @media screen and (min-width:1024px){
   
-  .caption{
+  .captionContainer{
     width:960px;
   }
 
