@@ -9,6 +9,7 @@ header{
 	
 p {
   font-size:1.2em;
+  line-height:1.5em;
 }
 header h3{
 	padding-top:3px;
@@ -115,12 +116,14 @@ header img{
 	margin-bottom:10px;
 	}
 	
-.list ul{
+.list{
 	margin-left:20px;
+	list-style:square;
 	}
 	
-.list ul li{
-	margin-bottom:10px;
+.list li{
+	margin-bottom:15px;
+	font-size:1.2em;
 	}
 		
 /*Section CSS*/
