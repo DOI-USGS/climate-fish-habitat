@@ -1,6 +1,6 @@
 /*Header CSS*/
 header{
-	background:rgb(63,136,189);
+	background:rgb(0,51,102);
 	color:#fff;
 	height:32px;
 	padding:8px  0 0 10px;
@@ -21,6 +21,12 @@ header img{
 	margin-right:5px;
 	width:80px;
 	}
+	
+.caption{
+  padding:15px;
+  min-height:50px;
+  margin-bottom:20px;
+}
 	
 /*Intro*/
 #intro{
@@ -129,6 +135,19 @@ header img{
 /*Section CSS*/
 
 #walleyeDecline{
+  overflow:hidden;
+  
+}
+
+#walleyeDeclineSVGMobile{
+  display:block;
+}
+
+#walleyeDeclineSVG{
+  display:none;
+}
+
+#walleyeDecline{
 	min-height:10px;
 	}
 
@@ -141,7 +160,21 @@ footer{
 	}
 	
 @media screen and (min-width:768px){
+  
+  .caption{
+    width:760px;
+    margin:0 auto;
+  }
+  
+  #walleyeDeclineSVGMobile{
+    display:none;
+  }
 
+  #walleyeDeclineSVG{
+    display:block;
+    overflow:hidden;
+    
+  }
 	
 	/*Header CSS*/
 	#logo{
@@ -188,11 +221,20 @@ footer{
 		width:760px;
 		margin:0 auto;
 	}
+	
+	#walleyeDeclineBG{
+	  background:URL('../images/wallyTrendsFig-background.svg');
+	  background-size:cover;
+	}
   
 		
 }
 
 @media screen and (min-width:1024px){
+  
+  .caption{
+    width:960px;
+  }
 
 	/*Header CSS*/
 	#logo{
