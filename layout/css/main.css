@@ -134,6 +134,11 @@ header img{
 		
 /*Section CSS*/
 
+#walleyeDecline{
+  overflow:hidden;
+  
+}
+
 #walleyeDeclineSVGMobile{
   display:block;
 }
@@ -167,6 +172,8 @@ footer{
 
   #walleyeDeclineSVG{
     display:block;
+    overflow:hidden;
+    
   }
 	
 	/*Header CSS*/
