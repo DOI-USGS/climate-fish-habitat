@@ -2,17 +2,14 @@
 # // animate 'stroke-dashoffset' from that value down to 0. 
 library(XML)
 svgWallyDecline <- function(object, filename){
-  line.i <- which(names(object$view.1.2) == 'lines')
-  ids <- c('walleye-line','bass-line')
-  for (i in line.i){
-    object$view.1.2[[i]]$class = 'data-line'
-    object$view.1.2[[i]]$id = ids[1]
-    ids <- tail(ids,-1)
-  }
+  object$view.1.2$lines$class = 'data-line'
+  object$view.1.2$lines$id = 'walleye-line'
+  object$view.1.4$lines$class = 'data-line'
+  object$view.1.4$lines$id = 'bass-line'
   object$css <- '#tick-labels, #y-title, text {
   \tfont-family: Arial;
 }
-.data-line {
+.data-line {\n
 \tstroke-linejoin: round;
 \tstroke-width:3;
 \tstroke-linecap: round;
@@ -44,21 +41,22 @@ library(xml2)
 crd <- dinosvg:::as.crd
 mutateWallyDecline <- function(filename){
   svg <- read_xml(filename)
-  xml_add_child(svg, 'text','Relative abundance', x='10', y='25', 'text-anchor'="begin", id='y-title')
   ax.lab <- xml_find_first(svg, "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")
   xml_attr(ax.lab, 'id') <- 'x-title'
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
-  xml_attr(svg, 'viewBox') <- paste(-300, vb[2], as.numeric(vb[3])+600, vb[4])
+  xml_attr(svg, 'viewBox') <- paste(-550, vb[2], as.numeric(vb[3])+1100, vb[4])
+  xml_add_child(svg, 'text','Walleye recruitment (#/mile)', x=sprintf("%s",as.numeric(vb[1])+10), y='25', 'text-anchor'="begin", id='y-title')
+  xml_add_child(svg, 'text','Bass relative abundance', x=sprintf("%s",as.numeric(vb[3])-10), y='25', 'text-anchor'="end", id='y-title')
   view.1.2 <- xml_find_first(svg, "//*[local-name()='g'][@id='view-1-2']")
   all.bass <- xml_add_sibling(view.1.2, 'g','id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass', .where = "before")
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
-  n = 30
+  n = 60
   set.seed(211)
   wally.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
-  wally.x = runif(n=n, min = -200, max = 100)
+  wally.x = runif(n=n, min = -550, max = 100)
   wally.s = rnorm(n=n, mean = 1, sd=0.15)
   bass.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
-  bass.x = runif(n=n, min = -100, max = 200)
+  bass.x = runif(n=n, min = -100, max = 550)
   bass.s = rnorm(n=n, mean = 1, sd=0.15)
   for (i in 1:n){
     xml_add_child(all.wally, 'use', x=crd(wally.x[i]/wally.s[i]), y=crd(wally.y[i]/wally.s[i]), 'xlink:href'="#walleye", id=sprintf('walleye-%s',i), transform=sprintf('scale(%s)',wally.s[i]))
@@ -148,14 +146,16 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
   bass <- processedBassTrends
 
   x.tcks = seq(1995,2010, by=5)
-  y.tcks = seq(0, 1.5, by=0.25)
+  y.tcks.4 = seq(0, 1.5, by=0.25)
+  y.tcks.2 = seq(0, 70, by=10)
   par(mai=c(0.6,0.5,0.5,0.5))
   
   gs.trends <- gsplot() %>% 
-    lines(wally$Year, wally$rel.abun, col='#01b29F', ylim=c(0,1.26), xlab='Year') %>% 
-    lines(bass$Year, bass$rel.abun, col='#990000') %>% 
+    lines(wally$Year, wally$recruitment, col='#01b29F',  xlab='Year', ylim=c(0,65)) %>% 
+    lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.26), side=c(1,4)) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
-    axis(2, at=y.tcks, labels=y.tcks) 
+    axis(2, at=y.tcks.2, labels=y.tcks.2) %>% 
+    axis(4, at=y.tcks.4, labels=y.tcks.4)
   
   svgWallyDecline(gs.trends, outfile)
 }

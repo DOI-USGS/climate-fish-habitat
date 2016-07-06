@@ -74,10 +74,10 @@ fetch:
     mimeType: text/yaml
   -
     id: wallyTrends
-    location: cache/fetch/year_residuals_adult_walleye_density.csv
+    location: cache/fetch/walleye_age0_annual_means.csv
     args:
       remoteItemId: 5761775ae4b04f417c2d2f78
-      remoteFilename: year_residuals_adult_walleye_density.csv
+      remoteFilename: walleye_age0_annual_means.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
