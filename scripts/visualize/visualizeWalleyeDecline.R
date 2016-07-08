@@ -3,9 +3,11 @@
 library(XML)
 svgWallyDecline <- function(object, filename){
   object$view.1.2$lines$class = 'data-line'
+  object$view.1.2[[3]]$class = 'trend-line' # dangerous. Assumes order
   object$view.1.2$lines$id = 'walleye-line'
   object$view.1.4$lines$class = 'data-line'
   object$view.1.4$lines$id = 'bass-line'
+  object$view.1.4[[3]]$class = 'trend-line'
   object$css <- '#tick-labels, #y-title, text {
   \tfont-family: Arial;
 }
@@ -144,7 +146,15 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
   
   wally <- processedWallyTrends
   bass <- processedBassTrends
+  x0 <- 1993.5
+  x1 <- 2013.5
 
+  wally.trend <- as.numeric(lm(recruitment~Year, wally)$coefficients)
+  bass.trend <- as.numeric(lm(rel.abun~Year, bass)$coefficients)
+  wally.y0 <- wally.trend[2]*x0+wally.trend[1]
+  wally.y1 <- wally.trend[2]*x1+wally.trend[1]
+  bass.y0 <- bass.trend[2]*x0+bass.trend[1]
+  bass.y1 <- bass.trend[2]*x1+bass.trend[1]
   x.tcks = seq(1995,2010, by=5)
   y.tcks.4 = seq(0, 1.5, by=0.25)
   y.tcks.2 = seq(0, 70, by=10)
@@ -153,10 +163,12 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
   gs.trends <- gsplot() %>% 
     lines(wally$Year, wally$recruitment, col='#01b29F',  xlab='Year', ylim=c(0,65)) %>% 
     lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.26), side=c(1,4)) %>% 
+    lines(c(x0,x1), c(wally.y0,wally.y1),col='#01b29F', lty=3) %>% 
+    lines(c(x0,x1), c(bass.y0,bass.y1),col='#990000', lty=3, side=c(1,4)) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks.2, labels=y.tcks.2) %>% 
     axis(4, at=y.tcks.4, labels=y.tcks.4)
-  
+
   svgWallyDecline(gs.trends, outfile)
 }
 

@@ -116,7 +116,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       h[[period.name]][t] <- period.data[[type]]*scale
       svg_node('rect',g,c(width=box.w, class='bin', height=h[[period.name]][t], y=y[[period.name]][t], fill=colors[[type]], opacity="0.8", id=id))
       svg_node('rect',g.blank,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t],
-                                onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),type,id),
+                                onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
       if (period.data[[type]] < n.threshold[1]){
         svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))

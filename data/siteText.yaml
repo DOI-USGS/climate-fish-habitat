@@ -7,7 +7,7 @@ welcome-sub: Lakes in Wisconsin are getting warmer, and fish communities are cha
 
 welcome-paragraphs: 
   - >-
-    Understanding the changes that have already occurred and anticipating future changes can help to design management strategies that protect resilient populations and adapt to new conditions.
+    Understanding recent trends and anticipating future changes can help decision-makers protect resilient populations and adapt to new conditions.
 
 
 walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
@@ -74,17 +74,17 @@ futureSuitability-fig:
   Coexistence: >-
     %s lakes where both walleye and bass co-exist
   Neither-Bass: >-
-    %s lakes now support bass
+    %s lakes predicted to support bass
   Neither-Walleye: >-
-    %s lakes now support walleye
+    %s lakes predicted to support walleye
   Walleye-Coexistence: >-
-    %s walleye lakes now support walleye and bass
+    %s walleye lakes predicted to support walleye and bass
   Neither-Coexistence: >-
-    %s lakes now support walleye and bass
+    %s lakes predicted to support walleye and bass
   Bass-Neither: >-
-    %s bass lakes now support neither species
+    %s bass lakes predicted to support neither species
   Walleye-Neither: >-
-    %s walleye lakes now support neither species
+    %s walleye lakes predicted to support neither species
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-bullets: 
   - Nearly 100 lakes in Wisconsin are predicted to support naturally reproducing walleye populations even under extreme warming conditions.
