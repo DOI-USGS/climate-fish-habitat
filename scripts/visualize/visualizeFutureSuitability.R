@@ -62,8 +62,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   
   svg_node <- dinosvg:::svg_node
   
-  scale <- 0.33
-  box.w <- 240
+  scale <- 0.35
+  box.w <- 230
   gap.s <- 200
   box.s <- 15
   l.m <- 20
@@ -73,7 +73,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   
   n.threshold <- c(50,100)
   w <- (box.w*3+gap.s*2+l.m*2)/72
-  svg <- dinosvg:::init_svg(w,12)
+  svg <- dinosvg:::init_svg(w,12.5)
   dinosvg:::add_css(svg, '
   .hidden {
                       opacity:0;
