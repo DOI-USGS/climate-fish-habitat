@@ -188,6 +188,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   blank.arrow.g <- svg_node('g',NULL, c('id'='mouseover-arrows','opacity'="0"))
   
   for (i in 1:2){
+    heights <- list()
     period.from <- unname(periods[i])
     g <- svg_node('g',svg, c(opacity='0.7', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
     g.blank <- svg_node('g', blank.arrow.g, c(id=paste0(period.from,'-arrow-blank'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
@@ -210,9 +211,25 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
                                 fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.6", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
-                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.6');",id)))
+                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.6');",id), 
+                                      id = paste0(id,'-blank')))
+          new.h <- list(stc[['h']])
+          names(new.h)<- id
+          heights <- append(heights, new.h) # need this for sorting order
         }
       }
+    }
+    
+    sort.i <- rev(sort.int(unname(unlist(heights)),index.return = TRUE)$ix)
+    kids <- list()
+    for (i in 1:length(sort.i)){
+      kids[[i]] <- g[[i]]
+    }
+    for (i in 1:length(sort.i)){
+      XML::removeChildren(g,'path')
+    }
+    for (i in 1:length(sort.i)){
+      XML::addChildren(g,kids[[sort.i[i]]])
     }
   }
   type.names <- unname(sapply(types,function(x) strsplit(x, '[ ]')[[1]][1]))
