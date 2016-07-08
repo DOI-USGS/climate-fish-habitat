@@ -62,18 +62,18 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   
   svg_node <- dinosvg:::svg_node
   
-  scale <- 0.33
-  box.w <- 170
+  scale <- 0.35
+  box.w <- 230
   gap.s <- 200
-  box.s <- 12
+  box.s <- 15
   l.m <- 20
-  t.m <- 20
+  t.m <- 23
   y <- list()
   h <- list()
   
-  n.threshold <- c(40,100)
-  
-  svg <- dinosvg:::init_svg(14,12)
+  n.threshold <- c(50,100)
+  w <- (box.w*3+gap.s*2+l.m*2)/72
+  svg <- dinosvg:::init_svg(w,12.5)
   dinosvg:::add_css(svg, '
   .hidden {
                       opacity:0;
@@ -85,7 +85,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   transition: 0.25s ease-in-out;
   }
   text {
-  font-size: 16px;
+  font-size: 24px;
   cursor: default;
   font-family: Tahoma, Geneva, sans-serif;
   }
@@ -93,7 +93,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   font-size: 34px;
   }
   .medium-text{
-  font-size: 20px;
+  font-size: 28px;
   }
   ')
   
@@ -119,7 +119,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
                                 onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
       if (period.data[[type]] < n.threshold[1]){
-        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        #svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else if (period.data[[type]] > n.threshold[2]){
         svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else {
@@ -188,6 +188,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   blank.arrow.g <- svg_node('g',NULL, c('id'='mouseover-arrows','opacity'="0"))
   
   for (i in 1:2){
+    heights <- list()
     period.from <- unname(periods[i])
     g <- svg_node('g',svg, c(opacity='0.7', id=paste0(period.from,'-arrow'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
     g.blank <- svg_node('g', blank.arrow.g, c(id=paste0(period.from,'-arrow-blank'), transform=sprintf("translate(%s,%s)",l.m+(i-1)*(box.w+gap.s), t.m)))
@@ -210,9 +211,29 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
                                 fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.6", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
-                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.6');",id)))
+                                      onmousemove=sprintf("%s;changeOpacity('%s','1')",mouse.text, id), onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.6');",id), 
+                                      id = paste0(id,'-blank')))
+          new.h <- list(stc[['h']])
+          names(new.h)<- id
+          heights <- append(heights, new.h) # need this for sorting order
         }
       }
+    }
+    
+    sort.i <- rev(sort.int(unname(unlist(heights)),index.return = TRUE)$ix)
+    kids <- list()
+    b.kids <- list()
+    for (i in 1:length(sort.i)){
+      kids[[i]] <- g[[i]]
+      b.kids[[i]] <- g.blank[[i]]
+    }
+    for (i in 1:length(sort.i)){
+      XML::removeChildren(g,'path')
+      XML::removeChildren(g.blank,'path')
+    }
+    for (i in 1:length(sort.i)){
+      XML::addChildren(g,kids[[sort.i[i]]])
+      XML::addChildren(g.blank,b.kids[[sort.i[i]]])
     }
   }
   type.names <- unname(sapply(types,function(x) strsplit(x, '[ ]')[[1]][1]))
@@ -225,8 +246,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('stop', lin.grad, c(offset="100%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
     }
   }
-  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="22", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
-  svg_node('text',svg, c(id="tooltip", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
+  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="28", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+  svg_node('text',svg, c(id="tooltip", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
   dinosvg:::write_svg(svg, file=outfile)
