@@ -71,7 +71,12 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   y <- list()
   h <- list()
   
-  n.threshold <- c(50,100)
+  mobile <- TRUE
+  
+  n.threshold <- c(40,100)
+  if (mobile){
+    n.threshold[1] <- 50
+  }
   w <- (box.w*3+gap.s*2+l.m*2)/72
   svg <- dinosvg:::init_svg(w,12.5)
   dinosvg:::add_css(svg, '
@@ -119,7 +124,9 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
                                 onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
       if (period.data[[type]] < n.threshold[1]){
-        #svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        if (!mobile) {
+          svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        }
       } else if (period.data[[type]] > n.threshold[2]){
         svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else {
