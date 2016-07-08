@@ -222,14 +222,18 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
     
     sort.i <- rev(sort.int(unname(unlist(heights)),index.return = TRUE)$ix)
     kids <- list()
+    b.kids <- list()
     for (i in 1:length(sort.i)){
       kids[[i]] <- g[[i]]
+      b.kids[[i]] <- g.blank[[i]]
     }
     for (i in 1:length(sort.i)){
       XML::removeChildren(g,'path')
+      XML::removeChildren(g.blank,'path')
     }
     for (i in 1:length(sort.i)){
       XML::addChildren(g,kids[[sort.i[i]]])
+      XML::addChildren(g.blank,b.kids[[sort.i[i]]])
     }
   }
   type.names <- unname(sapply(types,function(x) strsplit(x, '[ ]')[[1]][1]))
