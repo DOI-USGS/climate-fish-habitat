@@ -170,7 +170,7 @@ visualize:
   -
     id: futureSuitabilityFig
     location: figures/futureSuitabilityFig.svg
-    depends: processedFutureSuitability
+    depends: [processedFutureSuitability, siteTextData]
     scripts: scripts/visualize/visualizeFutureSuitability.R
     visualizer: visualizeFutureSuitability
     mimeType: image/svg+xml
