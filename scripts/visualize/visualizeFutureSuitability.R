@@ -63,17 +63,17 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   svg_node <- dinosvg:::svg_node
   
   scale <- 0.33
-  box.w <- 170
+  box.w <- 240
   gap.s <- 200
-  box.s <- 12
+  box.s <- 15
   l.m <- 20
-  t.m <- 20
+  t.m <- 23
   y <- list()
   h <- list()
   
   n.threshold <- c(40,100)
-  
-  svg <- dinosvg:::init_svg(14,12)
+  w <- (box.w*3+gap.s*2+l.m*2)/72
+  svg <- dinosvg:::init_svg(w,12)
   dinosvg:::add_css(svg, '
   .hidden {
                       opacity:0;
@@ -85,7 +85,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   transition: 0.25s ease-in-out;
   }
   text {
-  font-size: 16px;
+  font-size: 24px;
   cursor: default;
   font-family: Tahoma, Geneva, sans-serif;
   }
@@ -93,7 +93,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   font-size: 34px;
   }
   .medium-text{
-  font-size: 20px;
+  font-size: 28px;
   }
   ')
   
@@ -246,8 +246,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('stop', lin.grad, c(offset="100%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
     }
   }
-  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="22", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
-  svg_node('text',svg, c(id="tooltip", dy="-5", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
+  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="25", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+  svg_node('text',svg, c(id="tooltip", dy="-2", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
   dinosvg:::write_svg(svg, file=outfile)
