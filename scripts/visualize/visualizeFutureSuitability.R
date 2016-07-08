@@ -71,7 +71,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   y <- list()
   h <- list()
   
-  n.threshold <- c(40,100)
+  n.threshold <- c(50,100)
   w <- (box.w*3+gap.s*2+l.m*2)/72
   svg <- dinosvg:::init_svg(w,12)
   dinosvg:::add_css(svg, '
@@ -119,7 +119,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
                                 onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
       if (period.data[[type]] < n.threshold[1]){
-        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        #svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else if (period.data[[type]] > n.threshold[2]){
         svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else {
@@ -246,8 +246,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('stop', lin.grad, c(offset="100%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
     }
   }
-  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="25", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
-  svg_node('text',svg, c(id="tooltip", dy="-2", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
+  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="28", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+  svg_node('text',svg, c(id="tooltip", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
   dinosvg:::write_svg(svg, file=outfile)
