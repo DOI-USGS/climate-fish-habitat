@@ -32,10 +32,11 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   tooltip_bg.setAttribute("class","hidden");
   } else {
   pt = cursorPoint(evt)
-  tooltip.setAttribute("x",pt.x);
+  tooltip.setAttribute("x",pt.x-(tooltip.getBoundingClientRect().right-tooltip.getBoundingClientRect().left)/2);
   tooltip.setAttribute("y",pt.y);
   tooltip.firstChild.data = text;
-  tooltip_bg.setAttribute("x",pt.x+5);
+  console.log((tooltip_bg.getBoundingClientRect().right-tooltip_bg.getBoundingClientRect().left)/2);
+  tooltip_bg.setAttribute("x",pt.x-(tooltip_bg.getBoundingClientRect().right-tooltip_bg.getBoundingClientRect().left)/2);
   tooltip_bg.setAttribute("y",pt.y-22);
   tooltip.setAttribute("class","shown");
   tooltip_bg.setAttribute("class","shown");
