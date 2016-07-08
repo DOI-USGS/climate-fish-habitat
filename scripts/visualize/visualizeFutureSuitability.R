@@ -94,6 +94,9 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   cursor: default;
   font-family: Tahoma, Geneva, sans-serif;
   }
+  .small-text{
+  font-size: 24px;
+  }
   .big-text{
   font-size: 34px;
   }
@@ -123,6 +126,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('rect',g.blank,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t],
                                 onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
+      
       if (period.data[[type]] < n.threshold[1]){
         if (!mobile) {
           svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
@@ -130,8 +134,9 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       } else if (period.data[[type]] > n.threshold[2]){
         svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       } else {
-        svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        svg_node('text',g, c(class='small-text',x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
       }
+      
       
       y[[period.name]][t+1] <- y[[period.name]][t]+box.s+h[[period.name]][t]
       t<-t+1
