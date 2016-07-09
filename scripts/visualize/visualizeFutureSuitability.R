@@ -22,29 +22,31 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   function hovertext(text, evt){
     var tooltip = document.getElementById("tooltip");
     var tooltip_bg = document.getElementById("tooltip_bg");
-    tooltip.setAttribute("text-anchor","middle");
+    var tool_pt = document.getElementById("tool_pt");
     if (evt === undefined){
       tooltip.setAttribute("class","hidden");
-      tooltip.firstChild.data = text;
-      tooltip_bg.setAttribute("x",0);
-      tooltip_bg.setAttribute("y",0);
       tooltip_bg.setAttribute("class","hidden");
+      tool_pt.setAttribute("class","hidden");
     } else {
       pt = cursorPoint(evt);
+      pt.x = Math.round(pt.x);
+      pt.y = Math.round(pt.y);
       svgWidth = Number(svg.getAttribute("viewBox").split(" ")[2]);
       tooltip.setAttribute("x",pt.x);
       tooltip.setAttribute("y",pt.y);
       tooltip.firstChild.data = text;
-      var length = tooltip.getComputedTextLength();
+      var length = Math.round(tooltip.getComputedTextLength());
       if (pt.x - length/2 < 0){
         tooltip.setAttribute("x",length/2);
       } else if (pt.x + length/2 > svgWidth) {
         tooltip.setAttribute("x", svgWidth-length/2);
       }
+      tool_pt.setAttribute("transform","translate("+pt.x+","+pt.y+")");
       tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2);
-      tooltip_bg.setAttribute("y",pt.y-36);
+      tooltip_bg.setAttribute("y",pt.y-41);
       tooltip.setAttribute("class","shown");
       tooltip_bg.setAttribute("class","shown");
+      tool_pt.setAttribute("class","shown");
       tooltip_bg.setAttribute("width", length+8);
     }
   }
@@ -67,8 +69,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   box.w <- 230
   gap.s <- 200
   box.s <- 15
-  l.m <- 20
-  t.m <- 23
+  l.m <- 24
+  t.m <- 38
   y <- list()
   h <- list()
   
@@ -262,8 +264,11 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('stop', lin.grad, c(offset="100%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
     }
   }
+  
   svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", height="32", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
-  svg_node('text',svg, c(id="tooltip", stroke="none", dy="-10", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
+  g.tool <- svg_node('g',svg, c(id='tool_pt',class="hidden"))
+  svg_node('path',g.tool,c(d='M-6,-10 l6,10 l6,-10', 'stroke-width'="0.5", stroke="#696969",fill='white'))
+  svg_node('text',svg, c(id="tooltip", stroke="none", dy="-15", fill="#000000", 'text-anchor'="middle", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
   dinosvg:::write_svg(svg, file=outfile)
