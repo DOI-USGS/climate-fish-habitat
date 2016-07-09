@@ -267,7 +267,10 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   
   svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", height="32", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
   g.tool <- svg_node('g',svg, c(id='tool_pt',class="hidden"))
-  svg_node('path',g.tool,c(d='M-6,-10 l6,10 l6,-10', 'stroke-width'="0.5", stroke="#696969",fill='white'))
+  def <- svg_node('defs', g.tool)
+  clip <- svg_node('clipPath', def, c(id="tip-clip"))
+  svg_node('rect', clip, c(x="-8", width="16", y="-9.5", height="11"))
+  svg_node('path',g.tool,c(d='M-6,-10 l6,10 l6,-10', 'stroke-width'="0.5", stroke="#696969",fill='white', 'clip-path'="url(#tip-clip)"))
   svg_node('text',svg, c(id="tooltip", stroke="none", dy="-15", fill="#000000", 'text-anchor'="middle", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
