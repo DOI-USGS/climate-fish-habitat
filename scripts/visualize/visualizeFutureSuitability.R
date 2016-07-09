@@ -20,34 +20,34 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   \tdocument.getElementById(id).setAttribute("opacity", val);
   }
   function hovertext(text, evt){
-  var tooltip = document.getElementById("tooltip");
-  var tooltip_bg = document.getElementById("tooltip_bg");
-  tooltip.setAttribute("text-anchor","begin");
-  tooltip.setAttribute("dx","7");
-  if (evt === undefined){
-  tooltip.setAttribute("class","hidden");
-  tooltip.firstChild.data = text;
-  tooltip_bg.setAttribute("x",0);
-  tooltip_bg.setAttribute("y",0);
-  tooltip_bg.setAttribute("class","hidden");
-  } else {
-  pt = cursorPoint(evt)
-  var length = tooltip.getComputedTextLength();
-  tooltip.setAttribute("x",pt.x-length/2);
-  tooltip.setAttribute("y",pt.y);
-  tooltip.firstChild.data = text;
-  tooltip_bg.setAttribute("x",pt.x-length/2);
-  tooltip_bg.setAttribute("y",pt.y-22);
-  tooltip.setAttribute("class","shown");
-  tooltip_bg.setAttribute("class","shown");
-  
-  tooltip_bg.setAttribute("width", length+8);
-  if (pt.x+length+8 > xmax){
-  tooltip.setAttribute("text-anchor","end");
-  tooltip.setAttribute("dx","-8");
-  tooltip_bg.setAttribute("x",pt.x-12-length);
+    var tooltip = document.getElementById("tooltip");
+    var tooltip_bg = document.getElementById("tooltip_bg");
+    tooltip.setAttribute("text-anchor","middle");
+    if (evt === undefined){
+      tooltip.setAttribute("class","hidden");
+      tooltip.firstChild.data = text;
+      tooltip_bg.setAttribute("x",0);
+      tooltip_bg.setAttribute("y",0);
+      tooltip_bg.setAttribute("class","hidden");
+    } else {
+      pt = cursorPoint(evt);
+      svgWidth = Number(svg.getAttribute("viewBox").split(" ")[2]);
+      tooltip.setAttribute("x",pt.x);
+      tooltip.setAttribute("y",pt.y);
+      tooltip.firstChild.data = text;
+      var length = tooltip.getComputedTextLength();
+      if (pt.x - length/2 < 0){
+        tooltip.setAttribute("x",length/2);
+      } else if (pt.x + length/2 > svgWidth) {
+        tooltip.setAttribute("x", svgWidth-length/2);
+      }
+      tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2);
+      tooltip_bg.setAttribute("y",pt.y-32);
+      tooltip.setAttribute("class","shown");
+      tooltip_bg.setAttribute("class","shown");
+      tooltip_bg.setAttribute("width", length+8);
+    }
   }
-  }}
   function cursorPoint(evt){
   pt.x = evt.clientX; pt.y = evt.clientY;
   return pt.matrixTransform(svg.getScreenCTM().inverse());
@@ -260,7 +260,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
     }
   }
   svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="28", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
-  svg_node('text',svg, c(id="tooltip", stroke="none", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
+  svg_node('text',svg, c(id="tooltip", stroke="none", dy="-10", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
   dinosvg:::write_svg(svg, file=outfile)
