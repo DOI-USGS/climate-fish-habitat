@@ -70,21 +70,21 @@ futureSuitability-fig:
   Bass: >-
     %s Bass dominant lakes
   Neither: >-
-    %s lakes where neither walleye or bass are supported
+    %s lakes where neither Walleye or Bass are supported
   Coexistence: >-
-    %s lakes where both walleye and bass co-exist
+    %s lakes where both Balleye and Bass co-exist
   Neither-Bass: >-
-    %s lakes predicted to support bass
+    %s lakes predicted to support Bass
   Neither-Walleye: >-
-    %s lakes predicted to support walleye
+    %s lakes predicted to support Walleye
   Walleye-Coexistence: >-
-    %s walleye lakes predicted to support walleye and bass
+    %s Walleye lakes predicted to support Walleye and Bass
   Neither-Coexistence: >-
-    %s lakes predicted to support walleye and bass
+    %s lakes predicted to support Walleye and Bass
   Bass-Neither: >-
-    %s bass lakes predicted to support neither species
+    %s Bass lakes predicted to support neither species
   Walleye-Neither: >-
-    %s walleye lakes predicted to support neither species
+    %s Walleye lakes predicted to support neither species
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-bullets: 
   - Nearly 100 lakes in Wisconsin are predicted to support naturally reproducing walleye populations even under extreme warming conditions.
