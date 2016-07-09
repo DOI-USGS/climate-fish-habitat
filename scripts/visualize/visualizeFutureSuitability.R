@@ -42,7 +42,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
         tooltip.setAttribute("x", svgWidth-length/2);
       }
       tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2);
-      tooltip_bg.setAttribute("y",pt.y-32);
+      tooltip_bg.setAttribute("y",pt.y-36);
       tooltip.setAttribute("class","shown");
       tooltip_bg.setAttribute("class","shown");
       tooltip_bg.setAttribute("width", length+8);
@@ -91,18 +91,21 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   transition: 0.25s ease-in-out;
   }
   text {
-  font-size: 24px;
-  cursor: default;
-  font-family: Tahoma, Geneva, sans-serif;
+    font-size: 24px;
+    cursor: default;
+    font-family: Tahoma, Geneva, sans-serif;
   }
   .small-text{
-  font-size: 24px;
+    font-size: 24px;
   }
   .big-text{
-  font-size: 34px;
+    font-size: 34px;
+  }
+  #tooltip{
+    font-size: 28px;
   }
   .medium-text{
-  font-size: 28px;
+    font-size: 28px;
   }
   ')
   
@@ -259,7 +262,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('stop', lin.grad, c(offset="100%", style=sprintf("stop-color:%s;stop-opacity:1", arrow.cols[[to.type]])))
     }
   }
-  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", width="55", height="28", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", height="32", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
   svg_node('text',svg, c(id="tooltip", stroke="none", dy="-10", fill="#000000", 'text-anchor'="begin", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
