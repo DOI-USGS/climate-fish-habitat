@@ -36,18 +36,18 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       tooltip.setAttribute("y",pt.y);
       tooltip.firstChild.data = text;
       var length = Math.round(tooltip.getComputedTextLength());
-      if (pt.x - length/2 < 0){
-        tooltip.setAttribute("x",length/2);
-      } else if (pt.x + length/2 > svgWidth) {
-        tooltip.setAttribute("x", svgWidth-length/2);
+      if (pt.x - length/2 - 6 < 0){
+        tooltip.setAttribute("x",length/2+6);
+      } else if (pt.x + length/2 + 6 > svgWidth) {
+        tooltip.setAttribute("x", svgWidth-length/2-6);
       }
       tool_pt.setAttribute("transform","translate("+pt.x+","+pt.y+")");
-      tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2);
+      tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2-6);
       tooltip_bg.setAttribute("y",pt.y-41);
       tooltip.setAttribute("class","shown");
       tooltip_bg.setAttribute("class","shown");
       tool_pt.setAttribute("class","shown");
-      tooltip_bg.setAttribute("width", length+8);
+      tooltip_bg.setAttribute("width", length+12);
     }
   }
   function cursorPoint(evt){
