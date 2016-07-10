@@ -44,12 +44,6 @@
 	      stroke-linecap: round;
 	      stroke-linejoin: round;
 	    }
-		.moveable{
-			cursor: pointer;	
-		}
-		.locked {
-			cursor: default;	
-		}
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
@@ -58,19 +52,17 @@
 		var domainHeight = "443.52";
 		var priorY = null;
 		var priorId = null;
+		var selectedPoint = null;
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
                 var mainDocument = window.parent.document;
             }  
 			var activeFish;
-			var fishArray;
 			var dots;
-			var selectedPoint;
 			var drawnPoints
 			var dotSpace;
 			resetDefaults()
-			
         };
 
         function wipeChildren(ele){
@@ -82,9 +74,8 @@
 		// reset button and dot classes
   		function resetDefaults(){
 		
-			fishArray = ["wally"]
-			drawnPoints = {"wally":[],"bass":[]};
-			activeFish = fishArray[0]
+			drawnPoints = [];
+			activeFish = "wally"
         	dots = [85,125,165,205,245,285,325,365,405,445,485,525,565,605,645];
 			dotSpace = 20;
 			svgDoc.getElementById("helper-text").firstChild.data = "Click and drag to draw a line";
@@ -119,10 +110,10 @@
 				newW.setAttributeNS(null, "r", "4");
 				newW.setAttributeNS(null, "id", "wally-"+i)
 				svgDoc.getElementById("wally-dots").appendChild(newW);
-				drawnPoints["wally"][i] = false;
+				drawnPoints[i] = false;
 			}
-			drawnPoints['wally'][0] = true;
-			drawnPoints['wally'][1] = true;
+			drawnPoints[0] = true;
+			drawnPoints[1] = true;
 			svgDoc.getElementById("wally-0").setAttribute('cy','265');
 			svgDoc.getElementById("wally-0").setAttribute('class','enabled');
 			svgDoc.getElementById("wally-1").setAttribute('cy','265');
@@ -149,11 +140,7 @@
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
 			svgDoc.getElementById("wally-dots").removeAttribute('class');
 			svgDoc.getElementById("wally-line").removeAttribute('class');
-			svgDoc.getElementById("bass-line").removeAttribute('class');
-			for (var i = 0; i < fishArray.length; i++) {
-				drawLine(fishArray[i])
-			}
-  			
+			drawLine(activeFish)
   		}
 
         function imDone(){
@@ -162,7 +149,6 @@
 			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
 			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
-			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
@@ -179,10 +165,11 @@
         	if (selectedPoint === null) {return}
 			var id = evt.target.getAttribute('id');
 			if (id !== null){
-
 				// capture previous box before deselect, interpolate y w/ skipped x.
 				var i = id.split('-')[1];
-				if (priorId === null){ priorId = i};
+				if (priorId === null){ 
+					priorId = i
+				};
 				var newY = cursorPoint(evt).y;
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',newY);
@@ -192,7 +179,7 @@
 				}
 				priorY = newY;
 				priorId = i;
-				drawnPoints[activeFish][i]=true;
+				drawnPoints[i]=true;
 			}
 			drawLine();
         };
@@ -205,14 +192,14 @@
         		for (var i = i1+1; i < i0; i++){
         			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y1+step*stepI);
-					drawnPoints[activeFish][i]=true;
+					drawnPoints[i]=true;
         			stepI++;
         		}
         	} else {
         		for (var i = i0+1; i < i1; i++){
         			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y0+step*stepI);
-					drawnPoints[activeFish][i]=true;
+					drawnPoints[i]=true;
         			stepI++;
         		}
         	}
@@ -225,7 +212,7 @@
 		
         function canFinish(){
         	for (var i = 0; i < dots.length; i++) {
-        		if (drawnPoints[activeFish][i] === false){
+        		if (drawnPoints[i] === false){
         			return false;
         		}
         	}
@@ -240,12 +227,11 @@
 
         	for (var i = 0; i < dots.length; i++) {
         		var dotEl = svgDoc.getElementById(fish+"-"+[i]);
-        		if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
+        		if (drawnPoints[i] & drawnPoints[i-1]){
         			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		} else {
         			path = path+"M"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		}
-        		
         	}
         	svgDoc.getElementById(fish + "-line").setAttribute('d',path);
         	
@@ -253,7 +239,7 @@
         function noneDrawn(){
         	for (var i = 0; i < dots.length; i++) {
         		// don't draw helpers if no points are drawn
-        		if (drawnPoints[activeFish][i]) {return  false;}
+        		if (drawnPoints[i]) {return  false;}
         	}
         	return(true)
         }
@@ -263,7 +249,7 @@
         	if (!noneDrawn()){
         		for (var i = 1; i < dots.length; i++) {
         			var boxEl = svgDoc.getElementById("help-"+[i]);
-        			if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
+        			if (drawnPoints[i] & drawnPoints[i-1]){
         				boxEl.setAttribute('opacity','0.0');
         			} else {
         				boxEl.setAttribute('opacity','0.8');
@@ -274,24 +260,6 @@
         	}
         	
         }
-		
-		function switchFish(fish){
-			if (activeFish === fish){
-			// do nothing
-			} else {
-			// let the user know they are changing fish?
-				console.log(fish)
-				newFish()
-			}
-			
-		}
-		
-		function newFish(){
-			var oldFish = activeFish;
-			activeFish = fishArray.pop();
-			fishArray.push(oldFish)
-			fishArray[0] = activeFish;
-		}
 
 		function select(evt){
 			var id = evt.target.getAttribute('id');
@@ -326,8 +294,8 @@
 			var sweepStep = px/numSteps;
 		    var sweepCount = setInterval(function () {   
 		    	if (i < numSteps){
-		    	parent.window.scrollBy(0, sweepStep);
-				i++
+		    		parent.window.scrollBy(0, sweepStep);
+					i++
 				} else {
                    clearInterval(sweepCount);
 				}}, 20);
@@ -394,7 +362,6 @@
 		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="5" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real'/>
 	</g>
 	<path fill='none' stroke='#01b29F' stroke-width="4" id="wally-line" />
-	<path fill='none' stroke="#990000" stroke-width="4" id="bass-line" />
 	<g id="domain-boxes" opacity='0'/>
 	<g id="wally-dots" fill='#01b29F'/>
     <g id='buttons' transform="translate(374.4,570)">
