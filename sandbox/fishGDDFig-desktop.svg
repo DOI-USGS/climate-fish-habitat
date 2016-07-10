@@ -69,7 +69,6 @@
 			var selectedPoint;
 			var drawnPoints
 			var dotSpace;
-			var hasClicked;
 			resetDefaults()
 			
         };
@@ -83,8 +82,7 @@
 		// reset button and dot classes
   		function resetDefaults(){
 		
-			hasClicked = false;
-			fishArray = ["wally","bass"]
+			fishArray = ["wally"]
 			drawnPoints = {"wally":[],"bass":[]};
 			activeFish = fishArray[0]
         	dots = [85,125,165,205,245,285,325,365,405,445,485,525,565,605,645];
@@ -93,17 +91,13 @@
 			svgDoc.getElementById("helper-text").setAttribute("opacity","1.0");
         	selectedPoint = null;
 			var wallyG = document.getElementById("wally-dots");
-			var bassG = document.getElementById("bass-dots");
 			var dBox = document.getElementById("domain-boxes");
 			var hBox = document.getElementById("help-boxes");
 			var wTips = document.getElementById("wally-fish-tips");
-			var bTips = document.getElementById("bass-fish-tips");
 			wipeChildren(wallyG);
-			wipeChildren(bassG);
 			wipeChildren(hBox);
 			wipeChildren(dBox);
 			wipeChildren(wTips);
-			wipeChildren(bTips);
 
             for (var i = 0; i < dots.length; i++) {
 				var domainBox = document.createElementNS(document.rootElement.namespaceURI,"rect"); 
@@ -123,13 +117,9 @@
 				newW.setAttributeNS(null, "cy", "0"); 
 				newW.setAttributeNS(null, "class","hidden");
 				newW.setAttributeNS(null, "r", "4");
-				var newB = newW.cloneNode();
 				newW.setAttributeNS(null, "id", "wally-"+i)
-				newB.setAttributeNS(null, "id", "bass-"+i)
 				svgDoc.getElementById("wally-dots").appendChild(newW);
-				svgDoc.getElementById("bass-dots").appendChild(newB);
 				drawnPoints["wally"][i] = false;
-				drawnPoints["bass"][i] = false;
 			}
 			drawnPoints['wally'][0] = true;
 			drawnPoints['wally'][1] = true;
@@ -158,7 +148,6 @@
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
 			svgDoc.getElementById("wally-dots").removeAttribute('class');
-			svgDoc.getElementById("bass-dots").removeAttribute('class');
 			svgDoc.getElementById("wally-line").removeAttribute('class');
 			svgDoc.getElementById("bass-line").removeAttribute('class');
 			for (var i = 0; i < fishArray.length; i++) {
@@ -172,7 +161,6 @@
 			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
 			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
 			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
-			svgDoc.getElementById("bass-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
 			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
@@ -234,18 +222,10 @@
   			return pt.matrixTransform(svg.getScreenCTM().inverse());
 		};
 
-        function fishFinished(){
-        	for (var i = 0; i < dots.length; i++) {
-        		if (drawnPoints[activeFish][i] === false){
-        			return false;
-        		}
-        	}
-        	return true;
-        }
 		
         function canFinish(){
         	for (var i = 0; i < dots.length; i++) {
-        		if (drawnPoints['wally'][i] === false ){
+        		if (drawnPoints[activeFish][i] === false){
         			return false;
         		}
         	}
@@ -314,13 +294,6 @@
 		}
 
 		function select(evt){
-			console.log('select')
-			if (hasClicked !== true){
-				var firstClickY = cursorPoint(evt).y;
-				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-1").getAttribute('cy'));
-				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-1").getAttribute('cy'));
-				hasClicked=true;
-			}
 			var id = evt.target.getAttribute('id');
 			svgDoc.getElementById(activeFish+"-fish-tips").setAttribute("class","hidden");
 			svgDoc.getElementById("helper-text").setAttribute("opacity","0");
@@ -366,7 +339,6 @@
     	<text class='drawing-text' id='helper-text' x='370' y='100' fill='grey' text-anchor='middle'> </text>
     	<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="5" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real-2'/>
     	<g id="wally-fish-tips" stroke='#01b29F' fill='#01b29F' class='helper-text'/>
-    	<g id="bass-fish-tips" stroke='#990000' fill='#990000'/>
     	<g id="user-data">
 			<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
 			<g id='x-tick-labels' text-anchor="middle">
@@ -425,7 +397,6 @@
 	<path fill='none' stroke="#990000" stroke-width="4" id="bass-line" />
 	<g id="domain-boxes" opacity='0'/>
 	<g id="wally-dots" fill='#01b29F'/>
-	<g id="bass-dots" fill="#990000"/>
     <g id='buttons' transform="translate(374.4,570)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
