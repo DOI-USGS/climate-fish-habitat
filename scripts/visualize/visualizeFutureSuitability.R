@@ -45,8 +45,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       tooltip_bg.setAttribute("x",tooltip.getAttribute("x")-length/2-6);
       tooltip_bg.setAttribute("y",pt.y-41);
       tooltip.setAttribute("class","shown");
-      tooltip_bg.setAttribute("class","shown");
-      tool_pt.setAttribute("class","shown");
+      tooltip_bg.setAttribute("class","tooltip-box");
+      tool_pt.setAttribute("class","tooltip-box");
       tooltip_bg.setAttribute("width", length+12);
     }
   }
@@ -70,7 +70,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   gap.s <- 200
   box.s <- 15
   l.m <- 24
-  t.m <- 38
+  t.m <- 42
   y <- list()
   h <- list()
   
@@ -102,6 +102,12 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   }
   .big-text{
     font-size: 34px;
+  }
+  .tooltip-box{
+    stroke-width: 0.5;
+    stroke: #696969;
+    opacity: 0.95;
+    fill: #f2f2f2;
   }
   #tooltip{
     font-size: 28px;
@@ -265,9 +271,12 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
     }
   }
   
-  svg_node('rect',svg, c(id="tooltip_bg", rx="2.5", ry="2.5", height="32", fill="white", 'stroke-width'="0.5", stroke="#696969", class="hidden"))
+  svg_node('rect',svg, c(id="tooltip_bg", height="32", class="hidden"))
   g.tool <- svg_node('g',svg, c(id='tool_pt',class="hidden"))
-  svg_node('path',g.tool,c(d='M-6,-10 l6,10 l6,-10', 'stroke-width'="0.5", stroke="#696969",fill='white'))
+  def <- svg_node('defs', g.tool)
+  clip <- svg_node('clipPath', def, c(id="tip-clip"))
+  svg_node('rect', clip, c(x="-8", width="16", y="-9.5", height="11"))
+  svg_node('path',g.tool,c(d='M-6,-10 l6,10 l6,-10', class='tooltip-box', 'clip-path'="url(#tip-clip)"))
   svg_node('text',svg, c(id="tooltip", stroke="none", dy="-15", fill="#000000", 'text-anchor'="middle", class="sub-label"), XML::newXMLTextNode(' '))
   
   XML::addChildren(svg, kids=list(blank.arrow.g, blank.period.g))
