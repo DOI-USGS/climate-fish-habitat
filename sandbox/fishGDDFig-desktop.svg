@@ -169,6 +169,7 @@
 			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
 			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
+			svgDoc.getElementById("bass-actual").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
@@ -326,7 +327,7 @@
     <g id='drawing-view'>
     	<g id="help-boxes" fill="#ffffcc"/>
     	<text class='drawing-text' id='helper-text' x='370' y='100' fill='grey' text-anchor='middle'> </text>
-    	<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="5" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real-2'/>
+    	<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="5" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-actual'/>
     	<g id="wally-fish-tips" stroke='#01b29F' fill='#01b29F' class='helper-text'/>
     	<g id="user-data">
 			<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
