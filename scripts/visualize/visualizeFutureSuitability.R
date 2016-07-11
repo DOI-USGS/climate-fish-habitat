@@ -271,7 +271,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
     }
   }
   
-  svg_node('rect',svg, c(id="tooltip_bg", height="36", class="hidden"))
+  svg_node('rect',svg, c(id="tooltip_bg", height="32", class="hidden"))
   g.tool <- svg_node('g',svg, c(id='tool_pt',class="hidden"))
   def <- svg_node('defs', g.tool)
   clip <- svg_node('clipPath', def, c(id="tip-clip"))
