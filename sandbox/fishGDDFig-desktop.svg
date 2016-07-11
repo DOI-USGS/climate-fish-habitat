@@ -173,6 +173,7 @@
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+        	svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
         	svg.removeAttribute('onmousedown');
         	svg.removeAttribute('onmouseup');
         	svg.removeAttribute('onmousemove');
