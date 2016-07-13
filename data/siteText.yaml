@@ -18,6 +18,10 @@ walleyeDecline-bullets:
   - Much interest exists in understanding the causes of walleye population declines and whether they can be reversed.
   - There are many possible explanations for the observed changes in Wisconsin lake fish communities.
   - Some have hypothesized that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
+walleyeDecline-caption: >-
+  Statewide average values over time for walleye recruitment (blue; indexed as catch of age-0 walleye per mile of electrofishing) 
+  and largemouth bass relative abundance (red; indexed as catch of largemouth bass greater than 8 inches in length per mile of 
+  electrofishing, presented on a standardized scale). Dashed lines show overall directional trend over time.
 
 walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes
 walleyeBass-interactive-setup: Can you draw the relationship between these two fish and lake temperature?
@@ -41,6 +45,11 @@ walleyeBass-hint-4: >-
   Likewise, if Walleye are more common in warmer lakes, your line would look like this:
 walleyeBass-hint-5: >-  
   or the same for all lakes: 
+walleyeBass-caption: >-
+  Predicted probability of a lake supporting successful walleye recruitment and high largemouth bass abundance as a 
+  function of water temperature (degree days). Probabilities are based on a statistical model that incorporates other 
+  lake characteristics such as water clarity and lake size. Different values of these other variables will affect lake 
+  specific probabilities - the lines here show averages.
 
 lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 years
 lakeWarming-bullets: 
@@ -85,12 +94,26 @@ futureSuitability-fig:
     %s Bass lakes predicted to support neither species
   Walleye-Neither: >-
     %s Walleye lakes predicted to support neither species
+
+futureSuitability-caption: >-
+  Number of lakes classified by predicted species dominance under contemporary (1989-2014), 
+  mid-century future (2040-2064), and late-century future (2065-2089) conditions. Lakes are 
+  classified based on their predicted probabilities of walleye recruitment and largemouth bass 
+  relative abundance. Classes are defined as: walleye dominant (blue; walleye recruitment success 
+  and low largemouth bass relative abundance), coexistence (purple; walleye recruitment success 
+  and high largemouth bass relative abundance), largemouth bass dominant (orange; walleye recruitment 
+  failure and low largemouth bass relative abundance), or neither (grey; walleye recruitment failure 
+  and low largemouth bass relative abundance). Colored lines show projected movements among lake 
+  classes, and line width is proportional to the number of lakes moving between each class. 
+  Numbers are based on median projections across multiple global climate models.
+    
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-bullets: 
   - Nearly 100 lakes in Wisconsin are predicted to support naturally reproducing walleye populations even under extreme warming conditions.
   - These lakes are resilient to climate change, and should be protected from other stressors such as habitat loss, invasive species, or overfishing to maximize the potential for continued walleye production.
   - Some lakes that are unlikely to support natural walleye reproduction will continue to be suitable for adult walleye, and fishable walleye populations could potentially be maintained in these lakes via stocking.
   - Quality fishing opportunities for largemouth bass and other warm water species will be possible in lakes that become unsuitable for walleye.
-
+fishManagement-caption: >-
+  A fishing trip on a beautiful midwestern lake.
 ## Footer ##
 footer-text: Footer Text
