@@ -83,17 +83,27 @@ futureSuitability-fig:
   Coexistence: >-
     %s lakes where both Walleye and Bass co-exist
   Neither-Bass: >-
-    %s lakes predicted to support Bass
+    %s lakes gain Largemouth Bass
   Neither-Walleye: >-
     %s lakes predicted to support Walleye
   Walleye-Coexistence: >-
-    %s Walleye lakes predicted to support Walleye and Bass
+    %s lakes gain Largemouth Bass
   Neither-Coexistence: >-
     %s lakes predicted to support Walleye and Bass
   Bass-Neither: >-
-    %s Bass lakes predicted to support neither species
+    %s lakes lose Largemouth Bass
   Walleye-Neither: >-
-    %s Walleye lakes predicted to support neither species
+    %s lakes lose Walleye
+  Walleye-Bass: >-
+    %s lakes lose Walleye and gain Largemouth Bass
+  Coexistence-Bass: >-
+    %s lakes lose Walleye
+  Coexistence-Coexistence: >-
+    %s lakes continue to support both species
+  Bass-Coexistence: >-
+    %s lakes gain Walleye
+  Neither-Neither: >-
+    %s lakes continue to support neither species
 
 futureSuitability-caption: >-
   Number of lakes classified by predicted species dominance under contemporary (1989-2014), 
