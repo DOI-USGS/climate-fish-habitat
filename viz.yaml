@@ -100,6 +100,42 @@ fetch:
     mimeType: text/csv
     export: false
   -
+    id: futureBassProbs
+    location: cache/fetch/future_lmb_projected_probability.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: future_lmb_projected_probability.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: futureWallyProbs
+    location: cache/fetch/future_wae_projected_probability.csv 
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: future_wae_projected_probability.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: currentBassProbs
+    location: cache/fetch/lmb_water_predicted.csv 
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: lmb_water_predicted.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: currentWallyProbs
+    location: cache/fetch/walleye_water_predicted.csv 
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: walleye_water_predicted.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
     id: futureTempsA2
     location: cache/fetch/ar4_tas-gm_a2.zip
     args:
