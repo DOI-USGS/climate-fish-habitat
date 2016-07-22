@@ -1,0 +1,50 @@
+      html, body, #map {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+	  #map {
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+      }
+      
+      table caption {
+        display: none;
+      }
+      
+      table {
+        border: 1px solid grey;
+      }
+      
+      table.featureInfo > tbody > tr > th:first-child {
+        display: none;
+      }
+      
+      table.featureInfo > tbody > tr > td:first-child {
+        display: none;
+      }
+      
+      th {
+        background: rgb(200, 200, 200);
+      }
+      
+      .leaflet-control-wms-legend {
+        display: block;
+        clear: both;
+        padding: 3px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        cursor: auto;
+        text-align: left;
+        background-color: #FFFFFF;
+      }
+      
+      .leaflet-control-wms-legend:before {
+        content: "Predicted Species Dominance";
+        display: block;
+        color: #000;
+      }
