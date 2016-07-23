@@ -24,7 +24,6 @@ header img{
 .exploreMore{
 	border:1px solid #003366;
 	padding:10px 10px 0 10px;
-	border-radius:5px;
 	width:30%;
 	max-width:300px;
 	text-align:center !important;
@@ -40,7 +39,6 @@ header img{
 	padding:5px 15px;
 	border:1px solid #003366;
 	outline:none;
-	border-radius:3px;
 	font-size:.8em;
 	margin:-10px 0 10px 0;
 	}
