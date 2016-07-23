@@ -197,9 +197,9 @@ L.wmsLegend(uri);
 // layer toggle
 // Use basemaps instead of overlays because basemaps allows only one to be on at a time, and we always want one to be on. swap basemaps with overlays if you want checkboxes. collapsed false refers to the toggle not being hidden initially
 var basemaps = {
-  "Present: 1989-2014": early,
-  "Mid: 2040-2064": mid,
-  "Late: 2065-2089": late
+  "1989-2014": early,
+  "2040-2064": mid,
+  "2065-2089": late
 };
 var layerControl2 = L.control.layers(basemaps, null, {
   collapsed: false
