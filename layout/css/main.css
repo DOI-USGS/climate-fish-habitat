@@ -38,7 +38,7 @@ header img{
 	background:#003366;
 	color:#fff;
 	padding:5px 15px;
-	border:none;
+	border:1px solid #003366;
 	outline:none;
 	border-radius:3px;
 	font-size:.8em;
