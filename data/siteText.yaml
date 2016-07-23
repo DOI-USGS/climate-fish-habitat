@@ -73,6 +73,9 @@ futureSuitability-bullets:
   - The majority of Wisconsin lakes expected to contain high density largemouth bass populations by the mid-21st century.
   - A small percentage of lakes will continue to support both species into the future.
 
+futureSuitability-explore: >-
+  To explore a map predicted game fish for Wisconsin lakes, click on the button below.
+
 futureSuitability-fig:
   Walleye: >-
     %s Walleye dominant lakes
