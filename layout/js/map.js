@@ -1,6 +1,6 @@
 $(document).ready(function(){
 //the map and where it centers and sets zoom level
-var map = L.map('map').setView([44.514198, -89.740264], 7);
+var map = L.map('map').setView([44.514198, -89.740264], 8);
 
 //the background layer
 var Carto_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -197,7 +197,7 @@ L.wmsLegend(uri);
 // layer toggle
 // Use basemaps instead of overlays because basemaps allows only one to be on at a time, and we always want one to be on. swap basemaps with overlays if you want checkboxes. collapsed false refers to the toggle not being hidden initially
 var basemaps = {
-  "Early: 1989-2014": early,
+  "Present: 1989-2014": early,
   "Mid: 2040-2064": mid,
   "Late: 2065-2089": late
 };
