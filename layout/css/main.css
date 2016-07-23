@@ -21,7 +21,35 @@ header img{
 	margin-right:5px;
 	width:80px;
 	}
-	
+.exploreMore{
+	border:1px solid #003366;
+	padding:10px 10px 0 10px;
+	border-radius:5px;
+	width:30%;
+	max-width:300px;
+	text-align:center !important;
+	margin:20px auto 20px auto !important;
+	}
+
+.exploreMore img{
+	width:100%;
+	}	
+.extraButton{
+	background:#003366;
+	color:#fff;
+	padding:5px 15px;
+	border:none;
+	outline:none;
+	border-radius:3px;
+	font-size:.8em;
+	margin:-10px 0 10px 0;
+	}
+
+.extraButton:hover{
+	background:#fff;
+	color:#003366;
+	border:1px solid #003366;
+	}
 .captionContainer{
   padding:15px;
   min-height:50px;
