@@ -26,6 +26,7 @@ header img{
 	padding:10px 10px 0 10px;
 	width:30%;
 	max-width:300px;
+	min-width:200px;
 	text-align:center !important;
 	margin:20px auto 20px auto !important;
 	}
