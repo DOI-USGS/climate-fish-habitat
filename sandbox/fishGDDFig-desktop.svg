@@ -191,6 +191,7 @@
 			svgDoc.getElementById("bass-actual").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+			svgDoc.getElementById('skip-ahead').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
         	svg.removeAttribute('onmousedown');
@@ -206,6 +207,7 @@
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
 			svgDoc.getElementById("bass-actual").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
+			svgDoc.getElementById('skip-ahead').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svgDoc.getElementById('start-over').setAttribute('class','hidden');
         	svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
@@ -445,6 +447,11 @@
       		<rect width="160" height="40" fill="grey"/>
       		<text y="20" x="80" dy='0.33em' text-anchor='middle' fill="white">Reset</text>
       		<rect width="160" height="40" opacity="0"/>
+    	</g>
+   	 	<g id='skip-ahead' transform="translate(-315,-40)" class='enabled'>
+      		<rect width="80" height="20" stroke="grey" fill='#ededed' stroke-width='0.5'/>
+      		<text y="10" x="40" dy='0.33em' text-anchor='middle' style='font-size: 10.00pt;'>Skip ahead?</text>
+      		<rect width="80" height="20" opacity="0" onclick='bypassUser()'/>
     	</g>
     </g>
 	<defs>
