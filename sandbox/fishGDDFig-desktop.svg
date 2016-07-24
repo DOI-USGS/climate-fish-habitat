@@ -157,10 +157,27 @@
   				}
   				newPath = newPath+Math.round(x)+","+Math.round(y)+append;
   			}
-  			var wallyPath = document.createElementNS(document.rootElement.namespaceURI,"path");
-  			console.log(newPath)
+			var guessTip = document.createElementNS(document.rootElement.namespaceURI,"path");
+			var x = svgDoc.getElementById("wally-12").getAttribute('cx');
+			var y = svgDoc.getElementById("wally-12").getAttribute('cy');
+			var wallyPath = document.createElementNS(document.rootElement.namespaceURI,"path");
   			wallyPath.setAttributeNS(null, "d", newPath);
   			userLine.appendChild(wallyPath);
+			
+			guessTip.setAttributeNS(null, "d", "M"+Math.round(x)+","+Math.round(y)+"l15,-22"); 
+			guessTip.setAttributeNS(null, "stroke-dasharray",'0'); 
+			guessTip.setAttributeNS(null, "stroke-width",'1.5'); 
+			var guessTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
+			guessTxt.setAttributeNS(null, "x", Math.round(x)+15);
+			guessTxt.setAttributeNS(null, "y", Math.round(y)-20);
+			guessTxt.setAttributeNS(null, "dy", "-0.5em");
+			guessTxt.setAttributeNS(null, "text-anchor", "middle");
+			guessTxt.setAttributeNS(null, "stroke","none");
+			var textNode = document.createTextNode('Your guess');
+  			guessTxt.appendChild(textNode);
+			userLine.appendChild(guessTip);
+			userLine.appendChild(guessTxt);
+			
   		}
 
         function imDone(){
@@ -326,7 +343,7 @@
     
     ]]> </script>	
     <g id='drawing-view'>
-		<g id="legend" transform="translate(60,60)" class="legend">
+		<g id="legend" transform="translate(65,65)" class="legend">
 		    <text x="20" dx="0.75em" y="20" text-anchor="begin" id="legend-walleye-text">Walleye</text>
 		    <path d="M8,13 h20" stroke="rgb(1,178,159)" stroke-width="3"/>
 		    <text x="20" dx="0.75em" y="40" text-anchor="begin" id="legend-bass-text">Bass</text>
@@ -364,7 +381,7 @@
 
 	</g>
 	<g id="modeled-data" transform="translate(0,550)">
-		<g id="legend" transform="translate(60,60)" class="legend">
+		<g id="legend" transform="translate(66,66)" class="legend">
 		    <text x="20" dx="0.75em" y="20" text-anchor="begin" id="legend-walleye-text">Walleye</text>
 		    <path d="M8,13 h20" stroke="rgb(1,178,159)" stroke-width="3"/>
 		    <text x="20" dx="0.75em" y="40" text-anchor="begin" id="legend-bass-text">Bass</text>
