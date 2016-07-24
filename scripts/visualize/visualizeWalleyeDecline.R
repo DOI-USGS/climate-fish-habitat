@@ -104,7 +104,7 @@ animateWallyDecline <- function(svg){
     y <- unname(sapply(datapoints, function(x) as.numeric(strsplit(x,'[,]')[[1]][2])))
     return(y)
   }
-  ani.time <- '15s'
+  ani.time <- '12s'
   style.nd <- xml_find_first(svg,"//*[local-name()='style']")
   css.text <- xml_text(style.nd)
   start.i <- 4 #where to start animation path
