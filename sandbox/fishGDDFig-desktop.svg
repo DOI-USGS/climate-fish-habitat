@@ -173,6 +173,7 @@
 			guessTxt.setAttributeNS(null, "dy", "-0.5em");
 			guessTxt.setAttributeNS(null, "text-anchor", "middle");
 			guessTxt.setAttributeNS(null, "stroke","none");
+			guessTxt.setAttributeNS(null, "fill","#01b29F");
 			var textNode = document.createTextNode('Your guess');
   			guessTxt.appendChild(textNode);
 			userLine.appendChild(guessTip);
