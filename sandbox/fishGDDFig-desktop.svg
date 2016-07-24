@@ -76,8 +76,8 @@
 		
 			drawnPoints = [];
 			activeFish = "wally"
-        	dots = [85,125,165,205,245,285,325,365,405,445,485,525,565,605,645];
-			dotSpace = 20;
+        	dots = [85, 143, 201, 259, 317, 375, 433, 491, 549, 607, 665];
+			dotSpace = 29;
 			svgDoc.getElementById("helper-text").firstChild.data = "Click and drag to draw a line";
 			svgDoc.getElementById("helper-text").setAttribute("opacity","1.0");
         	selectedPoint = null;
@@ -158,8 +158,8 @@
   				newPath = newPath+Math.round(x)+","+Math.round(y)+append;
   			}
 			var guessTip = document.createElementNS(document.rootElement.namespaceURI,"path");
-			var x = svgDoc.getElementById("wally-12").getAttribute('cx');
-			var y = svgDoc.getElementById("wally-12").getAttribute('cy');
+			var x = svgDoc.getElementById("wally-8").getAttribute('cx');
+			var y = svgDoc.getElementById("wally-8").getAttribute('cy');
 			var wallyPath = document.createElementNS(document.rootElement.namespaceURI,"path");
   			wallyPath.setAttributeNS(null, "d", newPath);
   			userLine.appendChild(wallyPath);
