@@ -19,7 +19,7 @@ svgWallyDecline <- function(object, filename){
 #tick-labels {
 \tfont-size: 10.00pt; 
 }
-#y-title, #x-title {
+#y-title, #x-title, .legend {
 \tfont-size: 14.00pt; 
 }
 .background-walleye {
@@ -46,10 +46,23 @@ mutateWallyDecline <- function(filename){
   ax.lab <- xml_find_first(svg, "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")
   xml_attr(ax.lab, 'id') <- 'x-title'
   vb <- strsplit(xml_attr(svg, 'viewBox'),'[ ]')[[1]]
+  
+  plot.box <- xml_find_first(svg, "//*[local-name()='clipPath'][@id='mask-1-2']/*[local-name()='rect']")
+  wally.col <- xml_attr(xml_find_first(svg, "//*[local-name()='path'][@id='walleye-line']/parent::*"),'stroke')
+  bass.col <- xml_attr(xml_find_first(svg, "//*[local-name()='path'][@id='bass-line']/parent::*"),'stroke')
+  y.top = xml_attr(plot.box,'y')
+  x.left = xml_attr(plot.box,'x')
+  
   xml_attr(svg, 'viewBox') <- paste(-550, vb[2], as.numeric(vb[3])+1100, vb[4])
   xml_add_child(svg, 'text','Walleye recruitment (#/mile)', x=sprintf("%s",as.numeric(vb[1])+10), y='25', 'text-anchor'="begin", id='y-title')
   xml_add_child(svg, 'text','Bass relative abundance', x=sprintf("%s",as.numeric(vb[3])-10), y='25', 'text-anchor'="end", id='y-title')
   view.1.2 <- xml_find_first(svg, "//*[local-name()='g'][@id='view-1-2']")
+  legend <- xml_add_sibling(view.1.2, 'g','id'='legend','transform'=sprintf("translate(%s,%s)", x.left, y.top), class='legend')
+  xml_add_child(legend,'text','Walleye', x="20", dx="0.75em", y='20','text-anchor'="begin", id='legend-walleye-text')
+  xml_add_child(legend,'path',d='M8,13 h20', stroke=wally.col, 'stroke-width'='3')
+  xml_add_child(legend,'text','Bass', x="20", dx="0.75em", y='40','text-anchor'="begin", id='legend-bass-text')
+  xml_add_child(legend,'path',d='M8,33 h20', stroke=bass.col, 'stroke-width'='3')
+  
   all.bass <- xml_add_sibling(view.1.2, 'g','id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass', .where = "before")
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
   n = 60
@@ -161,7 +174,7 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
   par(mai=c(0.6,0.5,0.5,0.5))
   
   gs.trends <- gsplot() %>% 
-    lines(wally$Year, wally$recruitment, col='#01b29F',  xlab='Year', ylim=c(0,65)) %>% 
+    lines(wally$Year, wally$recruitment, col='#01b29F',  xlab='Year', ylim=c(0,68)) %>% 
     lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.26), side=c(1,4)) %>% 
     lines(c(x0,x1), c(wally.y0,wally.y1),col='#01b29F', lty=3) %>% 
     lines(c(x0,x1), c(bass.y0,bass.y1),col='#990000', lty=3, side=c(1,4)) %>% 
