@@ -26,30 +26,24 @@ walleyeDecline-caption: >-
 walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes
 walleyeBass-interactive-setup: Can you draw the relationship between these two fish and lake temperature?
 walleyeBass-bullets: 
-  - Water temperature is key characteristic determining the suitability of a lake for different species of fish, such as walleye or largemouth bass.
-  - In general, walleye naturally reproduce more successfully in cool lakes, and largemouth bass populations are most abundant in warm lakes.
-  - >- 
-    Cool lakes that are best for walleye are the worst places for largemouth bass. 
-    At the same time, the warm lakes that are best for finding high numbers of largemouth bass have the worst conditions for walleye.
-  - >- 
-    These relationships are averages. Other lake characteristics besides temperature influence the suitability of a lake for each species. 
-    For example, walleye can successfully reproduce in Wisconsin's largest lakes even if they are warm.
+  - Water temperature influences the suitability of a lake for walleye and largemouth bass.
+  - In general, walleye reproduce more successfully in cooler lakes, and largemouth bass populations are most abundant in warm lakes.
+  - Both species exhibit a threshold response to temperature, where small changes in temperature can produce big changes in the fish population.
+  - The temperature threshold separating lakes with successful vs.unsuccessful walleye reproduction is approximately the same threshold separating lakes with low vs. high largemouth bass abundances.
+  - This means that lakes that are best for walleye are generally worst for largemouth bass, and vice versa.
+  - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye can reproduce successfully in large lakes even if they are warm.
 walleyeBass-hint-1: >-
     We're giving you a hint to help you fill out the pattern for Walleye and Largemouth Bass. 
-    For the colder lakes in Wisconsin, you are more likely to find Walleye than Bass, so your starting points look like this:
+    For the colder lakes in Wisconsin, you are more likely to find Walleye than Bass. Bass are more commonly found in warmer lakes 
+    so their line looks like this:
 walleyeBass-hint-2: >-  
-  . It's up to you to figure out what happens in warmer lakes. If you think it is equally likely to find Bass in all Wisconsin lakes, your line would look like this:
-walleyeBass-hint-3: >-  
-  if you think Bass start showing up abruptly in warmer lakes, your line would look like this:
-walleyeBass-hint-4: >-  
-  Likewise, if Walleye are more common in warmer lakes, your line would look like this:
-walleyeBass-hint-5: >-  
+  . It's up to you to figure out what happens to walleye in warmer lakes. If Walleye are more common in warmer lakes, your line would look like this:
+walleyeBass-hint-3: >- 
   or the same for all lakes: 
 walleyeBass-caption: >-
   Predicted probability of a lake supporting successful walleye recruitment and high largemouth bass abundance as a 
   function of water temperature (degree days). Probabilities are based on a statistical model that incorporates other 
-  lake characteristics such as water clarity and lake size. Different values of these other variables will affect lake 
-  specific probabilities - the lines here show averages.
+  lake characteristics such as water clarity and lake size.
 
 lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 years
 lakeWarming-bullets: 
@@ -73,13 +67,16 @@ futureSuitability-bullets:
   - The majority of Wisconsin lakes expected to contain high density largemouth bass populations by the mid-21st century.
   - A small percentage of lakes will continue to support both species into the future.
 
+futureSuitability-explore: >-
+  To explore a map of predicted game fish for Wisconsin lakes, click on the button below.
+
 futureSuitability-fig:
   Walleye: >-
     %s Walleye dominant lakes
   Bass: >-
     %s Bass dominant lakes
   Neither: >-
-    %s lakes where neither Walleye or Bass are supported
+    %s lakes where neither Walleye nor Bass are supported
   Coexistence: >-
     %s lakes where both Walleye and Bass co-exist
   Neither-Bass: >-
