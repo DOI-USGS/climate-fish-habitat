@@ -76,7 +76,7 @@ futureSuitability-fig:
   Bass: >-
     %s Bass dominant lakes
   Neither: >-
-    %s lakes where neither Walleye or Bass are supported
+    %s lakes where neither Walleye nor Bass are supported
   Coexistence: >-
     %s lakes where both Walleye and Bass co-exist
   Neither-Bass: >-
@@ -109,7 +109,7 @@ futureSuitability-caption: >-
   relative abundance. Classes are defined as: walleye dominant (blue; walleye recruitment success 
   and low largemouth bass relative abundance), coexistence (purple; walleye recruitment success 
   and high largemouth bass relative abundance), largemouth bass dominant (orange; walleye recruitment 
-  failure and low largemouth bass relative abundance), or neither (grey; walleye recruitment failure 
+  failure and low largemouth bass relative abundance), nor neither (grey; walleye recruitment failure 
   and low largemouth bass relative abundance). Colored lines show projected movements among lake 
   classes, and line width is proportional to the number of lakes moving between each class. 
   Numbers are based on median projections across multiple global climate models.
