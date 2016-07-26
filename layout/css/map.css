@@ -29,7 +29,9 @@
       th {
         background: rgb(200, 200, 200);
       }
-      
+      .leaflet-control-layers-selector,.leaflet-container{
+        font-size: 1.0em;
+      }
       .leaflet-control-wms-legend {
         display: block;
         clear: both;
@@ -42,7 +44,12 @@
         text-align: left;
         background-color: #FFFFFF;
       }
-      
+      .leaflet-popup-content-wrapper {
+        font-size: 1.5em;
+      }
+      .leaflet-popup-content {
+        margin: 19px 19px;
+      }
       .leaflet-control-wms-legend:before {
         content: "Predicted Species Dominance";
         display: block;

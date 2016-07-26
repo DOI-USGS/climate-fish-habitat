@@ -68,7 +68,7 @@ header img{
 
 .insetPictureContainer img{
   width:100%;
-  max-width:300px;
+  max-width:650px;
 }
 
 /*Intro*/
@@ -172,7 +172,7 @@ header img{
 	
 .list li{
 	margin-bottom:15px;
-	font-size:1.2em;
+	font-size:1.5em;
 	}
 		
 /*Section CSS*/
@@ -215,7 +215,7 @@ footer{
   }
   
   .insetPictureContainer img{
-    max-width:500px;
+    max-width:760px;
   }
   
   #walleyeDeclineSVGMobile{

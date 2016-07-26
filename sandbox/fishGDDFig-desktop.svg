@@ -181,8 +181,7 @@
 			
   		}
 		
-		function bypassUser(){
-			svg.setAttribute("viewBox", "0 550 740 650");
+		function setBottomFrame(){
 			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
 			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
 			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
@@ -190,30 +189,22 @@
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
 			svgDoc.getElementById("bass-actual").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
-        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
+			svgDoc.getElementById('start-over').setAttribute('class','hidden');
 			svgDoc.getElementById('skip-ahead').setAttribute('class','hidden');
-        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
-        	svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
-        	svg.removeAttribute('onmousedown');
-        	svg.removeAttribute('onmouseup');
-        	svg.removeAttribute('onmousemove');
+			svgDoc.getElementById('start-over').setAttribute('class','hidden');
+			svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
+			svg.removeAttribute('onmousedown');
+    		svg.removeAttribute('onmouseup');
+    		svg.removeAttribute('onmousemove');
+		}
+		
+		function bypassUser(){
+			setBottomFrame()
+			svg.setAttribute("viewBox", "0 550 740 560");
 		}
 
         function imDone(){
-			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
-			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
-			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
-			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
-			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
-			svgDoc.getElementById("bass-actual").setAttribute('class','disabled');
-			svgDoc.getElementById('im-done').setAttribute('class','hidden');
-			svgDoc.getElementById('skip-ahead').setAttribute('class','hidden');
-        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
-        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
-        	svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
-        	svg.removeAttribute('onmousedown');
-        	svg.removeAttribute('onmouseup');
-        	svg.removeAttribute('onmousemove');
+			setBottomFrame()
         	transferUserPoints();
         	var initialHeight = svgDoc.getElementById('drawing-view').getBoundingClientRect().height;
         	svg.setAttribute("viewBox", "0 0 740 1150"); 
