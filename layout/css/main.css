@@ -68,7 +68,7 @@ header img{
 
 .insetPictureContainer img{
   width:100%;
-  max-width:300px;
+  max-width:650px;
 }
 
 /*Intro*/
@@ -215,7 +215,7 @@ footer{
   }
   
   .insetPictureContainer img{
-    max-width:500px;
+    max-width:760px;
   }
   
   #walleyeDeclineSVGMobile{
