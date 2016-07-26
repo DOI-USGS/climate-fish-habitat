@@ -13,22 +13,82 @@
       table caption {
         display: none;
       }
-      
-      table {
-        border: 1px solid grey;
-      }
-      
+	  
+	  /* hide the fid column from geoserver */
       table.featureInfo > tbody > tr > th:first-child {
         display: none;
       }
-      
       table.featureInfo > tbody > tr > td:first-child {
         display: none;
       }
-      
-      th {
-        background: rgb(200, 200, 200);
-      }
+     
+	/*hide the column headers */
+	 table.featureInfo > tbody > tr > th:nth-child(2){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(3){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(4){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(5){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(6){
+		visibility:hidden;
+		position:relative;
+	  }	
+	   
+	  /* replace column headers */
+	  table.featureInfo > tbody > tr > th:nth-child(2):after {
+		visibility: visible;
+		content: "Lake Name";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(3):after {
+		visibility: visible;
+		content: "Depth";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(4):after {
+		visibility: visible;
+		content: "Secchi Depth";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(5):after {
+		visibility: visible;
+		content: "Lake Class";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(6):after {
+		visibility: visible;
+		content: "Time";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
       .leaflet-control-layers-selector,.leaflet-container{
         font-size: 1.0em;
       }
