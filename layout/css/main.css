@@ -52,12 +52,14 @@ header img{
 .captionContainer{
   padding:15px;
   min-height:50px;
+  text-align:center;
 }
 
 .caption{
   padding:15px;
   background:rgb(200,200,200);
   background:rgba(200,200,200,.5);
+  font-size:.9em;
 }
 
 .insetPictureContainer{
@@ -172,7 +174,7 @@ header img{
 	
 .list li{
 	margin-bottom:15px;
-	font-size:1.5em;
+	font-size:1.2em;
 	}
 		
 /*Section CSS*/
@@ -209,6 +211,10 @@ footer{
   .captionContainer{
     width:760px;
     margin:0 auto;
+  }
+  
+  .caption{
+    font-size:1.2em;
   }
   
   .insetPictureContainer{
@@ -274,6 +280,10 @@ footer{
 	.list{
 		width:730px;
 		margin:0 auto;
+	}
+	
+	.list li{
+	  font-size:1.5em;
 	}
 		
 }
