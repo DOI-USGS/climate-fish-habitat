@@ -201,6 +201,8 @@ header img{
 footer{
 	background:rgb(0,51,102);
 	min-height:400px;
+	font-size: 1.2em;
+	color:#fff;
 	border-top:5px solid rgb(210,210,210);
 	}
 	
