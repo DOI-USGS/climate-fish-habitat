@@ -18,14 +18,15 @@ visualizeData.visualizeFutureWarming <- function(processedFutureWarming, outfile
   
   plot(1, NA, ylim=c(2200,3300), xlim=c(0.75,3.25), xaxt='n', xlab='Years', ylab='Degree Days')
   
-  points(med_gdd~periodi, all_period_gdd, pch=16, col=rgb(0.5,0.5,0.5,0.2), cex=0.5)
+  #points(med_gdd~periodi, all_period_gdd, pch=16, col=rgb(0.5,0.5,0.5,0.2), cex=0.5)
   
   for(i in 1:length(lakeids)){
     lakedata = subset(all_period_gdd, lakeid==lakeids[i])
     points(med_gdd~periodi, lakedata, pch=16, col=cols[i])
     lines(med_gdd~periodi, lakedata, lty=3, col=cols[i])
     
-    text(min(lakedata$periodi), min(lakedata$med_gdd), labels = lakenames[i], pos=3, cex=1.5)
+    text(min(lakedata$periodi), min(lakedata$med_gdd), labels = lakenames[i], pos=3, 
+         cex=1.5, col=cols[i])
     
   }
   
