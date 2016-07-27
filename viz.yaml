@@ -62,6 +62,7 @@ data:
     id: siteTextData
     location: data/siteText.yaml
     mimeType: text/yaml
+    
 images:
   -
     id: fishGDDFig
@@ -136,29 +137,10 @@ fetch:
     mimeType: text/csv
     export: false
   -
-    id: futureTempsA2
-    location: cache/fetch/ar4_tas-gm_a2.zip
-    args:
-      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a2.zip
-    fetcher: url
-    mimeType: application/zip
-    export: false
-  -
-    id: futureTempsB1
-    location: cache/fetch/ar4_tas-gm_b1.zip
-    args:
-      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_b1.zip
-    fetcher: url
-    mimeType: application/zip
-    export: false
-  -
-    id: futureTempsA1B
-    location: cache/fetch/ar4_tas-gm_a1b.zip
-    args:
-      remoteURL: http://www.ipcc-data.org/data/ar4_tas-gm_a1b.zip
-    fetcher: url
-    mimeType: application/zip
-    export: false
+    id: futureGDD
+    location: data/future_gdd.csv 
+    mimeType: text/csv
+    
 process:
   -
     id: processedWallyTrends
@@ -182,18 +164,13 @@ process:
     processor: processFutureSuitability
     mimeType: RDS
   -
-    id: folderFutureTemps
-    location: cache/process/futureTemps
-    depends: [futureTempsA2, futureTempsB1, futureTempsA1B]
-    processor: unzip
-    mimeType: folder
-  -
     id: processedFutureWarming
     location: cache/process/processedFutureWarming.tsv
-    depends: folderFutureTemps
+    depends: futureGDD
     scripts: scripts/process/processFutureWarming.R
     processor: processFutureWarming
     mimeType: text/tab-separated-values
+    
 visualize:
   -
     id: wallyTrendsFig
@@ -213,7 +190,7 @@ visualize:
     export: true
   -
     id: futureWarmingFig
-    location: figures/futureWarmingFig.svg
+    location: figures/futureWarmingFig.png
     depends: processedFutureWarming
     scripts: scripts/visualize/visualizeFutureWarming.R
     visualizer: visualizeFutureWarming
