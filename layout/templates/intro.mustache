@@ -1,7 +1,18 @@
-<div class="center">
-	<div class="text">
+<div id="welcome-keynote">
+  <div class="dimmer">
+  </div>
+  <div class="keynote">
 		<h1>{{ welcome }}</h1>
-		<p>{{ welcome-p1 }}</p>
-		<p>{{ welcome-p2 }}</p>
-	</div>
+		<h3>{{ welcome-sub }}</h3>
+ 	</div>
+</div>
+<div class="captionContainer" id="intro">
+  </br>
+  </br>
+  </br>
+		{{#welcome-paragraphs}}  <h1>{{.}}</h1>
+	  {{/welcome-paragraphs}}
+	</br>
+	</br>
+	</br>
 </div>

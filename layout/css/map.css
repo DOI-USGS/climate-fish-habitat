@@ -1,0 +1,117 @@
+      html, body, #map {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+	  #map {
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+      }
+      
+      table caption {
+        display: none;
+      }
+	  
+	  /* hide the fid column from geoserver */
+      table.featureInfo > tbody > tr > th:first-child {
+        display: none;
+      }
+      table.featureInfo > tbody > tr > td:first-child {
+        display: none;
+      }
+     
+	/*hide the column headers */
+	 table.featureInfo > tbody > tr > th:nth-child(2){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(3){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(4){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(5){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(6){
+		visibility:hidden;
+		position:relative;
+	  }	
+	   
+	  /* replace column headers */
+	  table.featureInfo > tbody > tr > th:nth-child(2):after {
+		visibility: visible;
+		content: "Lake Name";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(3):after {
+		visibility: visible;
+		content: "Depth";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(4):after {
+		visibility: visible;
+		content: "Secchi Depth";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(5):after {
+		visibility: visible;
+		content: "Lake Class";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(6):after {
+		visibility: visible;
+		content: "Time";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+      .leaflet-control-layers-selector,.leaflet-container{
+        font-size: 1.0em;
+      }
+      .leaflet-control-wms-legend {
+        display: block;
+        clear: both;
+        padding: 3px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        cursor: auto;
+        text-align: left;
+        background-color: #FFFFFF;
+      }
+      .leaflet-popup-content-wrapper {
+        font-size: 1.5em;
+      }
+      .leaflet-popup-content {
+        margin: 19px 19px;
+      }
+      .leaflet-control-wms-legend:before {
+        content: "Predicted Species Dominance";
+        display: block;
+        color: #000;
+      }

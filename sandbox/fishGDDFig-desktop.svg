@@ -44,12 +44,6 @@
 	      stroke-linecap: round;
 	      stroke-linejoin: round;
 	    }
-		.moveable{
-			cursor: pointer;	
-		}
-		.locked {
-			cursor: default;	
-		}
     </style>
     <script type="text/ecmascript"><![CDATA[
         var svgDoc;
@@ -58,20 +52,17 @@
 		var domainHeight = "443.52";
 		var priorY = null;
 		var priorId = null;
+		var selectedPoint = null;
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
                 var mainDocument = window.parent.document;
             }  
 			var activeFish;
-			var fishArray;
 			var dots;
-			var selectedPoint;
 			var drawnPoints
 			var dotSpace;
-			var hasClicked;
 			resetDefaults()
-			
         };
 
         function wipeChildren(ele){
@@ -83,27 +74,21 @@
 		// reset button and dot classes
   		function resetDefaults(){
 		
-			hasClicked = false;
-			fishArray = ["wally","bass"]
-			drawnPoints = {"wally":[],"bass":[]};
-			activeFish = fishArray[0]
-        	dots = [85,125,165,205,245,285,325,365,405,445,485,525,565,605,645];
-			dotSpace = 20;
+			drawnPoints = [];
+			activeFish = "wally"
+        	dots = [85, 143, 201, 259, 317, 375, 433, 491, 549, 607, 665];
+			dotSpace = 29;
 			svgDoc.getElementById("helper-text").firstChild.data = "Click and drag to draw a line";
 			svgDoc.getElementById("helper-text").setAttribute("opacity","1.0");
         	selectedPoint = null;
 			var wallyG = document.getElementById("wally-dots");
-			var bassG = document.getElementById("bass-dots");
 			var dBox = document.getElementById("domain-boxes");
 			var hBox = document.getElementById("help-boxes");
 			var wTips = document.getElementById("wally-fish-tips");
-			var bTips = document.getElementById("bass-fish-tips");
 			wipeChildren(wallyG);
-			wipeChildren(bassG);
 			wipeChildren(hBox);
 			wipeChildren(dBox);
 			wipeChildren(wTips);
-			wipeChildren(bTips);
 
             for (var i = 0; i < dots.length; i++) {
 				var domainBox = document.createElementNS(document.rootElement.namespaceURI,"rect"); 
@@ -123,16 +108,12 @@
 				newW.setAttributeNS(null, "cy", "0"); 
 				newW.setAttributeNS(null, "class","hidden");
 				newW.setAttributeNS(null, "r", "4");
-				var newB = newW.cloneNode();
 				newW.setAttributeNS(null, "id", "wally-"+i)
-				newB.setAttributeNS(null, "id", "bass-"+i)
 				svgDoc.getElementById("wally-dots").appendChild(newW);
-				svgDoc.getElementById("bass-dots").appendChild(newB);
-				drawnPoints["wally"][i] = false;
-				drawnPoints["bass"][i] = false;
+				drawnPoints[i] = false;
 			}
-			drawnPoints['wally'][0] = true;
-			drawnPoints['wally'][1] = true;
+			drawnPoints[0] = true;
+			drawnPoints[1] = true;
 			svgDoc.getElementById("wally-0").setAttribute('cy','265');
 			svgDoc.getElementById("wally-0").setAttribute('class','enabled');
 			svgDoc.getElementById("wally-1").setAttribute('cy','265');
@@ -152,56 +133,79 @@
 			wTips.appendChild(wallyTxt);
 			wTips.removeAttribute("class");
 
-			drawnPoints['bass'][0] = true;
-			drawnPoints['bass'][1] = true;
-			svgDoc.getElementById("bass-0").setAttribute('cy','425');
-			svgDoc.getElementById("bass-0").setAttribute('class','enabled');
-			svgDoc.getElementById("bass-1").setAttribute('cy','423');
-			svgDoc.getElementById("bass-1").setAttribute('class','enabled');
-
-			var bassTip = document.createElementNS(document.rootElement.namespaceURI,"path");
-			bassTip.setAttributeNS(null, "d", "M"+dots[1]+",425 l15,-22");  
-			var bassTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
-			bassTxt.setAttributeNS(null, "x", dots[1]+19);
-			bassTxt.setAttributeNS(null, "y", "403");
-			bassTxt.setAttributeNS(null, "dy", "-0.33em");
-			bassTxt.setAttributeNS(null, "text-anchor", "middle");
-			bassTxt.setAttributeNS(null, "stroke","none");
-			var textNode = document.createTextNode('Largemouth Bass');
-			bassTxt.appendChild(textNode);
-			bTips.appendChild(bassTip);
-			bTips.appendChild(bassTxt);
-			bTips.removeAttribute("class");
-
 			svgDoc.getElementById('wally-real').setAttribute('class','hidden');
 			svgDoc.getElementById('bass-real').setAttribute('class','hidden');
 			svgDoc.getElementById('modeled-data').setAttribute('class','hidden');
   			svgDoc.getElementById("start-over").setAttribute('class','disabled');
   			svgDoc.getElementById("im-done").setAttribute('class','disabled');
 			svgDoc.getElementById("wally-dots").removeAttribute('class');
-			svgDoc.getElementById("bass-dots").removeAttribute('class');
 			svgDoc.getElementById("wally-line").removeAttribute('class');
-			svgDoc.getElementById("bass-line").removeAttribute('class');
-			for (var i = 0; i < fishArray.length; i++) {
-				drawLine(fishArray[i])
-			}
-  			
+			drawLine(activeFish)
   		}
 
-        function imDone(){
+  		function transferUserPoints(){
+  			var userLine = document.getElementById("user-guess");
+  			var append;
+  			var newPath = "M";
+  			for (var i = 0; i < dots.length; i++) {
+  				var x = svgDoc.getElementById("wally-"+i).getAttribute('cx');
+  				var y = svgDoc.getElementById("wally-"+i).getAttribute('cy');
+  				if (i == dots.length-1){
+  					append = [];
+  				} else {
+  					append = " L";
+  				}
+  				newPath = newPath+Math.round(x)+","+Math.round(y)+append;
+  			}
+			var guessTip = document.createElementNS(document.rootElement.namespaceURI,"path");
+			var x = svgDoc.getElementById("wally-8").getAttribute('cx');
+			var y = svgDoc.getElementById("wally-8").getAttribute('cy');
+			var wallyPath = document.createElementNS(document.rootElement.namespaceURI,"path");
+  			wallyPath.setAttributeNS(null, "d", newPath);
+  			userLine.appendChild(wallyPath);
+			
+			guessTip.setAttributeNS(null, "d", "M"+Math.round(x)+","+Math.round(y)+"l15,-22"); 
+			guessTip.setAttributeNS(null, "stroke-dasharray",'0'); 
+			guessTip.setAttributeNS(null, "stroke-width",'1.5'); 
+			var guessTxt = document.createElementNS(document.rootElement.namespaceURI,"text");
+			guessTxt.setAttributeNS(null, "x", Math.round(x)+15);
+			guessTxt.setAttributeNS(null, "y", Math.round(y)-20);
+			guessTxt.setAttributeNS(null, "dy", "-0.5em");
+			guessTxt.setAttributeNS(null, "text-anchor", "middle");
+			guessTxt.setAttributeNS(null, "stroke","none");
+			guessTxt.setAttributeNS(null, "fill","#01b29F");
+			var textNode = document.createTextNode('Your guess');
+  			guessTxt.appendChild(textNode);
+			userLine.appendChild(guessTip);
+			userLine.appendChild(guessTxt);
+			
+  		}
+		
+		function setBottomFrame(){
 			svgDoc.getElementById('wally-real').setAttribute('class','enabled');
 			svgDoc.getElementById('bass-real').setAttribute('class','enabled');
 			svgDoc.getElementById('modeled-data').setAttribute('class','enabled');
 			svgDoc.getElementById("wally-dots").setAttribute('class','hidden');
-			svgDoc.getElementById("bass-dots").setAttribute('class','hidden');
 			svgDoc.getElementById("wally-line").setAttribute('class','disabled');
-			svgDoc.getElementById("bass-line").setAttribute('class','disabled');
+			svgDoc.getElementById("bass-actual").setAttribute('class','disabled');
 			svgDoc.getElementById('im-done').setAttribute('class','hidden');
-        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
-        	svgDoc.getElementById('start-over').setAttribute('class','hidden');
-        	svg.removeAttribute('onmousedown');
-        	svg.removeAttribute('onmouseup');
-        	svg.removeAttribute('onmousemove');
+			svgDoc.getElementById('start-over').setAttribute('class','hidden');
+			svgDoc.getElementById('skip-ahead').setAttribute('class','hidden');
+			svgDoc.getElementById('start-over').setAttribute('class','hidden');
+			svgDoc.getElementById('drawing-view').setAttribute('class','disabled');
+			svg.removeAttribute('onmousedown');
+    		svg.removeAttribute('onmouseup');
+    		svg.removeAttribute('onmousemove');
+		}
+		
+		function bypassUser(){
+			setBottomFrame()
+			svg.setAttribute("viewBox", "0 550 740 560");
+		}
+
+        function imDone(){
+			setBottomFrame()
+        	transferUserPoints();
         	var initialHeight = svgDoc.getElementById('drawing-view').getBoundingClientRect().height;
         	svg.setAttribute("viewBox", "0 0 740 1150"); 
         	sweepDown(Number(initialHeight)+25); // bump plus a little extra
@@ -212,10 +216,11 @@
         	if (selectedPoint === null) {return}
 			var id = evt.target.getAttribute('id');
 			if (id !== null){
-
 				// capture previous box before deselect, interpolate y w/ skipped x.
 				var i = id.split('-')[1];
-				if (priorId === null){ priorId = i};
+				if (priorId === null){ 
+					priorId = i
+				};
 				var newY = cursorPoint(evt).y;
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 				svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',newY);
@@ -225,7 +230,7 @@
 				}
 				priorY = newY;
 				priorId = i;
-				drawnPoints[activeFish][i]=true;
+				drawnPoints[i]=true;
 			}
 			drawLine();
         };
@@ -238,14 +243,14 @@
         		for (var i = i1+1; i < i0; i++){
         			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y1+step*stepI);
-					drawnPoints[activeFish][i]=true;
+					drawnPoints[i]=true;
         			stepI++;
         		}
         	} else {
         		for (var i = i0+1; i < i1; i++){
         			svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('class','enabled');
 					svgDoc.getElementById(activeFish+"-"+[i]).setAttribute('cy',y0+step*stepI);
-					drawnPoints[activeFish][i]=true;
+					drawnPoints[i]=true;
         			stepI++;
         		}
         	}
@@ -255,18 +260,10 @@
   			return pt.matrixTransform(svg.getScreenCTM().inverse());
 		};
 
-        function fishFinished(){
-        	for (var i = 0; i < dots.length; i++) {
-        		if (drawnPoints[activeFish][i] === false){
-        			return false;
-        		}
-        	}
-        	return true;
-        }
 		
         function canFinish(){
         	for (var i = 0; i < dots.length; i++) {
-        		if (drawnPoints['wally'][i] === false || drawnPoints['bass'][i] === false){
+        		if (drawnPoints[i] === false){
         			return false;
         		}
         	}
@@ -281,12 +278,11 @@
 
         	for (var i = 0; i < dots.length; i++) {
         		var dotEl = svgDoc.getElementById(fish+"-"+[i]);
-        		if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
+        		if (drawnPoints[i] & drawnPoints[i-1]){
         			path = path+"L"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		} else {
         			path = path+"M"+dotEl.getAttribute('cx')+","+dotEl.getAttribute('cy')+" ";
         		}
-        		
         	}
         	svgDoc.getElementById(fish + "-line").setAttribute('d',path);
         	
@@ -294,7 +290,7 @@
         function noneDrawn(){
         	for (var i = 0; i < dots.length; i++) {
         		// don't draw helpers if no points are drawn
-        		if (drawnPoints[activeFish][i]) {return  false;}
+        		if (drawnPoints[i]) {return  false;}
         	}
         	return(true)
         }
@@ -304,7 +300,7 @@
         	if (!noneDrawn()){
         		for (var i = 1; i < dots.length; i++) {
         			var boxEl = svgDoc.getElementById("help-"+[i]);
-        			if (drawnPoints[activeFish][i] & drawnPoints[activeFish][i-1]){
+        			if (drawnPoints[i] & drawnPoints[i-1]){
         				boxEl.setAttribute('opacity','0.0');
         			} else {
         				boxEl.setAttribute('opacity','0.8');
@@ -315,42 +311,9 @@
         	}
         	
         }
-		
-		function switchFish(fish){
-			if (activeFish === fish){
-			// do nothing
-			} else {
-			// let the user know they are changing fish?
-				console.log(fish)
-				newFish()
-			}
-			
-		}
-		
-		function newFish(){
-			var oldFish = activeFish;
-			activeFish = fishArray.pop();
-			fishArray.push(oldFish)
-			fishArray[0] = activeFish;
-		}
 
 		function select(evt){
-			console.log('select')
-			if (hasClicked !== true){
-				var firstClickY = cursorPoint(evt).y;
-				var difWally = Math.abs(firstClickY - svgDoc.getElementById("wally-1").getAttribute('cy'));
-				var difBass = Math.abs(firstClickY - svgDoc.getElementById("bass-1").getAttribute('cy'));
-				if (difWally > difBass & activeFish == 'wally'){
-					switchFish('bass');
-				} 
-				hasClicked=true;
-			}
 			var id = evt.target.getAttribute('id');
-			// allow you to switch to a different active fish
-			if (id !== null && evt.target.getAttribute("class") === "enabled"){
-				var fish = id.split("-")[0];
-				switchFish(fish);
-			} 
 			svgDoc.getElementById(activeFish+"-fish-tips").setAttribute("class","hidden");
 			svgDoc.getElementById("helper-text").setAttribute("opacity","0");
 			selectedPoint = true;
@@ -366,9 +329,7 @@
     			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone()')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
     			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
-			} else if (fishFinished()){
-				newFish();
-        	}
+			} 
 			
             for (var i = 0; i < dots.length; i++) {
             	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
@@ -384,8 +345,8 @@
 			var sweepStep = px/numSteps;
 		    var sweepCount = setInterval(function () {   
 		    	if (i < numSteps){
-		    	parent.window.scrollBy(0, sweepStep);
-				i++
+		    		parent.window.scrollBy(0, sweepStep);
+					i++
 				} else {
                    clearInterval(sweepCount);
 				}}, 20);
@@ -393,10 +354,16 @@
     
     ]]> </script>	
     <g id='drawing-view'>
+		<g id="legend" transform="translate(65,65)" class="legend">
+		    <text x="20" dx="0.75em" y="20" text-anchor="begin" id="legend-walleye-text">Walleye</text>
+		    <path d="M8,13 h20" stroke="rgb(1,178,159)" stroke-width="3"/>
+		    <text x="20" dx="0.75em" y="40" text-anchor="begin" id="legend-bass-text">Bass</text>
+		    <path d="M8,33 h20" stroke="rgb(153,0,0)" stroke-width="3"/>
+		  </g>
     	<g id="help-boxes" fill="#ffffcc"/>
     	<text class='drawing-text' id='helper-text' x='370' y='100' fill='grey' text-anchor='middle'> </text>
+    	<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="5" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-actual'/>
     	<g id="wally-fish-tips" stroke='#01b29F' fill='#01b29F' class='helper-text'/>
-    	<g id="bass-fish-tips" stroke='#990000' fill='#990000'/>
     	<g id="user-data">
 			<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
 			<g id='x-tick-labels' text-anchor="middle">
@@ -422,8 +389,15 @@
 			<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
 			<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
 		</g>
+
 	</g>
 	<g id="modeled-data" transform="translate(0,550)">
+		<g id="legend" transform="translate(66,66)" class="legend">
+		    <text x="20" dx="0.75em" y="20" text-anchor="begin" id="legend-walleye-text">Walleye</text>
+		    <path d="M8,13 h20" stroke="rgb(1,178,159)" stroke-width="3"/>
+		    <text x="20" dx="0.75em" y="40" text-anchor="begin" id="legend-bass-text">Bass</text>
+		    <path d="M8,33 h20" stroke="rgb(153,0,0)" stroke-width="3"/>
+		  </g>
 		<polyline points='82.40,260.46 114.84,265.92 147.29,266.65 179.73,263.10 212.18,279.33 244.62,329.67 277.07,382.31 309.51,404.21 341.96,406.41 374.40,404.84 406.84,380.61 439.29,372.60 471.73,368.27 504.18,366.78 536.62,371.00 569.07,369.73 601.51,366.50 633.96,367.82 666.40,367.86 ' stroke-width="5" clip-path='url(#cp1)' fill="none" stroke='#01b29F' stroke-linejoin="round" id='wally-real'/>
 		<line x1='82.40' y1='502.56' x2='601.51' y2='502.56' style='stroke-width: 0.75;'/>
 		<g id='x-tick-labels' text-anchor="middle">
@@ -449,12 +423,11 @@
 		<path d='M150,490 h-80 l10,-4 m-10,4 l10,4' fill="none" stroke='black'/>
 		<text x='374.4' y='545' text-anchor="middle" style='font-size: 14.00pt; font-family: Arial;'>Growing Degree Days</text>
 		<polyline points='82.40,445.49 114.84,465.48 147.29,421.25 179.73,416.93 212.18,399.78 244.62,374.73 277.07,315.21 309.51,209.99 341.96,203.91 374.40,176.47 406.84,156.21 439.29,139.61 471.73,141.70 504.18,137.50 536.62,135.42 569.07,147.55 601.51,127.95 633.96,147.29 666.40,117.87 ' stroke-width="5" stroke='#990000' stroke-linejoin="round" fill="none" id='bass-real'/>
+		<g id="user-guess" stroke='#01b29F' stroke-width='4' opacity="0.7" stroke-linecap="round" stroke-dasharray="1,5"/>
 	</g>
 	<path fill='none' stroke='#01b29F' stroke-width="4" id="wally-line" />
-	<path fill='none' stroke="#990000" stroke-width="4" id="bass-line" />
 	<g id="domain-boxes" opacity='0'/>
 	<g id="wally-dots" fill='#01b29F'/>
-	<g id="bass-dots" fill="#990000"/>
     <g id='buttons' transform="translate(374.4,570)">
 		<g id='im-done' transform="translate(-180,0)">
       		<rect width="160" height="40" fill="#01b29F"/>
@@ -465,6 +438,11 @@
       		<rect width="160" height="40" fill="grey"/>
       		<text y="20" x="80" dy='0.33em' text-anchor='middle' fill="white">Reset</text>
       		<rect width="160" height="40" opacity="0"/>
+    	</g>
+   	 	<g id='skip-ahead' transform="translate(-315,-40)" class='enabled'>
+      		<rect width="80" height="20" stroke="grey" fill='#ededed' stroke-width='0.5'/>
+      		<text y="10" x="40" dy='0.33em' text-anchor='middle' style='font-size: 10.00pt;'>Skip ahead?</text>
+      		<rect width="80" height="20" opacity="0" onclick='bypassUser()'/>
     	</g>
     </g>
 	<defs>

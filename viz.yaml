@@ -74,10 +74,10 @@ fetch:
     mimeType: text/yaml
   -
     id: wallyTrends
-    location: cache/fetch/year_residuals_adult_walleye_density.csv
+    location: cache/fetch/walleye_age0_annual_means.csv
     args:
       remoteItemId: 5761775ae4b04f417c2d2f78
-      remoteFilename: year_residuals_adult_walleye_density.csv
+      remoteFilename: walleye_age0_annual_means.csv
     fetcher: sciencebase
     mimeType: text/csv
     export: false
@@ -96,6 +96,42 @@ fetch:
     args:
       remoteItemId: 5761775ae4b04f417c2d2f78
       remoteFilename: categories_by_time_period_median_probs.csv
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: futureBassProbs
+    location: cache/fetch/future_lmb_projected_probability.csv
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: future_lmb_projected_probability.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: futureWallyProbs
+    location: cache/fetch/future_wae_projected_probability.csv 
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: future_wae_projected_probability.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: currentBassProbs
+    location: cache/fetch/lmb_water_predicted.csv 
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: lmb_water_predicted.csv 
+    fetcher: sciencebase
+    mimeType: text/csv
+    export: false
+  -
+    id: currentWallyProbs
+    location: cache/fetch/walleye_water_predicted.csv 
+    args:
+      remoteItemId: 5761775ae4b04f417c2d2f78
+      remoteFilename: walleye_water_predicted.csv 
     fetcher: sciencebase
     mimeType: text/csv
     export: false
@@ -170,7 +206,7 @@ visualize:
   -
     id: futureSuitabilityFig
     location: figures/futureSuitabilityFig.svg
-    depends: processedFutureSuitability
+    depends: [processedFutureSuitability, siteTextData]
     scripts: scripts/visualize/visualizeFutureSuitability.R
     visualizer: visualizeFutureSuitability
     mimeType: image/svg+xml

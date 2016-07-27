@@ -10,4 +10,16 @@
 	  {{#futureSuitability-bullets}}  <li>{{.}}</li>
 	  {{/futureSuitability-bullets}}</ul>
 	  <object id="futureSuitability" type="image/svg+xml" class="svgFig" data="futureSuitability-desktop.svg"></object>
+	  <div class="captionContainer">
+	    <p class="caption">{{ futureSuitability-caption }}</p>
+	  </div>
+	  <div class="exploreMore">
+	  <a href="explore/map.html" target="_blank" class="ui-link">
+	    <img src="images/fishMap-thumbnail.gif" alt="Detailed state map of predicted species" id="fishMapExplore">
+	   </a>
+	    <p>{{ futureSuitability-explore }}</p>
+	    <a href="explore/map.html" target="_blank" class="ui-link">
+	      <button id="explore-map" class="extraButton ui-btn ui-shadow ui-corner-all">Explore</button>
+	    </a>
+	  </div>
 </div>

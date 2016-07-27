@@ -1,4 +1,6 @@
 <div id="walleyeDecline-keynote">
+  <div class="dimmer">
+  </div>
   	<div class="keynote">
 		<h2>{{ walleyeDecline-keynote-1 }}</h2>
 		<h2>{{ walleyeDecline-keynote-2 }}</h2>
@@ -10,9 +12,14 @@
 		<ul class='list'>
 	  {{#walleyeDecline-bullets}}  <li>{{.}}</li>
 	  {{/walleyeDecline-bullets}}</ul>
+	  
+	  
 		
-	  <object id="walleyeDeclineSVG" type="image/svg+xml" data="{{ wallyTrendsFig }}">
-    	</object>
+		<object id="walleyeDeclineSVGMobile" class="svgFig" type="image/svg+xml" data="wallyTrendsFigLines-desktop.svg"></object>
+	  <object id="walleyeDeclineSVG" type="image/svg+xml" class="svgSpanner" data="{{ wallyTrendsFig }}"></object>
+	  <div class="captionContainer">
+	    <p class="caption">{{ walleyeDecline-caption }}</p>
+	  </div>
 </div>
 
 

@@ -1,6 +1,6 @@
 /*Header CSS*/
 header{
-	background:rgb(63,136,189);
+	background:rgb(0,51,102);
 	color:#fff;
 	height:32px;
 	padding:8px  0 0 10px;
@@ -9,6 +9,7 @@ header{
 	
 p {
   font-size:1.2em;
+  line-height:1.5em;
 }
 header h3{
 	padding-top:3px;
@@ -20,21 +21,77 @@ header img{
 	margin-right:5px;
 	width:80px;
 	}
-	
+.exploreMore{
+	border:1px solid #003366;
+	padding:10px 10px 0 10px;
+	width:30%;
+	max-width:300px;
+	min-width:200px;
+	text-align:center !important;
+	margin:20px auto 20px auto !important;
+	}
+
+.exploreMore img{
+	width:100%;
+	}	
+.extraButton{
+	background:#003366;
+	color:#fff;
+	padding:5px 15px;
+	border:1px solid #003366;
+	outline:none;
+	font-size:.8em;
+	margin:-10px 0 10px 0;
+	}
+
+.extraButton:hover{
+	background:#fff;
+	color:#003366;
+	border:1px solid #003366;
+	}
+.captionContainer{
+  padding:15px;
+  min-height:50px;
+  text-align:center;
+}
+
+.caption{
+  padding:15px;
+  background:rgb(200,200,200);
+  background:rgba(200,200,200,.5);
+  font-size:.9em;
+}
+
+.insetPictureContainer{
+  min-height:50px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.insetPictureContainer img{
+  width:100%;
+  max-width:650px;
+}
+
 /*Intro*/
 #intro{
 	text-align:center;
-	padding:15px;
+	padding:20px;
 	}
 
-.svgFig {
+
+.svgFig, .svgSpanner {
 	position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+.svgSpanner {
+	min-width: 620px;
+}
 /*Keynote*/
+#welcome-keynote,
 #walleyeDecline-keynote,
 #walleyeBass-keynote,
 #lakeWarming-keynote,
@@ -52,6 +109,16 @@ header img{
 	padding: 0;
 	position:relative;
 	}
+
+.dimmer {
+  background: rgba(0,0,0,.4);
+  height: 100%;
+}
+
+
+#welcome-keynote {
+  background-image: url('../images/welcome-bkg.png');
+}
 
 #walleyeDecline-keynote {
   background-image: url('../images/smallmouth-bkg.jpg');
@@ -86,7 +153,7 @@ header img{
 	min-height:100px;
 	}
 	
-.keynote h2{
+.keynote h2, .keynote h3{
 	font-weight:300;
 	}
 	
@@ -100,15 +167,30 @@ header img{
 	margin-bottom:10px;
 	}
 	
-.list ul{
+.list{
 	margin-left:20px;
+	list-style:square;
 	}
 	
-.list ul li{
-	margin-bottom:10px;
+.list li{
+	margin-bottom:15px;
+	font-size:1.2em;
 	}
 		
 /*Section CSS*/
+
+#walleyeDecline{
+  overflow:hidden;
+  
+}
+
+#walleyeDeclineSVGMobile{
+  display:block;
+}
+
+#walleyeDeclineSVG{
+  display:none;
+}
 
 #walleyeDecline{
 	min-height:10px;
@@ -117,13 +199,40 @@ header img{
 	
 /*Footer CSS*/
 footer{
-	background:rgb(63,136,189);
+	background:rgb(0,51,102);
 	min-height:400px;
 	border-top:5px solid rgb(210,210,210);
 	}
 	
 @media screen and (min-width:768px){
+  
+  .captionContainer{
+    width:760px;
+    margin:0 auto;
+  }
+  
+  .caption{
+    font-size:1.2em;
+  }
+  
+  .insetPictureContainer{
+    width:760px;
+    margin:0 auto 20px auto;
+  }
+  
+  .insetPictureContainer img{
+    max-width:760px;
+  }
+  
+  #walleyeDeclineSVGMobile{
+    display:none;
+  }
 
+  #walleyeDeclineSVG{
+    display:block;
+    overflow:hidden;
+    
+  }
 	
 	/*Header CSS*/
 	#logo{
@@ -135,12 +244,19 @@ footer{
 		padding-top:0;
 		font-size:1.2em;
 	}
-	
+	.svgSpanner {
+	  height: 450px;
+	}
 	.svgFig {
 	  width: 760px;
 	}
 		
 	/*Keynote CSS*/	
+	#welcome-keynote {
+		height:100%;
+		background-attachment:fixed;
+		}
+
 	#walleyeDecline-keynote,
 	#walleyeBass-keynote,
 	#lakeWarming-keynote,
@@ -152,7 +268,7 @@ footer{
 		}
 		
 	.keynote{
-		font-size:1.5em;
+		font-size:2.0em;
 		height:100px;
 		position:absolute;
 		top:0; bottom:0; right:0; left:0;
@@ -160,14 +276,22 @@ footer{
 	
 	/*List CSS*/
 	.list{
-		width:760px;
+		width:730px;
 		margin:0 auto;
 	}
-  
+	
+	.list li{
+	  font-size:1.5em;
+	}
 		
 }
 
 @media screen and (min-width:1024px){
+  
+  .captionContainer,
+  .insetPictureContainer{
+    width:960px;
+  }
 
 	/*Header CSS*/
 	#logo{
@@ -186,4 +310,12 @@ footer{
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
   }
+  .svgSpanner {
+	  height: 720px;
+	  position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+	}
 }
