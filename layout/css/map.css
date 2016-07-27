@@ -59,7 +59,7 @@
 	  
 	  table.featureInfo > tbody > tr > th:nth-child(3):after {
 		visibility: visible;
-		content: "Depth";
+		content: "Time Period";
 		float:left;
 		top: 0;
 		left: 0;
@@ -67,7 +67,7 @@
 	  
 	  table.featureInfo > tbody > tr > th:nth-child(4):after {
 		visibility: visible;
-		content: "Secchi Depth";
+		content: "Lake Class";
 		float:left;
 		top: 0;
 		left: 0;
@@ -75,7 +75,7 @@
 	  
 	  table.featureInfo > tbody > tr > th:nth-child(5):after {
 		visibility: visible;
-		content: "Lake Class";
+		content: "Bass Probability";
 		float:left;
 		top: 0;
 		left: 0;
@@ -83,7 +83,7 @@
 	  
 	  table.featureInfo > tbody > tr > th:nth-child(6):after {
 		visibility: visible;
-		content: "Time";
+		content: "Walleye Probability";
 		float:left;
 		top: 0;
 		left: 0;
