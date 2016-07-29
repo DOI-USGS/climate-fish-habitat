@@ -49,10 +49,32 @@ header img{
 	color:#003366;
 	border:1px solid #003366;
 	}
+.contactScience {
+  font-size: .8em;
+}
+
+a:link {
+    color: #01b29F;
+}
+#teamFaces {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.teamFace {
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+  
+}
+.teamFace img {
+  width: 100%;
+  border:1px solid white;
+}	
 .captionContainer{
   padding:15px;
   min-height:50px;
-  text-align:center;
 }
 
 .caption{
@@ -288,6 +310,10 @@ footer{
 		
 }
 
+#footer p {
+  font-size:0.85em;
+  font-weight: 300;
+}
 @media screen and (min-width:1024px){
   
   .captionContainer,
