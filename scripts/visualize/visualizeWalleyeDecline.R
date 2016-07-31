@@ -5,13 +5,14 @@ svgWallyDecline <- function(object, wallyTxt, bassTxt, filename){
   object$view.1.2$lines$class = 'data-line'
   object$view.1.2[[3]]$class = 'trend-line' # dangerous. Assumes order
   object$view.1.2$lines$id = 'walleye-line'
+  object$view.1.2$rect$id = 'highlight-marker'
   object$view.1.4$lines$class = 'data-line'
   object$view.1.4$lines$id = 'bass-line'
   object$view.1.4[[3]]$class = 'trend-line'
   object$view.1.4$rect$opacity = '0.0'
   object$view.1.4$rect$id = 'hoverboxes'
-  object$view.1.4$rect$onmouseover = paste0(sprintf("wallyLeg(': %s');",wallyTxt),sprintf("bassLeg(': %s');",bassTxt))
-  object$view.1.4$rect$onmouseout = paste0(rep("wallyLeg(' ');",length(wallyTxt)), rep("bassLeg(' ');",length(bassTxt)))
+  object$view.1.4$rect$onmouseover = paste0(sprintf("wallyLeg(': %s');",wallyTxt),sprintf("bassLeg(': %s');",bassTxt),'showBar(evt);')
+  object$view.1.4$rect$onmouseout = paste0(rep("wallyLeg(' ');",length(wallyTxt)), rep("bassLeg(' ');",length(bassTxt)),'hideBar(evt);')
   object$css <- '#tick-labels, #y-title, text {
   \tfont-family: Arial;
 }
@@ -42,6 +43,18 @@ fill-opacity:0.75;
 ecmascript.text <- "
 function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
+}
+function showBar(evt){
+  var tX = evt.target.getAttribute('x');
+  var tWidth = evt.target.getAttribute('width');
+  var width = document.getElementById('highlight-marker').getAttribute('width'); // still getting parent?
+  var xLoc = Number(tX)+Number(tWidth)/2-Number(width)/2;
+  document.getElementById('highlight-marker').setAttribute('opacity','0.2');
+  document.getElementById('highlight-marker').setAttribute('transform','translate('+xLoc+'0)');
+
+}
+function hideBar(evt){
+  document.getElementById('highlight-marker').setAttribute('opacity','0');
 }
 function bassLeg(value){
   document.getElementById('legend-bass-text').firstChild.data='Bass'+value;
@@ -80,10 +93,10 @@ mutateWallyDecline <- function(filename){
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
   n = 60
   set.seed(211)
-  wally.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
+  wally.y = runif(n=n, min = as.numeric(vb[2])+45, max = as.numeric(vb[4])-145)
   wally.x = runif(n=n, min = -550, max = 100)
   wally.s = rnorm(n=n, mean = 1, sd=0.15)
-  bass.y = runif(n=n, min = as.numeric(vb[2])+15, max = as.numeric(vb[4])-15)
+  bass.y = runif(n=n, min = as.numeric(vb[2])+45, max = as.numeric(vb[4])-145)
   bass.x = runif(n=n, min = -100, max = 550)
   bass.s = rnorm(n=n, mean = 1, sd=0.15)
   for (i in 1:n){
@@ -110,21 +123,21 @@ animateWallyDecline <- function(svg, num.fish){
   append.css <- ''
   set.seed(1)
   for (i in 1:num.fish){
-    id.def <- sprintf('#bass-%s {animation: move-bass-%s %ss ease-in-out infinite;}\n#walleye-%s {animation: move-wally-%s %ss ease-in-out infinite;}\n',
+    id.def <- sprintf('#bass-%s {animation: move-bass-%s %ss ease-in-out infinite;}\n#walleye-%s {animation: move-wally-%s %ss ease-in-out infinite;}',
                       i,i,round(runif(n=1, min = 4,max = 20)), i,i, round(runif(n=1, min = 4,max = 20)))
     p.1 <- sprintf('transform: translate(%spx, %spx)', round(rnorm(1, mean = 0, sd=20)), round(rnorm(1, mean = 0, sd=10)))
     p.2 <- sprintf('transform: translate(%spx, %spx)', round(rnorm(1, mean = 0, sd=20)), round(rnorm(1, mean = 0, sd=10)))
     p.3 <- sprintf('transform: translate(%spx, %spx)', round(rnorm(1, mean = 0, sd=20)), round(rnorm(1, mean = 0, sd=10)))
-    ani.def1 <- paste0(sprintf('@keyframes move-bass-%s',i), '{',
-      paste0('0% {',p.1,'}'),
-      paste0('33% {',p.2,'}'),
-      paste0('67% {',p.3,'}'),
-      paste0('100% {',p.1,'}}'))
-    ani.def2 <- paste0(sprintf('@keyframes move-wally-%s',i), '{',
-                       paste0('0% {',p.1,'}'),
-                       paste0('33% {',p.2,'}'),
-                       paste0('67% {',p.3,'}'),
-                       paste0('100% {',p.1,'}}'))
+    ani.def1 <- paste0(sprintf('\n@keyframes move-bass-%s',i), '{',
+      paste0('\n0% {',p.1,'}'),
+      paste0('\n33% {',p.2,'}'),
+      paste0('\n67% {',p.3,'}'),
+      paste0('\n100% {',p.1,'}}'))
+    ani.def2 <- paste0(sprintf('\n@keyframes move-wally-%s',i), '{',
+                       paste0('\n0% {',p.1,'}'),
+                       paste0('\n33% {',p.2,'}'),
+                       paste0('\n67% {',p.3,'}'),
+                       paste0('\n100% {',p.1,'}}\n'))
     append.css <- paste(append.css,id.def, ani.def1,ani.def2, collapse = '\n')
   }
   
@@ -158,6 +171,7 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
     lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.26), side=c(1,4)) %>% 
     lines(c(x0,x1), c(wally.y0,wally.y1),col='#01b29F', lty=3) %>% 
     lines(c(x0,x1), c(bass.y0,bass.y1),col='#990000', lty=3, side=c(1,4)) %>% 
+    rect(wally$Year[1]-0.1, ybottom=0, ytop=68, wally$Year[2]+0.5, side=c(1,2), col='yellow') %>% 
     rect(wally$Year-0.5, ybottom=rep(0,length(wally$Year)), ytop=rep(1.26, length(wally$Year)), wally$Year+0.5, side=c(1,4)) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks.2, labels=y.tcks.2) %>% 
