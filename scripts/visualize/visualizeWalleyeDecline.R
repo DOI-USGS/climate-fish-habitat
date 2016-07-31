@@ -95,7 +95,7 @@ mutateWallyDecline <- function(filename){
                   id="walleye", transform="scale(-0.5,0.5)") %>% 
     xml_add_sibling('path', d="m -84.380212,4.5133995 4.602557,-4.21901102 7.670929,-6.13674198 9.58866,-3.835464 19.177321,-10.7392995 c 0,0 15.341852,-4.986104 23.012782,-5.36965 7.67093,-0.383547 1.91773,-4.986104 1.91773,-4.986104 l 2.68483,0.383547 0.38355,-3.835465 2.68482,2.684825 4.2190103,-4.986103 0.76709,3.451918 4.60256,-6.136743 1.53419,-1.150639 1.5341800262923,0 -1.5341800262923,4.602557 5.36965,-2.684825 1.53418,1.917732 -1.53418,3.068371 4.60255,-0.767093 -0.38354,3.068372 2.6848197,0 0.7671,2.301278 3.06837,-0.767093 1.53418,1.917733 0.38355,0.767092 2.68482,0 1.53419,1.15064 c 0,0 8.43802,-8.054475 18.02668,-10.7393 9.58866,-2.684825 19.17732,1.534186 19.17732,1.534186 0,0 5.7532,2.684825 6.13674,8.054474 0.38355,5.36965 0.7671,8.054475 -0.76709,9.588661 -1.53418,1.534185 -8.82157,2.684825 -8.82157,2.684825 l -0.38354,2.684825 c 0,0 6.13674,2.6848245 15.34185,1.917732 9.20512,-0.767093 9.58866,-0.767093 9.58866,-0.767093 l 9.97221,-5.753196 c 0,0 12.657033,-7.670929 17.259593,-8.054475 4.60256,-0.383547 5.7532,0 5.7532,0 0,0 4.9861,5.753196 4.60255,9.205114 -0.38354,3.451918 -5.75319,8.8215675 -6.90383,11.8899395 -1.15064,3.06837098 0.76709,6.520289 0.76709,6.520289 0,0 4.60256,6.520286 4.60256,9.9722055 0,3.45192 -1.15064,7.67093 -3.06837,8.82157 -1.91774,1.15064 -6.52029,1.53418 -8.05448,1.15064 -1.53418,-0.38355 -22.245693,-11.5064 -22.245693,-11.5064 0,0 -11.50639,-2.6848195 -19.17732,-1.9177295 -7.67093,0.7670995 -7.28738,2.3012795 -7.28738,2.3012795 l 8.43802,2.68483 c 0,0 2.68482,1.15064 2.68482,2.68482 0,1.53419 -0.76709,9.20511 -3.06837,11.88994 -2.30128,2.68482 -5.7532,5.7532 -10.35575,5.7532 -4.60256,0 -11.88994,-3.45192 -11.88994,-3.45192 L 27.615337,25.992 26.081157,23.30717 c 0,0 -2.30128,1.53419 -12.27349,2.68483 -9.9721997,1.15064 -30.30016,-0.76709 -30.30016,-0.76709 0,0 7.2873803,1.91773 8.4380203,3.45191 1.15064,1.53419 1.15064,4.98611 1.15064,4.98611 0,0 0.38354,2.68482 1.15064,4.21901 0.76709,1.53418 0.76709,5.36965 -1.15064,4.9861 -1.91773,-0.38355 -10.3557603,-4.9861 -13.0405803,-8.43802 -2.68483,-3.45192 -5.36965,-7.28738 -5.36965,-7.28738 0,0 -17.25959,0.76709 -19.560868,-0.38355 -2.301278,-1.15064 -14.191217,-4.60256 -14.191217,-4.60256 0,0 -5.753196,-0.38354 -9.205114,-1.15063 -3.451918,-0.7671 -9.972207,-4.60256 -9.972207,-4.60256 l -6.520289,-5.7532 c 0,0 -1.917732,-0.38354 -2.301278,-1.9177295 -0.383547,-1.534186 2.684824,-4.219011 2.684824,-4.219011 z",
                                           id="bass", transform="scale(0.5,0.5)")
-  svg <- animateWallyDecline(svg)
+  svg <- animateWallyDecline(svg, num.fish=n)
   #svg <- addMousers(svg)
   write_xml(svg, filename)
 }
@@ -103,69 +103,32 @@ mutateWallyDecline <- function(filename){
 addMousers <- function(svg){
   
 }
-animateWallyDecline <- function(svg){
-  distCalc <- function(id){
-    path <- xml_find_first(svg, sprintf("//*[local-name()='path'][@id='%s']",id)) %>% xml_attr('d')
-    datapoints <- strsplit(gsub('M','', path),'[ ]')[[1]]
-    t.length <- c(0)
-    for (i in 2:length(datapoints)){
-      pt.1 <- as.numeric(strsplit(datapoints[i-1],'[,]')[[1]])
-      pt.2 <- as.numeric(strsplit(datapoints[i],'[,]')[[1]])
-      t.length[i] <- t.length[i-1] + sqrt((pt.2[1]-pt.1[1])^2+(pt.2[2]-pt.1[2])^2)
-    }
-    return(t.length)
-  }
-  yVal <- function(id){
-    path <- xml_find_first(svg, sprintf("//*[local-name()='path'][@id='%s']",id)) %>% xml_attr('d')
-    datapoints <- strsplit(gsub('M','', path),'[ ]')[[1]]
-    y <- unname(sapply(datapoints, function(x) as.numeric(strsplit(x,'[,]')[[1]][2])))
-    return(y)
-  }
-  ani.time <- '12s'
+animateWallyDecline <- function(svg, num.fish){
+  
   style.nd <- xml_find_first(svg,"//*[local-name()='style']")
   css.text <- xml_text(style.nd)
-  start.i <- 4 #where to start animation path
-  w.length <- distCalc('walleye-line')
-  wally.line <- sprintf("#walleye-line {
-    stroke-dasharray: %s;
-    stroke-dashoffset: %s;
-    animation: dash-walleye %s linear forwards;
-  }", crd(tail(w.length,1)),crd(tail(w.length,1)), ani.time)
-  b.length <- distCalc('bass-line')
-  bass.line <- sprintf("#bass-line {
-    stroke-dasharray: %s;
-     stroke-dashoffset: %s;
-    animation: dash-bass %s linear forwards;
-  }", crd(tail(b.length,1)),crd(tail(b.length,1)), ani.time)
-  min.len <- min(c(length(w.length), length(b.length)))
-  perc <- crd(seq(0,100, length.out = min.len))
-  wally.ani <- paste0("@keyframes dash-walleye {\n", 
-                      paste(perc, sprintf("{stroke-dashoffset: %s}",crd(tail(tail(w.length,1)-w.length, min.len))), sep='% ', collapse = '\n'),
-                      '}')
- 
-  bass.ani <-  paste0("@keyframes dash-bass {\n", 
-                      paste(perc, sprintf("{stroke-dashoffset: %s}",crd(tail(tail(b.length,1)-b.length, min.len))), sep='% ', collapse = '\n'),
-                      '}')
+  append.css <- ''
+  set.seed(1)
+  for (i in 1:num.fish){
+    id.def <- sprintf('#bass-%s {animation: move-bass-%s %ss ease-in-out infinite;}\n#walleye-%s {animation: move-wally-%s %ss ease-in-out infinite;}\n',
+                      i,i,round(runif(n=1, min = 4,max = 20)), i,i, round(runif(n=1, min = 4,max = 20)))
+    p.1 <- sprintf('transform: translate(%spx, %spx)', round(rnorm(1, mean = 0, sd=20)), round(rnorm(1, mean = 0, sd=10)))
+    p.2 <- sprintf('transform: translate(%spx, %spx)', round(rnorm(1, mean = 0, sd=20)), round(rnorm(1, mean = 0, sd=10)))
+    p.3 <- sprintf('transform: translate(%spx, %spx)', round(rnorm(1, mean = 0, sd=20)), round(rnorm(1, mean = 0, sd=10)))
+    ani.def1 <- paste0(sprintf('@keyframes move-bass-%s',i), '{',
+      paste0('0% {',p.1,'}'),
+      paste0('33% {',p.2,'}'),
+      paste0('67% {',p.3,'}'),
+      paste0('100% {',p.1,'}}'))
+    ani.def2 <- paste0(sprintf('@keyframes move-wally-%s',i), '{',
+                       paste0('0% {',p.1,'}'),
+                       paste0('33% {',p.2,'}'),
+                       paste0('67% {',p.3,'}'),
+                       paste0('100% {',p.1,'}}'))
+    append.css <- paste(append.css,id.def, ani.def1,ani.def2, collapse = '\n')
+  }
   
-  b.y <- rev(yVal('bass-line'))
-  b.y <- (b.y - mean(b.y))/10
-  w.y <- rev(yVal('walleye-line'))
-  w.y <- (w.y - mean(w.y))/-5
-  bass.shift <- paste0("@keyframes shift-bass { 
-                         0%  {transform: translateX(850px)}
-                         100% {transform: translateX(800px)}
-                        }",
-  sprintf("#all-bass {
-    animation: shift-bass %s linear forwards;
-  }", ani.time))
-  wally.shift <- paste0("@keyframes shift-wally { 
-                         0%  {transform: translateX(-100px)}
-                         100% {transform: translateX(-150px)}
-                        }",
-  sprintf("#all-walleye {
-    animation: shift-wally %s linear forwards;
-  }", ani.time))
-  css.text <- paste(css.text, wally.line, bass.line, wally.ani, bass.ani, bass.shift, wally.shift, collapse='\n')
+  css.text <- paste(css.text, append.css, collapse='\n')
   xml_text(style.nd) <- css.text
   return(svg)
 }

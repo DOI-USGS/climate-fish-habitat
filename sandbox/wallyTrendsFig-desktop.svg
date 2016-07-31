@@ -3,12 +3,6 @@
   <style>#tick-labels, #y-title, text {
   	font-family: Arial;
 }
-@media all and (max-width: 200px) {
-            .background-bass, .background-walleye {
-                opacity: 0;
-				fill-opacity:0;
-            }
-        }
 .data-line {
 
 	stroke-linejoin: round;
@@ -18,7 +12,7 @@
 #tick-labels {
 	font-size: 10.00pt; 
 }
-#y-title, #x-title {
+#y-title, #x-title, .legend {
 	font-size: 14.00pt; 
 }
 .background-walleye {
@@ -33,67 +27,127 @@ stroke:white;
 stroke-width:2;
 fill-opacity:0.75;
 }
- #walleye-line {
-    stroke-dasharray: 1747.307;
-    stroke-dashoffset: 1747.307;
-    animation: dash-walleye 15s linear forwards;
-  } #bass-line {
-    stroke-dasharray: 1564.094;
-     stroke-dashoffset: 1564.094;
-    animation: dash-bass 15s linear forwards;
-  } @keyframes dash-walleye {
-0% {stroke-dashoffset: 1407.812}
-5% {stroke-dashoffset: 1371.799}
-10% {stroke-dashoffset: 1169.054}
-15% {stroke-dashoffset: 1125.988}
-20% {stroke-dashoffset: 1070.136}
-25% {stroke-dashoffset: 1041.563}
-30% {stroke-dashoffset: 944.293}
-35% {stroke-dashoffset: 765.252}
-40% {stroke-dashoffset: 710.605}
-45% {stroke-dashoffset: 549.404}
-50% {stroke-dashoffset: 501.671}
-55% {stroke-dashoffset: 469.368}
-60% {stroke-dashoffset: 424.53}
-65% {stroke-dashoffset: 380.997}
-70% {stroke-dashoffset: 352.242}
-75% {stroke-dashoffset: 296.938}
-80% {stroke-dashoffset: 265.233}
-85% {stroke-dashoffset: 176.371}
-90% {stroke-dashoffset: 83.042}
-95% {stroke-dashoffset: 28.498}
-100% {stroke-dashoffset: 0}} @keyframes dash-bass {
-0% {stroke-dashoffset: 1564.094}
-5% {stroke-dashoffset: 1364.688}
-10% {stroke-dashoffset: 1189.6}
-15% {stroke-dashoffset: 1134.722}
-20% {stroke-dashoffset: 1083.524}
-25% {stroke-dashoffset: 982.177}
-30% {stroke-dashoffset: 938.437}
-35% {stroke-dashoffset: 903.883}
-40% {stroke-dashoffset: 853.577}
-45% {stroke-dashoffset: 733.113}
-50% {stroke-dashoffset: 684.002}
-55% {stroke-dashoffset: 641.205}
-60% {stroke-dashoffset: 566.164}
-65% {stroke-dashoffset: 502.825}
-70% {stroke-dashoffset: 416.908}
-75% {stroke-dashoffset: 347.036}
-80% {stroke-dashoffset: 276.163}
-85% {stroke-dashoffset: 219.61}
-90% {stroke-dashoffset: 175.917}
-95% {stroke-dashoffset: 116.343}
-100% {stroke-dashoffset: 0}} @keyframes shift-bass { 
-                         0%  {transform: translateX(850px)}
-                         100% {transform: translateX(800px)}
-                        }#all-bass {
-    animation: shift-bass 15s linear forwards;
-  } @keyframes shift-wally { 
-                         0%  {transform: translateX(-100px)}
-                         100% {transform: translateX(-150px)}
-                        }#all-walleye {
-    animation: shift-wally 15s linear forwards;
-  }</style>
+  #bass-1 {animation: move-bass-1 8s ease-in-out infinite;}
+#walleye-1 {animation: move-wally-1 10s ease-in-out infinite;}
+ @keyframes move-bass-1{0% {transform: translate(4px, -8px)}33% {transform: translate(32px, 3px)}67% {transform: translate(-16px, 5px)}100% {transform: translate(4px, -8px)}} @keyframes move-wally-1{0% {transform: translate(4px, -8px)}33% {transform: translate(32px, 3px)}67% {transform: translate(-16px, 5px)}100% {transform: translate(4px, -8px)}} #bass-2 {animation: move-bass-2 16s ease-in-out infinite;}
+#walleye-2 {animation: move-wally-2 12s ease-in-out infinite;}
+ @keyframes move-bass-2{0% {transform: translate(12px, -3px)}33% {transform: translate(30px, 4px)}67% {transform: translate(-12px, -22px)}100% {transform: translate(12px, -3px)}} @keyframes move-wally-2{0% {transform: translate(12px, -3px)}33% {transform: translate(30px, 4px)}67% {transform: translate(-12px, -22px)}100% {transform: translate(12px, -3px)}} #bass-3 {animation: move-bass-3 18s ease-in-out infinite;}
+#walleye-3 {animation: move-wally-3 9s ease-in-out infinite;}
+ @keyframes move-bass-3{0% {transform: translate(-1px, 0px)}33% {transform: translate(19px, 8px)}67% {transform: translate(12px, 9px)}100% {transform: translate(-1px, 0px)}} @keyframes move-wally-3{0% {transform: translate(-1px, 0px)}33% {transform: translate(19px, 8px)}67% {transform: translate(12px, 9px)}100% {transform: translate(-1px, 0px)}} #bass-4 {animation: move-bass-4 17s ease-in-out infinite;}
+#walleye-4 {animation: move-wally-4 13s ease-in-out infinite;}
+ @keyframes move-bass-4{0% {transform: translate(1px, -20px)}33% {transform: translate(12px, -1px)}67% {transform: translate(-3px, -15px)}100% {transform: translate(1px, -20px)}} @keyframes move-wally-4{0% {transform: translate(1px, -20px)}33% {transform: translate(12px, -1px)}67% {transform: translate(-3px, -15px)}100% {transform: translate(1px, -20px)}} #bass-5 {animation: move-bass-5 9s ease-in-out infinite;}
+#walleye-5 {animation: move-wally-5 12s ease-in-out infinite;}
+ @keyframes move-bass-5{0% {transform: translate(8px, 14px)}33% {transform: translate(-2px, 4px)}67% {transform: translate(-1px, -14px)}100% {transform: translate(8px, 14px)}} @keyframes move-wally-5{0% {transform: translate(8px, 14px)}33% {transform: translate(-2px, 4px)}67% {transform: translate(-1px, -14px)}100% {transform: translate(8px, 14px)}} #bass-6 {animation: move-bass-6 9s ease-in-out infinite;}
+#walleye-6 {animation: move-wally-6 17s ease-in-out infinite;}
+ @keyframes move-bass-6{0% {transform: translate(-8px, -1px)}33% {transform: translate(22px, 8px)}67% {transform: translate(-3px, -3px)}100% {transform: translate(-8px, -1px)}} @keyframes move-wally-6{0% {transform: translate(-8px, -1px)}33% {transform: translate(22px, 8px)}67% {transform: translate(-3px, -3px)}100% {transform: translate(-8px, -1px)}} #bass-7 {animation: move-bass-7 16s ease-in-out infinite;}
+#walleye-7 {animation: move-wally-7 7s ease-in-out infinite;}
+ @keyframes move-bass-7{0% {transform: translate(11px, -7px)}33% {transform: translate(-14px, 4px)}67% {transform: translate(15px, -1px)}100% {transform: translate(11px, -7px)}} @keyframes move-wally-7{0% {transform: translate(11px, -7px)}33% {transform: translate(-14px, 4px)}67% {transform: translate(15px, -1px)}100% {transform: translate(11px, -7px)}} #bass-8 {animation: move-bass-8 17s ease-in-out infinite;}
+#walleye-8 {animation: move-wally-8 14s ease-in-out infinite;}
+ @keyframes move-bass-8{0% {transform: translate(8px, -6px)}33% {transform: translate(7px, -11px)}67% {transform: translate(29px, 20px)}100% {transform: translate(8px, -6px)}} @keyframes move-wally-8{0% {transform: translate(8px, -6px)}33% {transform: translate(7px, -11px)}67% {transform: translate(29px, 20px)}100% {transform: translate(8px, -6px)}} #bass-9 {animation: move-bass-9 10s ease-in-out infinite;}
+#walleye-9 {animation: move-wally-9 11s ease-in-out infinite;}
+ @keyframes move-bass-9{0% {transform: translate(-21px, 6px)}33% {transform: translate(-3px, 24px)}67% {transform: translate(-1px, 7px)}100% {transform: translate(-21px, 6px)}} @keyframes move-wally-9{0% {transform: translate(-21px, 6px)}33% {transform: translate(-3px, 24px)}67% {transform: translate(-1px, 7px)}100% {transform: translate(-21px, 6px)}} #bass-10 {animation: move-bass-10 12s ease-in-out infinite;}
+#walleye-10 {animation: move-wally-10 7s ease-in-out infinite;}
+ @keyframes move-bass-10{0% {transform: translate(-15px, 2px)}33% {transform: translate(-36px, 15px)}67% {transform: translate(3px, 22px)}100% {transform: translate(-15px, 2px)}} @keyframes move-wally-10{0% {transform: translate(-15px, 2px)}33% {transform: translate(-36px, 15px)}67% {transform: translate(3px, 22px)}100% {transform: translate(-15px, 2px)}} #bass-11 {animation: move-bass-11 15s ease-in-out infinite;}
+#walleye-11 {animation: move-wally-11 14s ease-in-out infinite;}
+ @keyframes move-bass-11{0% {transform: translate(-14px, 6px)}33% {transform: translate(-19px, -13px)}67% {transform: translate(6px, -4px)}100% {transform: translate(-14px, 6px)}} @keyframes move-wally-11{0% {transform: translate(-14px, 6px)}33% {transform: translate(-19px, -13px)}67% {transform: translate(6px, -4px)}100% {transform: translate(-14px, 6px)}} #bass-12 {animation: move-bass-12 12s ease-in-out infinite;}
+#walleye-12 {animation: move-wally-12 7s ease-in-out infinite;}
+ @keyframes move-bass-12{0% {transform: translate(1px, -6px)}33% {transform: translate(-11px, -1px)}67% {transform: translate(24px, -15px)}100% {transform: translate(1px, -6px)}} @keyframes move-wally-12{0% {transform: translate(1px, -6px)}33% {transform: translate(-11px, -1px)}67% {transform: translate(24px, -15px)}100% {transform: translate(1px, -6px)}} #bass-13 {animation: move-bass-13 16s ease-in-out infinite;}
+#walleye-13 {animation: move-wally-13 9s ease-in-out infinite;}
+ @keyframes move-bass-13{0% {transform: translate(7px, 11px)}33% {transform: translate(-6px, 4px)}67% {transform: translate(5px, -5px)}100% {transform: translate(7px, 11px)}} @keyframes move-wally-13{0% {transform: translate(7px, 11px)}33% {transform: translate(-6px, 4px)}67% {transform: translate(5px, -5px)}100% {transform: translate(7px, 11px)}} #bass-14 {animation: move-bass-14 18s ease-in-out infinite;}
+#walleye-14 {animation: move-wally-14 12s ease-in-out infinite;}
+ @keyframes move-bass-14{0% {transform: translate(23px, 7px)}33% {transform: translate(32px, 6px)}67% {transform: translate(-26px, -6px)}100% {transform: translate(23px, 7px)}} @keyframes move-wally-14{0% {transform: translate(23px, 7px)}33% {transform: translate(32px, 6px)}67% {transform: translate(-26px, -6px)}100% {transform: translate(23px, 7px)}} #bass-15 {animation: move-bass-15 6s ease-in-out infinite;}
+#walleye-15 {animation: move-wally-15 17s ease-in-out infinite;}
+ @keyframes move-bass-15{0% {transform: translate(-9px, -6px)}33% {transform: translate(1px, -9px)}67% {transform: translate(3px, -7px)}100% {transform: translate(-9px, -6px)}} @keyframes move-wally-15{0% {transform: translate(-9px, -6px)}33% {transform: translate(1px, -9px)}67% {transform: translate(3px, -7px)}100% {transform: translate(-9px, -6px)}} #bass-16 {animation: move-bass-16 19s ease-in-out infinite;}
+#walleye-16 {animation: move-wally-16 6s ease-in-out infinite;}
+ @keyframes move-bass-16{0% {transform: translate(14px, 9px)}33% {transform: translate(8px, 17px)}67% {transform: translate(-13px, -5px)}100% {transform: translate(14px, 9px)}} @keyframes move-wally-16{0% {transform: translate(14px, 9px)}33% {transform: translate(8px, 17px)}67% {transform: translate(-13px, -5px)}100% {transform: translate(14px, 9px)}} #bass-17 {animation: move-bass-17 19s ease-in-out infinite;}
+#walleye-17 {animation: move-wally-17 12s ease-in-out infinite;}
+ @keyframes move-bass-17{0% {transform: translate(-13px, -2px)}33% {transform: translate(-8px, -3px)}67% {transform: translate(-6px, 5px)}100% {transform: translate(-13px, -2px)}} @keyframes move-wally-17{0% {transform: translate(-13px, -2px)}33% {transform: translate(-8px, -3px)}67% {transform: translate(-6px, 5px)}100% {transform: translate(-13px, -2px)}} #bass-18 {animation: move-bass-18 11s ease-in-out infinite;}
+#walleye-18 {animation: move-wally-18 11s ease-in-out infinite;}
+ @keyframes move-bass-18{0% {transform: translate(-10px, 13px)}33% {transform: translate(-4px, -2px)}67% {transform: translate(-2px, 7px)}100% {transform: translate(-10px, 13px)}} @keyframes move-wally-18{0% {transform: translate(-10px, 13px)}33% {transform: translate(-4px, -2px)}67% {transform: translate(-2px, 7px)}100% {transform: translate(-10px, 13px)}} #bass-19 {animation: move-bass-19 12s ease-in-out infinite;}
+#walleye-19 {animation: move-wally-19 14s ease-in-out infinite;}
+ @keyframes move-bass-19{0% {transform: translate(-1px, -7px)}33% {transform: translate(-6px, 1px)}67% {transform: translate(-12px, 5px)}100% {transform: translate(-1px, -7px)}} @keyframes move-wally-19{0% {transform: translate(-1px, -7px)}33% {transform: translate(-6px, 1px)}67% {transform: translate(-12px, 5px)}100% {transform: translate(-1px, -7px)}} #bass-20 {animation: move-bass-20 5s ease-in-out infinite;}
+#walleye-20 {animation: move-wally-20 16s ease-in-out infinite;}
+ @keyframes move-bass-20{0% {transform: translate(6px, -15px)}33% {transform: translate(-6px, -5px)}67% {transform: translate(-13px, -1px)}100% {transform: translate(6px, -15px)}} @keyframes move-wally-20{0% {transform: translate(6px, -15px)}33% {transform: translate(-6px, -5px)}67% {transform: translate(-13px, -1px)}100% {transform: translate(6px, -15px)}} #bass-21 {animation: move-bass-21 4s ease-in-out infinite;}
+#walleye-21 {animation: move-wally-21 12s ease-in-out infinite;}
+ @keyframes move-bass-21{0% {transform: translate(24px, -17px)}33% {transform: translate(-9px, -11px)}67% {transform: translate(-15px, 21px)}100% {transform: translate(24px, -17px)}} @keyframes move-wally-21{0% {transform: translate(24px, -17px)}33% {transform: translate(-9px, -11px)}67% {transform: translate(-15px, 21px)}100% {transform: translate(24px, -17px)}} #bass-22 {animation: move-bass-22 12s ease-in-out infinite;}
+#walleye-22 {animation: move-wally-22 15s ease-in-out infinite;}
+ @keyframes move-bass-22{0% {transform: translate(-26px, -16px)}33% {transform: translate(9px, 0px)}67% {transform: translate(-6px, -9px)}100% {transform: translate(-26px, -16px)}} @keyframes move-wally-22{0% {transform: translate(-26px, -16px)}33% {transform: translate(9px, 0px)}67% {transform: translate(-6px, -9px)}100% {transform: translate(-26px, -16px)}} #bass-23 {animation: move-bass-23 5s ease-in-out infinite;}
+#walleye-23 {animation: move-wally-23 10s ease-in-out infinite;}
+ @keyframes move-bass-23{0% {transform: translate(-22px, 10px)}33% {transform: translate(-12px, -14px)}67% {transform: translate(37px, 4px)}100% {transform: translate(-22px, 10px)}} @keyframes move-wally-23{0% {transform: translate(-22px, 10px)}33% {transform: translate(-12px, -14px)}67% {transform: translate(37px, 4px)}100% {transform: translate(-22px, 10px)}} #bass-24 {animation: move-bass-24 10s ease-in-out infinite;}
+#walleye-24 {animation: move-wally-24 20s ease-in-out infinite;}
+ @keyframes move-bass-24{0% {transform: translate(21px, 9px)}33% {transform: translate(-12px, 22px)}67% {transform: translate(-5px, -14px)}100% {transform: translate(21px, 9px)}} @keyframes move-wally-24{0% {transform: translate(21px, 9px)}33% {transform: translate(-12px, 22px)}67% {transform: translate(-5px, -14px)}100% {transform: translate(21px, 9px)}} #bass-25 {animation: move-bass-25 11s ease-in-out infinite;}
+#walleye-25 {animation: move-wally-25 7s ease-in-out infinite;}
+ @keyframes move-bass-25{0% {transform: translate(4px, 23px)}33% {transform: translate(2px, 5px)}67% {transform: translate(-2px, -3px)}100% {transform: translate(4px, 23px)}} @keyframes move-wally-25{0% {transform: translate(4px, 23px)}33% {transform: translate(2px, 5px)}67% {transform: translate(-2px, -3px)}100% {transform: translate(4px, 23px)}} #bass-26 {animation: move-bass-26 12s ease-in-out infinite;}
+#walleye-26 {animation: move-wally-26 5s ease-in-out infinite;}
+ @keyframes move-bass-26{0% {transform: translate(16px, 21px)}33% {transform: translate(21px, 12px)}67% {transform: translate(-25px, 10px)}100% {transform: translate(16px, 21px)}} @keyframes move-wally-26{0% {transform: translate(16px, 21px)}33% {transform: translate(21px, 12px)}67% {transform: translate(-25px, 10px)}100% {transform: translate(16px, 21px)}} #bass-27 {animation: move-bass-27 13s ease-in-out infinite;}
+#walleye-27 {animation: move-wally-27 17s ease-in-out infinite;}
+ @keyframes move-bass-27{0% {transform: translate(-29px, 5px)}33% {transform: translate(-3px, 15px)}67% {transform: translate(-15px, -4px)}100% {transform: translate(-29px, 5px)}} @keyframes move-wally-27{0% {transform: translate(-29px, 5px)}33% {transform: translate(-3px, 15px)}67% {transform: translate(-15px, -4px)}100% {transform: translate(-29px, 5px)}} #bass-28 {animation: move-bass-28 7s ease-in-out infinite;}
+#walleye-28 {animation: move-wally-28 12s ease-in-out infinite;}
+ @keyframes move-bass-28{0% {transform: translate(-4px, 4px)}33% {transform: translate(-15px, 8px)}67% {transform: translate(-24px, -10px)}100% {transform: translate(-4px, 4px)}} @keyframes move-wally-28{0% {transform: translate(-4px, 4px)}33% {transform: translate(-15px, 8px)}67% {transform: translate(-24px, -10px)}100% {transform: translate(-4px, 4px)}} #bass-29 {animation: move-bass-29 19s ease-in-out infinite;}
+#walleye-29 {animation: move-wally-29 12s ease-in-out infinite;}
+ @keyframes move-bass-29{0% {transform: translate(-20px, 4px)}33% {transform: translate(-8px, 4px)}67% {transform: translate(34px, 16px)}100% {transform: translate(-20px, 4px)}} @keyframes move-wally-29{0% {transform: translate(-20px, 4px)}33% {transform: translate(-8px, 4px)}67% {transform: translate(34px, 16px)}100% {transform: translate(-20px, 4px)}} #bass-30 {animation: move-bass-30 10s ease-in-out infinite;}
+#walleye-30 {animation: move-wally-30 16s ease-in-out infinite;}
+ @keyframes move-bass-30{0% {transform: translate(-46px, 25px)}33% {transform: translate(13px, 5px)}67% {transform: translate(0px, 5px)}100% {transform: translate(-46px, 25px)}} @keyframes move-wally-30{0% {transform: translate(-46px, 25px)}33% {transform: translate(13px, 5px)}67% {transform: translate(0px, 5px)}100% {transform: translate(-46px, 25px)}} #bass-31 {animation: move-bass-31 11s ease-in-out infinite;}
+#walleye-31 {animation: move-wally-31 12s ease-in-out infinite;}
+ @keyframes move-bass-31{0% {transform: translate(8px, -4px)}33% {transform: translate(-27px, 10px)}67% {transform: translate(30px, -3px)}100% {transform: translate(8px, -4px)}} @keyframes move-wally-31{0% {transform: translate(8px, -4px)}33% {transform: translate(-27px, 10px)}67% {transform: translate(30px, -3px)}100% {transform: translate(8px, -4px)}} #bass-32 {animation: move-bass-32 6s ease-in-out infinite;}
+#walleye-32 {animation: move-wally-32 17s ease-in-out infinite;}
+ @keyframes move-bass-32{0% {transform: translate(13px, 0px)}33% {transform: translate(-35px, 0px)}67% {transform: translate(-13px, -3px)}100% {transform: translate(13px, 0px)}} @keyframes move-wally-32{0% {transform: translate(13px, 0px)}33% {transform: translate(-35px, 0px)}67% {transform: translate(-13px, -3px)}100% {transform: translate(13px, 0px)}} #bass-33 {animation: move-bass-33 6s ease-in-out infinite;}
+#walleye-33 {animation: move-wally-33 5s ease-in-out infinite;}
+ @keyframes move-bass-33{0% {transform: translate(36px, -3px)}33% {transform: translate(-32px, 2px)}67% {transform: translate(5px, -10px)}100% {transform: translate(36px, -3px)}} @keyframes move-wally-33{0% {transform: translate(36px, -3px)}33% {transform: translate(-32px, 2px)}67% {transform: translate(5px, -10px)}100% {transform: translate(36px, -3px)}} #bass-34 {animation: move-bass-34 4s ease-in-out infinite;}
+#walleye-34 {animation: move-wally-34 11s ease-in-out infinite;}
+ @keyframes move-bass-34{0% {transform: translate(-13px, 6px)}33% {transform: translate(-1px, -1px)}67% {transform: translate(11px, -12px)}100% {transform: translate(-13px, 6px)}} @keyframes move-wally-34{0% {transform: translate(-13px, 6px)}33% {transform: translate(-1px, -1px)}67% {transform: translate(11px, -12px)}100% {transform: translate(-13px, 6px)}} #bass-35 {animation: move-bass-35 18s ease-in-out infinite;}
+#walleye-35 {animation: move-wally-35 11s ease-in-out infinite;}
+ @keyframes move-bass-35{0% {transform: translate(0px, 7px)}33% {transform: translate(21px, 2px)}67% {transform: translate(-18px, 12px)}100% {transform: translate(0px, 7px)}} @keyframes move-wally-35{0% {transform: translate(0px, 7px)}33% {transform: translate(21px, 2px)}67% {transform: translate(-18px, 12px)}100% {transform: translate(0px, 7px)}} #bass-36 {animation: move-bass-36 4s ease-in-out infinite;}
+#walleye-36 {animation: move-wally-36 19s ease-in-out infinite;}
+ @keyframes move-bass-36{0% {transform: translate(-11px, -3px)}33% {transform: translate(-3px, 10px)}67% {transform: translate(3px, 4px)}100% {transform: translate(-11px, -3px)}} @keyframes move-wally-36{0% {transform: translate(-11px, -3px)}33% {transform: translate(-3px, 10px)}67% {transform: translate(3px, 4px)}100% {transform: translate(-11px, -3px)}} #bass-37 {animation: move-bass-37 12s ease-in-out infinite;}
+#walleye-37 {animation: move-wally-37 20s ease-in-out infinite;}
+ @keyframes move-bass-37{0% {transform: translate(-5px, 7px)}33% {transform: translate(23px, -24px)}67% {transform: translate(11px, 4px)}100% {transform: translate(-5px, 7px)}} @keyframes move-wally-37{0% {transform: translate(-5px, 7px)}33% {transform: translate(23px, -24px)}67% {transform: translate(11px, 4px)}100% {transform: translate(-5px, 7px)}} #bass-38 {animation: move-bass-38 9s ease-in-out infinite;}
+#walleye-38 {animation: move-wally-38 14s ease-in-out infinite;}
+ @keyframes move-bass-38{0% {transform: translate(19px, -4px)}33% {transform: translate(-6px, 9px)}67% {transform: translate(34px, 3px)}100% {transform: translate(19px, -4px)}} @keyframes move-wally-38{0% {transform: translate(19px, -4px)}33% {transform: translate(-6px, 9px)}67% {transform: translate(34px, 3px)}100% {transform: translate(19px, -4px)}} #bass-39 {animation: move-bass-39 9s ease-in-out infinite;}
+#walleye-39 {animation: move-wally-39 8s ease-in-out infinite;}
+ @keyframes move-bass-39{0% {transform: translate(-24px, -3px)}33% {transform: translate(-19px, -3px)}67% {transform: translate(8px, -9px)}100% {transform: translate(-24px, -3px)}} @keyframes move-wally-39{0% {transform: translate(-24px, -3px)}33% {transform: translate(-19px, -3px)}67% {transform: translate(8px, -9px)}100% {transform: translate(-24px, -3px)}} #bass-40 {animation: move-bass-40 20s ease-in-out infinite;}
+#walleye-40 {animation: move-wally-40 10s ease-in-out infinite;}
+ @keyframes move-bass-40{0% {transform: translate(3px, 11px)}33% {transform: translate(-46px, 7px)}67% {transform: translate(-26px, 9px)}100% {transform: translate(3px, 11px)}} @keyframes move-wally-40{0% {transform: translate(3px, 11px)}33% {transform: translate(-46px, 7px)}67% {transform: translate(-26px, 9px)}100% {transform: translate(3px, 11px)}} #bass-41 {animation: move-bass-41 14s ease-in-out infinite;}
+#walleye-41 {animation: move-wally-41 6s ease-in-out infinite;}
+ @keyframes move-bass-41{0% {transform: translate(-8px, 13px)}33% {transform: translate(-14px, -6px)}67% {transform: translate(-20px, -7px)}100% {transform: translate(-8px, 13px)}} @keyframes move-wally-41{0% {transform: translate(-8px, 13px)}33% {transform: translate(-14px, -6px)}67% {transform: translate(-20px, -7px)}100% {transform: translate(-8px, 13px)}} #bass-42 {animation: move-bass-42 17s ease-in-out infinite;}
+#walleye-42 {animation: move-wally-42 12s ease-in-out infinite;}
+ @keyframes move-bass-42{0% {transform: translate(9px, 10px)}33% {transform: translate(-8px, 4px)}67% {transform: translate(5px, -14px)}100% {transform: translate(9px, 10px)}} @keyframes move-wally-42{0% {transform: translate(9px, 10px)}33% {transform: translate(-8px, 4px)}67% {transform: translate(5px, -14px)}100% {transform: translate(9px, 10px)}} #bass-43 {animation: move-bass-43 19s ease-in-out infinite;}
+#walleye-43 {animation: move-wally-43 15s ease-in-out infinite;}
+ @keyframes move-bass-43{0% {transform: translate(3px, 8px)}33% {transform: translate(19px, -1px)}67% {transform: translate(-6px, 9px)}100% {transform: translate(3px, 8px)}} @keyframes move-wally-43{0% {transform: translate(3px, 8px)}33% {transform: translate(19px, -1px)}67% {transform: translate(-6px, 9px)}100% {transform: translate(3px, 8px)}} #bass-44 {animation: move-bass-44 6s ease-in-out infinite;}
+#walleye-44 {animation: move-wally-44 16s ease-in-out infinite;}
+ @keyframes move-bass-44{0% {transform: translate(39px, -4px)}33% {transform: translate(33px, 15px)}67% {transform: translate(2px, 6px)}100% {transform: translate(39px, -4px)}} @keyframes move-wally-44{0% {transform: translate(39px, -4px)}33% {transform: translate(33px, 15px)}67% {transform: translate(2px, 6px)}100% {transform: translate(39px, -4px)}} #bass-45 {animation: move-bass-45 6s ease-in-out infinite;}
+#walleye-45 {animation: move-wally-45 9s ease-in-out infinite;}
+ @keyframes move-bass-45{0% {transform: translate(6px, 10px)}33% {transform: translate(2px, -5px)}67% {transform: translate(-13px, 0px)}100% {transform: translate(6px, 10px)}} @keyframes move-wally-45{0% {transform: translate(6px, 10px)}33% {transform: translate(2px, -5px)}67% {transform: translate(-13px, 0px)}100% {transform: translate(6px, 10px)}} #bass-46 {animation: move-bass-46 18s ease-in-out infinite;}
+#walleye-46 {animation: move-wally-46 10s ease-in-out infinite;}
+ @keyframes move-bass-46{0% {transform: translate(-10px, -1px)}33% {transform: translate(-26px, 5px)}67% {transform: translate(26px, 15px)}100% {transform: translate(-10px, -1px)}} @keyframes move-wally-46{0% {transform: translate(-10px, -1px)}33% {transform: translate(-26px, 5px)}67% {transform: translate(26px, 15px)}100% {transform: translate(-10px, -1px)}} #bass-47 {animation: move-bass-47 17s ease-in-out infinite;}
+#walleye-47 {animation: move-wally-47 8s ease-in-out infinite;}
+ @keyframes move-bass-47{0% {transform: translate(-37px, 5px)}33% {transform: translate(9px, -4px)}67% {transform: translate(3px, -9px)}100% {transform: translate(-37px, 5px)}} @keyframes move-wally-47{0% {transform: translate(-37px, 5px)}33% {transform: translate(9px, -4px)}67% {transform: translate(3px, -9px)}100% {transform: translate(-37px, 5px)}} #bass-48 {animation: move-bass-48 16s ease-in-out infinite;}
+#walleye-48 {animation: move-wally-48 18s ease-in-out infinite;}
+ @keyframes move-bass-48{0% {transform: translate(-7px, -16px)}33% {transform: translate(-7px, 14px)}67% {transform: translate(-7px, 7px)}100% {transform: translate(-7px, -16px)}} @keyframes move-wally-48{0% {transform: translate(-7px, -16px)}33% {transform: translate(-7px, 14px)}67% {transform: translate(-7px, 7px)}100% {transform: translate(-7px, -16px)}} #bass-49 {animation: move-bass-49 17s ease-in-out infinite;}
+#walleye-49 {animation: move-wally-49 12s ease-in-out infinite;}
+ @keyframes move-bass-49{0% {transform: translate(0px, -4px)}33% {transform: translate(-11px, 7px)}67% {transform: translate(-21px, 2px)}100% {transform: translate(0px, -4px)}} @keyframes move-wally-49{0% {transform: translate(0px, -4px)}33% {transform: translate(-11px, 7px)}67% {transform: translate(-21px, 2px)}100% {transform: translate(0px, -4px)}} #bass-50 {animation: move-bass-50 10s ease-in-out infinite;}
+#walleye-50 {animation: move-wally-50 11s ease-in-out infinite;}
+ @keyframes move-bass-50{0% {transform: translate(-45px, -14px)}33% {transform: translate(18px, -2px)}67% {transform: translate(16px, 19px)}100% {transform: translate(-45px, -14px)}} @keyframes move-wally-50{0% {transform: translate(-45px, -14px)}33% {transform: translate(18px, -2px)}67% {transform: translate(16px, 19px)}100% {transform: translate(-45px, -14px)}} #bass-51 {animation: move-bass-51 19s ease-in-out infinite;}
+#walleye-51 {animation: move-wally-51 18s ease-in-out infinite;}
+ @keyframes move-bass-51{0% {transform: translate(14px, 4px)}33% {transform: translate(-4px, 16px)}67% {transform: translate(12px, -12px)}100% {transform: translate(14px, 4px)}} @keyframes move-wally-51{0% {transform: translate(14px, 4px)}33% {transform: translate(-4px, 16px)}67% {transform: translate(12px, -12px)}100% {transform: translate(14px, 4px)}} #bass-52 {animation: move-bass-52 11s ease-in-out infinite;}
+#walleye-52 {animation: move-wally-52 11s ease-in-out infinite;}
+ @keyframes move-bass-52{0% {transform: translate(-38px, -2px)}33% {transform: translate(-52px, 13px)}67% {transform: translate(-13px, -4px)}100% {transform: translate(-38px, -2px)}} @keyframes move-wally-52{0% {transform: translate(-38px, -2px)}33% {transform: translate(-52px, 13px)}67% {transform: translate(-13px, -4px)}100% {transform: translate(-38px, -2px)}} #bass-53 {animation: move-bass-53 11s ease-in-out infinite;}
+#walleye-53 {animation: move-wally-53 5s ease-in-out infinite;}
+ @keyframes move-bass-53{0% {transform: translate(12px, 7px)}33% {transform: translate(11px, -6px)}67% {transform: translate(-27px, -4px)}100% {transform: translate(12px, 7px)}} @keyframes move-wally-53{0% {transform: translate(12px, 7px)}33% {transform: translate(11px, -6px)}67% {transform: translate(-27px, -4px)}100% {transform: translate(12px, 7px)}} #bass-54 {animation: move-bass-54 14s ease-in-out infinite;}
+#walleye-54 {animation: move-wally-54 8s ease-in-out infinite;}
+ @keyframes move-bass-54{0% {transform: translate(-16px, -1px)}33% {transform: translate(-23px, 0px)}67% {transform: translate(3px, -1px)}100% {transform: translate(-16px, -1px)}} @keyframes move-wally-54{0% {transform: translate(-16px, -1px)}33% {transform: translate(-23px, 0px)}67% {transform: translate(3px, -1px)}100% {transform: translate(-16px, -1px)}} #bass-55 {animation: move-bass-55 11s ease-in-out infinite;}
+#walleye-55 {animation: move-wally-55 8s ease-in-out infinite;}
+ @keyframes move-bass-55{0% {transform: translate(35px, 8px)}33% {transform: translate(22px, -9px)}67% {transform: translate(3px, 12px)}100% {transform: translate(35px, 8px)}} @keyframes move-wally-55{0% {transform: translate(35px, 8px)}33% {transform: translate(22px, -9px)}67% {transform: translate(3px, 12px)}100% {transform: translate(35px, 8px)}} #bass-56 {animation: move-bass-56 12s ease-in-out infinite;}
+#walleye-56 {animation: move-wally-56 17s ease-in-out infinite;}
+ @keyframes move-bass-56{0% {transform: translate(-43px, 3px)}33% {transform: translate(-38px, -8px)}67% {transform: translate(26px, 6px)}100% {transform: translate(-43px, 3px)}} @keyframes move-wally-56{0% {transform: translate(-43px, 3px)}33% {transform: translate(-38px, -8px)}67% {transform: translate(26px, 6px)}100% {transform: translate(-43px, 3px)}} #bass-57 {animation: move-bass-57 18s ease-in-out infinite;}
+#walleye-57 {animation: move-wally-57 7s ease-in-out infinite;}
+ @keyframes move-bass-57{0% {transform: translate(6px, -1px)}33% {transform: translate(-18px, 16px)}67% {transform: translate(1px, -7px)}100% {transform: translate(6px, -1px)}} @keyframes move-wally-57{0% {transform: translate(6px, -1px)}33% {transform: translate(-18px, 16px)}67% {transform: translate(1px, -7px)}100% {transform: translate(6px, -1px)}} #bass-58 {animation: move-bass-58 17s ease-in-out infinite;}
+#walleye-58 {animation: move-wally-58 10s ease-in-out infinite;}
+ @keyframes move-bass-58{0% {transform: translate(21px, 19px)}33% {transform: translate(-12px, -4px)}67% {transform: translate(-8px, -4px)}100% {transform: translate(21px, 19px)}} @keyframes move-wally-58{0% {transform: translate(21px, 19px)}33% {transform: translate(-12px, -4px)}67% {transform: translate(-8px, -4px)}100% {transform: translate(21px, 19px)}} #bass-59 {animation: move-bass-59 10s ease-in-out infinite;}
+#walleye-59 {animation: move-wally-59 19s ease-in-out infinite;}
+ @keyframes move-bass-59{0% {transform: translate(-6px, 14px)}33% {transform: translate(-14px, -4px)}67% {transform: translate(13px, 11px)}100% {transform: translate(-6px, 14px)}} @keyframes move-wally-59{0% {transform: translate(-6px, 14px)}33% {transform: translate(-14px, -4px)}67% {transform: translate(13px, 11px)}100% {transform: translate(-6px, 14px)}} #bass-60 {animation: move-bass-60 8s ease-in-out infinite;}
+#walleye-60 {animation: move-wally-60 10s ease-in-out infinite;}
+ @keyframes move-bass-60{0% {transform: translate(-10px, 5px)}33% {transform: translate(20px, -3px)}67% {transform: translate(-29px, 17px)}100% {transform: translate(-10px, 5px)}} @keyframes move-wally-60{0% {transform: translate(-10px, 5px)}33% {transform: translate(20px, -3px)}67% {transform: translate(-29px, 17px)}100% {transform: translate(-10px, 5px)}}</style>
   <g id="all-bass" transform="translate(820,0)" class="background-bass">
     <use x="-57.72" y="74.94" xlink:href="#bass" id="bass-1" transform="scale(0.831441818448988)"/>
     <use x="291.389" y="335.887" xlink:href="#bass" id="bass-2" transform="scale(1.10814623880156)"/>
@@ -228,8 +282,17 @@ fill-opacity:0.75;
       <rect x="36" y="36" height="424.8" width="648" id="axes-box"/>
     </g>
     <g stroke="rgb(1,178,159)" fill="none" clip-path="url(#mask-1-2)">
-      <path d="M36,266.048 64.174,263.355 92.348,323.222 120.522,79.82 148.696,102.252 176.87,303.03 205.043,270.458 233.217,222.233 261.391,217.475 289.565,310.576 317.739,133.766 345.913,180.59 374.087,339.31 402.261,300.778 430.435,316.579 458.609,281.698 486.783,314.885 514.957,309.132 543.13,356.722 571.304,342.182 599.478,257.905 627.652,346.88 655.826,393.584 684,397.871" class="data-line" id="walleye-line"/>
+      <path d="M49.5,274.64 76.5,272.066 103.5,329.291 130.5,96.628 157.5,118.07 184.5,309.99 211.5,278.856 238.5,232.758 265.5,228.21 292.5,317.204 319.5,148.194 346.5,192.952 373.5,344.67 400.5,307.838 427.5,322.941 454.5,289.6 481.5,321.322 508.5,315.823 535.5,361.314 562.5,347.415 589.5,266.856 616.5,351.906 643.5,396.549 670.5,400.647" class="data-line" id="walleye-line"/>
     </g>
+    <g stroke="rgb(1,178,159)" stroke-dasharray="5,5" fill="none" clip-path="url(#mask-1-2)">
+      <path d="M117,224.786 657,357.274" class="trend-line"/>
+    </g>
+  </g>
+  <g id="legend" transform="translate(36,36)" class="legend">
+    <text x="20" dx="0.75em" y="20" text-anchor="begin" id="legend-walleye-text">Walleye</text>
+    <path d="M8,13 h20" stroke="rgb(1,178,159)" stroke-width="3"/>
+    <text x="20" dx="0.75em" y="40" text-anchor="begin" id="legend-bass-text">Bass</text>
+    <path d="M8,33 h20" stroke="rgb(153,0,0)" stroke-width="3"/>
   </g>
   <g id="view-1-4">
     <defs>
@@ -241,22 +304,51 @@ fill-opacity:0.75;
       <rect x="36" y="36" height="424.8" width="648" id="axes-box"/>
     </g>
     <g stroke="rgb(153,0,0)" fill="none" clip-path="url(#mask-1-4)">
-      <path d="M120.522,412.814 148.696,215.408 176.87,388.214 205.043,341.119 233.217,383.867 261.391,286.515 289.565,253.057 317.739,273.062 345.913,314.739 374.087,197.616 402.261,157.391 430.435,125.176 458.609,55.624 486.783,112.352 514.957,193.518 543.13,129.578 571.304,194.61 599.478,243.646 627.652,210.25 655.826,157.759 684,270.639" class="data-line" id="bass-line"/>
+      <path d="M130.5,412.814 157.5,215.408 184.5,388.214 211.5,341.119 238.5,383.867 265.5,286.515 292.5,253.057 319.5,273.062 346.5,314.739 373.5,197.616 400.5,157.391 427.5,125.176 454.5,55.624 481.5,112.352 508.5,193.518 535.5,129.578 562.5,194.61 589.5,243.646 616.5,210.25 643.5,157.759 670.5,270.639" class="data-line" id="bass-line"/>
+    </g>
+    <g stroke="rgb(153,0,0)" stroke-dasharray="5,5" fill="none" clip-path="url(#mask-1-4)">
+      <path d="M117,333.383 657,144.349" class="trend-line"/>
+    </g>
+    <g clip-path="url(#mask-1-4)" opacity="0.0" id="hoverboxes">
+      <rect x="36" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 29.8 (per mile)');bassLeg(':  ');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="63" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 30.2 (per mile)');bassLeg(':  ');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="90" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 21.1 (per mile)');bassLeg(':  ');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="117" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 58.3 (per mile)');bassLeg(': 0.14 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="144" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 54.9 (per mile)');bassLeg(': 0.73 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="171" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 24.1 (per mile)');bassLeg(': 0.22 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="198" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 29.1 (per mile)');bassLeg(': 0.35 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="225" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 36.5 (per mile)');bassLeg(': 0.23 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="252" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 37.2 (per mile)');bassLeg(': 0.52 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="279" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 23.0 (per mile)');bassLeg(': 0.62 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="306" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 50.0 (per mile)');bassLeg(': 0.56 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="333" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 42.9 (per mile)');bassLeg(': 0.43 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="360" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 18.6 (per mile)');bassLeg(': 0.78 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="387" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 24.5 (per mile)');bassLeg(': 0.90 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="414" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 22.1 (per mile)');bassLeg(': 1.00 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="441" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 27.4 (per mile)');bassLeg(': 1.20 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="468" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 22.3 (per mile)');bassLeg(': 1.03 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="495" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 23.2 (per mile)');bassLeg(': 0.79 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="522" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 15.9 (per mile)');bassLeg(': 0.98 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="549" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 18.2 (per mile)');bassLeg(': 0.79 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="576" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 31.0 (per mile)');bassLeg(': 0.64 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="603" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 17.4 (per mile)');bassLeg(': 0.74 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="630" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 10.3 (per mile)');bassLeg(': 0.90 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
+      <rect x="657" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 9.6 (per mile)');bassLeg(': 0.56 (rel)');" onmouseout="wallyLeg(' ');bassLeg(' ');"/>
     </g>
   </g>
   <g id="side-1">
     <g id="axis-side-1">
       <g id="tick-labels" stroke="none" fill="#000000" text-anchor="middle">
-        <text x="148.696" y="460.8" dy="1.0em">1995</text>
-        <text x="289.565" y="460.8" dy="1.0em">2000</text>
-        <text x="430.435" y="460.8" dy="1.0em">2005</text>
-        <text x="571.304" y="460.8" dy="1.0em">2010</text>
+        <text x="157.5" y="460.8" dy="1.0em">1995</text>
+        <text x="292.5" y="460.8" dy="1.0em">2000</text>
+        <text x="427.5" y="460.8" dy="1.0em">2005</text>
+        <text x="562.5" y="460.8" dy="1.0em">2010</text>
       </g>
       <g id="ticks">
-        <path d="M 148.696,460.8 v -5"/>
-        <path d="M 289.565,460.8 v -5"/>
-        <path d="M 430.435,460.8 v -5"/>
-        <path d="M 571.304,460.8 v -5"/>
+        <path d="M 157.5,460.8 v -5"/>
+        <path d="M 292.5,460.8 v -5"/>
+        <path d="M 427.5,460.8 v -5"/>
+        <path d="M 562.5,460.8 v -5"/>
       </g>
       <g id="axis-label" stroke="none" fill="#000000" text-anchor="middle">
         <text x="360" y="460.8" dy="2.0em" id="x-title">Year</text>
@@ -267,21 +359,21 @@ fill-opacity:0.75;
     <g id="axis-side-2">
       <g id="tick-labels" stroke="none" fill="#000000" text-anchor="end">
         <text x="36" y="460.8" dx="-0.33em" dy="0.33em">0</text>
-        <text x="36" y="395.446" dx="-0.33em" dy="0.33em">10</text>
-        <text x="36" y="330.092" dx="-0.33em" dy="0.33em">20</text>
-        <text x="36" y="264.738" dx="-0.33em" dy="0.33em">30</text>
-        <text x="36" y="199.385" dx="-0.33em" dy="0.33em">40</text>
-        <text x="36" y="134.031" dx="-0.33em" dy="0.33em">50</text>
-        <text x="36" y="68.677" dx="-0.33em" dy="0.33em">60</text>
+        <text x="36" y="398.329" dx="-0.33em" dy="0.33em">10</text>
+        <text x="36" y="335.859" dx="-0.33em" dy="0.33em">20</text>
+        <text x="36" y="273.388" dx="-0.33em" dy="0.33em">30</text>
+        <text x="36" y="210.918" dx="-0.33em" dy="0.33em">40</text>
+        <text x="36" y="148.447" dx="-0.33em" dy="0.33em">50</text>
+        <text x="36" y="85.976" dx="-0.33em" dy="0.33em">60</text>
       </g>
       <g id="ticks">
         <path d="M 36,460.8 h 5"/>
-        <path d="M 36,395.446 h 5"/>
-        <path d="M 36,330.092 h 5"/>
-        <path d="M 36,264.738 h 5"/>
-        <path d="M 36,199.385 h 5"/>
-        <path d="M 36,134.031 h 5"/>
-        <path d="M 36,68.677 h 5"/>
+        <path d="M 36,398.329 h 5"/>
+        <path d="M 36,335.859 h 5"/>
+        <path d="M 36,273.388 h 5"/>
+        <path d="M 36,210.918 h 5"/>
+        <path d="M 36,148.447 h 5"/>
+        <path d="M 36,85.976 h 5"/>
       </g>
     </g>
   </g>
@@ -305,6 +397,14 @@ fill-opacity:0.75;
       </g>
     </g>
   </g>
+  <script type="text/ecmascript"><![CDATA[
+function wallyLeg(value){
+  document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
+}
+function bassLeg(value){
+  document.getElementById('legend-bass-text').firstChild.data='Bass'+value;
+}
+]]></script>
   <text x="10" y="25" text-anchor="begin" id="y-title">Walleye recruitment (#/mile)</text>
   <text x="710" y="25" text-anchor="end" id="y-title">Bass relative abundance</text>
   <defs>
