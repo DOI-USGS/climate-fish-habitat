@@ -6,6 +6,7 @@ svgWallyDecline <- function(object, wallyTxt, bassTxt, filename){
   object$view.1.2[[3]]$class = 'trend-line' # dangerous. Assumes order
   object$view.1.2$lines$id = 'walleye-line'
   object$view.1.2$rect$id = 'highlight-marker'
+  object$view.1.2$rect$opacity = '0'
   object$view.1.4$lines$class = 'data-line'
   object$view.1.4$lines$id = 'bass-line'
   object$view.1.4[[3]]$class = 'trend-line'
