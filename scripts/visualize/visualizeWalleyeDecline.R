@@ -45,12 +45,13 @@ function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
 }
 function showBar(evt){
+  document.getElementById('highlight-marker').childNodes[1].setAttribute('width','10');
   var tX = evt.target.getAttribute('x');
   var tWidth = evt.target.getAttribute('width');
-  var width = document.getElementById('highlight-marker').getAttribute('width'); // still getting parent?
+  var width = document.getElementById('highlight-marker').childNodes[1].getAttribute('width');
   var xLoc = Number(tX)+Number(tWidth)/2-Number(width)/2;
   document.getElementById('highlight-marker').setAttribute('opacity','0.2');
-  document.getElementById('highlight-marker').setAttribute('transform','translate('+xLoc+'0)');
+  document.getElementById('highlight-marker').childNodes[1].setAttribute('x',+xLoc);
 
 }
 function hideBar(evt){
