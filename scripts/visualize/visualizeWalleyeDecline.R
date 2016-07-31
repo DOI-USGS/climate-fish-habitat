@@ -46,10 +46,10 @@ function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
 }
 function showBar(evt){
-  document.getElementById('highlight-marker').childNodes[1].setAttribute('width','10');
+  var width = '10';
+  document.getElementById('highlight-marker').childNodes[1].setAttribute('width',width);
   var tX = evt.target.getAttribute('x');
   var tWidth = evt.target.getAttribute('width');
-  var width = document.getElementById('highlight-marker').childNodes[1].getAttribute('width');
   var xLoc = Number(tX)+Number(tWidth)/2-Number(width)/2;
   document.getElementById('highlight-marker').setAttribute('opacity','0.2');
   document.getElementById('highlight-marker').childNodes[1].setAttribute('x',+xLoc);
@@ -64,12 +64,18 @@ function bassLeg(value){
 "
   object$ecmascript.text <- ecmascript.text
   svg <- dinosvg::svg(object, width=10, height=7, file = filename)
-  mutateWallyDecline(filename)
+
+  if (grepl('-mobile', x = filename)){
+    svg <- mutateWallyDecline(filename, mobile=TRUE)
+  } else {
+    svg <- mutateWallyDecline(filename)
+  }
+  write_xml(svg, filename)
 }
   
 library(xml2)
 crd <- dinosvg:::as.crd
-mutateWallyDecline <- function(filename){
+mutateWallyDecline <- function(filename, mobile=FALSE){
   svg <- read_xml(filename)
   ax.lab <- xml_find_first(svg, "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")
   xml_attr(ax.lab, 'id') <- 'x-title'
@@ -81,7 +87,7 @@ mutateWallyDecline <- function(filename){
   y.top = xml_attr(plot.box,'y')
   x.left = xml_attr(plot.box,'x')
   
-  xml_attr(svg, 'viewBox') <- paste(-550, vb[2], as.numeric(vb[3])+1100, vb[4])
+  
   xml_add_child(svg, 'text','Walleye recruitment (#/mile)', x=sprintf("%s",as.numeric(vb[1])+10), y='25', 'text-anchor'="begin", id='y-title')
   xml_add_child(svg, 'text','Bass relative abundance', x=sprintf("%s",as.numeric(vb[3])-10), y='25', 'text-anchor'="end", id='y-title')
   view.1.2 <- xml_find_first(svg, "//*[local-name()='g'][@id='view-1-2']")
@@ -91,6 +97,10 @@ mutateWallyDecline <- function(filename){
   xml_add_child(legend,'text','Bass', x="20", dx="0.75em", y='40','text-anchor'="begin", id='legend-bass-text')
   xml_add_child(legend,'path',d='M8,33 h20', stroke=bass.col, 'stroke-width'='3')
   
+  if (mobile){
+    return(svg)
+  }
+  xml_attr(svg, 'viewBox') <- paste(-550, vb[2], as.numeric(vb[3])+1100, vb[4])
   all.bass <- xml_add_sibling(view.1.2, 'g','id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass', .where = "before")
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
   n = 60
@@ -111,13 +121,9 @@ mutateWallyDecline <- function(filename){
     xml_add_sibling('path', d="m -84.380212,4.5133995 4.602557,-4.21901102 7.670929,-6.13674198 9.58866,-3.835464 19.177321,-10.7392995 c 0,0 15.341852,-4.986104 23.012782,-5.36965 7.67093,-0.383547 1.91773,-4.986104 1.91773,-4.986104 l 2.68483,0.383547 0.38355,-3.835465 2.68482,2.684825 4.2190103,-4.986103 0.76709,3.451918 4.60256,-6.136743 1.53419,-1.150639 1.5341800262923,0 -1.5341800262923,4.602557 5.36965,-2.684825 1.53418,1.917732 -1.53418,3.068371 4.60255,-0.767093 -0.38354,3.068372 2.6848197,0 0.7671,2.301278 3.06837,-0.767093 1.53418,1.917733 0.38355,0.767092 2.68482,0 1.53419,1.15064 c 0,0 8.43802,-8.054475 18.02668,-10.7393 9.58866,-2.684825 19.17732,1.534186 19.17732,1.534186 0,0 5.7532,2.684825 6.13674,8.054474 0.38355,5.36965 0.7671,8.054475 -0.76709,9.588661 -1.53418,1.534185 -8.82157,2.684825 -8.82157,2.684825 l -0.38354,2.684825 c 0,0 6.13674,2.6848245 15.34185,1.917732 9.20512,-0.767093 9.58866,-0.767093 9.58866,-0.767093 l 9.97221,-5.753196 c 0,0 12.657033,-7.670929 17.259593,-8.054475 4.60256,-0.383547 5.7532,0 5.7532,0 0,0 4.9861,5.753196 4.60255,9.205114 -0.38354,3.451918 -5.75319,8.8215675 -6.90383,11.8899395 -1.15064,3.06837098 0.76709,6.520289 0.76709,6.520289 0,0 4.60256,6.520286 4.60256,9.9722055 0,3.45192 -1.15064,7.67093 -3.06837,8.82157 -1.91774,1.15064 -6.52029,1.53418 -8.05448,1.15064 -1.53418,-0.38355 -22.245693,-11.5064 -22.245693,-11.5064 0,0 -11.50639,-2.6848195 -19.17732,-1.9177295 -7.67093,0.7670995 -7.28738,2.3012795 -7.28738,2.3012795 l 8.43802,2.68483 c 0,0 2.68482,1.15064 2.68482,2.68482 0,1.53419 -0.76709,9.20511 -3.06837,11.88994 -2.30128,2.68482 -5.7532,5.7532 -10.35575,5.7532 -4.60256,0 -11.88994,-3.45192 -11.88994,-3.45192 L 27.615337,25.992 26.081157,23.30717 c 0,0 -2.30128,1.53419 -12.27349,2.68483 -9.9721997,1.15064 -30.30016,-0.76709 -30.30016,-0.76709 0,0 7.2873803,1.91773 8.4380203,3.45191 1.15064,1.53419 1.15064,4.98611 1.15064,4.98611 0,0 0.38354,2.68482 1.15064,4.21901 0.76709,1.53418 0.76709,5.36965 -1.15064,4.9861 -1.91773,-0.38355 -10.3557603,-4.9861 -13.0405803,-8.43802 -2.68483,-3.45192 -5.36965,-7.28738 -5.36965,-7.28738 0,0 -17.25959,0.76709 -19.560868,-0.38355 -2.301278,-1.15064 -14.191217,-4.60256 -14.191217,-4.60256 0,0 -5.753196,-0.38354 -9.205114,-1.15063 -3.451918,-0.7671 -9.972207,-4.60256 -9.972207,-4.60256 l -6.520289,-5.7532 c 0,0 -1.917732,-0.38354 -2.301278,-1.9177295 -0.383547,-1.534186 2.684824,-4.219011 2.684824,-4.219011 z",
                                           id="bass", transform="scale(0.5,0.5)")
   svg <- animateWallyDecline(svg, num.fish=n)
-  #svg <- addMousers(svg)
-  write_xml(svg, filename)
+  return(svg)
 }
 
-addMousers <- function(svg){
-  
-}
 animateWallyDecline <- function(svg, num.fish){
   
   style.nd <- xml_find_first(svg,"//*[local-name()='style']")
@@ -178,7 +184,10 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks.2, labels=y.tcks.2) %>% 
     axis(4, at=y.tcks.4, labels=y.tcks.4)
-  svgWallyDecline(gs.trends, wallyTxt = sprintf('%1.1f (per mile)', wally$recruitment), 
-                  bassTxt = c(rep(' ',3), sprintf('%1.2f (rel)', bass$rel.abun)), outfile)
+  for (file in outfile){
+    svgWallyDecline(gs.trends, wallyTxt = sprintf('%1.1f (per mile)', wally$recruitment), 
+                    bassTxt = c(rep(' ',3), sprintf('%1.2f (rel)', bass$rel.abun)), file)
+  }
+  
 }
 
