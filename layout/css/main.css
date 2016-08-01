@@ -100,10 +100,13 @@ a:link {
 	text-align:center;
 	padding:20px;
 	}
-
-
+	
+.svgFig{
+  min-height:200px !important;
+}
+	
 .svgFig, .svgSpanner {
-	position: relative;
+  position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -330,13 +333,9 @@ footer{
 	.list{
 		width:960px;
 	}
+	
 .svgFig {
   	width: 1000px;
-	  position: relative;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
   }
   .svgSpanner {
 	  height: 720px;
