@@ -1,7 +1,11 @@
 # // document.getElementById('data-line').getTotalLength(); then set that value to 'stroke-dasharray', 
 # // animate 'stroke-dashoffset' from that value down to 0. 
 library(XML)
-svgWallyDecline <- function(object, wallyTxt, bassTxt, filename){
+n <- 60
+svgWallyDecline <- function(object, wallyTxt, bassTxt, wallyNorm, bassNorm, filename){
+  
+  mobile <- ifelse(grepl('-mobile', x = filename), TRUE, FALSE)
+  
   object$view.1.2$lines$class = 'data-line'
   object$view.1.2[[3]]$class = 'trend-line' # dangerous. Assumes order
   object$view.1.2$lines$id = 'walleye-line'
@@ -14,8 +18,23 @@ svgWallyDecline <- function(object, wallyTxt, bassTxt, filename){
   object$view.1.4$rect$id = 'hoverboxes'
   object$view.1.4$rect$onmouseover = paste0(sprintf("wallyLeg(': %s');",wallyTxt),sprintf("bassLeg(': %s');",bassTxt),'showBar(evt);')
   object$view.1.4$rect$onmouseout = paste0(rep("wallyLeg(' ');",length(wallyTxt)), rep("bassLeg(' ');",length(bassTxt)),'hideBar(evt);')
+  if (!mobile){
+    object$view.1.4$rect$onmouseover <- paste0(object$view.1.4$rect$onmouseover, 
+                                               sprintf('fadeShapes(%s,%s)', round(wallyNorm*n), round(bassNorm*n)))
+    object$view.1.4$rect$onmouseout <- paste0(object$view.1.4$rect$onmouseout, 
+                                               sprintf('fadeShapes(%s,%s)', n,n))
+  }
   object$css <- '#tick-labels, #y-title, text {
   \tfont-family: Arial;
+  }
+use, .hidden {
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+.hidden { 
+  opacity: 0;
 }
 .data-line {\n
 \tstroke-linejoin: round;
@@ -42,6 +61,18 @@ fill-opacity:0.75;
 }
 '
 ecmascript.text <- "
+function fadeShapes(wallyN, bassN){
+  for (i = 0; i < 60; i++) { 
+    document.getElementById('walleye-'+(i+1)).setAttribute('class','hidden');
+    document.getElementById('bass-'+(i+1)).setAttribute('class','hidden');
+  }
+  for (i = 0; i < wallyN; i++) { 
+    document.getElementById('walleye-'+(i+1)).removeAttribute('class');
+  }
+  for (i = 0; i < bassN; i++) { 
+    document.getElementById('bass-'+(i+1)).removeAttribute('class');
+  }
+}
 function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
 }
@@ -64,18 +95,14 @@ function bassLeg(value){
 "
   object$ecmascript.text <- ecmascript.text
   svg <- dinosvg::svg(object, width=10, height=7, file = filename)
-
-  if (grepl('-mobile', x = filename)){
-    svg <- mutateWallyDecline(filename, mobile=TRUE)
-  } else {
-    svg <- mutateWallyDecline(filename)
-  }
+  
+  svg <- mutateWallyDecline(filename, mobile=mobile, wallyNorm = wallyNorm, bassNorm = bassNorm)
   write_xml(svg, filename)
 }
   
 library(xml2)
 crd <- dinosvg:::as.crd
-mutateWallyDecline <- function(filename, mobile=FALSE){
+mutateWallyDecline <- function(filename, mobile=FALSE, wallyNorm=NULL, bassNorm = NULL){
   svg <- read_xml(filename)
   ax.lab <- xml_find_first(svg, "//*[local-name()='g'][@id='axis-label']/*[local-name()='text']")
   xml_attr(ax.lab, 'id') <- 'x-title'
@@ -103,7 +130,7 @@ mutateWallyDecline <- function(filename, mobile=FALSE){
   xml_attr(svg, 'viewBox') <- paste(-550, vb[2], as.numeric(vb[3])+1100, vb[4])
   all.bass <- xml_add_sibling(view.1.2, 'g','id'='all-bass','transform'=sprintf("translate(%s,0)", as.numeric(vb[3])+100), class='background-bass', .where = "before")
   all.wally <- xml_add_sibling(view.1.2, 'g', 'id'='all-walleye','transform'="translate(-100,0)", class='background-walleye', .where = "before")
-  n = 60
+  
   set.seed(211)
   wally.y = runif(n=n, min = as.numeric(vb[2])+45, max = as.numeric(vb[4])-145)
   wally.x = runif(n=n, min = -550, max = 100)
@@ -179,14 +206,17 @@ visualizeData.visualizeWallyDecline <- function(processedWallyTrends, processedB
     lines(bass$Year, bass$rel.abun, col='#990000', ylim=c(0,1.26), side=c(1,4)) %>% 
     lines(c(x0,x1), c(wally.y0,wally.y1),col='#01b29F', lty=3) %>% 
     lines(c(x0,x1), c(bass.y0,bass.y1),col='#990000', lty=3, side=c(1,4)) %>% 
-    rect(wally$Year[1]-0.1, ybottom=0, ytop=68, wally$Year[2]+0.5, side=c(1,2), col='yellow') %>% 
+    rect(wally$Year[1]-0.1, ybottom=0, ytop=68, wally$Year[2]+0.5, side=c(1,2), col='grey60') %>% 
     rect(wally$Year-0.5, ybottom=rep(0,length(wally$Year)), ytop=rep(1.26, length(wally$Year)), wally$Year+0.5, side=c(1,4)) %>% 
     axis(1, at=x.tcks, labels=x.tcks) %>% 
     axis(2, at=y.tcks.2, labels=y.tcks.2) %>% 
     axis(4, at=y.tcks.4, labels=y.tcks.4)
+  
   for (file in outfile){
     svgWallyDecline(gs.trends, wallyTxt = sprintf('%1.1f (per mile)', wally$recruitment), 
-                    bassTxt = c(rep(' ',3), sprintf('%1.2f (rel)', bass$rel.abun)), file)
+                    bassTxt = c(rep(' ',3), sprintf('%1.2f (rel)', bass$rel.abun)),
+                    wallyNorm = wally$recruitment/max(wally$recruitment), 
+                    bassNorm = c(1,1,1,bass$rel.abun/max(bass$rel.abun)), file)
   }
   
 }
