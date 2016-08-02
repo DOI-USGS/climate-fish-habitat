@@ -57,7 +57,7 @@
         function init(evt) {
             if ( window.svgDocument == null ) {
                 svgDoc = evt.target.ownerDocument;
-                var mainDocument = window.parent.document;
+                mainDocument = window.parent.document;
             }  
 			var activeFish;
 			var dots;
