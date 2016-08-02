@@ -14,7 +14,7 @@ visualizeData.visualizeFutureWarming <- function(processedFutureWarming, outfile
 
   threelake = subset(all_period_gdd, lakeid %in% lakeids)
   
-  png(filename = outfile, width=2600, height=1900, res=300)
+  svg(filename = outfile, width=9, height=7)
   
   plot(1, NA, ylim=c(2200,3300), xlim=c(0.75,3.25), xaxt='n', xlab='Years', ylab='Degree Days')
   
