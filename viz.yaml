@@ -63,11 +63,6 @@ data:
     location: data/siteText.yaml
     mimeType: text/yaml
     
-images:
-  -
-    id: fishGDDFig
-    location: images/draw_lines.svg
-    mimeType: image/svg+xml
 fetch:
   -
     id: siteTextData
@@ -174,7 +169,7 @@ process:
 visualize:
   -
     id: wallyTrendsFig
-    location: figures/wallyTrendsFig.svg
+    location: [figures/wallyTrendsFig-desktop.svg, figures/wallyTrendsFig-mobile.svg]
     depends: [processedWallyTrends, processedBassTrends]
     scripts: scripts/visualize/visualizeWalleyeDecline.R
     visualizer: visualizeWallyDecline
@@ -202,8 +197,7 @@ figures:
     id: fishGDDFig
     type: R
     tags: [desktop]
-    fig.config:
-        col: '#990000'
+
   -
     id: wallyTrendsFig
     type: R

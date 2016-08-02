@@ -29,7 +29,7 @@ walleyeBass-bullets:
   - Water temperature influences the suitability of a lake for walleye and largemouth bass.
   - In general, walleye reproduce more successfully in cooler lakes, and largemouth bass populations are most abundant in warm lakes.
   - Both species exhibit a threshold response to temperature, where small changes in temperature can produce big changes in the fish population.
-  - The temperature threshold separating lakes with successful vs.unsuccessful walleye reproduction is approximately the same threshold separating lakes with low vs. high largemouth bass abundances.
+  - The temperature threshold separating lakes with successful vs. unsuccessful walleye reproduction is approximately the same threshold separating lakes with low vs. high largemouth bass abundances.
   - This means that lakes that are best for walleye are generally worst for largemouth bass, and vice versa.
   - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye can reproduce successfully in large lakes even if they are warm.
 walleyeBass-hint-1: >-
@@ -139,10 +139,10 @@ footer-text: >-
   This research was funded by the Department of the Interior Northeast Climate Science Center, under the proposal 
   "An integrated assessment of lake and stream thermal habitat under climate change", 
   with additional support from Wisconsin DNR Federal Aid in Sport Fish Restoration (Project F-95-P, study SSBW) and 
-  United States Geological Survey National Climate Change and Wildlife Science Center grant10909172 to the University of Wisconsin–Madison
+  United States Geological Survey National Climate Change and Wildlife Science Center grant 10909172 to the University of Wisconsin–Madison.
 footer-team: >-  
   This project is led by Jordan S Read of the U.S. Geological Survey. The project team includes Luke Winslow (USGS), Gretchen Hansen (WI-DNR; MN-DNR), 
-   Pete Jacobson (MN-DNR), Emily Stanley (University of Wisconsin - Madison), Matt Diebel (WI-DNR), and Kevin Wehrly (MI-DNR). 
+   Pete Jacobson (MN-DNR), Emily Stanley (University of Wisconsin - Madison), Matt Diebel (WI-DNR), Megan Hines (USGS), and Kevin Wehrly (MI-DNR). 
 footer-paper: >-    
   The findings shared here are explained in greater detail in a publication entitled "Projected shifts in fish species dominance in Wisconsin
   lakes under climate change" published in XXXX and released on XXXX-XX-XX. The authors include:
