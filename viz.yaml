@@ -185,7 +185,7 @@ visualize:
     export: true
   -
     id: futureWarmingFig
-    location: figures/futureWarmingFig.png
+    location: figures/futureWarmingFig-desktop.svg
     depends: processedFutureWarming
     scripts: scripts/visualize/visualizeFutureWarming.R
     visualizer: visualizeFutureWarming

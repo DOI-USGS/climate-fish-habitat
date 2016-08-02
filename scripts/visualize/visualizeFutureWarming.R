@@ -1,6 +1,7 @@
 
 library(RColorBrewer)
 library(plyr)
+library(xml2)
 
 visualizeData.visualizeFutureWarming <- function(processedFutureWarming, outfile, ...){
 
@@ -14,8 +15,8 @@ visualizeData.visualizeFutureWarming <- function(processedFutureWarming, outfile
 
   threelake = subset(all_period_gdd, lakeid %in% lakeids)
   
-  png(filename = outfile, width=2600, height=1900, res=300)
-  
+  grDevices::svg(filename = outfile, width=9, height=6)
+  par(mai = c(0.8,0.8, 0.2, 0.8))
   plot(1, NA, ylim=c(2200,3300), xlim=c(0.75,3.25), xaxt='n', xlab='Years', ylab='Degree Days')
   
   #points(med_gdd~periodi, all_period_gdd, pch=16, col=rgb(0.5,0.5,0.5,0.2), cex=0.5)
@@ -33,5 +34,9 @@ visualizeData.visualizeFutureWarming <- function(processedFutureWarming, outfile
   axis(1, at=1:3, labels = unlist(lapply(lapply(periods, range), paste, collapse="-")))
   
   dev.off()
-  
+  # svg will auto-scale if you remove the width and height attributes
+  svg <- read_xml(outfile)
+  xml_attr(svg, 'width') <- NULL
+  xml_attr(svg, 'height') <- NULL
+  write_xml(svg, outfile)
 }
