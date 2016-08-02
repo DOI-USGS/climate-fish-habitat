@@ -46,6 +46,7 @@
 	    }
     </style>
     <script type="text/ecmascript"><![CDATA[
+		var mainDocument = null;
         var svgDoc;
         var svg = document.querySelector("svg")
         var pt = svg.createSVGPoint();
@@ -207,7 +208,8 @@
 			setBottomFrame()
         	transferUserPoints();
         	var initialHeight = svgDoc.getElementById('drawing-view').getBoundingClientRect().height;
-        	svg.setAttribute("viewBox", "0 0 740 1150"); 
+        	svg.setAttribute("viewBox", "0 0 740 1150");  
+			mainDocument.firefoxSVGReload('fishGDDFig');
         	sweepDown(Number(initialHeight)+25); // bump plus a little extra
         }
         
