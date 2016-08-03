@@ -88,10 +88,10 @@ fetch:
     export: false
   -
     id: futureSuitability
-    location: cache/fetch/categories_by_time_period_median_probs.csv
+    location: cache/fetch/fish_dominance_categories_by_lake_medians.csv 
     args:
       remoteItemId: 5761775ae4b04f417c2d2f78
-      remoteFilename: categories_by_time_period_median_probs.csv
+      remoteFilename: fish_dominance_categories_by_lake_medians.csv 
     fetcher: sciencebase
     mimeType: text/csv
     export: false
