@@ -14,7 +14,7 @@ processData.processFutureSuitability <- function(futureSuitability, outfile, ...
            fish.change %>% group_by_(period.name) %>% tally %>% ungroup() %>% 
              tidyr::spread_(key=period.name, 'n') %>% mutate(time.period = period.name)
          }, fish.change=fish.change)
-  fish.change.summary <- rbind_all(fish.change.summary)
+  fish.change.summary <- bind_rows(fish.change.summary)
   
   arrows.1 <- group_by(fish.change, X1989.2014) %>% 
     summarize(toCoexistence=sum(X2040.2064 == 'Coexistence'),toWally=sum(X2040.2064 == 'Walleye dominant'), 
