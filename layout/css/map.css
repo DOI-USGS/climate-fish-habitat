@@ -111,7 +111,7 @@
         margin: 19px 19px;
       }
       .leaflet-control-wms-legend:before {
-        content: "Predicted Species Dominance";
+        content: "Predicted Species";
         display: block;
         color: #000;
       }

@@ -33,6 +33,14 @@ walleyeBass-bullets:
   - The temperature threshold separating lakes with successful vs. unsuccessful walleye reproduction is approximately the same threshold separating lakes with low vs. high largemouth bass abundances.
   - This means that lakes with the best habitat for natural walleye reproduction generally do not have the habitat to support high largemouth bass abundance, and vice versa
   - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye can reproduce successfully in large lakes even if they are warm.
+walleyeBass-GDD: >-
+  Lake temperature in this study is measured as growing degree days (GDD). 
+  GDD are a measure of cumulative temperature over the entire open water 
+  season of a lake (from ice-out to ice-on). Higher GDD means warmer water, 
+  lower GDD means cooler water. In this case, we used a base temperature of 
+  5 degrees C (41 degrees F). We calculated GDD for each lake and each year: 
+  for each day that the water temperature was above 5 degrees C, subtract 5 
+  from the water temperature (in C) for that day. GDD is the sum of all of those numbers for the entire year.
 walleyeBass-hint-1: >-
     We're giving you a hint to help you fill out the pattern for Walleye and Largemouth Bass. 
     For the colder lakes in Wisconsin, you are more likely to find Walleye than Bass. Bass are more commonly found in warmer lakes 
@@ -77,9 +85,9 @@ futureSuitability-explore: >-
 
 futureSuitability-fig:
   Walleye: >-
-    %s Walleye dominant lakes
+    %s Walleye lakes
   Bass: >-
-    %s Bass dominant lakes
+    %s Bass lakes
   Neither: >-
     %s lakes where neither Walleye nor Bass are supported
   Coexistence: >-
@@ -94,6 +102,10 @@ futureSuitability-fig:
     %s lakes predicted to support Walleye and Bass
   Bass-Neither: >-
     %s lakes lose Largemouth Bass
+  Bass-Bass: >-
+    %s lakes remain as Bass lakes
+  Walleye-Walleye: >-
+    %s lakes remain as Walleye lakes
   Walleye-Neither: >-
     %s lakes lose Walleye
   Walleye-Bass: >-

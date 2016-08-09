@@ -56,6 +56,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   };'
   
   types <- c('Walleye dominant', 'Coexistence', 'Bass dominant', 'Neither')
+  box.names <- c('Walleye lakes', 'Coexistence', 'Bass lakes', 'Neither')
   colors <- c('Walleye dominant'='#01b29F','Coexistence'='#9932CD','Bass dominant'='#990000','Neither'='grey')
   arrow.cols <- c('Walleye'='#01b29F','Coexistence'='#9932CD','Bass'='#990000','Neither'='grey')
   to.types <- c('toWally', 'toCoexistence', 'toBass', 'toNeither')
@@ -138,15 +139,15 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       svg_node('rect',g.blank,c(width=box.w, height=h[[period.name]][t], y=y[[period.name]][t],
                                 onmousemove=sprintf(paste0("hovertext('",fig.data[[short.name]],"',evt);changeOpacity('%s','1.0');"),formatC(period.data[[type]], format="d", big.mark=','),id),
                                 onmouseout=sprintf("hovertext(' ');changeOpacity('%s','0.8');",id)))
-      
+      box.text = box.names[type == types]
       if (period.data[[type]] < n.threshold[1]){
         if (!mobile) {
-          svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+          svg_node('text',g, c(x=box.w/2, y=y[[period.name]][t], dy="-3", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",box.text)))
         }
       } else if (period.data[[type]] > n.threshold[2]){
-        svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        svg_node('text',g, c(class='medium-text', x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",box.text)))
       } else {
-        svg_node('text',g, c(class='small-text',x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",type)))
+        svg_node('text',g, c(class='small-text',x=box.w/2, y=y[[period.name]][t]+h[[period.name]][t]/2, dy="0.33em", fill='black', stroke='none', 'text-anchor'='middle'), XML::newXMLTextNode(sprintf("%s",box.text)))
       }
       
       
