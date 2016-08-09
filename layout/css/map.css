@@ -147,7 +147,8 @@ h6{margin:0 0 10px 0;}
 }
 
 #popUpTitle h2{
-  padding:7px 0 0 10px;
+  padding:8px 0 0 10px;
+  font-size:1.4em;
 }
 
 #escapeMe{
@@ -191,5 +192,10 @@ h6{margin:0 0 10px 0;}
     width:740px;
     height:615px;
     overflow:visible;
+  }
+  
+  #popUpTitle h2{
+    font-size:1.7em;
+    padding-top:5px;
   }
 }
