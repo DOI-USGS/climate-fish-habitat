@@ -2,6 +2,10 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <!-- ############### VIEWPORT META TAG ############### -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<!-- ################################################# -->
+  
   <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
   <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -9,6 +13,40 @@
   <script src="../js/map.js"></script>
 </head>
 <body>
+  
+  <div id="popUp">
+    <div id="popUpTitle">
+      <h2>PLEASE READ FIRST</h2>
+      <div id="escapeMe">
+        <img src="../images/exitme.png" alt="An X to click and exit popup"/>
+      </div><!--escapeMe-->
+    </div><!--popUpTitle-->
+    <div id="popUpContent">
+      
+      <h3>Welcome to the interactive map for viewing current and future predicted conditions for walleye and largemouth bass in Wisconsin lakes!</h3>
+      
+      <h4>Lakes are colored based on predicted habitat conditions for each species. Double-click on a lake for more information.</h4>
+      
+      <ul>
+        <li>"Walleye lakes” are predicted to have habitat conditions capable of supporting naturally reproducing walleye populations (>49% probability) but not high largemouth bass abundance (<49% probability).</li>
+        <li>"Bass lakes” are predicted to have the habitat conditions capable of supporting high largemouth bass abundance (>49% probability) but not naturally reproducing walleye populations (<49% probability).</li>
+        <li>"Coexistence" lakes are predicted have the habitat conditions capable of supporting both naturally reproducing walleye populations (>49% probability) and high largemouth bass abundance (>49% probability).</li>
+        <li>"Neither" lakes are predicted to support neither naturally reproducing walleye populations (<49% probability) nor high largemouth bass abundance (<49% probability).</li>
+      </ul>
+      
+      <h4>Clicking on a lake will show specific predicted probabilities. It is important to note that some lakes classified as not supporting a given species may in fact contain that species. Also note that some lakes will switch categories based on very small changes in predicted probabilities.</h4>
+      
+      <p>Predictions of species dominance are available for three time periods - contemporary conditions (1989-2014), and two future periods (2040-2064, and 2065-2089).</p>
+      
+      <div id="disclaimer">
+        <h4>Disclaimer: Lake-specific predictions are based on modeled water temperature data and other lake conditions. Future projections are based on a high-end climate change scenario, and are uncertain. Generally, interpreting projections for a specific lake should be done with caution as many factors were not considered (e.g. other fish species, land-use changes, stocking). Projected shifts from a “Walleye lake” to a “Bass lake” should be viewed as a shift in the habitat conditions and fish community as opposed to a certain future state where Largemouth Bass overpopulate the lake.</h4>
+      </div><!--disclaimer-->
+    </div>
+  </div>
+  
+  <div id="aboutMap">About Map</div>
+
 <div id="map" style="width: 100%; height: 100%; position: absolute;"></div>
+
 </body>
 </html>
