@@ -1,4 +1,22 @@
 $(document).ready(function(){
+  
+  $('#escapeMe').on('click', function(){
+    $('#popUp').hide();
+  });
+  $('#aboutMap').on('click', function(event){
+    event.stopPropagation();
+    $('#popUp').show();
+  });
+  //clicking off the popUp hides it
+  $(document).on('click', function(){
+    $('#popUp').hide();
+  });
+  //clicking on the popUp does not hides it
+  $('#popUp').on('click', function(e){
+    e.stopPropagation();
+    return false;
+  });
+  
 //the map and where it centers and sets zoom level
 var map = L.map('map').setView([44.514198, -89.740264], 8);
 

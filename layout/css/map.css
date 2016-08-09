@@ -115,3 +115,112 @@
         display: block;
         color: #000;
       }
+      
+/*Pop up CSS*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{margin:0 0 10px 0;}
+
+#popUp{
+  background:#fff;
+  width:300px;
+  height:400px;
+  overflow:auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index:1000000;
+  border-radius:5px;
+  border:1px solid rgb(153,153,153);
+  font-family:helvetica, sans-serif;
+}
+
+#popUpTitle{
+  background:rgb(220,220,220);
+  height:40px;
+  border-radius:5px 5px 0 0;
+  border-bottom:1px solid rgb(153,153,153);
+  position:relative;
+}
+
+#popUpTitle h2{
+  padding:8px 0 0 10px;
+  font-size:1.4em;
+}
+
+#escapeMe{
+  width:20px;
+  height:20px;
+  position:absolute;
+  right:10px;
+  top:10px;
+}
+
+#escapeMe img{
+  width:100%;
+}
+
+#popUpContent{
+  padding:10px;
+  min-height:100px;
+}
+
+#popUpContent ul{
+  padding:0;
+  margin:10px 0 10px 15px;
+  font-size:.9em;
+}
+
+#popUpContent ul li{
+  margin-bottom:10px;
+}
+
+#disclaimer{
+  background:rgb(200,200,200);
+  padding:10px;
+}
+
+#disclaimer h4{
+  margin:0;
+}
+
+#aboutMap{
+  background:#fff;
+  width:100px;
+  padding:6px 10px;
+  position:absolute;
+  right:10px;
+  top:110px;
+  z-index:9000;
+  font-family:helvetica, sans-serif;
+  border-radius:5px;
+  text-align:center;
+  cursor:pointer;
+  border:1px solid rgb(190,190,190);
+}
+
+#aboutMap:focus{
+  background:rgb(0,51,102);
+  color:#fff;
+}
+
+@media screen and (min-width:768px){
+  #popUp{
+    width:740px;
+    height:615px;
+    overflow:visible;
+  }
+  
+  #popUpTitle h2{
+    font-size:1.7em;
+    padding-top:5px;
+  }
+  
+  #aboutMap:hover{
+    background:rgb(0,51,102);
+    color:#fff;
+  }
+}
