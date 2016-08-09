@@ -115,8 +115,8 @@ mutateWallyDecline <- function(filename, mobile=FALSE, wallyNorm=NULL, bassNorm 
   x.left = xml_attr(plot.box,'x')
   
   
-  xml_add_child(svg, 'text','Walleye recruitment (#/mile)', x=sprintf("%s",as.numeric(vb[1])+10), y='25', 'text-anchor'="begin", id='y-title')
-  xml_add_child(svg, 'text','Bass relative abundance', x=sprintf("%s",as.numeric(vb[3])-10), y='25', 'text-anchor'="end", id='y-title')
+  xml_add_child(svg, 'text','Natural walleye reproduction (# young of year fish per electrofishing mile)', x=sprintf("%s",as.numeric(vb[1])+10), y='25', 'text-anchor'="begin", id='y-title')
+  xml_add_child(svg, 'text','Largemouth bass relative abundance', x=sprintf("%s",as.numeric(vb[3])-10), y='25', 'text-anchor'="end", id='y-title')
   view.1.2 <- xml_find_first(svg, "//*[local-name()='g'][@id='view-1-2']")
   legend <- xml_add_sibling(view.1.2, 'g','id'='legend','transform'=sprintf("translate(%s,%s)", x.left, y.top), class='legend')
   xml_add_child(legend,'text','Walleye', x="20", dx="0.75em", y='20','text-anchor'="begin", id='legend-walleye-text')
