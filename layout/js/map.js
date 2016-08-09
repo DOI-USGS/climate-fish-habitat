@@ -3,6 +3,10 @@ $(document).ready(function(){
   $('#escapeMe').on('click', function(){
     $('#popUp').hide();
   });
+  $('#aboutMap').on('click', function(event){
+    event.stopPropagation();
+    $('#popUp').show();
+  });
   //clicking off the popUp hides it
   $(document).on('click', function(){
     $('#popUp').hide();

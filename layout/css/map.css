@@ -135,7 +135,7 @@ h6{margin:0 0 10px 0;}
   z-index:1000000;
   border-radius:5px;
   border:1px solid rgb(153,153,153);
-  font-family:helvetica;
+  font-family:helvetica, sans-serif;
 }
 
 #popUpTitle{
@@ -187,6 +187,26 @@ h6{margin:0 0 10px 0;}
   margin:0;
 }
 
+#aboutMap{
+  background:#fff;
+  width:100px;
+  padding:6px 10px;
+  position:absolute;
+  right:10px;
+  top:110px;
+  z-index:9000;
+  font-family:helvetica, sans-serif;
+  border-radius:5px;
+  text-align:center;
+  cursor:pointer;
+  border:1px solid rgb(190,190,190);
+}
+
+#aboutMap:focus{
+  background:rgb(0,51,102);
+  color:#fff;
+}
+
 @media screen and (min-width:768px){
   #popUp{
     width:740px;
@@ -197,5 +217,10 @@ h6{margin:0 0 10px 0;}
   #popUpTitle h2{
     font-size:1.7em;
     padding-top:5px;
+  }
+  
+  #aboutMap:hover{
+    background:rgb(0,51,102);
+    color:#fff;
   }
 }
