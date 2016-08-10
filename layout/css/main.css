@@ -102,6 +102,7 @@ a:link {
 	}
 	
 .svgFig{
+  width:100%;
   min-height:200px !important;
 }
 	
@@ -129,7 +130,7 @@ a:link {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-repeat: no-repeat;
-	height: auto;
+	height: 100%;
 	width: 100%;
 	padding: 0;
 	position:relative;
@@ -174,8 +175,10 @@ a:link {
 	color:#fff;
 	font-size:1em;
 	padding:10px;
+	position:absolute;
+	top:0; right:0; left:0; bottom:0;
 	margin:auto;
-	min-height:100px;
+	height:100px;
 	}
 	
 .keynote h2, .keynote h3{
@@ -295,10 +298,7 @@ footer{
 		}
 		
 	.keynote{
-		font-size:2.0em;
-		height:100px;
-		position:absolute;
-		top:0; bottom:0; right:0; left:0;
+		font-size:2em;
 	}
 	
 	/*List CSS*/
