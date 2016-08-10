@@ -10,9 +10,6 @@ visualizeData.visualizeClimateScenarios <- function(outfile, ...){
   
   scenarios = c('a2', 'b1')#, 'a1b')
   
-  rcp_descriptions=c("Low warming scenario (RCP 26)", "Medium warming scenario (RCP 45)", 
-                     "Medium-high warming scenario (RCP 60)", "High warming scenario (RCP 85)")
-  
   read.rcp.temp = function(scenario){
     
     rcpURL = paste0('http://www.ipcc-data.org/data/ar4_tas-gm_', scenario, '.zip')
