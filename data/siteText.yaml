@@ -61,7 +61,11 @@ lakeWarming-bullets:
   - Some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
   - Lake size and depth, water clarity, and surrounding tree cover all influence how lakes respond to climate.
   - Differences in water temperature affect the suitability of a lake's habitat for supporting different fish species.
-
+lakeWarming-caption: >-
+  Lake warming since 1980 across the studied lakes of Wisconsin. The rate of warming is variable across 
+  lakes and depends on geography and the type of lake (clear or dark, large or small). Warming shown here
+  is based on modeled lake temperature for 1980 to 2014. 
+  
 futureWarming-keynote-1: Lakes are expected to get even warmer in the future
 futureWarming-bullets:
  - As air temperatures increase, we expect lake temperatures to increase as well.
@@ -138,11 +142,6 @@ futureWarming-caption: >-
   Lakes will respond differently to climate change depending on their size, depth, water 
   clarity, and starting temperatures, as demonstrated by the different trajectories of Lake 
   Mendota, Green Lake, and Trout Lake.
-  
-lakeWarming-caption: >-
-  Lake warming since 1980 across the studied lakes of Wisconsin. The rate of warming is variable across 
-  lakes and depends on geography and the type of lake (clear or dark, large or small). Warming shown here
-  is based on modeled lake temperature for 1980 to 2014. 
   
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-bullets: 
