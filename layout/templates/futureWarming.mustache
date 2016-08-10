@@ -5,10 +5,16 @@
 </div>
 
 <div id="futureWarming" class="center">
+<ul class='list'>
+	  {{#futureClimate-bullets}}  <li>{{.}}</li>
+	  {{/futureClimate-bullets}}</ul>
+  <object id="futureClimate" class="svgFig" type="image/svg+xml" data="futureClimate-desktop.svg"></object>
+  <div class="captionContainer">
+	    <p class="caption">{{ futureClimate-caption }}</p>
+	  </div>
 	  <ul class='list'>
 	  {{#futureWarming-bullets}}  <li>{{.}}</li>
 	  {{/futureWarming-bullets}}</ul>
-	  <object id="futureClimate" class="svgFig" type="image/svg+xml" data="futureClimate-desktop.svg"></object>
 	  <object id="futureWarming" class="svgFig" type="image/svg+xml" data="futureWarmingFig-desktop.svg"></object>
 	  <div class="captionContainer">
 	    <p class="caption">{{ futureWarming-caption }}</p>

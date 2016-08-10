@@ -67,13 +67,17 @@ lakeWarming-caption: >-
   is based on modeled lake temperature for 1980 to 2014. 
   
 futureWarming-keynote-1: Lakes are expected to get even warmer in the future
+futureClimate-caption: >-
+  Global average air temperatures predicted under two emission scenarios, A2 and B1. The A2 (greater CO2 emissions) 
+  was used for modeling future lake habitat for this project. Variability among Global Climate Models is shown as ribbons.
+futureClimate-bullets:
+  - Scientists agree that the earth will get warmer through the end of the 21st century. However, the amount of warming and how other climate conditions such as precipitation and wind will change is uncertain.
+  - We estimated how water temperatures of Wisconsin lakes would change assuming a relatively large increase in air temperature. These predictions can be considered a "worst case scenario" in terms of the amount of warming.
 futureWarming-bullets:
- - Scientists agree that the earth will get warmer through the end of the 21st century. However, the amount of warming and how other climate conditions such as precipitation and wind will change is uncertain.
- - We estimated how water temperatures of Wisconsin lakes would change assuming a relatively large increase in air temperature. These predictions can be considered a "worst case scenario" in terms of the amount of warming.
- - As air temperatures increase, we expect lake temperatures to increase as well.
- - However, not all lakes will respond equally to climate change.
- - The incredible diversity of lake types in Wisconsin means that we can expect different warming rates in big vs. small lakes, deep vs. shallow lakes, clear vs. turbid lakes.
- - Understanding differences among lakes in their responses to climate change is a high priority for managing fish populations that are sensitive to warming temperatures.
+  - As air temperatures increase, we expect lake temperatures to increase as well.
+  - However, not all lakes will respond equally to climate change.
+  - The incredible diversity of lake types in Wisconsin means that we can expect different warming rates in big vs. small lakes, deep vs. shallow lakes, clear vs. turbid lakes.
+  - Understanding differences among lakes in their responses to climate change is a high priority for managing fish populations that are sensitive to warming temperatures.
 
 futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected to become 
 futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
