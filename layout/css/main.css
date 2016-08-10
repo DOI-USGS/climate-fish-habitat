@@ -24,9 +24,9 @@ header img{
 .exploreMore{
 	border:1px solid #003366;
 	padding:10px 10px 0 10px;
-	width:30%;
-	max-width:300px;
-	min-width:200px;
+	width:40%;
+	max-width:400px;
+	min-width:300px;
 	text-align:center !important;
 	margin:20px auto 20px auto !important;
 	}
@@ -102,6 +102,7 @@ a:link {
 	}
 	
 .svgFig{
+  width:100%;
   min-height:200px !important;
 }
 	
