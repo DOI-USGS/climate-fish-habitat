@@ -189,7 +189,15 @@ visualize:
     depends: processedFutureWarming
     scripts: scripts/visualize/visualizeFutureWarming.R
     visualizer: visualizeFutureWarming
-    mimeType: image/png
+    mimeType: image/svg+xml
+    export: true
+  -
+    id: futureClimateFig
+    location: figures/futureClimate-desktop.svg
+    #depends: processedClimateScenarios
+    scripts: scripts/visualize/visualizeClimateScenarios.R
+    visualizer: visualizeClimateScenarios
+    mimeType: image/svg+xml
     export: true
     
 figures:
@@ -212,5 +220,9 @@ figures:
     tags: [desktop]
   -
     id: futureWarmingFig
+    type: R
+    tags: [desktop]
+  -
+    id: futureClimateFig
     type: R
     tags: [desktop]
