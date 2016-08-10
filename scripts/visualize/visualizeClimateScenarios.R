@@ -46,6 +46,11 @@ visualizeData.visualizeClimateScenarios <- function(outfile, ...){
     data.frame(mean=mean(df$temp), q25=quantile(df$temp,0.30), q75=quantile(df$temp, 0.70))
   })
   
+  #convert to Fahrenheit
+  meanrange$mean = meanrange$mean * 9/5
+  meanrange$q25 = meanrange$q25 * 9/5
+  meanrange$q75 = meanrange$q75 * 9/5
+  
   theme_future <- function(base_size = 10, base_family = "Helvetica")
     {
       theme_bw(base_size = base_size, base_family = base_family) %+replace%
@@ -54,14 +59,14 @@ visualizeData.visualizeClimateScenarios <- function(outfile, ...){
           , panel.grid.major.x = element_blank()
           , panel.grid.minor.x = element_blank()
           #, panel.grid.major.y = element_line(color="black")
-          , panel.grid.major.y = element_line(size=1)
+          , panel.grid.major.y = element_line(size=0.25)
           , axis.line.x = element_line(colour = "black")
           , axis.line.y = element_line(colour = "black")
           , axis.title.x = element_text(size=16)
           , axis.title.y = element_text(size=16, angle = 90)
           , axis.text = element_text(size=12)
           , legend.key = element_rect(color = "white")
-          , legend.position = c(0.2,0.9)
+          , legend.position = c(0.25,0.9)
           , legend.title = element_text(size=16)
           , legend.text = element_text(size=12)
         )
@@ -71,7 +76,7 @@ visualizeData.visualizeClimateScenarios <- function(outfile, ...){
     geom_ribbon(aes(ymin = q25, ymax = q75, fill=scenario), alpha=0.5) +
     geom_line(aes(y=mean, color=scenario), size=1.5) + 
     xlab('Year') + 
-    ylab('Change from year 2000 (°C)') +
+    ylab(expression(Change~from~year~2000~"("*degree*F*")")) +
     scale_x_continuous(limits= c(1990, 2100), breaks = seq(1990, 2100, by = 20))+
     scale_fill_manual(values = c("a2" = "chocolate","b1" = "dodgerblue")
                        , labels = c("High CO2 Emissions (A2)", "Low CO2 Emissions (B1)"), name = "Warming Scenario") +
