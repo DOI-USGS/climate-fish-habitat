@@ -7,21 +7,19 @@ welcome-sub: Lakes in Wisconsin are getting warmer, and fish communities are cha
 
 welcome-paragraphs: 
   - >-
-    Understanding recent trends and anticipating future changes can help decision-makers protect resilient populations and adapt to new conditions.
+    Understanding recent trends and anticipating future changes can help decision-makers protect resilient populations, adapt to new conditions, and effectively communicate realistic expectations.
 
 
 walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
 walleyeDecline-keynote-2: while largemouth bass populations in many lakes are increasing
 walleyeDecline-bullets: 
-  - Anglers target both walleye and largemouth bass in Wisconsin lakes.
-  - Walleye are preferred by many anglers, and are important to Wisconsin’s economy and culture.
+  - Anglers target both walleye and largemouth bass in Wisconsin lakes, but walleye are perceived as preferable and thus important to Wisconsin’s economy and culture.
   - Much interest exists in understanding the causes of walleye population declines and whether they can be reversed.
   - There are many possible explanations for the observed changes in Wisconsin lake fish communities.
-  - Some have hypothesized that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
+  - Some believe that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
 walleyeDecline-caption: >-
-  Statewide average values over time for walleye natural reproduction (blue; indexed as catch of young walleye 
-  hatched in that year caught per mile of electrofishing) and largemouth bass relative abundance (red; indexed 
-  as catch of largemouth bass greater than 8 inches per mile of electrofishing, presented on a standardized scale). 
+  Statewide trends for walleye natural reproduction (blue; indexed as young walleye surviving their first summer caught per mile of electrofishing) 
+  and largemouth bass relative abundance (red; indexed as largemouth bass greater than 8 inches caught per mile of electrofishing, presented on a standardized scale). 
   Dashed lines show overall directional trend over time.
 
 walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes
@@ -50,7 +48,7 @@ walleyeBass-hint-2: >-
 walleyeBass-hint-3: >- 
   or less common in warmer lakes: 
 walleyeBass-caption: >-
-  Predicted probability of a lake supporting successful walleye recruitment and high largemouth bass abundance as a 
+  Predicted probability of a lake supporting successful walleye reproduction and high largemouth bass abundance as a 
   function of water temperature (growing degree days). Probabilities are based on a statistical model that incorporates other 
   lake characteristics such as water clarity and lake size.
 
@@ -82,54 +80,53 @@ futureWarming-bullets:
 futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected to become 
 futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
 futureSuitability-bullets: 
-  - As water temperatures get warmer, lakes that currently can support natural walleye reproduction will no longer have the habitat conditions to do so.
-  - The majority of Wisconsin lakes are predicted to have habitat conditions suitable for high largemouth bass densities by the mid-21st century.
-  - A small percentage of lakes will continue to maintain habitat conditions for supporting both species into the future.
-  - >-
-    Although a small number of lakes in Wisconsin have the habitat conditions to support natural walleye reproduction, 
-    the lakes that do support natural walleye reproduction tend to be the largest lakes. 
-    Lakes with the conditions for supporting high largemouth bass populations tend to be smaller lakes.
+  - As water temperatures get warmer, many lakes that currently can support natural walleye reproduction will no longer have the habitat conditions to do so.
+  - Although a relatively small number of lakes are predicted to support walleye natural reproduction in the future, the lakes where walleye are expected to persist are for the most part some of the state's largest and most popular lakes.
+  - When considered in terms of total lake area, walleye natural reproduction is predicted to continue in a large proportion of the state’s lake surface area.
+  - Most of the surface area of lakes that support natural walleye reproduction will also support high largemouth bass densities.
+  - The majority of Wisconsin lakes and total lake area are predicted to have habitat conditions suitable for high largemouth bass densities by the mid-21st century.
 
+futureSuitability-explore-h: Explore lake-specific predictions of supporting walleye and largemouth bass!
 futureSuitability-explore: >-
   To explore a map of predicted game fish for Wisconsin lakes, click on the button below.
 
 futureSuitabilityArea-fig:
   Walleye: >-
-    %s square miles of Walleye lakes
+    %s acres of Walleye lakes
   Bass: >-
-    %s square miles of Bass lakes
+    %s acres of Bass lakes
   Neither: >-
-    %s square miles where neither Walleye nor Bass are supported
+    %s acres where neither Walleye nor Bass are supported
   Coexistence: >-
-    %s square miles where both Walleye and Bass co-exist
+    %s acres where both Walleye and Bass co-exist
   Neither-Bass: >-
-    Largemouth Bass gain %s square miles
+    %s acres gain Largemouth Bass
   Neither-Walleye: >-
-    Walleye gain %s square miles
+    %s acres predicted to support Walleye
   Walleye-Coexistence: >-
-    Largemouth Bass gain %s square miles
+    %s acres gain Largemouth Bass
   Neither-Coexistence: >-
-    Walleye and Bass gain %s square miles
+    %s acres predicted to support Walleye and Bass
   Bass-Neither: >-
-    Largemouth Bass lose %s square miles
+    %s acres lose Largemouth Bass
   Bass-Bass: >-
-    Largemouth Bass remain for %s square miles
+    %s acres remain as Bass lakes
   Walleye-Walleye: >-
-    Walleye remain for %s square miles
+    %s acres remain as Walleye lakes
   Walleye-Neither: >-
-    Walleye lose %s square miles
+    %s acres lose Walleye
   Walleye-Bass: >-
-    Largemouth Bass displace Walleye on %s square miles
+    %s acres lose Walleye and gain Largemouth Bass
   Coexistence-Bass: >-
-    Walleye lose %s square miles
+    %s acres lose Walleye
   Coexistence-Walleye: >-
-    Bass lose %s square miles
+    %s acres lose Bass
   Coexistence-Coexistence: >-
-    Both species remain on %s square miles
+    %s acres continue to support both species
   Bass-Coexistence: >-
-    Walleye gain %s square miles
+    %s acres gain Walleye
   Neither-Neither: >-
-    Neither species supported on %s square miles
+    %s acres continue to support neither species
 
 futureSuitability-fig:
   Walleye: >-
@@ -168,17 +165,18 @@ futureSuitability-fig:
     %s lakes continue to support neither species
 
 futureSuitability-caption: >-
-  Number of lakes classified by their ability to support walleye and largemouth bass predicted 
+  Number or acreage of lakes classified by their ability to support walleye and largemouth bass predicted 
   species dominance under contemporary (1989-2014), mid-century future 2040-2064), 
-  and late-century future (2065-2089) conditions. Hover over the figure to see the number of 
-  lakes moving between categories. Lakes are classified based on their predicted probabilities 
+  and late-century future (2065-2089) conditions. Toggle the button to switch between lake count and total lake area. 
+  Hover over the figure to see the number of 
+  lakes or acreage moving between categories. Lakes are classified based on their predicted probabilities 
   of walleye recruitment and largemouth bass relative abundance. Classes are defined as: walleye 
   lakes (blue; walleye recruitment success and low largemouth bass relative abundance), coexistence 
   (purple; walleye recruitment success and high largemouth bass relative abundance), largemouth bass 
   lakes (orange; walleye recruitment failure and high largemouth bass relative abundance), or neither 
   (grey; walleye recruitment failure and low largemouth bass relative abundance). Colored lines show 
-  projected movements among lake classes, and line width is proportional to the number of lakes moving 
-  between each class. Numbers are based on median projections across multiple global climate models.
+  projected movements among lake classes, and line width is proportional to the number or area of lakes moving 
+  between each class. Values are based on median projections across multiple global climate models.
 
 futureWarming-caption: >-
   Predicted water temperature growing degree days in three example Wisconsin lakes from current 
@@ -187,12 +185,12 @@ futureWarming-caption: >-
   clarity, and starting temperatures, as demonstrated by the different trajectories of Lake 
   Mendota, Green Lake, and Trout Lake.
   
-fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
+fishManagement-keynote-1: We can manage lakes to protect and enhance walleye where they are likely to thrive
 fishManagement-bullets: 
   - Nearly 100 lakes in Wisconsin are predicted to support naturally reproducing walleye populations even under extreme warming conditions.
   - These lakes are resilient to climate change, and should be protected from other stressors such as habitat loss, invasive species, or overfishing to maximize the potential for continued walleye production.
   - Some lakes that are unlikely to support natural walleye reproduction will continue to be suitable for adult walleye, and fishable walleye populations could potentially be maintained in these lakes via stocking.
-  - Quality fishing opportunities for largemouth bass and other warm water species will be possible in lakes that become unsuitable for walleye.
+  - Quality fishing opportunities for largemouth bass and other warm water species will improve in many lakes that become unsuitable for walleye.
 fishManagement-caption: >-
   A fishing trip on a beautiful midwestern lake.
 ## Footer ##

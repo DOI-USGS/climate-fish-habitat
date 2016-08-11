@@ -10,7 +10,7 @@
 	  {{#futureSuitability-bullets}}  <li>{{.}}</li>
 	  {{/futureSuitability-bullets}}</ul>
 	  <div class="figToggle showing" id="suitability"><p>Lake Count</p></div> 
-	  <div class="figToggle" id="figArea"><p>Lake Area</p></div>
+	  <div class="figToggle" id="figArea"><p>Total Lake Area</p></div>
 	  
 	  
 	  <object id="futureSuitabilityFig" type="image/svg+xml" class="svgFig" data="futureSuitability-desktop.svg"></object>
@@ -18,6 +18,8 @@
 	  <div class="captionContainer">
 	    <p class="caption">{{ futureSuitability-caption }}</p>
 	  </div>
+	  <br/>
+	  <h1>{{ futureSuitability-explore-h }}</h1>
 	  <div class="exploreMore">
 	  <a href="explore/map.html" target="_blank" class="ui-link">
 	    <img src="images/fishMap-thumbnail.gif" alt="Detailed state map of predicted species" id="fishMapExplore">
