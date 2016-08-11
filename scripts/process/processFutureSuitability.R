@@ -3,7 +3,7 @@ library(dplyr)
 
 processData.processFutureSuitability <- function(futureSuitability, outfile, ...){
 
-  area.factor = 1/1000000 # in km2
+  area.factor = 3.861e-7 # in square miles
   fish.change <- futureSuitability %>% 
     rename(X1989.2014 = `1989-2014`, X2040.2064 = `2040-2064`, X2065.2089 = `2065-2089`) %>% 
     filter(!is.na(X1989.2014) & !is.na(X2040.2064) & !is.na(X2065.2089)) %>% 

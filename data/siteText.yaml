@@ -93,6 +93,44 @@ futureSuitability-bullets:
 futureSuitability-explore: >-
   To explore a map of predicted game fish for Wisconsin lakes, click on the button below.
 
+futureSuitabilityArea-fig:
+  Walleye: >-
+    %s square miles of Walleye lakes
+  Bass: >-
+    %s square miles of Bass lakes
+  Neither: >-
+    %s square miles where neither Walleye nor Bass are supported
+  Coexistence: >-
+    %s square miles where both Walleye and Bass co-exist
+  Neither-Bass: >-
+    Largemouth Bass gain %s square miles
+  Neither-Walleye: >-
+    Walleye gain %s square miles
+  Walleye-Coexistence: >-
+    Largemouth Bass gain %s square miles
+  Neither-Coexistence: >-
+    Walleye and Bass gain %s square miles
+  Bass-Neither: >-
+    Largemouth Bass lose %s square miles
+  Bass-Bass: >-
+    Largemouth Bass remain for %s square miles
+  Walleye-Walleye: >-
+    Walleye remain for %s square miles
+  Walleye-Neither: >-
+    Walleye lose %s square miles
+  Walleye-Bass: >-
+    Largemouth Bass displace Walleye on %s square miles
+  Coexistence-Bass: >-
+    Walleye lose %s square miles
+  Coexistence-Walleye: >-
+    Bass lose %s square miles
+  Coexistence-Coexistence: >-
+    Both species remain on %s square miles
+  Bass-Coexistence: >-
+    Walleye gain %s square miles
+  Neither-Neither: >-
+    Neither species supported on %s square miles
+
 futureSuitability-fig:
   Walleye: >-
     %s Walleye lakes
