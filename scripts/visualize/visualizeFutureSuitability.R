@@ -66,12 +66,15 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   
   svg_node <- dinosvg:::svg_node
   
-  scale <- 0.35
+  ht = 12.5
+  pxi = 72
   box.w <- 230
   gap.s <- 200
   box.s <- 15
   l.m <- 24
   t.m <- 42
+  b.m <- 60
+  scale <- (ht*pxi-t.m-box.s*3-b.m)/sum(processedFutureSuitability$fish.change.summary[1,c(1,2,3,4)])
   y <- list()
   h <- list()
   
@@ -82,7 +85,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
     n.threshold[1] <- 50
   }
   w <- (box.w*3+gap.s*2+l.m*2)/72
-  svg <- dinosvg:::init_svg(w,12.5)
+  svg <- dinosvg:::init_svg(w,ht)
   dinosvg:::add_css(svg, '
   .hidden {
                       opacity:0;
