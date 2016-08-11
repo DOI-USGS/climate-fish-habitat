@@ -95,35 +95,6 @@ a:link {
   max-width:650px;
 }
 
-.figToggle{
-  padding:5px 10px;
-  background:#fff;
-  border:1px solid #003366;
-  outline:none;
-  float:left;
-  text-align:center;
-  cursor:pointer;
-}
-
-.showing{
-  background:#003366;
-  color:#fff;
-}
-
-
-
-#figArea{
-  padding-left:1px;
-}
-
-#figArea p{
-  padding-left:8px;
-}
-
-#futureSuitabilityFigArea{
-  display:none;
-}
-
 /*Intro*/
 #intro{
 	text-align:center;
@@ -135,7 +106,7 @@ a:link {
   min-height:200px !important;
 }
 	
-.svgSpanner {
+.svgFig, .svgSpanner {
   position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -265,11 +236,6 @@ footer{
 	
 @media screen and (min-width:768px){
   
-  .center{
-    width:768px;
-    margin:0 auto;
-  }
-  
   .captionContainer{
     width:760px;
     margin:0 auto;
@@ -311,6 +277,9 @@ footer{
 	.svgSpanner {
 	  height: 450px;
 	}
+	.svgFig {
+	  width: 760px;
+	}
 		
 	/*Keynote CSS*/	
 	#welcome-keynote {
@@ -350,10 +319,6 @@ footer{
 }
 @media screen and (min-width:1024px){
   
-  .center{
-    width:960px;
-  }
-  
   .captionContainer,
   .insetPictureContainer{
     width:960px;
@@ -369,6 +334,9 @@ footer{
 		width:960px;
 	}
 	
+.svgFig {
+  	width: 1000px;
+  }
   .svgSpanner {
 	  height: 720px;
 	  position: relative;
