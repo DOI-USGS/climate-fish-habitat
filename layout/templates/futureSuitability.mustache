@@ -9,7 +9,11 @@
 	  <ul class='list'>
 	  {{#futureSuitability-bullets}}  <li>{{.}}</li>
 	  {{/futureSuitability-bullets}}</ul>
-	  <object id="futureSuitability" type="image/svg+xml" class="svgFig" data="futureSuitability-desktop.svg"></object>
+	  <div class="figToggle showing" id="suitability"><p>Lake Area</p></div> 
+	  <div class="figToggle" id="figArea"><p>Lake Count</p></div>
+	  
+	  <object id="futureSuitabilityFig" type="image/svg+xml" class="svgFig" data="futureSuitability-desktop.svg"></object>
+	  <object id="futureSuitabilityFigArea" type="image/svg+xml" class="svgFig" data="futureSuitabilityFigArea-desktop.svg"></object>
 	  <div class="captionContainer">
 	    <p class="caption">{{ futureSuitability-caption }}</p>
 	  </div>
