@@ -48,7 +48,7 @@ walleyeBass-hint-1: >-
 walleyeBass-hint-2: >-  
   . It's up to you to figure out what happens to walleye in warmer lakes. If Walleye are more common in warmer lakes, your line would look like this:
 walleyeBass-hint-3: >- 
-  or the same for all lakes: 
+  or less common in warmer lakes: 
 walleyeBass-caption: >-
   Predicted probability of a lake supporting successful walleye recruitment and high largemouth bass abundance as a 
   function of water temperature (growing degree days). Probabilities are based on a statistical model that incorporates other 
@@ -61,15 +61,23 @@ lakeWarming-bullets:
   - Some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
   - Lake size and depth, water clarity, and surrounding tree cover all influence how lakes respond to climate.
   - Differences in water temperature affect the suitability of a lake's habitat for supporting different fish species.
-
+lakeWarming-caption: >-
+  Lake warming since 1980 across the studied lakes of Wisconsin. The rate of warming is variable across 
+  lakes and depends on geography and the type of lake (clear or dark, large or small). Warming shown here
+  is based on modeled lake temperature for 1980 to 2014. 
+  
 futureWarming-keynote-1: Lakes are expected to get even warmer in the future
+futureClimate-caption: >-
+  Global average air temperatures predicted under two emission scenarios, A2 and B1. The A2 (greater CO2 emissions) 
+  was used for modeling future lake habitat for this project. Variability among Global Climate Models is shown as ribbons.
+futureClimate-bullets:
+  - Scientists agree that the earth will get warmer through the end of the 21st century. However, the amount of warming and how other climate conditions such as precipitation and wind will change is uncertain.
+  - We estimated how water temperatures of Wisconsin lakes would change assuming a relatively large increase in air temperature. These predictions can be considered a "worst case scenario" in terms of the amount of warming.
 futureWarming-bullets:
- - Scientists agree that the earth will get warmer through the end of the 21st century. However, the amount of warming and how other climate conditions such as precipitation and wind will change is uncertain.
- - We estimated how water temperatures of Wisconsin lakes would change assuming a relatively large increase in air temperature. These predictions can be considered a "worst case scenario" in terms of the amount of warming.
- - As air temperatures increase, we expect lake temperatures to increase as well.
- - However, not all lakes will respond equally to climate change.
- - The incredible diversity of lake types in Wisconsin means that we can expect different warming rates in big vs. small lakes, deep vs. shallow lakes, clear vs. turbid lakes.
- - Understanding differences among lakes in their responses to climate change is a high priority for managing fish populations that are sensitive to warming temperatures.
+  - As air temperatures increase, we expect lake temperatures to increase as well.
+  - However, not all lakes will respond equally to climate change.
+  - The incredible diversity of lake types in Wisconsin means that we can expect different warming rates in big vs. small lakes, deep vs. shallow lakes, clear vs. turbid lakes.
+  - Understanding differences among lakes in their responses to climate change is a high priority for managing fish populations that are sensitive to warming temperatures.
 
 futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected to become 
 futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
@@ -140,11 +148,6 @@ futureWarming-caption: >-
   Lakes will respond differently to climate change depending on their size, depth, water 
   clarity, and starting temperatures, as demonstrated by the different trajectories of Lake 
   Mendota, Green Lake, and Trout Lake.
-  
-lakeWarming-caption: >-
-  Lake warming since 1980 across the studied lakes of Wisconsin. The rate of warming is variable across 
-  lakes and depends on geography and the type of lake (clear or dark, large or small). Warming shown here
-  is based on modeled lake temperature for 1980 to 2014. 
   
 fishManagement-keynote-1: We can manage lakes to protect walleye where they are likely to thrive
 fishManagement-bullets: 
