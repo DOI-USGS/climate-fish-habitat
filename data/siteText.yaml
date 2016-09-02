@@ -12,10 +12,12 @@ welcome-paragraphs:
 
 walleyeDecline-keynote-1: Walleye populations in many Wisconsin lakes are declining, 
 walleyeDecline-keynote-2: while largemouth bass populations in many lakes are increasing
-walleyeDecline-bullets: 
+
+walleyeDecline-bullets-1: 
+  - Recreational fishing in Wisconsin is valued at over $2 billion annually.
   - Anglers target both walleye and largemouth bass in Wisconsin lakes, but walleye are perceived as preferable and thus important to Wisconsin’s economy and culture.
-  - Much interest exists in understanding the causes of walleye population declines and whether they can be reversed.
-  - There are many possible explanations for the observed changes in Wisconsin lake fish communities.
+walleyeDecline-bullets-2:  
+  - There are many possible explanations for the observed changes in Wisconsin lake fish communities, and much interest exists in understanding these trends and whether they can be reversed.
   - Some believe that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
 walleyeDecline-caption: >-
   Statewide trends for walleye natural reproduction (blue; indexed as young walleye surviving their first summer caught per mile of electrofishing) 
@@ -23,13 +25,11 @@ walleyeDecline-caption: >-
   Dashed lines show overall directional trend over time.
 
 walleyeBass-keynote-1: Walleye and largemouth bass thrive in different types of lakes
+walleyeBass-header: Water temperature influences the suitability of a lake for walleye and largemouth bass
 walleyeBass-interactive-setup: Can you draw the relationship between these two fish and lake temperature?
 walleyeBass-bullets: 
-  - Water temperature influences the suitability of a lake for walleye and largemouth bass.
   - In general, walleye reproduce more successfully in cooler lakes, and largemouth bass populations are most abundant in warm lakes.
-  - Both species exhibit a threshold response to temperature, where small changes in temperature can produce big changes in the fish population.
-  - The temperature threshold separating lakes with successful vs. unsuccessful walleye reproduction is approximately the same threshold separating lakes with low vs. high largemouth bass abundances.
-  - This means that lakes with the best habitat for natural walleye reproduction generally do not have the habitat to support high largemouth bass abundance, and vice versa
+  - Both species exhibit a threshold response to temperature, where small changes in temperature can produce big changes in the fish population. Lakes with the best habitat for natural walleye reproduction generally do not have the habitat to support high largemouth bass abundance, and vice versa.
   - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye can reproduce successfully in large lakes even if they are warm.
 walleyeBass-GDD: >-
   Lake temperature in this study is measured as growing degree days (GDD). 
@@ -54,9 +54,7 @@ walleyeBass-caption: >-
 
 lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 years
 lakeWarming-bullets: 
-  - Not all lakes are the same, and they respond differently to climate.
-  - Some lakes have warmed more than others.
-  - Some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
+  - Some lakes have warmed more than others, and some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
   - Lake size and depth, water clarity, and surrounding tree cover all influence how lakes respond to climate.
   - Differences in water temperature affect the suitability of a lake's habitat for supporting different fish species.
 lakeWarming-caption: >-
@@ -69,24 +67,27 @@ futureClimate-caption: >-
   Global average air temperatures predicted under two emission scenarios, A2 and B1. The A2 (greater CO2 emissions) 
   was used for modeling future lake habitat for this project. Variability among Global Climate Models is shown as ribbons.
 futureClimate-bullets:
-  - Scientists agree that the earth will get warmer through the end of the 21st century. However, the amount of warming and how other climate conditions such as precipitation and wind will change is uncertain.
+  - Scientists agree that the earth will get warmer through the end of the 21st century.
+  - However, the amount of warming depends on actual greenhouse gas emissions and how physical processes such as precipitation and wind speed will change.
   - We estimated how water temperatures of Wisconsin lakes would change assuming a relatively large increase in air temperature. These predictions can be considered a "worst case scenario" in terms of the amount of warming.
 futureWarming-bullets:
-  - As air temperatures increase, we expect lake temperatures to increase as well.
-  - However, not all lakes will respond equally to climate change.
+  - As air temperatures increase, we expect lake temperatures to increase as well. However, not all lakes will respond equally to climate change.
   - The incredible diversity of lake types in Wisconsin means that we can expect different warming rates in big vs. small lakes, deep vs. shallow lakes, clear vs. turbid lakes.
   - Understanding differences among lakes in their responses to climate change is a high priority for managing fish populations that are sensitive to warming temperatures.
 
 futureSuitability-keynote-1: In the future, many lakes in Wisconsin are expected to become 
 futureSuitability-keynote-2: less suitable for walleye and more suitable for largemouth bass
-futureSuitability-bullets: 
-  - As water temperatures get warmer, many lakes that currently can support natural walleye reproduction will no longer have the habitat conditions to do so.
-  - Although a relatively small number of lakes are predicted to support walleye natural reproduction in the future, the lakes where walleye are expected to persist are for the most part some of the state's largest and most popular lakes.
-  - When considered in terms of total lake area, walleye natural reproduction is predicted to continue in a large proportion of the state’s lake surface area.
-  - Most of the surface area of lakes that support natural walleye reproduction will also support high largemouth bass densities.
-  - The majority of Wisconsin lakes and total lake area are predicted to have habitat conditions suitable for high largemouth bass densities by the mid-21st century.
 
 futureSuitability-explore-h: Explore lake-specific predictions of supporting walleye and largemouth bass!
+futureSuitability-bullets-1: 
+  - Water temperature is a critical component of fish habitat.
+  - As water temperatures get warmer, many lakes that currently can support natural walleye reproduction are unlikely to continue to have the thermal habitat conditions to do so.
+  - The majority of Wisconsin lakes and total lake area are predicted to have habitat conditions suitable for high largemouth bass densities by the mid-21st century due to warming.
+futureSuitability-bullets-2: 
+  - The lakes where walleye are expected to persist are for the most part some of the state's largest and most popular lakes. Therefore, when considered in terms of total lake area, walleye are predicted to persist in a large amount of Wisconsin's total lake area.
+  - Most of the surface area of lakes that support natural walleye reproduction will also support high largemouth bass densities, and largemouth bass are predicted to be supported in a high proportion of the state's total lake area.
+  - The predictions shown here are based only on projected changes in water temperature, and do not account for changes in the fish community, water quality, fish management, or angler behavior that may influence walleye and largemouth bass populations.
+
 futureSuitability-explore: >-
   To explore a map of predicted game fish for Wisconsin lakes, click on the button below.
 
@@ -204,6 +205,6 @@ footer-team: >-
    Pete Jacobson (MN-DNR), Emily Stanley (University of Wisconsin - Madison), Matt Diebel (WI-DNR), Megan Hines (USGS), and Kevin Wehrly (MI-DNR). 
 footer-paper: >-    
   The findings shared here are explained in greater detail in a publication entitled "Projected shifts in fish species dominance in Wisconsin
-  lakes under climate change" published in XXXX and released on XXXX-XX-XX. The authors include:
+  lakes under climate change" published in Global Change Biology and released on 2016-09-15. The authors include:
 footer-vizlab: >-    
   This interactive data visualization was created by USGS VIZLAB
