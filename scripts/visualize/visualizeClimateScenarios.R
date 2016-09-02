@@ -66,7 +66,7 @@ visualizeData.visualizeClimateScenarios <- function(outfile, ...){
           , axis.title.y = element_text(size=16, angle = 90)
           , axis.text = element_text(size=12)
           , legend.key = element_rect(color = "white")
-          , legend.position = c(0.25,0.9)
+          , legend.position = c(0.35,0.9)
           , legend.title = element_text(size=16)
           , legend.text = element_text(size=12)
         )
@@ -79,7 +79,7 @@ visualizeData.visualizeClimateScenarios <- function(outfile, ...){
     ylab(expression(Change~from~year~2000~"("*degree*F*")")) +
     scale_x_continuous(limits= c(1990, 2100), breaks = seq(1990, 2100, by = 20))+
     scale_fill_manual(values = c("a2" = "chocolate","b1" = "dodgerblue")
-                       , labels = c("High CO2 Emissions (A2)", "Low CO2 Emissions (B1)"), name = "Warming Scenario") +
+                       , labels = c("High greenhouse gas emissions (A2)", "Low greenhouse gas emissions (B1)"), name = "Warming Scenario") +
     scale_color_manual(values = c( "a2" = "chocolate","b1" = "dodgerblue")
                        , labels = c("High", "Low"), name = "Warming Scenario")+
     #geom_hline(yintercept = 0, linetype = "dotted")+
