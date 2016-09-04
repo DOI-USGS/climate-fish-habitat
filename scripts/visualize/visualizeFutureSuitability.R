@@ -245,7 +245,6 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
         }
         if (stc[['h']] > 0){
           mouser.h <- max(min.h, stc[['h']])
-          browser()
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
                                 fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.6", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
