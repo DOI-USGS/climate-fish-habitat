@@ -46,6 +46,7 @@
 	    }
     </style>
     <script type="text/ecmascript"><![CDATA[
+		var hasDrawn = false;
 		var mainDocument = null;
         var svgDoc;
         var svg = document.querySelector("svg")
@@ -247,6 +248,10 @@
 				priorY = newY;
 				priorId = i;
 				drawnPoints[i]=true;
+				if (!hasDrawn){
+					window.parent.ga("send", "event", "svg interaction", "draw", "drew point");
+				}
+				hasDrawn = true; 
 			}
 			drawLine();
         };
