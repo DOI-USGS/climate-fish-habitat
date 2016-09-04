@@ -61,6 +61,7 @@ fill-opacity:0.75;
 }
 '
 ecmascript.text <- "
+var hovered = false;
 function fadeShapes(wallyN, bassN){
   for (i = 0; i < 60; i++) { 
     document.getElementById('walleye-'+(i+1)).setAttribute('class','hidden');
@@ -77,6 +78,10 @@ function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
 }
 function showBar(evt){
+  if (!hovered){
+		window.parent.ga('send', 'event', 'svg interaction', 'hover', 'mouseover wally trends');
+	}
+	hovered = true;
   var width = '10';
   document.getElementById('highlight-marker').childNodes[1].setAttribute('width',width);
   var tX = evt.target.getAttribute('x');
