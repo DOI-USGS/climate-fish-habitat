@@ -49,6 +49,7 @@ sections:
     context: siteTextData
     depends: 
       - futureSuitabilityFig
+      - futureSuitabilityFigArea
   - 
     id: fishManagement
     template: layout/templates/fishManagement.mustache
@@ -177,12 +178,20 @@ visualize:
     export: true
   -
     id: futureSuitabilityFig
-    location: figures/futureSuitabilityFig.svg
+    location: figures/futureSuitability-desktop.svg
     depends: [processedFutureSuitability, siteTextData]
     scripts: scripts/visualize/visualizeFutureSuitability.R
     visualizer: visualizeFutureSuitability
     mimeType: image/svg+xml
     export: true
+  -
+    id: futureSuitabilityFigArea
+    location: figures/futureSuitabilityFigArea-desktop.svg
+    depends: [processedFutureSuitability, siteTextData]
+    scripts: scripts/visualize/visualizeFutureSuitability.R
+    visualizer: visualizeFutureSuitability
+    mimeType: image/svg+xml
+    export: true  
   -
     id: futureWarmingFig
     location: figures/futureWarmingFig-desktop.svg

@@ -3,10 +3,18 @@ library(dplyr)
 library(yaml)
 
 visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
-
-  fish.sum <- processedFutureSuitability$fish.change.summary
-  arrows <- processedFutureSuitability[c('arrows.1', 'arrows.2')]
-  fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitabilityArea-fig`
+  
+  if (grepl('Area',outfile)){
+    arrows <- processedFutureSuitability[c('area.arrows.1', 'area.arrows.2')]
+    fish.sum <- processedFutureSuitability$area.fish.change.summary
+    fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitabilityArea-fig`
+  } else {
+    arrows <- processedFutureSuitability[c('count.arrows.1', 'count.arrows.2')]
+    fish.sum <- processedFutureSuitability$count.fish.change.summary
+    fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitability-fig`
+  }
+  
+  names(arrows) <- c('arrows.1', 'arrows.2')
   min.h <- 5 #px
   js.funs <- '\nvar svg = document.querySelector("svg")
   var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
@@ -74,7 +82,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   l.m <- 24
   t.m <- 42
   b.m <- 60
-  scale <- (ht*pxi-t.m-box.s*3-b.m)/sum(processedFutureSuitability$fish.change.summary[1,c(1,2,3,4)])
+  scale <- (ht*pxi-t.m-box.s*3-b.m)/sum(fish.sum[1,c(1,2,3,4)])
+  
   y <- list()
   h <- list()
   
@@ -236,6 +245,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
         }
         if (stc[['h']] > 0){
           mouser.h <- max(min.h, stc[['h']])
+          browser()
           svg_node('path', g, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], stc[['h']], box.w, stc[['y1']]-stc[['h']]), 
                                 fill=sprintf("url(#%s-grad)",arr.id ), stroke='none', opacity="0.6", id=id))
           svg_node('path', g.blank, c(d = sprintf("M%s,%s L%s,%s v-%s L%s,%s", box.w, stc[['y1']], box.w+gap.s, stc[['y2']], mouser.h, box.w, stc[['y1']]-mouser.h), 
