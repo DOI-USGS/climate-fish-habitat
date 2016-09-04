@@ -16,7 +16,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   
   names(arrows) <- c('arrows.1', 'arrows.2')
   min.h <- 5 #px
-  js.funs <- '\nvar svg = document.querySelector("svg")
+  js.funs <- '\nvar hovered = false;
+  var svg = document.querySelector("svg")
   var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
   var pt = svg.createSVGPoint();
   function init(evt){
@@ -36,6 +37,10 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       tooltip_bg.setAttribute("class","hidden");
       tool_pt.setAttribute("class","hidden");
     } else {
+      if (!hovered){
+	    	window.parent.ga("send", "event", "svg interaction", "hover", "mouseover future suitability");
+	    }
+	    hovered = true;
       pt = cursorPoint(evt);
       pt.x = Math.round(pt.x);
       pt.y = Math.round(pt.y);
