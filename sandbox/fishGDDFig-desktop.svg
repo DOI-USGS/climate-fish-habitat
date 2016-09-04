@@ -205,14 +205,28 @@
 		}
 
         function imDone(){
+
 			setBottomFrame()
         	transferUserPoints();
         	var initialHeight = svgDoc.getElementById('drawing-view').getBoundingClientRect().height;
         	svg.setAttribute("viewBox", "0 0 740 1150");  
 			mainDocument.firefoxSVGReload('fishGDDFig');
         	sweepDown(Number(initialHeight)+25); // bump plus a little extra
+			
+			var i = 0;
+			var delaySendValue = setInterval(function () {   
+					    	if (i < dots.length){
+					    		window.parent.ga("send", "event", "user feedback", "post", "GDD guess "+i, getPtValue(i));
+								i++
+							} else {
+			                   clearInterval(delaySendValue);
+							}}, 2000);
+			   
         }
         
+		function getPtValue(id){
+    		return(Math.round(svgDoc.getElementById("wally-"+id).getAttribute('cy')))
+		}
 
         function draw(evt){
         	if (selectedPoint === null) {return}
