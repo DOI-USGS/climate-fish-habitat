@@ -45,9 +45,9 @@ wisco = map_data('state', region = 'wisconsin')
 ggplot(wisco, aes(long, lat)) + geom_polygon(fill=rgb(0.5,0.5,0.5,0.8)) + 
   geom_point(data=jas_diff_latlon, aes(LON, LAT, color=anom_30yr_F)) + 
   scale_color_gradientn("Lake warming since 1980 (°F)\n", colors=c( "#f9f3c2","#FF0000"), limits=c(0,1.8)) + 
-  coord_map("conic", lat0 = 30) + theme_bw() + theme(plot.background=element_blank())
+  coord_map("conic", lat0 = 30) + theme_bw() + theme(plot.background=element_blank()) + xlab('Longitude') + ylab('Latitude')
 
-ggsave('sandbox/contemporaryLakeTrends-desktop.png')
+ggsave('sandbox/contemporaryLakeTrends-desktop.png', height=5.75, width=8.7, units='in')
 
 # ggplot(wisco, aes(long, lat)) + geom_polygon() + 
 #   geom_point(data=jas_latlon_80s, aes(LON, LAT, color=V1)) + 
