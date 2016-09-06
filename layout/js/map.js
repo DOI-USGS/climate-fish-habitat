@@ -1,18 +1,25 @@
 $(document).ready(function(){
   
-  $('#escapeMe').on('click', function(){
-    $('#popUp').hide();
+  //Clicking X closes popUp
+  $('.escapeMe').on('click', function(){
+    $('.popUp').hide();
   });
+  //Reveals popUp
   $('#aboutMap').on('click', function(event){
     event.stopPropagation();
-    $('#popUp').show();
+    $('#readFirst').show();
+    $('#faqsPopUp').hide();
+  });
+  $('#faqs').on('click', function(event){
+    event.stopPropagation();
+    $('#faqsPopUp').show();
   });
   //clicking off the popUp hides it
   $(document).on('click', function(){
-    $('#popUp').hide();
+    $('.popUp').hide();
   });
   //clicking on the popUp does not hides it
-  $('#popUp').on('click', function(e){
+  $('.popUp').on('click', function(e){
     e.stopPropagation();
     return false;
   });
