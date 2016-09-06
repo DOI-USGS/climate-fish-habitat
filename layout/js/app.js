@@ -22,3 +22,34 @@ $('.figToggle').each(function(){
   });
 });
 
+var vizlab = document.vizlab || {};
+vizlab.scrollTimer = null;
+$(window).scroll(function(){
+  if (vizlab.scrollTimer) {
+      clearTimeout(vizlab.scrollTimer);
+  }
+  vizlab,scrollTimer = setTimeout(vizlab.chapterScroll, 250);
+});
+
+vizlab.chapters = ["#intro", "#walleyeDecline", "#walleyeBass", "#lakeWarming", "#futureWarming", "#futureSuitability", "#fishManagement", "#footer"];
+vizlab.chapterTriggers = {};
+
+vizlab.inview = function (el) {
+    var rect = el.getBoundingClientRect();
+
+    return rect.bottom > 0 &&
+        rect.right > 0 &&
+        rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight);
+};
+
+vizlab.chapterScroll = function() {
+  $.each(vizlab.chapters, function(index, value) {
+    if (vizlab.inview($(value)[0])) {
+      if (!vizlab.chapterTriggers[value]) {
+        vizlab.chapterTriggers[value] = true; // trigger
+        ga('send', 'event', 'chapter', 'view', value);
+      }
+    }
+  })
+};
