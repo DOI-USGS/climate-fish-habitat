@@ -206,11 +206,16 @@ fishManagement-p: >-
   play, including potential mismatches between young walleye’s need for food and the availability of that food, increased 
   competition and/or predation, increased need for food due to warmer temperatures, or a combination of these and other factors.
 ## Footer ##
-footer-text: >-
-  This research was funded by the Department of the Interior Northeast Climate Science Center, under the proposal 
-  "An integrated assessment of lake and stream thermal habitat under climate change", 
-  with additional support from Wisconsin DNR Federal Aid in Sport Fish Restoration (Project F-95-P, study SSBW) and 
-  United States Geological Survey National Climate Change and Wildlife Science Center grant 10909172 to the University of Wisconsin–Madison.
+footer-text-1: >-
+  This research was funded by the 
+footer-text-2: >-
+ , under the proposal "An integrated assessment of lake and stream thermal habitat under climate change", with additional support from 
+footer-text-3: >-  
+   Federal Aid in Sport Fish Restoration (Project F-95-P, study SSBW) and
+footer-text-4: >-
+   grant 10909172 to the 
+footer-text-5: >-
+  .
 footer-team: >-  
   This project is led by Jordan S Read of the U.S. Geological Survey. The project team includes Luke Winslow (USGS), Gretchen Hansen (WI-DNR; MN-DNR), 
    Pete Jacobson (MN-DNR), Emily Stanley (University of Wisconsin - Madison), Matt Diebel (WI-DNR), Megan Hines (USGS), and Kevin Wehrly (MI-DNR). 
@@ -233,5 +238,29 @@ footer-vizlab: >-
 
 footer-vizlab-link-github: 
   link: https://github.com/USGS-VIZLAB
-  text: USGS VIZLAB
+  text: >-    
+   USGS VIZLAB 
+  
+footer-text-link-NECSC:
+  link: https://www.doi.gov/csc/northeast
+  text: >-    
+   Department of the Interior Northeast Climate Science Center
+  
+footer-text-link-WIDNR:
+  link: http://dnr.wi.gov/
+  text: >-    
+   Wisconsin DNR
+  
+footer-text-link-UW:
+  link: http://www.wisc.edu/
+  text: >-    
+  University of Wisconsin–Madison
+  
+footer-text-link-NCCWSC:
+  link: https://nccwsc.usgs.gov/
+  text: >-    
+  United States Geological Survey National Climate Change and Wildlife Science Center
+	
+	
+
 
