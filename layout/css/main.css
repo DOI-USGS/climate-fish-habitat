@@ -30,6 +30,26 @@ header img{
 	text-align:center !important;
 	margin:20px auto 20px auto !important;
 	}
+	
+.toggleInfo{
+  width:240px;
+  text-align:center;
+  margin:10px auto;
+  padding:10px 5px;
+  border:1px solid #003366;
+  color:#003366;
+  font-size:1.1em;
+  cursor:pointer;
+}
+
+.toggleInfo:focus{
+  background:#003366;
+  color:#fff;
+}
+
+#drawConclusionsText{
+  display:none;
+}
 
 .exploreMore img{
 	width:100%;
@@ -270,6 +290,11 @@ footer{
     margin:0 auto;
   }
   
+  .toggleInfo:hover{
+    background:#003366;
+    color:#fff;
+  }
+  
   .captionContainer{
     width:760px;
     margin:0 auto;
@@ -377,4 +402,20 @@ footer{
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
 	}
+}
+
+/* Parts:share */
+.p-share {
+  text-align: center;
+}
+
+.p-share a {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  background-color: #263238;
+  border-radius: 100%;
+  color: #eceff1;
+  margin: 0 .5rem;
 }

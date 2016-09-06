@@ -22,6 +22,11 @@ $('.figToggle').each(function(){
   });
 });
 
+//Toggles text when toggleInfo is clicked
+  $('.toggleInfo').on('click', function(){
+    $('#drawConclusionsText').toggle('slow');
+  });
+
 var vizlab = document.vizlab || {};
 vizlab.scrollTimer = null;
 $(window).scroll(function(){
