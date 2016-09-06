@@ -38,7 +38,7 @@ var Carto_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}
 Carto_Positron.addTo(map);
 
 //the three different layers we want to have in the map
-var url = 'https://www.sciencebase.gov/catalogMaps/mapping/ows/57927e39e4b0d02dcaaeed1d?service=wms';
+var url = 'http://cidasddvasnwc.cr.usgs.gov:8082/geoserver/gwc/service/wms?service=wms&tiled=true';
 
 //the better wms javascript for getfeatureinfo from wms
 L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
@@ -135,7 +135,7 @@ map.on('baselayerchange', function(a) {
 //putting the layers on the map with betterwms
 //early 1989-2014
 var early = L.tileLayer.betterWms(url, {
-  layers: 'predicted_species_1989-2014',
+  layers: 'vizlab:predicted_species_1989-2014',
   transparent: true,
   format: 'image/png'
 });
@@ -143,14 +143,14 @@ early.addTo(map);
 
 //mid 2040-2064
 var mid = L.tileLayer.betterWms(url, {
-  layers: 'predicted_species_2040-2064',
+  layers: 'vizlab:predicted_species_2040-2064',
   transparent: true,
   format: 'image/png'
 });
 
 //late 2065-2089
 var late = L.tileLayer.betterWms(url, {
-  layers: 'predicted_species_2065-2089',
+  layers: 'vizlab:predicted_species_2065-2089',
   transparent: true,
   format: 'image/png'
 });
@@ -216,7 +216,7 @@ L.wmsLegend = function(uri) {
   return wmsLegendControl;
 };
 
-uri = "https://www.sciencebase.gov/catalogMaps/mapping/ows/57927e39e4b0d02dcaaeed1d?service=WMS&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=predicted_species_1989-2014";
+uri = "http://cidasddvasnwc.cr.usgs.gov:8082/geoserver/gwc/service/wms?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=vizlab:predicted_species_1989-2014";
 L.wmsLegend(uri);
 
 // layer toggle
