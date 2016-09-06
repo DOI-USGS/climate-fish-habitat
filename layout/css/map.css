@@ -130,9 +130,9 @@ h2,
 h3,
 h4,
 h5,
-h6{margin:0 0 10px 0;}
+h6{margin:0 0 5px 0;}
 
-#popUp{
+.popUp{
   background:#fff;
   width:300px;
   height:400px;
@@ -146,7 +146,12 @@ h6{margin:0 0 10px 0;}
   font-family:helvetica, sans-serif;
 }
 
-#popUpTitle{
+#faqsPopUp{
+  display:none;
+  overflow:scroll;
+}
+
+.popUpTitle{
   background:rgb(220,220,220);
   height:40px;
   border-radius:5px 5px 0 0;
@@ -154,12 +159,16 @@ h6{margin:0 0 10px 0;}
   position:relative;
 }
 
-#popUpTitle h2{
+#faqsPopUp .popUpTitle{
+  font-size:.85em;
+}
+
+.popUpTitle h2{
   padding:8px 0 0 10px;
   font-size:1.4em;
 }
 
-#escapeMe{
+.escapeMe{
   width:20px;
   height:20px;
   position:absolute;
@@ -167,23 +176,34 @@ h6{margin:0 0 10px 0;}
   top:10px;
 }
 
-#escapeMe img{
+.escapeMe img{
   width:100%;
 }
 
-#popUpContent{
+.popUpContent{
   padding:10px;
   min-height:100px;
 }
 
-#popUpContent ul{
+.popUpContent ul{
   padding:0;
   margin:10px 0 10px 15px;
   font-size:.9em;
 }
 
-#popUpContent ul li{
+.popUpContent ul li{
   margin-bottom:10px;
+  line-height:1.5em;
+}
+
+.popUpContent p{
+  font-size:.9em;
+  line-height:1.5em;
+  margin:5px 0;
+}
+
+#faqsPopUp .popUpContent p{
+  margin:5px 0 10px 0;
 }
 
 #disclaimer{
@@ -195,13 +215,11 @@ h6{margin:0 0 10px 0;}
   margin:0;
 }
 
-#aboutMap{
+.mapButton{
   background:#fff;
   width:100px;
   padding:6px 10px;
   position:absolute;
-  right:10px;
-  top:110px;
   z-index:9000;
   font-family:helvetica, sans-serif;
   border-radius:5px;
@@ -210,24 +228,34 @@ h6{margin:0 0 10px 0;}
   border:1px solid rgb(190,190,190);
 }
 
-#aboutMap:focus{
+#aboutMap{
+  right:10px;
+  top:110px;
+}
+
+#faqs{
+  right:10px;
+  top:150px;
+}
+
+.mapButton:focus{
   background:rgb(0,51,102);
   color:#fff;
 }
 
 @media screen and (min-width:768px){
-  #popUp{
+  .popUp{
     width:740px;
     height:615px;
     overflow:visible;
   }
-  
-  #popUpTitle h2{
+
+  .popUpTitle h2{
     font-size:1.7em;
     padding-top:5px;
   }
   
-  #aboutMap:hover{
+  .mapButton:hover{
     background:rgb(0,51,102);
     color:#fff;
   }
