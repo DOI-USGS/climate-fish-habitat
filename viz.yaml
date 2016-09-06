@@ -19,6 +19,10 @@ sections:
     template: layout/templates/header.mustache
     context: siteTextData
   -
+    id: externallink
+    template: layout/templates/externallink.mustache
+    context: siteTextData
+  -
     id: intro
     template: layout/templates/intro.mustache
     context: siteTextData
