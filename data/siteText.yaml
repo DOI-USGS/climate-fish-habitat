@@ -212,13 +212,13 @@ footer-team: >-
   This project is led by Jordan S Read of the U.S. Geological Survey. The project team includes Luke Winslow (USGS), Gretchen Hansen (WI-DNR; MN-DNR), 
    Pete Jacobson (MN-DNR), Emily Stanley (University of Wisconsin - Madison), Matt Diebel (WI-DNR), Megan Hines (USGS), and Kevin Wehrly (MI-DNR). 
 footer-paper-1: >-    
-  The findings shared here are explained in greater detail in a publication entitled 
+ The findings shared here are explained in greater detail in a publication entitled 
 footer-paper-2: >- 
-   published in Global Change Biology and released on 2016-09-15. The authors include:
+ published in Global Change Biology and released on 2016-09-15. The authors include:
 paper-link: 
-  link: http://onlinelibrary.wiley.com/doi/10.1111/gcb.13462/full
-  text: >- 
-    "Projected shifts in fish species dominance in Wisconsin lakes under climate change"
+	link: http://onlinelibrary.wiley.com/doi/10.1111/gcb.13462/full
+	text: >- 
+	 "Projected shifts in fish species dominance in Wisconsin lakes under climate change"
 footer-vizlab: >-    
   This interactive data visualization was created by 
 footer-vizlab-link-github: 
