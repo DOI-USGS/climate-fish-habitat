@@ -38,7 +38,7 @@ var Carto_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}
 Carto_Positron.addTo(map);
 
 //the three different layers we want to have in the map
-var url = 'http://cidasddvasnwc.cr.usgs.gov:8082/geoserver/gwc/service/wms?service=wms&tiled=true';
+var url = 'http://cidasddvasnwc.cr.usgs.gov:8082/geoserver/wms?service=wms&tiled=true';
 
 //the better wms javascript for getfeatureinfo from wms
 L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
@@ -108,7 +108,7 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
 
     // Otherwise show the content in a popup, or something.
     // Check content.length() to see if it's more than 658ish characters, because actual features have more than that, empty responses from Geoserver have about that many characters
-    console.log(content.length);
+    
     if (content.length > 660) {
       L.popup({
           maxWidth: 800
@@ -127,7 +127,7 @@ L.tileLayer.betterWms = function(url, options) {
 
 // when the user changes baselayers, close the popup
 map.on('baselayerchange', function(a) {
-				console.log(a);
+				
         map.closePopup();
     });
 
