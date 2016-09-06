@@ -241,24 +241,18 @@ footer-vizlab-link-github:
   
 footer-text-link-NECSC:
   link: https://www.doi.gov/csc/northeast
-  text: >-    
-   Department of the Interior Northeast Climate Science Center
+  text: Department of the Interior Northeast Climate Science Center
   
 footer-text-link-WIDNR:
   link: http://dnr.wi.gov/
-  text: >-    
-   Wisconsin DNR
+  text: Wisconsin DNR
   
 footer-text-link-UW:
   link: http://www.wisc.edu/
-  text: >-    
-  University of Wisconsin–Madison
+  text: University of Wisconsin–Madison
   
 footer-text-link-NCCWSC:
-  link: https://nccwsc.usgs.gov/
-  text: >-    
-  United States Geological Survey National Climate Change and Wildlife Science Center
-	
-	
-
-
+  link: >-
+    https://nccwsc.usgs.gov/ 
+  text: >-
+    United States Geological Survey National Climate Change and Wildlife Science Center

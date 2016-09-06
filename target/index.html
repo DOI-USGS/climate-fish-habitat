@@ -256,7 +256,7 @@
 	    <li>As water temperatures get warmer, many lakes that currently can support natural walleye reproduction are unlikely to continue to have the thermal habitat conditions to do so.</li>
 	    <li>The majority of Wisconsin lakes and total lake area are predicted to have habitat conditions suitable for high largemouth bass densities by the mid-21st century due to warming.</li>
 	  </ul>
-	  <div class="figToggle showing" id="suitability"><p>Lake Count</p></div> 
+	  <div class="figToggle showing" id="suitability"><p>Lake Count</p></div>
 	  <div class="figToggle" id="figArea"><p>Total Lake Area</p></div>
 	  <object id="futureSuitabilityFig" type="image/svg+xml" class="svgFig" data="futureSuitability-desktop.svg" alt="Present and future count of lakes for each type of species dominance: walleye dominant, bass dominant, co-existance, or neither. Current distribution is 184 walleye lakes, 41 co-existance, 1236 bass, and 687 neither. Predicted distribution for 2040 to 2064 is 25 walleye lakes, 58 co-existance, 1857 bass, and 208 neither. Predicted distribution for 2065 to 2089 is 17 walleye lakes, 59 co-existance, 1961 bass, and 111 neither." title="Predicted distribution of dominant species for Wisconsin lakes by count"></object>
 	  <object id="futureSuitabilityFigArea" type="image/svg+xml" class="svgFig" data="futureSuitabilityFigArea-desktop.svg" alt="Present and future area of lakes for each type of species dominance: walleye dominant, bass dominant, co-existance, or neither. Current distribution is 326,183 acres walleye, 20,025 co-existance, 187,975 bass, and 217,207 neither. Predicted distribution for 2040 to 2064 is 47,813 acres walleye, 226,134 co-existance, 414,400 bass, and 63,043 neither. Predicted distribution for 2065 to 2089 is 41,342 acres walleye, 233,207 co-existance, 444,916 bass, and 31,923 neither.", title="Predicted distribution of dominant species for Wisconsin lakes by area"></object>
@@ -271,11 +271,11 @@
 	  </ul>
 	  <h1>Explore lake-specific predictions of supporting walleye and largemouth bass!</h1>
 	  <div class="exploreMore">
-	  <a href="explore/map.html" target="_blank" class="ui-link">
+	  <a href="explore/map.html" target="_blank" class="ui-link" onclick="vizlab.clicklink('explore/map.html'); return false;">
 	    <img src="images/fishMap-thumbnail.gif" alt="Link to and preview of map showing current and predicted distributions of species dominance in Wisconsin lakes" title="Detailed state map of predicted species" id="fishMapExplore">
 	   </a>
 	    <p>To explore a map of predicted game fish for Wisconsin lakes, click on the button below.</p>
-	    <a href="explore/map.html" target="_blank" class="ui-link">
+	    <a href="explore/map.html" target="_blank" class="ui-link" onclick="vizlab.clicklink('explore/map.html'); return false;">
 	      <button id="explore-map" class="extraButton ui-btn ui-shadow ui-corner-all">Explore</button>
 	    </a>
 	  </div>
@@ -311,7 +311,17 @@
         </div>
     </div>
   <p>
-    This research was funded by the Department of the Interior Northeast Climate Science Center, under the proposal  &quot;An integrated assessment of lake and stream thermal habitat under climate change&quot;,  with additional support from Wisconsin DNR Federal Aid in Sport Fish Restoration (Project F-95-P, study SSBW) and  United States Geological Survey National Climate Change and Wildlife Science Center grant 10909172 to the University of Wisconsin–Madison.
+    This research was funded by the 
+	<a href="https://www.doi.gov/csc/northeast" rel="external" onclick="vizlab.clicklink('https://www.doi.gov/csc/northeast'); return false;">Department of the Interior Northeast Climate Science Center</a>
+	, under the proposal &quot;An integrated assessment of lake and stream thermal habitat under climate change&quot;, with additional support from 
+	<a href="http://dnr.wi.gov/" rel="external" onclick="vizlab.clicklink('http://dnr.wi.gov/'); return false;">Wisconsin DNR</a>
+	Federal Aid in Sport Fish Restoration (Project F-95-P, study SSBW) and
+	<a href="http://www.wisc.edu/" rel="external" onclick="vizlab.clicklink('http://www.wisc.edu/'); return false;">University of Wisconsin–Madison</a>
+	grant 10909172 to the 
+	<a href="https://nccwsc.usgs.gov/ " rel="external" onclick="vizlab.clicklink('https://nccwsc.usgs.gov/ '); return false;">United States Geological Survey National Climate Change and Wildlife Science Center</a>
+	.
+	
+	
   </p>
   <br/>
   <p>
@@ -359,7 +369,7 @@
 			</p>
 		</div>
 		<p>
-    This interactive data visualization was created by   <a href="https://github.com/USGS-VIZLAB" rel="external" onclick="vizlab.clicklink('https://github.com/USGS-VIZLAB'); return false;">USGS VIZLAB</a> 
+    This interactive data visualization was created by   <a href="https://github.com/USGS-VIZLAB" rel="external" onclick="vizlab.clicklink('https://github.com/USGS-VIZLAB'); return false;">USGS VIZLAB </a> 
   </p>
 	</div>
 </footer>
@@ -369,5 +379,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
 <script src="js/app.js" type="text/javascript"></script>
 <script src="https://use.fontawesome.com/4a920dc73b.js"></script>
+<noscript>Javascript is not enabled</noscript>
 </body>
 </html>
