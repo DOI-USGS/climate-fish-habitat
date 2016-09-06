@@ -17,7 +17,7 @@ walleyeDecline-keynote-2: while largemouth bass populations in many lakes are in
 
 walleyeDecline-bullets-1: 
   - Recreational fishing in Wisconsin is valued at over $2 billion annually.
-  - Anglers target both walleye and largemouth bass in Wisconsin lakes, but walleye are perceived as preferable and thus important to Wisconsin’s economy and culture.
+  - Anglers target both walleye and largemouth bass in Wisconsin lakes, but walleye are often preferred and are important to Wisconsin’s economy and culture.
 walleyeDecline-bullets-2:  
   - There are many possible explanations for the observed changes in Wisconsin lake fish communities, and much interest exists in understanding these trends and whether they can be reversed.
   - Some believe that largemouth bass are directly responsible for walleye declines. However, evidence to date does not support this claim.
@@ -32,7 +32,7 @@ walleyeBass-interactive-setup: Can you draw the relationship between these two f
 walleyeBass-bullets: 
   - In general, walleye reproduce more successfully in cooler lakes, and largemouth bass populations are most abundant in warm lakes.
   - Both species exhibit a threshold response to temperature, where small changes in temperature can produce big changes in the fish population. Lakes with the best habitat for natural walleye reproduction generally do not have the habitat to support high largemouth bass abundance, and vice versa.
-  - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye can reproduce successfully in large lakes even if they are warm.
+  - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye are likely to reproduce successfully in large lakes even when they are warm.
 walleyeBass-GDD-1: >-
   Lake temperature in this study is measured as growing degree days (GDD). 
 walleyeBass-GDD-2: >-
@@ -44,12 +44,9 @@ walleyeBass-GDD-2: >-
   from the water temperature (in C) for that day. GDD is the sum of all of those numbers for the entire year.
 walleyeBass-hint-1: >-
     We're giving you a hint to help you fill out the pattern for Walleye and Largemouth Bass. 
-    For the colder lakes in Wisconsin, you are more likely to find Walleye than Bass. Bass are more commonly found in warmer lakes 
-    so their line looks like this:
+    Walleye are most likely to reproduce in cooler lakes. Largemouth Bass are more likely to reach high abundance in warmer lakes, so their line looks like this: 
 walleyeBass-hint-2: >-  
-  . It's up to you to figure out what happens to walleye in warmer lakes. If Walleye are more common in warmer lakes, your line would look like this:
-walleyeBass-hint-3: >- 
-  or less common in warmer lakes: 
+  . It's up to you to figure out what happens to walleye in warmer lakes.
 walleyeBass-caption: >-
   Predicted probability of a lake supporting successful walleye reproduction and high largemouth bass abundance as a 
   function of water temperature (growing degree days). Probabilities are based on a statistical model that incorporates other 
@@ -59,7 +56,7 @@ lakeWarming-keynote-1: Lakes in Wisconsin have gotten warmer over the past 30 ye
 lakeWarming-bullets: 
   - Some lakes have warmed more than others, and some lakes have always been warmer than others - for example, lakes in southern Wisconsin are generally warmer than lakes in northern Wisconsin.
   - Lake size and depth, water clarity, and surrounding tree cover all influence how lakes respond to climate.
-  - Differences in water temperature affect the suitability of a lake's habitat for supporting different fish species.
+  - Differences in water temperature affect the suitability of a lake for supporting different fish species.
 lakeWarming-caption: >-
   Lake warming since 1980 across the studied lakes of Wisconsin. The rate of warming is variable across 
   lakes and depends on geography and the type of lake (clear or dark, large or small). Warming shown here
@@ -67,8 +64,9 @@ lakeWarming-caption: >-
   
 futureWarming-keynote-1: Lakes are expected to get even warmer in the future
 futureClimate-caption: >-
-  Global average air temperatures predicted under two emission scenarios, A2 and B1. The A2 (greater CO2 emissions) 
-  was used for modeling future lake habitat for this project. Variability among Global Climate Models is shown as ribbons.
+  Global average air temperatures predicted under two emission scenarios, A2 and B1. 
+  The A2 (greater greenhouse gas emissions) was used for modeling future lake habitat for this project. 
+  Variability among Global Climate Models for each scenario is shown as a band around the line.
 futureClimate-bullets:
   - Scientists agree that the earth will get warmer through the end of the 21st century.
   - However, the amount of warming depends on actual greenhouse gas emissions and how physical processes such as precipitation and wind speed will change.
@@ -222,7 +220,7 @@ footer-team: >-
 footer-paper-1: >-    
  The findings shared here are explained in greater detail in a publication entitled 
 footer-paper-2: >- 
- published in Global Change Biology and released on 2016-09-15. The data underlying the research results can be accessed 
+ published in Global Change Biology and released on 2016-09-7. The data underlying the research results can be accessed 
 footer-paper-3: >- 
   . The authors include:
 paper-link: 
