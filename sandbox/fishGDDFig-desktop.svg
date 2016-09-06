@@ -46,6 +46,7 @@
 	    }
     </style>
     <script type="text/ecmascript"><![CDATA[
+		var hasDrawn = false;
 		var mainDocument = null;
         var svgDoc;
         var svg = document.querySelector("svg")
@@ -205,14 +206,28 @@
 		}
 
         function imDone(){
+
 			setBottomFrame()
         	transferUserPoints();
         	var initialHeight = svgDoc.getElementById('drawing-view').getBoundingClientRect().height;
         	svg.setAttribute("viewBox", "0 0 740 1150");  
 			mainDocument.firefoxSVGReload('fishGDDFig');
         	sweepDown(Number(initialHeight)+25); // bump plus a little extra
+			
+			var i = 0;
+			var delaySendValue = setInterval(function () {   
+					    	if (i < dots.length){
+					    		window.parent.ga("send", "event", "user feedback", "post", "GDD guess "+i, getPtValue(i));
+								i++
+							} else {
+			                   clearInterval(delaySendValue);
+							}}, 2000);
+			   
         }
         
+		function getPtValue(id){
+    		return(Math.round(svgDoc.getElementById("wally-"+id).getAttribute('cy')))
+		}
 
         function draw(evt){
         	if (selectedPoint === null) {return}
@@ -233,6 +248,10 @@
 				priorY = newY;
 				priorId = i;
 				drawnPoints[i]=true;
+				if (!hasDrawn){
+					window.parent.ga("send", "event", "svg interaction", "draw", "drew point");
+				}
+				hasDrawn = true; 
 			}
 			drawLine();
         };
@@ -328,15 +347,15 @@
             
 			if (canFinish()){
     			svgDoc.getElementById("im-done").setAttribute('class','enabled');
-    			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone()')
+    			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone();window.parent.ga("send", "event", "svg interaction", "click", "guessed GDD");')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
-    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
+    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "svg interaction", "click", "reset GDD");')
 			} 
 			
             for (var i = 0; i < dots.length; i++) {
             	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
             		svgDoc.getElementById("start-over").setAttribute('class','enabled');
-            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults()')
+            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "svg interaction", "click", "reset GDD");')
             		return
             	}
             }
@@ -444,7 +463,7 @@
    	 	<g id='skip-ahead' transform="translate(-315,-40)" class='enabled'>
       		<rect width="80" height="20" stroke="none" fill='grey'/>
       		<text y="10" x="40" dy='0.33em' text-anchor='middle' style='font-size: 10.00pt; fill: white;'>Skip ahead?</text>
-      		<rect width="80" height="20" opacity="0" onclick='bypassUser()'/>
+      		<rect width="80" height="20" opacity="0" onclick='bypassUser();window.parent.ga("send", "event", "svg interaction", "click", "skipped GDD");'/>
     	</g>
     </g>
 	<defs>

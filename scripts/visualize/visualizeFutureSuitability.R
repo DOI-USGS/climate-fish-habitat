@@ -3,12 +3,21 @@ library(dplyr)
 library(yaml)
 
 visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability, outfile, ...){
-
-  fish.sum <- processedFutureSuitability$fish.change.summary
-  arrows <- processedFutureSuitability[c('arrows.1', 'arrows.2')]
-  fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitability-fig`
+  
+  if (grepl('Area',outfile)){
+    arrows <- processedFutureSuitability[c('area.arrows.1', 'area.arrows.2')]
+    fish.sum <- processedFutureSuitability$area.fish.change.summary
+    fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitabilityArea-fig`
+  } else {
+    arrows <- processedFutureSuitability[c('count.arrows.1', 'count.arrows.2')]
+    fish.sum <- processedFutureSuitability$count.fish.change.summary
+    fig.data <- yaml::yaml.load_file('data/siteText.yaml')$`futureSuitability-fig`
+  }
+  
+  names(arrows) <- c('arrows.1', 'arrows.2')
   min.h <- 5 #px
-  js.funs <- '\nvar svg = document.querySelector("svg")
+  js.funs <- '\nvar hovered = false;
+  var svg = document.querySelector("svg")
   var xmax = Number(svg.getAttribute("viewBox").split(" ")[2]);
   var pt = svg.createSVGPoint();
   function init(evt){
@@ -28,6 +37,10 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       tooltip_bg.setAttribute("class","hidden");
       tool_pt.setAttribute("class","hidden");
     } else {
+      if (!hovered){
+	    	window.parent.ga("send", "event", "svg interaction", "hover", "mouseover future suitability");
+	    }
+	    hovered = true;
       pt = cursorPoint(evt);
       pt.x = Math.round(pt.x);
       pt.y = Math.round(pt.y);
@@ -74,7 +87,8 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
   l.m <- 24
   t.m <- 42
   b.m <- 60
-  scale <- (ht*pxi-t.m-box.s*3-b.m)/sum(processedFutureSuitability$fish.change.summary[1,c(1,2,3,4)])
+  scale <- (ht*pxi-t.m-box.s*3-b.m)/sum(fish.sum[1,c(1,2,3,4)])
+  
   y <- list()
   h <- list()
   
