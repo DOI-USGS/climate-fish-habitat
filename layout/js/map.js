@@ -234,5 +234,7 @@ map.addControl(layerControl2);
 });
 
 var sendAnalytics = function(latlng, data) {
-  debugger;
+  // ignoring latlng, but leaving here if we want to log those clicks
+  var lakeid = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/)[1];
+  ga('send', 'event', 'map', 'click', 'lake', lakeid);
 }
