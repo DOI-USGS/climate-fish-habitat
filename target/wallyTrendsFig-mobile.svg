@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 720 504">
+  <style>#tick-labels, #y-title, text {
+  	font-family: Arial;
+  }
+use, .hidden {
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+.hidden { 
+  opacity: 0;
+}
+.data-line {
+
+	stroke-linejoin: round;
+	stroke-width:3;
+	stroke-linecap: round;
+}
+#tick-labels {
+	font-size: 10.00pt; 
+}
+#y-title, #x-title, .legend {
+	font-size: 14.00pt; 
+}
+.background-walleye {
+  fill:#b2e7e2;
+stroke:white;
+stroke-width:2;
+fill-opacity:0.75;
+}
+.background-bass {
+fill:#e0b2b2;
+stroke:white;
+stroke-width:2;
+fill-opacity:0.75;
+}
+</style>
+  <g id="view-1-2">
+    <defs>
+      <clipPath id="mask-1-2">
+        <rect x="36" y="36" height="424.8" width="648"/>
+      </clipPath>
+    </defs>
+    <g id="axes" fill="none" stroke="#000000" stroke-width="1">
+      <rect x="36" y="36" height="424.8" width="648" id="axes-box"/>
+    </g>
+    <g stroke="rgb(1,178,159)" fill="none" clip-path="url(#mask-1-2)">
+      <path d="M49.5,274.64 76.5,272.066 103.5,329.291 130.5,96.628 157.5,118.07 184.5,309.99 211.5,278.856 238.5,232.758 265.5,228.21 292.5,317.204 319.5,148.194 346.5,192.952 373.5,344.67 400.5,307.838 427.5,322.941 454.5,289.6 481.5,321.322 508.5,315.823 535.5,361.314 562.5,347.415 589.5,266.856 616.5,351.906 643.5,396.549 670.5,400.647" class="data-line" id="walleye-line"/>
+    </g>
+    <g stroke="rgb(1,178,159)" stroke-dasharray="5,5" fill="none" clip-path="url(#mask-1-2)">
+      <path d="M117,224.786 657,357.274" class="trend-line"/>
+    </g>
+    <g clip-path="url(#mask-1-2)" id="highlight-marker" opacity="0">
+      <rect x="46.8" y="36" height="424.8" width="43.1999999999971" fill="rgb(153,153,153)"/>
+    </g>
+  </g>
+  <g id="legend" transform="translate(36,36)" class="legend">
+    <text x="20" dx="0.75em" y="20" text-anchor="begin" id="legend-walleye-text">Walleye</text>
+    <path d="M8,13 h20" stroke="rgb(1,178,159)" stroke-width="3"/>
+    <text x="20" dx="0.75em" y="40" text-anchor="begin" id="legend-bass-text">Bass</text>
+    <path d="M8,33 h20" stroke="rgb(153,0,0)" stroke-width="3"/>
+  </g>
+  <g id="view-1-4">
+    <defs>
+      <clipPath id="mask-1-4">
+        <rect x="36" y="36" height="424.8" width="648"/>
+      </clipPath>
+    </defs>
+    <g id="axes" fill="none" stroke="#000000" stroke-width="1">
+      <rect x="36" y="36" height="424.8" width="648" id="axes-box"/>
+    </g>
+    <g stroke="rgb(153,0,0)" fill="none" clip-path="url(#mask-1-4)">
+      <path d="M130.5,412.814 157.5,215.408 184.5,388.214 211.5,341.119 238.5,383.867 265.5,286.515 292.5,253.057 319.5,273.062 346.5,314.739 373.5,197.616 400.5,157.391 427.5,125.176 454.5,55.624 481.5,112.352 508.5,193.518 535.5,129.578 562.5,194.61 589.5,243.646 616.5,210.25 643.5,157.759 670.5,270.639" class="data-line" id="bass-line"/>
+    </g>
+    <g stroke="rgb(153,0,0)" stroke-dasharray="5,5" fill="none" clip-path="url(#mask-1-4)">
+      <path d="M117,333.383 657,144.349" class="trend-line"/>
+    </g>
+    <g clip-path="url(#mask-1-4)" opacity="0.0" id="hoverboxes">
+      <rect x="36" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 29.8 (per mile)');bassLeg(':  ');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="63" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 30.2 (per mile)');bassLeg(':  ');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="90" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 21.1 (per mile)');bassLeg(':  ');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="117" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 58.3 (per mile)');bassLeg(': 0.14 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="144" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 54.9 (per mile)');bassLeg(': 0.73 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="171" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 24.1 (per mile)');bassLeg(': 0.22 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="198" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 29.1 (per mile)');bassLeg(': 0.35 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="225" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 36.5 (per mile)');bassLeg(': 0.23 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="252" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 37.2 (per mile)');bassLeg(': 0.52 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="279" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 23.0 (per mile)');bassLeg(': 0.62 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="306" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 50.0 (per mile)');bassLeg(': 0.56 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="333" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 42.9 (per mile)');bassLeg(': 0.43 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="360" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 18.6 (per mile)');bassLeg(': 0.78 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="387" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 24.5 (per mile)');bassLeg(': 0.90 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="414" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 22.1 (per mile)');bassLeg(': 1.00 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="441" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 27.4 (per mile)');bassLeg(': 1.20 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="468" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 22.3 (per mile)');bassLeg(': 1.03 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="495" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 23.2 (per mile)');bassLeg(': 0.79 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="522" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 15.9 (per mile)');bassLeg(': 0.98 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="549" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 18.2 (per mile)');bassLeg(': 0.79 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="576" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 31.0 (per mile)');bassLeg(': 0.64 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="603" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 17.4 (per mile)');bassLeg(': 0.74 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="630" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 10.3 (per mile)');bassLeg(': 0.90 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+      <rect x="657" y="36" height="424.8" width="27" fill="rgb(255,255,255)" onmouseover="wallyLeg(': 9.6 (per mile)');bassLeg(': 0.56 (rel)');showBar(evt);" onmouseout="wallyLeg(' ');bassLeg(' ');hideBar(evt);"/>
+    </g>
+  </g>
+  <g id="side-1">
+    <g id="axis-side-1">
+      <g id="tick-labels" stroke="none" fill="#000000" text-anchor="middle">
+        <text x="157.5" y="460.8" dy="1.0em">1995</text>
+        <text x="292.5" y="460.8" dy="1.0em">2000</text>
+        <text x="427.5" y="460.8" dy="1.0em">2005</text>
+        <text x="562.5" y="460.8" dy="1.0em">2010</text>
+      </g>
+      <g id="ticks">
+        <path d="M 157.5,460.8 v -5"/>
+        <path d="M 292.5,460.8 v -5"/>
+        <path d="M 427.5,460.8 v -5"/>
+        <path d="M 562.5,460.8 v -5"/>
+      </g>
+      <g id="axis-label" stroke="none" fill="#000000" text-anchor="middle">
+        <text x="360" y="460.8" dy="2.0em" id="x-title">Year</text>
+      </g>
+    </g>
+  </g>
+  <g id="side-2">
+    <g id="axis-side-2">
+      <g id="tick-labels" stroke="none" fill="#000000" text-anchor="end">
+        <text x="36" y="460.8" dx="-0.33em" dy="0.33em">0</text>
+        <text x="36" y="398.329" dx="-0.33em" dy="0.33em">10</text>
+        <text x="36" y="335.859" dx="-0.33em" dy="0.33em">20</text>
+        <text x="36" y="273.388" dx="-0.33em" dy="0.33em">30</text>
+        <text x="36" y="210.918" dx="-0.33em" dy="0.33em">40</text>
+        <text x="36" y="148.447" dx="-0.33em" dy="0.33em">50</text>
+        <text x="36" y="85.976" dx="-0.33em" dy="0.33em">60</text>
+      </g>
+      <g id="ticks">
+        <path d="M 36,460.8 h 5"/>
+        <path d="M 36,398.329 h 5"/>
+        <path d="M 36,335.859 h 5"/>
+        <path d="M 36,273.388 h 5"/>
+        <path d="M 36,210.918 h 5"/>
+        <path d="M 36,148.447 h 5"/>
+        <path d="M 36,85.976 h 5"/>
+      </g>
+    </g>
+  </g>
+  <g id="side-4">
+    <g id="axis-side-4">
+      <g id="tick-labels" stroke="none" fill="#000000" text-anchor="begin">
+        <text x="684" y="460.8" dx="0.33em" dy="0.33em">0</text>
+        <text x="684" y="376.514" dx="0.33em" dy="0.33em">0.25</text>
+        <text x="684" y="292.229" dx="0.33em" dy="0.33em">0.5</text>
+        <text x="684" y="207.943" dx="0.33em" dy="0.33em">0.75</text>
+        <text x="684" y="123.657" dx="0.33em" dy="0.33em">1</text>
+        <text x="684" y="39.371" dx="0.33em" dy="0.33em">1.25</text>
+      </g>
+      <g id="ticks">
+        <path d="M 684,460.8 h -5"/>
+        <path d="M 684,376.514 h -5"/>
+        <path d="M 684,292.229 h -5"/>
+        <path d="M 684,207.943 h -5"/>
+        <path d="M 684,123.657 h -5"/>
+        <path d="M 684,39.371 h -5"/>
+      </g>
+    </g>
+  </g>
+  <script type="text/ecmascript"><![CDATA[
+function fadeShapes(wallyN, bassN){
+  for (i = 0; i < 60; i++) { 
+    document.getElementById('walleye-'+(i+1)).setAttribute('class','hidden');
+    document.getElementById('bass-'+(i+1)).setAttribute('class','hidden');
+  }
+  for (i = 0; i < wallyN; i++) { 
+    document.getElementById('walleye-'+(i+1)).removeAttribute('class');
+  }
+  for (i = 0; i < bassN; i++) { 
+    document.getElementById('bass-'+(i+1)).removeAttribute('class');
+  }
+}
+function wallyLeg(value){
+  document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
+}
+function showBar(evt){
+  var width = '10';
+  document.getElementById('highlight-marker').childNodes[1].setAttribute('width',width);
+  var tX = evt.target.getAttribute('x');
+  var tWidth = evt.target.getAttribute('width');
+  var xLoc = Number(tX)+Number(tWidth)/2-Number(width)/2;
+  document.getElementById('highlight-marker').setAttribute('opacity','0.2');
+  document.getElementById('highlight-marker').childNodes[1].setAttribute('x',+xLoc);
+
+}
+function hideBar(evt){
+  document.getElementById('highlight-marker').setAttribute('opacity','0');
+}
+function bassLeg(value){
+  document.getElementById('legend-bass-text').firstChild.data='Bass'+value;
+}
+]]></script>
+  <text x="10" y="25" text-anchor="begin" id="y-title">Walleye recruitment (#/mile)</text>
+  <text x="710" y="25" text-anchor="end" id="y-title">Bass relative abundance</text>
+</svg>
