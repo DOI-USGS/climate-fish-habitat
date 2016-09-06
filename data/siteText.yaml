@@ -215,4 +215,9 @@ footer-paper: >-
   The findings shared here are explained in greater detail in a publication entitled "Projected shifts in fish species dominance in Wisconsin
   lakes under climate change" published in Global Change Biology and released on 2016-09-15. The authors include:
 footer-vizlab: >-    
-  This interactive data visualization was created by USGS VIZLAB
+  This interactive data visualization was created by 
+footer-vizlab-link-github: 
+	link: https://github.com/USGS-VIZLAB
+	text: >-
+		USGS VIZLAB
+
