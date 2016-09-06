@@ -5,15 +5,24 @@
   <!-- ############### VIEWPORT META TAG ############### -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 <!-- ################################################# -->
-  
+
   <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
   <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
   <link rel="stylesheet" href="../css/map.css">
   <script src="../js/map.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78530187-1', 'auto');
+    ga('send', 'pageview', '/climate-change-walleye-bass');
+
+  </script>
 </head>
 <body>
-  
   <div class="popUp" id="readFirst">
     <div class="popUpTitle">
       <h2>PLEASE READ FIRST</h2>
@@ -22,12 +31,12 @@
       </div><!--escapeMe-->
     </div><!--popUpTitle-->
     <div class="popUpContent">
-      
+
       <h3>Welcome to the interactive map for viewing current and future predicted conditions for walleye and largemouth bass in Wisconsin lakes!</h3>
-      
+
       <h4>Lakes are colored based on predicted habitat conditions for each species. Double-click on a lake for more information.</h4>
       <h4>Predictions of species dominance are available for three time periods - contemporary conditions (1989-2014), and two future periods (2040-2064, and 2065-2089).</h4>
-      
+
       <ul>
         <li>"Walleye lakes” are predicted to have habitat conditions capable of supporting naturally reproducing walleye populations (>49% probability) but not high largemouth bass abundance (<49% probability).</li>
         <li>"Bass lakes” are predicted to have the habitat conditions capable of supporting high largemouth bass abundance (>49% probability) but not naturally reproducing walleye populations (<49% probability).</li>
@@ -40,11 +49,11 @@
       </div><!--disclaimer-->
     </div>
   </div>
-  
+
   <div class="mapButton" id="aboutMap">About Map</div>
-  
+
   <div class="mapButton" id="faqs">FAQs</div>
-  
+
   <div class="popUp" id="faqsPopUp">
     <div class="popUpTitle">
       <h2>Frequently Asked Questions</h2>
@@ -53,26 +62,26 @@
       </div><!--escapeMe-->
     </div><!--popUpTitle-->
     <div class="popUpContent">
-      
+
       <h3>My lake is shown as not supporting walleye, but I know there are walleye in my lake. What gives?</h3>
       <ul>
         <li>Shown here is the probability of a lake supporting walleye natural reproduction. Many lakes where natural reproduction is unlikely still contain a fishable population of walleye mainly supported by stocking.</li>
         <li>The information shown in this map is based on a model that predicts the suitability of each lake for walleye natural reproduction based on the water temperature, lake size, lake shoreline complexity (how ‘wiggly’ is the shoreline?), and conductivity of the water. The model is a simplification of reality and is not 100% accurate. Other factors such as stocking and the fish community will influence the actual walleye population in individual lakes.</li>
         <li>Some lakes will have a probability of natural walleye reproduction that falls just below our threshold separating walleye lakes from non-walleye lakes (49%). For example, the probability of walleye reproduction in Lac Vieux Desert is 42%, and the lake is classified as supporting neither walleye nor largemouth bass. In fact, there is a reasonable probability that walleye could naturally reproduce in this lake.</li>
       </ul>
-      
+
       <h3>My lake is predicted to turn into a bass lake in the future. Does that mean largemouth bass will take over my lake?</h3>
       <p>No. Lakes classified as “bass lakes” are lakes where the conditions are right (or are predicted to be right in the future) to support high densities of largemouth bass. We do not take into account whether largemouth bass are in the lake at all or if they can get there. We also do not account for other species that may benefit from similar conditions (for example, bluegill). Finally, our predictions are based on projected changes in climate and simple lake variables, and represent one possible future scenario.</p>
-      
+
       <h3>Why do walleye fail to reproduce when water temperatures get warmer?</h3>
       <p>Importantly, the relationships between water temperature and fish identified in this study are based on correlations. We know that walleye natural reproduction is more frequent in cooler lakes, and we know largemouth bass reach high densities more often in warmer lakes. However, we do not know the reasons behind these relationships. Water temperatures in most Wisconsin lakes are not predicted to get too warm for walleye to survive in the foreseeable future. We can only speculate about the true cause for failed walleye reproduction in warmer lakes. We believe a number of factors may be at play, including potential mismatches between young walleye’s need for food and the availability of that food, increased competition and/or predation, increased need for food due to warmer temperatures, or a combination of these and other factors.</p>
-      
+
       <h3>My lake is predicted to change from a walleye lake now to a bass lake in the mid-21st century, but then to a lake where neither walleye nor bass are supported in the late-21st century. Why would a lake gain bass, but then lose them later?</h3>
       <p>In the species classifications, we have categorized lakes based on their predicted probabilities of supporting natural walleye recruitment and/or high largemouth bass densities. In order to do this, we had to define a cutoff probability value that separated these categories. In this case, if the probability of supporting a species is 49% or more, we consider that lake to be supportive of that species. Sometimes, if the probability of supporting a species falls just above or below the 49% cutoff, the lake category can jump across the line and then back again due to small variability in the predictions that don’t represent any biological differences.</p>
-      
+
       <h3>How can you predict the future? No one knows what will happen tomorrow, much less in 50 or more years.</h3>
       <p>This is absolutely correct. Our predictions should be viewed as one possible scenario of what could happen in the future if the climate continues to warm. We based our predictions on a relatively pessimistic view of climate warming, so they can be viewed as a worst case scenario. The predictions are uncertain and could change if the climate warms more or less than predicted, or due to changes in fishing regulations, land use, other fish species, or angling pressure.</p>
-      
+
     </div>
   </div><!--faqspopUp-->
 
