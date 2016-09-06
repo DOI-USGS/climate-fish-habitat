@@ -22,3 +22,8 @@ $('.figToggle').each(function(){
   });
 });
 
+//Toggles text when toggleInfo is clicked
+  $('.toggleInfo').on('click', function(){
+    $('#drawConclusionsText').toggle('slow');
+  });
+
