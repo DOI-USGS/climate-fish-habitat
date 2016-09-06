@@ -38,7 +38,7 @@ var Carto_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}
 Carto_Positron.addTo(map);
 
 //the three different layers we want to have in the map
-var url = 'http://cidasddvasnwc.cr.usgs.gov:8082/geoserver/wms?service=wms&tiled=true';
+var url = 'http://cida.usgs.gov/nwc/geoserver/wms?service=wms&tiled=true';
 
 //the better wms javascript for getfeatureinfo from wms
 L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
@@ -216,7 +216,7 @@ L.wmsLegend = function(uri) {
   return wmsLegendControl;
 };
 
-uri = "http://cidasddvasnwc.cr.usgs.gov:8082/geoserver/gwc/service/wms?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=vizlab:predicted_species_1989-2014";
+uri = "http://cida.usgs.gov/nwc/geoserver/wms?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=vizlab:predicted_species_1989-2014";
 L.wmsLegend(uri);
 
 // layer toggle
