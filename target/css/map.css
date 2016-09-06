@@ -1,0 +1,262 @@
+      html, body, #map {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+	  #map {
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+      }
+      
+      table caption {
+        display: none;
+      }
+	  
+	  /* hide the fid column from geoserver */
+      table.featureInfo > tbody > tr > th:first-child {
+        display: none;
+      }
+      table.featureInfo > tbody > tr > td:first-child {
+        display: none;
+      }
+     
+	/*hide the column headers */
+	 table.featureInfo > tbody > tr > th:nth-child(2){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(3){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(4){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(5){
+		visibility:hidden;
+		position:relative;
+	  }	
+	  
+	 table.featureInfo > tbody > tr > th:nth-child(6){
+		visibility:hidden;
+		position:relative;
+	  }	
+	   
+	  /* replace column headers */
+	  table.featureInfo > tbody > tr > th:nth-child(2):after {
+		visibility: visible;
+		content: "Lake Name";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(3):after {
+		visibility: visible;
+		content: "Time Period";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(4):after {
+		visibility: visible;
+		content: "Lake Class";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(5):after {
+		visibility: visible;
+		content: "Bass Probability";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+	  table.featureInfo > tbody > tr > th:nth-child(6):after {
+		visibility: visible;
+		content: "Walleye Probability";
+		float:left;
+		top: 0;
+		left: 0;
+	  }
+	  
+      .leaflet-control-layers-selector,.leaflet-container{
+        font-size: 1.0em;
+      }
+      .leaflet-control-wms-legend {
+        display: block;
+        clear: both;
+        padding: 3px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        cursor: auto;
+        text-align: left;
+        background-color: #FFFFFF;
+      }
+      .leaflet-popup-content-wrapper {
+        font-size: .8em;
+        width:300px;
+      }
+      .leaflet-popup-content {
+        margin: 19px 19px;
+      }
+      .leaflet-control-wms-legend:before {
+        content: "Predicted Species";
+        display: block;
+        color: #000;
+      }
+      
+      @media screen and (min-width:768px){
+        .leaflet-popup-content-wrapper {
+          font-size: 1.2em;
+          width:600px;
+        }
+      }
+      
+/*Pop up CSS*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{margin:0 0 5px 0;}
+
+.popUp{
+  background:#fff;
+  width:300px;
+  height:400px;
+  overflow:auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index:1000000;
+  border-radius:5px;
+  border:1px solid rgb(153,153,153);
+  font-family:helvetica, sans-serif;
+}
+
+#faqsPopUp{
+  display:none;
+  overflow:scroll;
+}
+
+.popUpTitle{
+  background:rgb(220,220,220);
+  height:40px;
+  border-radius:5px 5px 0 0;
+  border-bottom:1px solid rgb(153,153,153);
+  position:relative;
+}
+
+#faqsPopUp .popUpTitle{
+  font-size:.85em;
+}
+
+.popUpTitle h2{
+  padding:8px 0 0 10px;
+  font-size:1.4em;
+}
+
+.escapeMe{
+  width:20px;
+  height:20px;
+  position:absolute;
+  right:10px;
+  top:10px;
+}
+
+.escapeMe img{
+  width:100%;
+}
+
+.popUpContent{
+  padding:10px;
+  min-height:100px;
+}
+
+.popUpContent ul{
+  padding:0;
+  margin:10px 0 10px 15px;
+  font-size:.9em;
+}
+
+.popUpContent ul li{
+  margin-bottom:10px;
+  line-height:1.5em;
+}
+
+.popUpContent p{
+  font-size:.9em;
+  line-height:1.5em;
+  margin:5px 0;
+}
+
+#faqsPopUp .popUpContent p{
+  margin:5px 0 10px 0;
+}
+
+#disclaimer{
+  background:rgb(200,200,200);
+  padding:10px;
+}
+
+#disclaimer h4{
+  margin:0;
+}
+
+.mapButton{
+  background:#fff;
+  width:100px;
+  padding:6px 10px;
+  position:absolute;
+  z-index:9000;
+  font-family:helvetica, sans-serif;
+  border-radius:5px;
+  text-align:center;
+  cursor:pointer;
+  border:1px solid rgb(190,190,190);
+}
+
+#aboutMap{
+  right:10px;
+  top:110px;
+}
+
+#faqs{
+  right:10px;
+  top:150px;
+}
+
+.mapButton:focus{
+  background:rgb(0,51,102);
+  color:#fff;
+}
+
+@media screen and (min-width:768px){
+  .popUp{
+    width:740px;
+    height:615px;
+    overflow:visible;
+  }
+
+  .popUpTitle h2{
+    font-size:1.7em;
+    padding-top:5px;
+  }
+  
+  .mapButton:hover{
+    background:rgb(0,51,102);
+    color:#fff;
+  }
+}

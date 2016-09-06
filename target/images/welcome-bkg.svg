@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 720 504">
+  <defs>
+    <pattern id="image" patternUnits="userSpaceOnUse" height="504" width="720">
+      <image height="504" width="720"  xlink:href="welcome-bkg.jpg" transform='rotate(-1.5)'></image>
+    </pattern>
+  </defs>
+  <rect height="504" width="720" fill="url(#image)"/>
+</svg>
