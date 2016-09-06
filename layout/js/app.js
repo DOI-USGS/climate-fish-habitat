@@ -11,13 +11,14 @@ $('.figToggle').each(function(){
     $(this).addClass('showing');
     //toggles the figs based on which button is active
     if($('#figArea').hasClass('showing')){
-      $('#futureSuitabilityFig').fadeOut(500);
-      $('#futureSuitabilityFigArea').fadeIn(1000);
+      $('#futureSuitabilityFig').fadeOut(1000, function() {
+        $('#futureSuitabilityFigArea').fadeIn(1000);
+      });
     }else{
-      $('#futureSuitabilityFigArea').fadeOut(500);
-      $('#futureSuitabilityFig').fadeIn(1000);
+      $('#futureSuitabilityFigArea').fadeOut(1000, function() {
+        $('#futureSuitabilityFig').fadeIn(1000);
+      });
     }
   });
 });
 
-        
