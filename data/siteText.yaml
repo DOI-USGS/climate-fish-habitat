@@ -33,8 +33,9 @@ walleyeBass-bullets:
   - In general, walleye reproduce more successfully in cooler lakes, and largemouth bass populations are most abundant in warm lakes.
   - Both species exhibit a threshold response to temperature, where small changes in temperature can produce big changes in the fish population. Lakes with the best habitat for natural walleye reproduction generally do not have the habitat to support high largemouth bass abundance, and vice versa.
   - These relationships are averages. Other lake characteristics influence the suitability of the lake for each species. For example, walleye can reproduce successfully in large lakes even if they are warm.
-walleyeBass-GDD: >-
+walleyeBass-GDD-1: >-
   Lake temperature in this study is measured as growing degree days (GDD). 
+walleyeBass-GDD-2: >-
   GDD are a measure of cumulative temperature over the entire open water 
   season of a lake (from ice-out to ice-on). Higher GDD means warmer water, 
   lower GDD means cooler water. In this case, we used a base temperature of 
