@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
   //Clicking X closes popUp
   $('.escapeMe').on('click', function(){
     $('.popUp').hide();
@@ -23,7 +23,7 @@ $(document).ready(function(){
     e.stopPropagation();
     return false;
   });
-  
+
 //the map and where it centers and sets zoom level
 var map = L.map('map').setView([44.514198, -89.740264], 8);
 
@@ -66,6 +66,7 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
       success: function(data, status, xhr) {
         var err = typeof data === 'string' ? null : data;
         showResults(err, evt.latlng, data);
+        sendAnalytics(evt.latlng, data);
       },
       error: function(xhr, status, error) {
         showResults(error);
@@ -108,7 +109,7 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
 
     // Otherwise show the content in a popup, or something.
     // Check content.length() to see if it's more than 658ish characters, because actual features have more than that, empty responses from Geoserver have about that many characters
-    
+
     if (content.length > 660) {
       L.popup({
           maxWidth: 800
@@ -127,7 +128,7 @@ L.tileLayer.betterWms = function(url, options) {
 
 // when the user changes baselayers, close the popup
 map.on('baselayerchange', function(a) {
-				
+
         map.closePopup();
     });
 
@@ -231,3 +232,9 @@ var layerControl2 = L.control.layers(basemaps, null, {
 });
 map.addControl(layerControl2);
 });
+
+var sendAnalytics = function(latlng, data) {
+  // ignoring latlng, but leaving here if we want to log those clicks
+  var lakeid = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/)[1];
+  ga('send', 'event', 'map', 'click', 'lake', lakeid);
+}
