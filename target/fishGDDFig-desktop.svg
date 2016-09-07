@@ -217,11 +217,11 @@
 			mainDocument.firefoxSVGReload('fishGDDFig');
         	sweepDown(Number(initialHeight)+25); // bump plus a little extra
 			
-			var toSend = getPtValue(0);
-			for (var i = 1; i < dots.length; i++) {
-				toSend = toSend + "," + getPtValue(i);
+			var toSend = [];
+			for (var i = 0; i < dots.length; i++) {
+				toSend.push(getPtValue(i));
 			}
-			toSend = "{'walleye':["+toSend+"]}"
+			toSend = JSON.stringify({"walleye":toSend});
 			window.parent.ga("send", "event", "figure", "submitted GDD guess");
 			window.parent.ga("send", "event", "figure", "guessed GDD pattern", toSend);
 			
