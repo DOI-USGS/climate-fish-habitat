@@ -79,7 +79,7 @@ function wallyLeg(value){
 }
 function showBar(evt){
   if (!hovered){
-		window.parent.ga('send', 'event', 'svg interaction', 'hover', 'mouseover wally trends');
+		window.parent.ga('send', 'event', 'figure', 'hovered walleye trends');
 	}
 	hovered = true;
   var width = '10';

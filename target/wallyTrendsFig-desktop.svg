@@ -1010,7 +1010,7 @@ fill-opacity:0.75;
     </g>
   </g>
   <script type="text/ecmascript"><![CDATA[
-	  var hovered = false;
+var hovered = false;
 function fadeShapes(wallyN, bassN){
   for (i = 0; i < 60; i++) { 
     document.getElementById('walleye-'+(i+1)).setAttribute('class','hidden');
@@ -1027,8 +1027,8 @@ function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
 }
 function showBar(evt){
-	if (!hovered){
-		window.parent.ga("send", "event", "svg interaction", "hover", "mouseover wally trends");
+  if (!hovered){
+		window.parent.ga('send', 'event', 'figure', 'hovered walleye trends');
 	}
 	hovered = true;
   var width = '10';
