@@ -117,6 +117,12 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
         .setLatLng(latlng)
         .setContent(content)
         .openOn(this._map);
+        //IE fix for popup headers
+        $('.featureInfo th:nth-child(2)').html('Lake Name');
+        $('.featureInfo th:nth-child(3)').html('Time Period');
+        $('.featureInfo th:nth-child(4)').html('Lake Class');
+        $('.featureInfo th:nth-child(5)').html('Bass Probability');
+        $('.featureInfo th:nth-child(6)').html('Walleye Probability');
     }
   }
 });
@@ -235,6 +241,11 @@ map.addControl(layerControl2);
 
 var sendAnalytics = function(latlng, data) {
   // ignoring latlng, but leaving here if we want to log those clicks
-  var lakeid = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/)[1];
-  ga('send', 'event', 'map', 'click', 'lake', lakeid);
+  var lakeid = 'none'
+  var matches = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/);
+  if (matches && matches.length > 1) {
+    lakeid = matches[1];
+  }
+  var label = JSON.stringify({lakeid: lakeid});
+  ga('send', 'event', 'figure', 'clicked lake', label);
 }
