@@ -9,10 +9,12 @@ $(document).ready(function(){
     event.stopPropagation();
     $('#readFirst').show();
     $('#faqsPopUp').hide();
+    ga('send', 'event', 'figure', 'clicked about map');
   });
   $('#faqs').on('click', function(event){
     event.stopPropagation();
     $('#faqsPopUp').show();
+    ga('send', 'event', 'figure', 'clicked map faqs');
   });
   //clicking off the popUp hides it
   $(document).on('click', function(){

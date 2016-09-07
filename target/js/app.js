@@ -53,7 +53,7 @@ vizlab.chapterScroll = function() {
     if (vizlab.inview($(value)[0])) {
       if (!vizlab.chapterTriggers[value]) {
         vizlab.chapterTriggers[value] = true; // trigger
-        ga('send', 'event', 'chapter', 'view', value);
+        ga('send', 'event', 'chapter', 'scrolled to ' + value);
       }
     }
   })
