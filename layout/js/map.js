@@ -117,6 +117,12 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
         .setLatLng(latlng)
         .setContent(content)
         .openOn(this._map);
+        //IE fix for popup headers
+        $('.featureInfo th:nth-child(2)').html('Lake Name');
+        $('.featureInfo th:nth-child(3)').html('Time Period');
+        $('.featureInfo th:nth-child(4)').html('Lake Class');
+        $('.featureInfo th:nth-child(5)').html('Bass Probability');
+        $('.featureInfo th:nth-child(6)').html('Walleye Probability');
     }
   }
 });
