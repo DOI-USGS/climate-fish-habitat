@@ -74,8 +74,10 @@
         }
 		// set up the initial position of control-point dots;
 		// reset button and dot classes
-  		function resetDefaults(){
-		
+  		function resetDefaults(sendEvent=false){
+			if (sendEvent){
+				window.parent.ga("send", "event", "figure", "reset GDD guess");
+			} 
 			drawnPoints = [];
 			activeFish = "wally"
         	dots = [85, 143, 201, 259, 317, 375, 433, 491, 549, 607, 665];
@@ -203,6 +205,7 @@
 		function bypassUser(){
 			setBottomFrame()
 			svg.setAttribute("viewBox", "0 550 740 560");
+			window.parent.ga("send", "event", "figure", "skipped GDD guess");
 		}
 
         function imDone(){
@@ -348,13 +351,13 @@
     			svgDoc.getElementById("im-done").setAttribute('class','enabled');
     			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone();')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
-    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "figure", "reset GDD guess");')
+    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults(true);')
 			} 
 			
             for (var i = 0; i < dots.length; i++) {
             	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
             		svgDoc.getElementById("start-over").setAttribute('class','enabled');
-            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "figure", "reset GDD guess");')
+            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults(true);')
             		return
             	}
             }
@@ -462,7 +465,7 @@
    	 	<g id='skip-ahead' transform="translate(-315,-40)" class='enabled'>
       		<rect width="80" height="20" stroke="none" fill='grey'/>
       		<text y="10" x="40" dy='0.33em' text-anchor='middle' style='font-size: 10.00pt; fill: white;'>Skip ahead?</text>
-      		<rect width="80" height="20" opacity="0" onclick='bypassUser();window.parent.ga("send", "event", "figure", "skipped GDD guess");'/>
+      		<rect width="80" height="20" opacity="0" onclick='bypassUser();'/>
     	</g>
     </g>
 	<defs>
