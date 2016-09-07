@@ -219,7 +219,9 @@
 				toSend = toSend + "," + getPtValue(i);
 			}
 			toSend = "{'walleye':["+toSend+"]}"
+			window.parent.ga("send", "event", "figure", "submitted GDD guess");
 			window.parent.ga("send", "event", "figure", "guessed GDD pattern", toSend);
+			
         }
         
 		function getPtValue(id){
@@ -344,7 +346,7 @@
             
 			if (canFinish()){
     			svgDoc.getElementById("im-done").setAttribute('class','enabled');
-    			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone();window.parent.ga("send", "event", "figure", "submitted GDD guess");')
+    			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone();')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
     			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "figure", "reset GDD guess");')
 			} 
