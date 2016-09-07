@@ -23,71 +23,10 @@
       }
      
 	/*hide the column headers */
-	 table.featureInfo > tbody > tr > th:nth-child(2){
-		visibility:hidden;
+	 table.featureInfo > tbody > tr > th{
+	  background:#fff;
 		position:relative;
 	  }	
-	  
-	 table.featureInfo > tbody > tr > th:nth-child(3){
-		visibility:hidden;
-		position:relative;
-	  }	
-	  
-	 table.featureInfo > tbody > tr > th:nth-child(4){
-		visibility:hidden;
-		position:relative;
-	  }	
-	  
-	 table.featureInfo > tbody > tr > th:nth-child(5){
-		visibility:hidden;
-		position:relative;
-	  }	
-	  
-	 table.featureInfo > tbody > tr > th:nth-child(6){
-		visibility:hidden;
-		position:relative;
-	  }	
-	   
-	  /* replace column headers */
-	  table.featureInfo > tbody > tr > th:nth-child(2):after {
-		visibility: visible;
-		content: "Lake Name";
-		float:left;
-		top: 0;
-		left: 0;
-	  }
-	  
-	  table.featureInfo > tbody > tr > th:nth-child(3):after {
-		visibility: visible;
-		content: "Time Period";
-		float:left;
-		top: 0;
-		left: 0;
-	  }
-	  
-	  table.featureInfo > tbody > tr > th:nth-child(4):after {
-		visibility: visible;
-		content: "Lake Class";
-		float:left;
-		top: 0;
-		left: 0;
-	  }
-	  
-	  table.featureInfo > tbody > tr > th:nth-child(5):after {
-		visibility: visible;
-		content: "Bass Probability";
-		float:left;
-		top: 0;
-		left: 0;
-	  }
-	  
-	  table.featureInfo > tbody > tr > th:nth-child(6):after {
-		visibility: visible;
-		content: "Walleye Probability";
-		float:left;
-		top: 0;
-		left: 0;
-	  }
 	  
       .leaflet-control-layers-selector,.leaflet-container{
         font-size: 1.0em;
@@ -246,7 +185,7 @@ h6{margin:0 0 5px 0;}
 @media screen and (min-width:768px){
   .popUp{
     width:740px;
-    height:615px;
+    height:550px;
     overflow:visible;
   }
 
