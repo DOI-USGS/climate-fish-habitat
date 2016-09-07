@@ -28,7 +28,7 @@ $(document).ready(function(){
 var map = L.map('map').setView([44.514198, -89.740264], 8);
 
 //the background layer
-var Carto_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+var Carto_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
   subdomains: 'abcd',
   minZoom: 0,
