@@ -9,10 +9,12 @@ $(document).ready(function(){
     event.stopPropagation();
     $('#readFirst').show();
     $('#faqsPopUp').hide();
+    ga('send', 'event', 'figure', 'clicked about map');
   });
   $('#faqs').on('click', function(event){
     event.stopPropagation();
     $('#faqsPopUp').show();
+    ga('send', 'event', 'figure', 'clicked map faqs');
   });
   //clicking off the popUp hides it
   $(document).on('click', function(){
@@ -241,6 +243,11 @@ map.addControl(layerControl2);
 
 var sendAnalytics = function(latlng, data) {
   // ignoring latlng, but leaving here if we want to log those clicks
-  var lakeid = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/)[1];
-  ga('send', 'event', 'map', 'click', 'lake', lakeid);
+  var lakeid = 'none'
+  var matches = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/);
+  if (matches && matches.length > 1) {
+    lakeid = matches[1];
+  }
+  var label = JSON.stringify({lakeid: lakeid});
+  ga('send', 'event', 'figure', 'clicked lake', label);
 }
