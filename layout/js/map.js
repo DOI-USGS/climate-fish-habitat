@@ -28,8 +28,8 @@ $(document).ready(function(){
 var map = L.map('map').setView([44.514198, -89.740264], 8);
 
 //the background layer
-var Carto_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+var Carto_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
   subdomains: 'abcd',
   minZoom: 0,
   maxZoom: 20,
@@ -38,7 +38,7 @@ var Carto_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}
 Carto_Positron.addTo(map);
 
 //the three different layers we want to have in the map
-var url = 'http://cida.usgs.gov/nwc/geoserver/wms?service=wms&tiled=true';
+var url = 'https://cida.usgs.gov/nwc/geoserver/wms?service=wms&tiled=true';
 
 //the better wms javascript for getfeatureinfo from wms
 L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
@@ -223,7 +223,7 @@ L.wmsLegend = function(uri) {
   return wmsLegendControl;
 };
 
-uri = "http://cida.usgs.gov/nwc/geoserver/wms?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=vizlab:predicted_species_1989-2014";
+uri = "https://cida.usgs.gov/nwc/geoserver/wms?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=vizlab:predicted_species_1989-2014";
 L.wmsLegend(uri);
 
 // layer toggle
