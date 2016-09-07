@@ -38,7 +38,7 @@ visualizeData.visualizeFutureSuitability <- function(processedFutureSuitability,
       tool_pt.setAttribute("class","hidden");
     } else {
       if (!hovered){
-	    	window.parent.ga("send", "event", "svg interaction", "hover", "mouseover future suitability");
+	    	window.parent.ga("send", "event", "figure", "hovered future suitability");
 	    }
 	    hovered = true;
       pt = cursorPoint(evt);

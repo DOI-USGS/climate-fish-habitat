@@ -166,6 +166,7 @@ fill-opacity:0.75;
     </g>
   </g>
   <script type="text/ecmascript"><![CDATA[
+var hovered = false;
 function fadeShapes(wallyN, bassN){
   for (i = 0; i < 60; i++) { 
     document.getElementById('walleye-'+(i+1)).setAttribute('class','hidden');
@@ -182,6 +183,10 @@ function wallyLeg(value){
   document.getElementById('legend-walleye-text').firstChild.data='Walleye'+value;
 }
 function showBar(evt){
+  if (!hovered){
+		window.parent.ga('send', 'event', 'figure', 'hovered walleye trends');
+	}
+	hovered = true;
   var width = '10';
   document.getElementById('highlight-marker').childNodes[1].setAttribute('width',width);
   var tX = evt.target.getAttribute('x');
@@ -198,6 +203,6 @@ function bassLeg(value){
   document.getElementById('legend-bass-text').firstChild.data='Bass'+value;
 }
 ]]></script>
-  <text x="10" y="25" text-anchor="begin" id="y-title">Walleye recruitment (#/mile)</text>
-  <text x="710" y="25" text-anchor="end" id="y-title">Bass relative abundance</text>
+  <text x="5" y="25" text-anchor="begin" id="y-title">Natural walleye reproduction (young/mile)</text>
+  <text x="715" y="25" text-anchor="end" id="y-title">Largemouth bass relative abundance</text>
 </svg>
