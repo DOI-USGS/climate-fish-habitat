@@ -242,12 +242,13 @@ map.addControl(layerControl2);
 });
 
 var sendAnalytics = function(latlng, data) {
-  // ignoring latlng, but leaving here if we want to log those clicks
-  var lakeid = 'none'
-  var matches = data.match(/predicted_species_\d{4}-\d{4}\.(\d*)/);
-  if (matches && matches.length > 1) {
-    lakeid = matches[1];
+  var period = 'none';
+  var fid = 'none';
+  var matches = data.match(/predicted_species_(\d{4}-\d{4})\.(\d*)/);
+  if (matches && matches.length > 2) {
+    period = matches[1];
+    fid = matches[2];
   }
-  var label = JSON.stringify({lakeid: lakeid});
+  var label = JSON.stringify({featureid: fid, period: period});
   ga('send', 'event', 'figure', 'clicked lake', label);
 }
