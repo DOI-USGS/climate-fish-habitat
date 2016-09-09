@@ -74,10 +74,7 @@
         }
 		// set up the initial position of control-point dots;
 		// reset button and dot classes
-  		function resetDefaults(sendEvent=false){
-			if (sendEvent){
-				window.parent.ga("send", "event", "figure", "reset GDD guess");
-			} 
+  		function resetDefaults(){
 			drawnPoints = [];
 			activeFish = "wally"
         	dots = [85, 143, 201, 259, 317, 375, 433, 491, 549, 607, 665];
@@ -351,13 +348,13 @@
     			svgDoc.getElementById("im-done").setAttribute('class','enabled');
     			svgDoc.getElementById("im-done").setAttribute('onclick', 'imDone();')
     			svgDoc.getElementById("start-over").setAttribute('class','enabled');
-    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults(true);')
+    			svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "figure", "reset GDD guess");')
 			} 
 			
             for (var i = 0; i < dots.length; i++) {
             	if (svgDoc.getElementById(activeFish+"-"+i).getAttribute('class') === 'enabled'){
             		svgDoc.getElementById("start-over").setAttribute('class','enabled');
-            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults(true);')
+            		svgDoc.getElementById("start-over").setAttribute('onclick', 'resetDefaults();window.parent.ga("send", "event", "figure", "reset GDD guess");')
             		return
             	}
             }
