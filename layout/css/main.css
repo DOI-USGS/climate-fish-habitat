@@ -305,6 +305,21 @@ footer a:visited{
   color:#008173;
 }
 
+@media only screen
+	and (min-device-width: 768px)
+	and (max-device-width: 1024px)
+	and (-webkit-min-device-pixel-ratio: 1){
+		#welcome-keynote,
+    #walleyeDecline-keynote,
+    #walleyeBass-keynote,
+    #lakeWarming-keynote,
+    #futureWarming-keynote,
+    #futureSuitability-keynote,
+    #fishManagement-keynote{
+			background-attachment: scroll !important;
+		}
+}
+
 @media screen and (min-width:768px){
   
   .center{
