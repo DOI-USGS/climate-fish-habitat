@@ -7,6 +7,9 @@ info:
   path: /climatefish
   description: >-
     Fish habitat.
+  thumbnail: 
+    url: images/thumbnail.png
+    alttext: Climate change and freshwater fish
 pages:
   -
     id: index
