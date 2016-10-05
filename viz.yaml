@@ -1,7 +1,7 @@
 vizlab: "0.1"
 info:
   id: climate-fish-habitat
-  name: An example visualization
+  name: Shifts in fish habitat under climate change
   date: 2016-05-12
   publish-date: 2016-07-13
   path: /climatefish
