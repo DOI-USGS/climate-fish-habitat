@@ -19,7 +19,7 @@
     "disclaimerURL": "https://github.com/USGS-VIZLAB/climate-fish-habitat/blob/main/DISCLAIMER.md",
     "repositoryURL": "https://github.com/USGS-VIZLAB/climate-fish-habitat.git",
     "vcs": "git",
-    "laborHours": -1,
+    "laborHours": 200,
     "tags": [
       "R",
       "USGS"
@@ -41,7 +41,7 @@
     "organization": "U.S. Geological Survey",
     "description": "",
     "version": "v0.1.0",
-    "status": "Ideation",
+    "status": "Production",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
@@ -62,7 +62,7 @@
       "USGS"
     ],
     "languages": [
-      "R"
+      "R", "Javascript"
     ],
     "contact": {
       "name": "",
