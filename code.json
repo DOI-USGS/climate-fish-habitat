@@ -1,0 +1,75 @@
+[
+  {
+    "name": "climate-fish-habitat",
+    "organization": "U.S. Geological Survey",
+    "description": "Shifts in fish habitat under climate change",
+    "version": "main",
+    "status": "Production",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://github.com/USGS-VIZLAB/climate-fish-habitat/blob/main/LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "https://github.com/USGS-VIZLAB/climate-fish-habitat/",
+    "downloadURL": "https://github.com/USGS-VIZLAB/climate-fish-habitat/archive/refs/heads/main.zip",
+    "disclaimerURL": "https://github.com/USGS-VIZLAB/climate-fish-habitat/blob/main/DISCLAIMER.md",
+    "repositoryURL": "https://github.com/USGS-VIZLAB/climate-fish-habitat.git",
+    "vcs": "git",
+    "laborHours": -1,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "R",
+      "JavaScript"
+    ],
+    "contact": {
+      "name": "Cee Nell",
+      "email": "cnell@usgs.gov"
+    },
+    "date": {
+      "metadataLastUpdated": "2023-03-03"
+    }
+  },
+  {
+    "name": "",
+    "organization": "U.S. Geological Survey",
+    "description": "",
+    "version": "v0.1.0",
+    "status": "Ideation",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "",
+    "downloadURL": "",
+    "disclaimerURL": "",
+    "repositoryURL": "",
+    "vcs": "git",
+    "laborHours": 1,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "R"
+    ],
+    "contact": {
+      "name": "",
+      "email": ""
+    },
+    "date": {
+      "metadataLastUpdated": "2022-10-16"
+    }
+  }
+]
