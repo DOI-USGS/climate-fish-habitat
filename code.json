@@ -40,7 +40,7 @@
     "name": "",
     "organization": "U.S. Geological Survey",
     "description": "",
-    "version": "v0.0.0",
+    "version": "v0.1.0",
     "status": "Ideation",
     "permissions": {
       "usageType": "openSource",
