@@ -4,7 +4,7 @@
     "organization": "U.S. Geological Survey",
     "description": "Shifts in fish habitat under climate change",
     "version": "main",
-    "status": "Development",
+    "status": "Production",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
